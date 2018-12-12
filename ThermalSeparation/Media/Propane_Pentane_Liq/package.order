@@ -1,0 +1,11 @@
+phi
+n
+MM_substances
+BaseProperties
+CalcSpecificEnthalpy
+HenryCoefficient
+DiffusionCoefficient
+ActivityCoefficient
+FugacityCoefficient
+ThermodynamicFactor
+EvaporationEnthalpy

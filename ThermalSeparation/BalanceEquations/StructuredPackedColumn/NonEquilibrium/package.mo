@@ -1,0 +1,3 @@
+within ThermalSeparation.BalanceEquations.StructuredPackedColumn;
+package NonEquilibrium 
+end NonEquilibrium;

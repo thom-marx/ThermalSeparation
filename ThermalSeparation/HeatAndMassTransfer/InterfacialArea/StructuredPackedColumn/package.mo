@@ -1,0 +1,4 @@
+within ThermalSeparation.HeatAndMassTransfer.InterfacialArea;
+package StructuredPackedColumn 
+
+end StructuredPackedColumn;
