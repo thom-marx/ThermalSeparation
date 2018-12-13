@@ -1,5 +1,5 @@
 Ôªøwithin ThermalSeparation.Media;
-package Methylacetatsynthese_Vap "Methylacetat, Essigs‰ure, Methanol, Wasser"
+package Methylacetatsynthese_Vap "Methylacetat, Essigs√§ure, Methanol, Wasser"
   extends BaseMediumVapour(nSubstance=n, V = {73.78, 53.26, 31.25, 13.1},  eq_Tsonopoulos = {0, 0,0, 6},  sigma = {4.936, 4.5, 3.626, 2.641},
  epsilon_k = {469.8, 470, 481.8, 809.1}, MMX={0.0741,0.0601,0.03204,0.018});
   constant Integer n = 4 "number of substances";
@@ -49,7 +49,7 @@ package Methylacetatsynthese_Vap "Methylacetat, Essigs‰ure, Methanol, Wasser"
    end for;
 
    eta = 1.5e-5;
-   /*** ideales Gasgesetz sehr gute N‰herung im Vergleich zu den Werten aus Multiflash -ok ***/
+   /*** ideales Gasgesetz sehr gute N√§herung im Vergleich zu den Werten aus Multiflash -ok ***/
    d = p/(Modelica.Constants.R*T)*MM;
 
    /*** molar mass ***/
@@ -82,7 +82,7 @@ package Methylacetatsynthese_Vap "Methylacetat, Essigs‰ure, Methanol, Wasser"
 
   redeclare replaceable model extends EvaporationEnthalpy
 
-  /*** Temperaturabh‰ngigkeit fehlt ***/
+  /*** Temperaturabh√§ngigkeit fehlt ***/
         constant ThermalSeparation.Units.MolarEnthalpy delta_hv[nX] = {31918, 24628, 36116, 40667};
         constant Real[nX-1,4] C= {{44920,0.3684999,0,0},{40179,2.6036999,-5.0031,2.7069},{52002,0.3775,0,0}};
         constant SI.Temperature[nX] Tcrit={506.1, 592.7, 513.1, 647.3};
@@ -111,9 +111,9 @@ package Methylacetatsynthese_Vap "Methylacetat, Essigs‰ure, Methanol, Wasser"
 
   redeclare replaceable model extends CalcSpecificEnthalpy
 
-    /***Berechnung der S‰ttigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
+    /***Berechnung der S√§ttigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
 
-    /*** W‰rmekapazit‰ten durch Polynome 4. Ordnung austauschen ***/
+    /*** W√§rmekapazit√§ten durch Polynome 4. Ordnung austauschen ***/
 
   SI.MolarHeatCapacity cp_MeOAc_liq = 150;
   SI.MolarHeatCapacity cp_HOAc_liq = 650;
@@ -121,7 +121,7 @@ package Methylacetatsynthese_Vap "Methylacetat, Essigs‰ure, Methanol, Wasser"
   SI.MolarHeatCapacity cp_H2O_liq = 4187*MMX[4];
   SI.MolarHeatCapacity cp_liq[nS] = {cp_MeOAc_liq, cp_HOAc_liq, cp_MeOH_liq, cp_H2O_liq};
 
-    /*** W‰rmekapazit‰ten durch Polynome 4. Ordnung austauschen ***/
+    /*** W√§rmekapazit√§ten durch Polynome 4. Ordnung austauschen ***/
   SI.MolarHeatCapacity cp_MeOAc_vap = 930;
   SI.MolarHeatCapacity cp_HOAc_vap = 730;
   SI.MolarHeatCapacity cp_MeOH_vap = 490;
@@ -138,7 +138,7 @@ package Methylacetatsynthese_Vap "Methylacetat, Essigs‰ure, Methanol, Wasser"
     Real C_Ant[nS] = {-53.424, -39.626, -33.4240, -39.724};
     SI.Temperature T_sat[nX];
 
-    /*** Verdampfungsenthalpie: Temperaturabh‰ngigkeit fehlt ***/
+    /*** Verdampfungsenthalpie: Temperaturabh√§ngigkeit fehlt ***/
     EvaporationEnthalpy evapEnthalpy(p=p,T=T);
     ThermalSeparation.Units.MolarEnthalpy delta_hv_const[nX] = {31918, 24628, 36116, 40667};
     SI.Temperature T_hv[nX]={56.9+273.15, 117.9+273.15,64.7+273.15, 100+273.15}

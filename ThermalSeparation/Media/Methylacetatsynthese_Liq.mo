@@ -1,5 +1,5 @@
 Ôªøwithin ThermalSeparation.Media;
-package Methylacetatsynthese_Liq "Methylacetat, Essigs‰ure, Methanol, Wasser"
+package Methylacetatsynthese_Liq "Methylacetat, Essigs√§e, Methanol, Wasser"
   extends BaseMediumLiquidReaction(
   has_etaSubstance=fill(true,nSubstance),
   nSubstance=4,
@@ -193,7 +193,7 @@ end FugacityCoefficient;
   /*** enthalpy ***/
   parameter Integer nS=4;
 
-  /*** W‰rmekapazit‰ten durch Polynome 4. Ordnung austauschen ***/
+  /*** W√§rmekapazit√§n durch Polynome 4. Ordnung austauschen ***/
   SI.MolarHeatCapacity cp_MeOAc = 150;
   SI.MolarHeatCapacity cp_HOAc = 650;
   SI.MolarHeatCapacity cp_MeOH = 120;

@@ -19,10 +19,10 @@ Real f1[nS];
 Real f2[nS];
 Real f3[nS];
 Real Summe[nS];
-Real B[nS] "in m³/mol";// zweite Virialkoeffizient des Reinstoffs
+Real B[nS] "in mÂ³/mol";// zweite Virialkoeffizient des Reinstoffs
 Real R = Modelica.Constants.R*1000;
 Real pcrit_bar[nS];
-//Tsonopoulos Parameter für 2ten Virialkoeff.
+//Tsonopoulos Parameter fÃ¼r 2ten Virialkoeff.
 Real a[nS]= satFugacityCoeff_TsonopoulosConstants2.a;
 Real b[nS]= satFugacityCoeff_TsonopoulosConstants2.b;
 
@@ -46,9 +46,9 @@ equation
   Summe[k] = f0[k] + omega[k]*f1[k]+a[k]*f2[k]+b[k]*f3[k];
 
   B[k] = Modelica.Constants.R*max(1e-6,Tcrit[k])/max(1e-6,pcrit[k])*Summe[k]
-      "in m³/mol";
+      "in mÂ³/mol";
 
-  // Berechnung des Fugazitätskoeffizienten
+  // Berechnung des FugazitÃ¤tskoeffizienten
 help1[k]=(1-exp(B[k]*1e3*p_sat[k]/R/T))/3;
 help2[k]=exp(B[k]*1e3*p_sat[k]/R/T);
   phi_sat[k]=help2[k];//1-help1[k];

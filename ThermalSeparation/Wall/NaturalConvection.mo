@@ -34,5 +34,5 @@ algorithm
   annotation (Icon(graphics),
                     DymolaStoredErrors,
     Documentation(info="<html> This model calculates the heat loss to ambiance using a correlation for the outside heat transfer coefficient of air obtained from 
-VDI Wärmeatlas, 6.Auflage, 1991, S. Fa2. For further information of this model see also  <a href=\"Modelica://ThermalSeparation.Wall.BaseWall\">BaseWall</a></html>"));
+VDI WÃ¤rmeatlas, 6.Auflage, 1991, S. Fa2. For further information of this model see also  <a href=\"Modelica://ThermalSeparation.Wall.BaseWall\">BaseWall</a></html>"));
 end NaturalConvection;

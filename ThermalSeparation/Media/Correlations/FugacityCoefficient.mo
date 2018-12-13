@@ -294,8 +294,8 @@ constant Real[:,:] leeKesler_fugacityPressureRatio1=
     parameter Real kij[nS,nS]= fill(0.01,nS,nS)
       "binary interaction coefficient for Redlich-Kwong equation";
 
-    parameter Integer u=1 "nach Redlich Kwong Näherung";
-    parameter Integer w=0 "nach Redlich Kwong Näherung";
+    parameter Integer u=1 "nach Redlich Kwong NÃ¤herung";
+    parameter Integer w=0 "nach Redlich Kwong NÃ¤herung";
 
   protected
     Real h[nS] "Hilfsvariable ohne phys. Bedeutung";
@@ -307,8 +307,8 @@ constant Real[:,:] leeKesler_fugacityPressureRatio1=
     Real B "Mischkoeffizient";
     Real B1 "eigentlich B*";
     Real A1 "eigentlich A*";
-    Real a[nS] "Konstanten nach Redlich Kwong für einzelne Komponenten";
-    Real b[nS] "Konstanten nach Redlich Kwong für einzelne Komponenten";
+    Real a[nS] "Konstanten nach Redlich Kwong fÃ¼r einzelne Komponenten";
+    Real b[nS] "Konstanten nach Redlich Kwong fÃ¼r einzelne Komponenten";
     Real am "Konstanten a des Gemischs";
     Real bm "Konstanten b des Gemischs";
   Real test[nS];
@@ -357,9 +357,9 @@ constant Real[:,:] leeKesler_fugacityPressureRatio1=
 
   model LeeKesler
   /*Die Universelle Gaskonstante wird im folgenden in der Einheit [bar*cm3/mol*K] verwendet.
-Daraus folgt der Faktor 10 für die Umrechnung aus [J/mol*K]. */
+Daraus folgt der Faktor 10 fÃ¼r die Umrechnung aus [J/mol*K]. */
   /*Der Druck und der kritische Druck wird in [bar] verwendet. Die Eingaben sind in [Pa]. 
-Es folgt ein Faktor 1e5 für die Umrechnung!*/
+Es folgt ein Faktor 1e5 fÃ¼r die Umrechnung!*/
   /*Das Volumen wird in [cm3/mol] verwendet. Da die Eingaben in [m3/mol] sind, muss ein Faktor von 1e6 verwendet werden*/
 
   extends BaseFugacityCoefficient;
@@ -369,19 +369,19 @@ Es folgt ein Faktor 1e5 für die Umrechnung!*/
     //   parameter Integer a = inter[nS-1]
    //   "number of binary interaction parameters depending on the number of substances";
 
-  /*Die Variablen y1-y6 sind Tabellenwerte, die nach dem ersten Durchlauf mit Hilfe von Trm und prm bestimmt werden müssen*/
+  /*Die Variablen y1-y6 sind Tabellenwerte, die nach dem ersten Durchlauf mit Hilfe von Trm und prm bestimmt werden mÃ¼ssen*/
   /*** Die Tabellennummern beziehen sich auf: Reid, Prausnitz: The Properties of Gases & Liquids, 4th edition, McGraw-Hill,
 die Gleichungen sind in Tabelle 5-13 (S. 145) aufgelistet. ***/
     Real y1;
-     //log (f/p)(0) aus Tabelle für reduzierte Temp und Druck des Gemischs!, Tabelle 5-6";
+     //log (f/p)(0) aus Tabelle fÃ¼r reduzierte Temp und Druck des Gemischs!, Tabelle 5-6";
     Real y2;//=fill(0.0015,n) "=  {-0.014}
-     // log (f/p)(1) aus Tabelle für reduzierte Temp und Druck des Gemischs!, Tabelle 5-7";
+     // log (f/p)(1) aus Tabelle fÃ¼r reduzierte Temp und Druck des Gemischs!, Tabelle 5-7";
     Real y3;//=fill(0.01,n) "= {0.466} (H0-H/RTcm)0 aus Tabelle 5-2!";
     Real y4;//=fill(-0.001,n) "= {0.433} (H0-H/RTcm)1 aus Tabelle 5-3";
     Real y5;//=fill(0.998,n) "0.8455}
-     // Z0 Zur Bestimmung des Kompressibiltätsfaktors des Gemischs, Tabelle 3-2";
+     // Z0 Zur Bestimmung des KompressibiltÃ¤faktors des Gemischs, Tabelle 3-2";
     Real y6;//=fill(0.001,n) "={-0.0335}
-     // Z1 Zur Bestimmung des Kompressibiltätsfaktors des Gemischs, Tabelle 3-3";
+     // Z1 Zur Bestimmung des KompressibiltÃ¤tsfaktors des Gemischs, Tabelle 3-3";
 
     Real Tcm "[K]";
     Real pcm "[bar]";
@@ -415,14 +415,14 @@ die Gleichungen sind in Tabelle 5-13 (S. 145) aufgelistet. ***/
 
   // initial equation
   //    //Erstellen der kij Matrix:
-  //      //Erstellen einer Matrix aus den binären Interaktionsparametern
+  //      //Erstellen einer Matrix aus den binÃ¤ren Interaktionsparametern
   //       for i in 1:nS loop
   //         for m in i:nS loop
   //           if i==m then
-  //             //die Einträge auf der Diagonalen, werden auf irgendeinen Wert gesetzt, da eh nie benutzt
+  //             //die EintrÃ¤ge auf der Diagonalen, werden auf irgendeinen Wert gesetzt, da eh nie benutzt
   //             kij[i,m] = 0.07;
   //           else
-  //             //die Einträge des Vektors werden an die richtigen Stellen auf der Matrix verteilt
+  //             //die EintrÃ¤ge des Vektors werden an die richtigen Stellen auf der Matrix verteilt
   //             kij[i,m] = kij_user[m-2+i];
   //             end if;
   //           end for;
@@ -489,7 +489,7 @@ die Gleichungen sind in Tabelle 5-13 (S. 145) aufgelistet. ***/
   end LeeKesler;
 
   model PengRobinson
-                        //Lüdecke, Lüdecke, Thermodynamik S.566 / Mischungsgrößen: Gmehling & Kolbe Thermodynamik S43.
+                        //LÃ¼decke, LÃ¼decke, Thermodynamik S.566 / MischungsgrÃ¶ÃŸn: Gmehling & Kolbe Thermodynamik S43.
     extends BaseFugacityCoefficient;
    parameter Real kij[aux2]= fill(0.0267,aux2);
    final parameter Integer aux[:] = {1,3,6,10,15, 21, 28, 36, 45};
@@ -654,7 +654,7 @@ die Gleichungen sind in Tabelle 5-13 (S. 145) aufgelistet. ***/
 
     replaceable package MediumVapour =
         ThermalSeparation.Media.IdealGasMixtures.N2_H2O;
-        //für N2-CH4 Mischung: kij = 0.0267
+        //fÃ¼r N2-CH4 Mischung: kij = 0.0267
 
    Virial virial(                     nS=2, T = T, p = p, y = y, v=v);
 
@@ -732,7 +732,7 @@ die Gleichungen sind in Tabelle 5-13 (S. 145) aufgelistet. ***/
     input SI.Temperature T "[K]";
     input Integer NoOfEq[nS];
 
-    output Real B[nS,nS] "in m³/mol";
+    output Real B[nS,nS] "in mÂ³/mol";
 
     Virial_TsonopoulosConstants TsonopoulosConstants(Tcrit=Tci, pcrit=pci,my=my,
   nS=nS,  NoOfEq=NoOfEq);
@@ -755,7 +755,7 @@ die Gleichungen sind in Tabelle 5-13 (S. 145) aufgelistet. ***/
     Real f3[nS,nS];
     Real Summe[nS,nS];
 
-  //Tsonopoulos Parameter für 2ten Virialkoeff.
+  //Tsonopoulos Parameter fÃ¼r 2ten Virialkoeff.
     Real ai[nS]= TsonopoulosConstants.a;
     Real bi[nS]= TsonopoulosConstants.b;
 
@@ -813,14 +813,14 @@ die Gleichungen sind in Tabelle 5-13 (S. 145) aufgelistet. ***/
         if i==k then
 
           Tr[i,k]=  T/Tci[i];
-          B[i,k] = Modelica.Constants.R*Tci[i]/pci[i]*Summe[i,k] "in m³/mol";
+          B[i,k] = Modelica.Constants.R*Tci[i]/pci[i]*Summe[i,k] "in mÂ³/mol";
           //Bij[i,j]= ((0.083-(0.422/Tr[i,j]^(1/6)))+omega[i]*(0.139-(0.172/Tr[i,j]^(4.2))))*(Modelica.Constants.R*Tci[i])/pci[i];
         else
 
           Tr[i,k]=  T/Tcik[i,k];
 
           B[i,k] = Modelica.Constants.R*Tcik[i,k]/pcik[i,k]*Summe[i,k]
-            "in m³/mol";
+            "in mÂ³/mol";
 
           //Bij[i,j]= ((0.083-(0.422/Tr[i,j]^(1/6)))+omegaij[i,j]*(0.139-(0.172/Tr[i,j]^(4.2))))*(Modelica.Constants.R*Tcij[i,j])/pcij[i,j];
         end if;
