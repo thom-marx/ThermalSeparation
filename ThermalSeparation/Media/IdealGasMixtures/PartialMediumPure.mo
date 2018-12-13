@@ -62,7 +62,7 @@ partial package PartialMediumPure
     annotation(Documentation(info="<html></html>"));
   end ThermodynamicState;
 
-  replaceable record BasePropertiesRecord
+  record BasePropertiesRecord
     "Variables contained in every instance of BaseProperties"
     extends Modelica.Icons.Record;
     AbsolutePressure p "Absolute pressure of medium";
