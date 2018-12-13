@@ -20,8 +20,8 @@ parameter SI.Temperature T_ref = systemTS.T_ref "reference temperature" annotati
   parameter SI.MoleFraction x_l_start_out[nSL]= fill(1/nSL,nSL)                                 annotation(Dialog(enable=x_l_profile, tab="Initialization"));
   parameter SI.MoleFraction x_v_start_in[nSV] = fill(1/nSV,nSV)         annotation(Dialog(enable=x_v_profile, tab="Initialization"));
   parameter SI.MoleFraction x_v_start_out[nSV] = fill(1/nSV,nSV)        annotation(Dialog(enable=x_v_profile, tab="Initialization"));
-  final parameter SI.MoleFraction x_l_start[n,nSL](fixed=false);
-  final parameter SI.MoleFraction x_v_start[n,nSV](fixed=false);
+  final parameter SI.MoleFraction x_l_start[n,nSL](each fixed=false);
+  final parameter SI.MoleFraction x_v_start[n,nSV](each fixed=false);
   parameter Real x_total_start[nSV]=fill(1/nSV,nSV)
     "total mole fraction in system (vapour and liquid), component ordering as in vapour medium"
                                                                                                annotation(Dialog(tab="Initialization"));
@@ -102,7 +102,7 @@ replaceable package MediumLiquid =
   SI.MolarMass MM_v_in( start=0.03) = mediumVapourIn.MM;
   ThermalSeparation.Units.MolarEnthalpy h_v[n] = if homotopyMethod.bool_h and homotopyMethod.useHomotopy then homotopy(actual=mediumVapour.h,simplified=fill(homotopyMethod.h_vap,n)) else mediumVapour.h;
   ThermalSeparation.Units.MolarEnthalpy h_v_in = mediumVapourIn.h;
-  SI.MolarInternalEnergy u_v[n](stateSelect=StateSelect.default)= mediumVapour.u;
+  SI.MolarInternalEnergy u_v[n](each stateSelect=StateSelect.default)= mediumVapour.u;
   MediumVapour.ThermodynamicProperties[n] propsVap= mediumVapour.properties;
   MediumVapour.ThermodynamicProperties propsVapIn= mediumVapourIn.properties;
 
@@ -114,13 +114,13 @@ replaceable package MediumLiquid =
   SI.MolarMass MM_l_in= mediumLiquidIn.MM;
   ThermalSeparation.Units.MolarEnthalpy h_l[n];//= mediumLiquid.h;
   ThermalSeparation.Units.MolarEnthalpy h_l_in;//=mediumLiquidIn.h;
-  SI.MolarInternalEnergy u_l[n](stateSelect=StateSelect.default) =  mediumLiquid.u;
+  SI.MolarInternalEnergy u_l[n](each stateSelect=StateSelect.default) =  mediumLiquid.u;
   MediumLiquid.ThermodynamicProperties[n] propsLiq= mediumLiquid.properties;
   MediumLiquid.ThermodynamicProperties propsLiqIn= mediumLiquidIn.properties;
 
 //Variables upStream
   SI.Concentration c_v_in[nSV];
-  SI.Concentration c_v[n,nSV](stateSelect=StateSelect.default) annotation(Dialog(group="Initialization",showStartAttribute=true));
+  SI.Concentration c_v[n,nSV](each stateSelect=StateSelect.default) annotation(Dialog(group="Initialization",showStartAttribute=true));
   SI.MoleFraction x_v_in[nSV];
   SI.MoleFraction x_v[n,nSV](start=x_v_start);
   SI.VolumeFlowRate Vdot_v_in(nominal=1e-2);
@@ -138,7 +138,7 @@ replaceable package MediumLiquid =
   //Variables downStream
   SI.Concentration c_l_in[nSL]
     "molar concentration in the liquid at the liquid outlet of each stage";
-  SI.Concentration c_l[n,nSL](stateSelect=StateSelect.default) annotation(Dialog(group="Initialization",showStartAttribute=true));
+  SI.Concentration c_l[n,nSL](each stateSelect=StateSelect.default) annotation(Dialog(group="Initialization",showStartAttribute=true));
 
   SI.MoleFraction x_l_in[nSL];
   SI.MoleFraction x_l[n,nSL](start=x_l_start);
@@ -178,7 +178,7 @@ replaceable package MediumLiquid =
             {60,-100},{80,-80}})));
 
   //initial equation for eps_liq is supplied in the extending class!
-  SI.VolumeFraction eps_liq[        n]( stateSelect=StateSelect.default)
+  SI.VolumeFraction eps_liq[        n](each stateSelect=StateSelect.default)
     "liquid volume fraction";
   SI.VolumeFraction eps_vap[        n](start=fill(0.99,n))
     "vapour volume fraction";
@@ -259,7 +259,7 @@ public
   SI.Pressure p_bub[n]= bubblePressure.p_bubble "mixture bubble pressure";
   SI.Pressure p_hyd[n+1] "hydraulic pressure";
   Real omega[n];
-  Boolean startUp[n](start=fill(true,n),fixed=false);
+  Boolean startUp[n](start=fill(true,n),each fixed=false);
   Real Ndot_source_startUp[n]
     "dummy molar flow rate to account for discharge of inert gas during startUp";
 

@@ -7,7 +7,7 @@ model RochaStructured "structured packing - Rocha et al."
  // extends ThermalSeparation.FilmModel.BaseClasses.PackedColumn.BaseMSVapour;
 extends BaseVapMT;
   //  Real Sh[n,a] "Sherwood number";
-  Real Re[n](stateSelect=StateSelect.default) "Reynolds number";
+  Real Re[n](each stateSelect=StateSelect.default) "Reynolds number";
   Real Sc[n,n_k] "Schmidt number";
      parameter Real omega_k=0.05
     "large value if change between constant and variable shall be steep";

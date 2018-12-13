@@ -15,7 +15,7 @@ parameter SI.Pressure p = 1.3e5 "pressure" annotation(Dialog(enable=use_p));
 parameter Boolean use_Vdot = false "fixed volume flow rate";
 
   parameter Boolean showVdot = false "real output showing Vdot";
-   Modelica.Blocks.Interfaces.RealOutput Vdot = liquidPortIn.Vdot if showVdot annotation (Placement(
+   Modelica.Blocks.Interfaces.RealOutput Vdot = liquidPortIn.Ndot if showVdot annotation (Placement(
          transformation(extent={{66,-6},{100,28}}), iconTransformation(extent={{-17,-17},
             {17,17}},
         rotation=180,

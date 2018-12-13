@@ -16,8 +16,8 @@ end InternalFeedPort;
           MediumLiquid),feedVapourInternal(redeclare each package Medium =
           MediumVapour));
 protected
-  parameter Integer[n-numberLiquidFeedsInternal] aux1(fixed=false);
-  parameter Integer[n] aux2(fixed=false);
+  parameter Integer[n-numberLiquidFeedsInternal] aux1(each fixed=false);
+  parameter Integer[n] aux2(each fixed=false);
   parameter Integer counterL(fixed = false)
     "counting the stages; equals n at end of algorithm";
 
@@ -43,8 +43,8 @@ public
 //       package Medium =
 //         MediumVapour,                                                                                       x(start=x_v_start), c(start=c_v));
 protected
-  parameter Integer[n-numberVapourFeedsInternal] testV(fixed=false);
-  parameter Integer[n] test2V(fixed=false);
+  parameter Integer[n-numberVapourFeedsInternal] testV(each fixed=false);
+  parameter Integer[n] test2V(each fixed=false);
   parameter Integer counterLV(fixed = false)
     "counting the stages; equals n at end of algorithm";
 
@@ -65,7 +65,7 @@ public
             -94,8},{-74,28}})));
 
   ThermalSeparation.Utilities.MediumLink mediumVapourLink[n];
-  MediumVapour.BaseProperties mediumVapourFeed[numberVapourFeeds](each T0=T_ref, each p=p_v[n+1],c=c_v_feed,h=actualStream(feedVapour_dummy.h_outflow), x=actualStream(feedVapour_dummy.x_outflow),  x_star=actualStream(feedVapour_dummy.x_outflow)) if                   hasVapourFeed;
+  MediumVapour.BaseProperties mediumVapourFeed[numberVapourFeeds](each T0=T_ref, each p=p_v[n+1]/*, TODO FIXME! c=c_v_feed */,h=actualStream(feedVapour_dummy.h_outflow), x=actualStream(feedVapour_dummy.x_outflow),  x_star=actualStream(feedVapour_dummy.x_outflow)) if                   hasVapourFeed;
  // Modelica.Blocks.Interfaces.RealInput h_help;
 
   ThermalSeparation.Interfaces.GasPortIn[numberVapourFeeds] feedVapour_dummy(redeclare

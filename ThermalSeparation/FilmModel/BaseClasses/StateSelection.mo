@@ -34,11 +34,11 @@ package StateSelection
     model StateSelection2 "states: c_v, c_l, u_v, u_l, MM_v"
       extends
         ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.BaseStateSelectionNoneq;
-      SI.Concentration c_v_state[n,nSV](stateSelect=StateSelect.always) = propsVap.c;
-      SI.Concentration c_l_state[n,nSL](stateSelect=StateSelect.always) = c_l;
-      SI.Concentration u_v_state[n](stateSelect=StateSelect.always) = propsVap.u;
-      SI.Concentration u_l_state[n](stateSelect=StateSelect.always) = propsLiq.u;
-      SI.Concentration MM_v_state[n](stateSelect=StateSelect.always) = propsVap.MM;
+      SI.Concentration c_v_state[n,nSV](each stateSelect=StateSelect.always) = propsVap.c;
+      SI.Concentration c_l_state[n,nSL](each stateSelect=StateSelect.always) = c_l;
+      SI.Concentration u_v_state[n](each stateSelect=StateSelect.always) = propsVap.u;
+      SI.Concentration u_l_state[n](each stateSelect=StateSelect.always) = propsLiq.u;
+      SI.Concentration MM_v_state[n](each stateSelect=StateSelect.always) = propsVap.MM;
     equation
 
     end StateSelection2;

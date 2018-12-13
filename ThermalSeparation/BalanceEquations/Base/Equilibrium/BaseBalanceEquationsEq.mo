@@ -56,7 +56,7 @@ extends ThermalSeparation.BalanceEquations.Base.BaseBalanceEquations;
    parameter Modelica.SIunits.Temperature T_ref;
 
   /*** variables upStream ***/
-  input SI.Concentration c_v[n,nSV](stateSelect=StateSelect.default);
+  input SI.Concentration c_v[n,nSV](each stateSelect=StateSelect.default);
    SI.Concentration c_v_in[nSV]=propsVapIn.c;
    SI.MoleFraction x_v_in[nSV]=propsVapIn.x;
    // SI.MoleFraction x_v[n,nSV]=propsVap.x;
@@ -70,7 +70,7 @@ extends ThermalSeparation.BalanceEquations.Base.BaseBalanceEquations;
   input SI.MoleFraction x_vap_liq[n,nS];
 
   /*** variables downStream ***/
-  input SI.Concentration c_l[n,nSL](stateSelect=StateSelect.default);
+  input SI.Concentration c_l[n,nSL](each stateSelect=StateSelect.default);
    SI.Concentration c_l_in[nSL]=propsLiqIn.c
     "molar concentration in the liquid at the liquid outlet of each stage";
    SI.MoleFraction x_l_in[nSL]=propsLiqIn.x;
@@ -108,7 +108,7 @@ extends ThermalSeparation.BalanceEquations.Base.BaseBalanceEquations;
   input SI.MolarFlowRate Ndot_v_in "total molar flow rate vapour";
   input SI.MolarFlowRate Ndot_l[n] "total molar flow rate liquid";
   input SI.MolarFlowRate Ndot_l_in "total molar flow rate vapour";
-  input SI.VolumeFraction eps_liq[n]( stateSelect=StateSelect.default)
+  input SI.VolumeFraction eps_liq[n](each stateSelect=StateSelect.default)
     "liquid volume fraction";
   input SI.VolumeFraction eps_vap[n](start=fill(0.99,n))
     "vapour volume fraction";
@@ -155,7 +155,7 @@ extends ThermalSeparation.BalanceEquations.Base.BaseBalanceEquations;
     "true if StartUp is to be considered" annotation(Dialog(tab="StartUp"));
   input SI.Pressure p_hyd[n+1] "hydraulic pressure";
   input Real omega[n];
-  input Boolean startUp[n](start=fill(true,n),fixed=false);
+  input Boolean startUp[n](start=fill(true,n),each fixed=false);
 
 /*** steady state ***/
   final Boolean stat "true for steady state balancing equations";

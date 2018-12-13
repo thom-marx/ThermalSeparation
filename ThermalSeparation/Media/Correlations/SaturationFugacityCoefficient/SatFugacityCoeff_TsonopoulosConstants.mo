@@ -8,12 +8,12 @@ input SI.Temperature Tcrit[nS];
 input SI.Pressure pcrit[nS];
 input Units.DipoleMoment mu[nS];
 
-parameter Real a[nS](fixed = false);
-parameter Real b[nS](fixed = false);
+parameter Real a[nS](each fixed = false);
+parameter Real b[nS](each fixed = false);
 
 protected
-parameter Real mu_r[nS](fixed = false);
-parameter Real pcrit_atm[nS]( fixed = false);
+parameter Real mu_r[nS](each fixed = false);
+parameter Real pcrit_atm[nS](each fixed = false);
 initial equation
 for m in 1:nS loop
 pcrit_atm[m] = max(1e-6,pcrit[m])*9.8692*1e-6;
