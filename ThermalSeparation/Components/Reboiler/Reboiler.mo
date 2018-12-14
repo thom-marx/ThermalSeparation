@@ -79,11 +79,11 @@ parameter Boolean inertLiquid[nSL] = {false, false, true};
   SI.MolarInternalEnergy u_l(stateSelect=StateSelect.always) =  mediumLiquid.u;
 
 /*** Medium properties ***/
-SI.Concentration c_l[nSL](stateSelect=StateSelect.always) annotation(Dialog(group="Initialization",showStartAttribute=true));
+SI.Concentration c_l[nSL](each stateSelect=StateSelect.always) annotation(Dialog(group="Initialization",showStartAttribute=true));
 SI.MoleFraction x_l[nSL](start=x_l_start);
 
 SI.MoleFraction x_l_in[nSL];
-SI.Concentration c_v[nSV](stateSelect=StateSelect.default) annotation(Dialog(group="Initialization",showStartAttribute=true));
+SI.Concentration c_v[nSV](each stateSelect=StateSelect.default) annotation(Dialog(group="Initialization",showStartAttribute=true));
 SI.MoleFraction x_v[nSV];
   SI.Concentration c_l_star[nSL];
     SI.Temperature T_l_in;

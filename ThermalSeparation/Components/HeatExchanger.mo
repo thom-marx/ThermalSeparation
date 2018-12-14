@@ -353,8 +353,8 @@ extends ThermalSeparation.Icons.Library.Red;
   /*** Medium properties ***/
   Modelica.SIunits.Density rho_l;
   parameter Modelica.SIunits.Concentration c_l_start[nSL]={5,40000};
-  Modelica.SIunits.Concentration c_l[nSL](start=c_l_start, nominal=1e4);
-  //Modelica.SIunits.Concentration c_l_in[nSL](start=c_l_start, nominal=1e4);
+  Modelica.SIunits.Concentration c_l[nSL](start=c_l_start, each nominal=1e4);
+  //Modelica.SIunits.Concentration c_l_in[nSL](start=c_l_start, each nominal=1e4);
   Modelica.SIunits.MoleFraction x_l[nSL];
     ThermalSeparation.Units.MolarEnthalpy h_l(stateSelect=StateSelect.always,start=1e6);
     ThermalSeparation.Units.MolarEnthalpy u_l;
