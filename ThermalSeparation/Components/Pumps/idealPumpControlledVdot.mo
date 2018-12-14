@@ -32,7 +32,7 @@ parameter SI.VolumeFlowRate V_flow_start=0.000305
 
 /*** Medium properties ***/
 MediumLiquid.Density rho_l;
-SI.Concentration c_l[nSL](each start = 500, nominal = 1e4);
+SI.Concentration c_l[nSL](each start = 500, each nominal = 1e4);
 SI.MoleFraction x_l[nSL];
   ThermalSeparation.Units.MolarEnthalpy h_l;
   ThermalSeparation.Units.MolarEnthalpy u_l;
