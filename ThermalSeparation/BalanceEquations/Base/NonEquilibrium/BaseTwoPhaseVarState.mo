@@ -8,7 +8,7 @@ extends
   input SI.MolarInternalEnergy u_l[n](each stateSelect=StateSelect.default);
 
 protected
-  Real eps_liq_state[n]=eps_liq;//( stateSelect=StateSelect.always)=eps_liq;
+  Real eps_liq_state[n]=eps_liq;//(each stateSelect=StateSelect.always)=eps_liq;
 
 equation
 stat=false;
