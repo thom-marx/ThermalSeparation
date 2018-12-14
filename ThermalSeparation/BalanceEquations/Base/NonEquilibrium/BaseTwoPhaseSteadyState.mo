@@ -4,11 +4,11 @@ model BaseTwoPhaseSteadyState "phases balanced seperately, steady state"
 extends
     ThermalSeparation.BalanceEquations.Base.NonEquilibrium.BaseBalanceEquationsNonEq;
 
-  input SI.MolarInternalEnergy u_v[n](stateSelect=StateSelect.default);
-  input SI.MolarInternalEnergy u_l[n](stateSelect=StateSelect.default);
+  input SI.MolarInternalEnergy u_v[n](each stateSelect=StateSelect.default);
+  input SI.MolarInternalEnergy u_l[n](each stateSelect=StateSelect.default);
 
 protected
-  Real eps_liq_state[n]=eps_liq;//( stateSelect=StateSelect.always)=eps_liq;
+  Real eps_liq_state[n]=eps_liq;//(each stateSelect=StateSelect.always)=eps_liq;
 
 equation
 stat=false;
