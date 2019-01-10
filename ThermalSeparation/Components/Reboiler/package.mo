@@ -52,7 +52,7 @@ package Reboiler "this package contains components which have both a liquid and 
   ThermoEquilibrium thermoEquilibrium(
         redeclare replaceable package MediumVapour=MediumVapour,
         redeclare replaceable package MediumLiquid=MediumLiquid,
-        each nS=nS, mapping=mapping, T=T,x_l=x,x_v=y,v_v=MM_vap/rho_vap,p=p_sys,
+        nS=nS, mapping=mapping, T=T,x_l=x,x_v=y,v_v=MM_vap/rho_vap,p=p_sys,
         p_sat=p_sat,x_vap_liq=fill(1/nS,nS),startUp=startupCalc);
 
   Reaction reaction(

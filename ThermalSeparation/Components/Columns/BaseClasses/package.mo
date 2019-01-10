@@ -21,8 +21,8 @@ package BaseClasses "base classes for columns"
     parameter SI.MoleFraction x_l_start_out[nSL]= fill(1/nSL,nSL)                                 annotation(Dialog(enable=x_l_profile, tab="Initialization"));
     parameter SI.MoleFraction x_v_start_in[nSV] = fill(1/nSV,nSV)         annotation(Dialog(enable=x_v_profile, tab="Initialization"));
     parameter SI.MoleFraction x_v_start_out[nSV] = fill(1/nSV,nSV)        annotation(Dialog(enable=x_v_profile, tab="Initialization"));
-    final parameter SI.MoleFraction x_l_start[n,nSL](fixed=false);
-    final parameter SI.MoleFraction x_v_start[n,nSV](fixed=false);
+    final parameter SI.MoleFraction x_l_start[n,nSL](each fixed=false);
+    final parameter SI.MoleFraction x_v_start[n,nSV](each fixed=false);
     parameter Real x_total_start[nSV]=fill(1/nSV,nSV) "total mole fraction in system (vapour and liquid), component ordering as in vapour medium"
                                                                                             annotation(Dialog(tab="Initialization"));
 
@@ -69,7 +69,7 @@ package BaseClasses "base classes for columns"
   replaceable package MediumLiquid = ThermalSeparation.Media.H2O_CO2_MEA_Liq
      constrainedby ThermalSeparation.Media.BaseMediumLiquid "medium to be used in liquid phase"                                                         annotation(choicesAllMatching);
          MediumLiquid.BaseProperties mediumLiquid[n](each T0=T_ref,  p=p_hyd[1:n], T=T_l, x= x_l, h=if homotopyMethod.bool_h and homotopyMethod.useHomotopy then homotopy(actual=h_l,simplified=fill(homotopyMethod.h_liq,n)) else h_l);
-   MediumLiquid.BaseProperties mediumLiquidIn(each T0=T_ref,  p=p_hyd[n+1], T=T_l_in, x=x_l_in,each h=h_l_in);
+   MediumLiquid.BaseProperties mediumLiquidIn(T0=T_ref,  p=p_hyd[n+1], T=T_l_in, x=x_l_in, h=h_l_in);
    MediumLiquid.BaseProperties mediumLiquidStar[n](each T0=T_ref, p=p_hyd[1:n], T=T_star, x=x_l_star,h=h_l_star);
    MediumLiquid.ActivityCoefficient activityCoeff[n](T=T_star,x_l=x_l_star);
    MediumVapour.EvaporationEnthalpy evapEnthalpy[n](  p=p_hyd[1:n], T=T_v);
@@ -86,12 +86,12 @@ package BaseClasses "base classes for columns"
     SI.Density rho_v[n]= if homotopyMethod.bool_rho and homotopyMethod.useHomotopy then homotopy(actual=mediumVapour.d,simplified=fill(homotopyMethod.rho_vap,n)) else mediumVapour.d "mixture vapour density";
     // SI.Density rho_v[n]= mediumVapour.d "mixture vapour density";
     SI.Density rho_v_in =  mediumVapourIn.d;
-    SI.MolarMass MM_v[n]( start=0.028*ones(n), stateSelect=StateSelect.prefer)= mediumVapour.MM "molar mass of the vapour mixture ";
+    SI.MolarMass MM_v[n]( start=0.028*ones(n), each stateSelect=StateSelect.prefer)= mediumVapour.MM "molar mass of the vapour mixture ";
     SI.MolarMass MM_v_in( start=0.03) = mediumVapourIn.MM;
     ThermalSeparation.Units.MolarEnthalpy h_v[n] = if homotopyMethod.bool_h and homotopyMethod.useHomotopy then homotopy(actual=mediumVapour.h,simplified=fill(homotopyMethod.h_vap,n)) else mediumVapour.h;
     //ThermalSeparation.Units.MolarEnthalpy h_v[n] = mediumVapour.h;
     ThermalSeparation.Units.MolarEnthalpy h_v_in = mediumVapourIn.h;
-    SI.MolarInternalEnergy u_v[n](stateSelect=StateSelect.default)= mediumVapour.u;
+    SI.MolarInternalEnergy u_v[n](each stateSelect=StateSelect.default)= mediumVapour.u;
     SI.Concentration c_v_star[n,nSV];
     SI.Density rho_v_star[n] = mediumVapourStar.d;
 
@@ -107,11 +107,11 @@ package BaseClasses "base classes for columns"
     //ThermalSeparation.Units.MolarEnthalpy h_l[n];
     ThermalSeparation.Units.MolarEnthalpy h_l_in;//=mediumLiquidIn.h;
     ThermalSeparation.Units.MolarEnthalpy h_l_star[n];
-    SI.MolarInternalEnergy u_l[n](stateSelect=StateSelect.default) =  mediumLiquid.u;
+    SI.MolarInternalEnergy u_l[n](each stateSelect=StateSelect.default) =  mediumLiquid.u;
 
   //Variables upStream
     SI.Concentration c_v_in[nSV];
-    SI.Concentration c_v[n,nSV](stateSelect=StateSelect.default) annotation(Dialog(group="Initialization",showStartAttribute=true));
+    SI.Concentration c_v[n,nSV](each stateSelect=StateSelect.default) annotation(Dialog(group="Initialization",showStartAttribute=true));
     SI.MoleFraction x_v_in[nSV];
     parameter SI.MoleFraction x_v_dummy[nSV]={1,0};
     SI.MoleFraction x_v[n,nSV](start=x_v_start);
@@ -124,7 +124,7 @@ package BaseClasses "base classes for columns"
 
     //Variables downStream
     SI.Concentration c_l_in[nSL] "molar concentration in the liquid at the liquid outlet of each stage";
-    SI.Concentration c_l[n,nSL](stateSelect=StateSelect.default) annotation(Dialog(group="Initialization",showStartAttribute=true));
+    SI.Concentration c_l[n,nSL](each stateSelect=StateSelect.default) annotation(Dialog(group="Initialization",showStartAttribute=true));
 
     SI.MoleFraction x_l_in[nSL];
     SI.MoleFraction x_l[n,nSL](start=x_l_start);
@@ -154,7 +154,7 @@ package BaseClasses "base classes for columns"
               {80,-80}}, rotation=0), iconTransformation(extent={{60,-100},{80,-80}})));
 
     //initial equation for eps_liq is supplied in the extending class!
-    SI.VolumeFraction eps_liq[        n]( stateSelect=StateSelect.always) "liquid volume fraction";
+    SI.VolumeFraction eps_liq[        n](each stateSelect=StateSelect.always) "liquid volume fraction";
     SI.VolumeFraction eps_vap[        n](start=fill(0.99,n)) "vapour volume fraction";
     SI.Temperature T[n];
     SI.HeatFlowRate Qdot_wall[n] "heat flow rate to wall";
@@ -248,8 +248,8 @@ public
     SI.Pressure p_bub[n]= bubblePressure.p_bubble "mixture bubble pressure";
     SI.Pressure p_hyd[n+1] "hydraulic pressure";
     Real omega[n];
-    Boolean startUp[n](start=fill(true,n),fixed=false);
-    Boolean before_transition[n](start=fill(true,n),fixed=false);
+    Boolean startUp[n](start=fill(true,n), each fixed=false);
+    Boolean before_transition[n](start=fill(true,n),each fixed=false);
     Real transition_time[n](start=fill(1e7,n));
     //Real switch_time[n](start=fill(1e7,n));
     Real Ndot_source_startUp[n] "dummy molar flow rate to account for discharge of inert gas during startUp";
@@ -997,8 +997,8 @@ public
             MediumLiquid),feedVapourInternal(redeclare each package Medium =
             MediumVapour));
 protected
-    parameter Integer[n-numberLiquidFeedsInternal] aux1(fixed=false);
-    parameter Integer[n] aux2(fixed=false);
+    parameter Integer[n-numberLiquidFeedsInternal] aux1(each fixed=false);
+    parameter Integer[n] aux2(each fixed=false);
     parameter Integer counterL(fixed = false) "counting the stages; equals n at end of algorithm";
 
 public
@@ -1021,8 +1021,8 @@ public
   //       package Medium =
   //         MediumVapour,                                                                                       x(start=x_v_start), c(start=c_v));
 protected
-    parameter Integer[n-numberVapourFeedsInternal] testV(fixed=false);
-    parameter Integer[n] test2V(fixed=false);
+    parameter Integer[n-numberVapourFeedsInternal] testV(each fixed=false);
+    parameter Integer[n] test2V(each fixed=false);
     parameter Integer counterLV(fixed = false) "counting the stages; equals n at end of algorithm";
 
 public

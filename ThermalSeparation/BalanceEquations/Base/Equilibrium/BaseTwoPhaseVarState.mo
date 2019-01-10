@@ -5,15 +5,15 @@ model BaseTwoPhaseVarState
 extends
     ThermalSeparation.BalanceEquations.Base.Equilibrium.BaseBalanceEquationsEq;
 
-  input SI.MolarInternalEnergy u_v[n](stateSelect=StateSelect.default);
-  input SI.MolarInternalEnergy u_l[n](stateSelect=StateSelect.default);
+  input SI.MolarInternalEnergy u_v[n](each stateSelect=StateSelect.default);
+  input SI.MolarInternalEnergy u_l[n](each stateSelect=StateSelect.default);
 
-  Modelica.SIunits.AmountOfSubstance n_mol_L[n](stateSelect=StateSelect.default);
-  Modelica.SIunits.AmountOfSubstance n_mol_V[n](stateSelect=StateSelect.default);
+  Modelica.SIunits.AmountOfSubstance n_mol_L[n](each stateSelect=StateSelect.default);
+  Modelica.SIunits.AmountOfSubstance n_mol_V[n](each stateSelect=StateSelect.default);
   Modelica.SIunits.AmountOfSubstance n_mol[n,nS];
 
 protected
-  Real eps_liq_state[n]( stateSelect=StateSelect.always)=eps_liq;
+  Real eps_liq_state[n](each stateSelect=StateSelect.always)=eps_liq;
 
 equation
 stat=false;

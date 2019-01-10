@@ -83,7 +83,7 @@ model KettleReboilerEq "equilibrium model"
       ThermalSeparation.PhaseEquilibrium.H2O_CO2_MEA
    constrainedby ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium "model for phase equilibrium"  annotation (choicesAllMatching=true);
 
-      ThermoEquilibrium thermoEquilibrium(each nS=nS,mapping = mapping,
+      ThermoEquilibrium thermoEquilibrium(nS=nS,mapping = mapping,
       redeclare replaceable package MediumVapour = MediumVapour, redeclare
       replaceable package                                                                      MediumLiquid =
       MediumLiquid, p=p_sys, T=T, x_v=x_v, x_l=x_l, p_sat=p_sat,  v_v=MM_v./rho_v,x_vap_liq=fill(1/nS,nS));

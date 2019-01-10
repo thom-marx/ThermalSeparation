@@ -31,7 +31,7 @@ Real K_eq_meas[nR]= equilibriumConstant.K_eq_MWG;
                                 nR] PI(
     each y_start=0.05,
     k=k,
-   T=10)
+   each T=10)
     annotation (Placement(transformation(extent={{-28,26},{-8,46}})));
 
 equation

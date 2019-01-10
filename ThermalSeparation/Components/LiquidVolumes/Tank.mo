@@ -37,7 +37,7 @@ ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby
    SI.MoleFraction x_l_in[nSL] = inStream(portIn.x_outflow);
    ThermalSeparation.Units.MolarEnthalpy h_l_in= inStream(portIn.h_outflow);
 
-    SI.Concentration c_l[nSL](stateSelect=StateSelect.default);
+    SI.Concentration c_l[nSL](each stateSelect=StateSelect.default);
   output SI.MoleFraction x_l[ nSL];
   SI.Pressure p(start=2e5);
 

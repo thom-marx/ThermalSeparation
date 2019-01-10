@@ -94,7 +94,7 @@ MediumLiquid.FugacityCoefficient satFugacityLiq(T=Tstar, p=p, p_sat=p_sat);
     "model for phase equilibrium" annotation (choicesAllMatching=true,
       Dialog(group="Shell side parameters"));
 
-      ThermoEquilibrium thermoEquilibrium(each nS=nS,mapping = mapping,
+      ThermoEquilibrium thermoEquilibrium(nS=nS,mapping = mapping,
       redeclare replaceable package MediumVapour = MediumVapour, redeclare
       replaceable package MediumLiquid =
       MediumLiquid, p=p, T=Tstar, x_v=x_v_star, x_l=x_l_star, p_sat=p_sat,  v_v=MM_v./rho_v, x_vap_liq=x_vap_liq);

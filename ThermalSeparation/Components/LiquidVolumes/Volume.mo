@@ -33,8 +33,8 @@ ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby
    SI.Density rho_l_in = mediumLiquidIn.d;
    SI.MolarMass MM_l_in = mediumLiquidIn.MM;
 
-    SI.Concentration c_l[nSL](stateSelect=StateSelect.default);
-    SI.MoleFraction x_l[nSL](stateSelect=StateSelect.always);
+    SI.Concentration c_l[nSL](each stateSelect=StateSelect.default);
+    SI.MoleFraction x_l[nSL](each stateSelect=StateSelect.always);
   SI.Pressure p(start=2e5);
 
   /*** geometry data ***/

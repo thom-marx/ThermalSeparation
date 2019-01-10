@@ -839,12 +839,12 @@ die Gleichungen sind in Tabelle 5-13 (S. 145) aufgelistet. ***/
   parameter SI.Pressure pcrit[nS];
   parameter Units.DipoleMoment my[nS];
 
-  parameter Real a[nS](fixed = false);
-  parameter Real b[nS](fixed = false);
+  parameter Real a[nS](each fixed = false);
+  parameter Real b[nS](each fixed = false);
 
   protected
-  parameter Real my_r[nS](fixed = false);
-  parameter Real pcrit_atm[nS]( fixed = false);
+  parameter Real my_r[nS](each fixed = false);
+  parameter Real pcrit_atm[nS](each fixed = false);
   initial equation
   for m in 1:nS loop
 
