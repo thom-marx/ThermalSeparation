@@ -45,7 +45,7 @@ equation
 
   deltaP[j] =50;// p_v[j+1]-p_v[j];
 
-//der Term mit K1 wird vernachl‰ssigt, der Term wird sowieso erst wichtig, wenn deltaP/deltaZ nahe am Wert von (deltaP/deltaZ)_flood ist
+//der Term mit K1 wird vernachl√§ssigt, der Term wird sowieso erst wichtig, wenn deltaP/deltaZ nahe am Wert von (deltaP/deltaZ)_flood ist
 b[j] = 1-rho_v[j]/rho_l[j]- K1[j]*deltaP[j]/deltaZ/(rho_l[j]* Modelica.Constants.g_n);
 c[j] = (rho_l[j]/(sigma_l[j]*Modelica.Constants.g_n))^0.15 * (eta_l[j]/(geometry.S*rho_l[j]))^0.2 * (3*eta_l[j])^0.5;
 

@@ -40,7 +40,7 @@ redeclare replaceable model extends BaseProperties(
 
   Real p_start(start=1.6e5);
 
-  /***Berechnung der Sättigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
+  /***Berechnung der SÃ¤ttigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
   protected
     Real pi "dimensionless pressure";
     Real[20] o "vector of auxiliary variables";
@@ -62,7 +62,7 @@ required from medium model \""   + mediumName + "\".");
 
   //eta_m=dynamicViscosity(state);
 
-      /***Berechnung der Sättigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
+      /***Berechnung der SÃ¤ttigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
       //Vorkehrungen treffen, falls der Wasseranteil null ist (x[1] = 0)
       pi =  max(1e-4,p*x[2])*1e-6;//min(p,data.PCRIT)*data.IPSTAR;
     o[1] =  pi^0.25;

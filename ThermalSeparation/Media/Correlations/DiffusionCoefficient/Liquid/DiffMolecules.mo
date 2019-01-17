@@ -2,7 +2,7 @@
 model DiffMolecules
   "liquid binary MS diffusion coefficients in a solution which does not contain ions"
   //calculates the binary MS diffusion coefficient based on the binary infinite dilution diffusion coefficient
-  //Gleichung zur Bestimmung von D auf richtige Implementierung getestet für nS=2 und nS=3 (n=1)
+  //Gleichung zur Bestimmung von D auf richtige Implementierung getestet fÃ¼r nS=2 und nS=3 (n=1)
   parameter Integer nS(min=2)=2;
   parameter Integer ic[nS]=zeros(nS) "electric charge";
   parameter Boolean has_etaSubstance[nS];
@@ -31,7 +31,7 @@ model DiffMolecules
 
 protected
    parameter Integer counter1[nS-1]={nS-i+1 for i in 2:nS};
-   Integer counter[nS];  //für nS=4: {0,3,2,1};
+   Integer counter[nS];  //fÃ¼r nS=4: {0,3,2,1};
     SI.MoleFraction x_mod[nS]
     "modified mole fraction to treat liquid systems with dissolved ideal gas components";
     SI.MoleFraction x_mod0[nS]

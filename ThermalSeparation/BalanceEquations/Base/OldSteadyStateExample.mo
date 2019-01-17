@@ -120,8 +120,6 @@ package OldSteadyStateExample
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
               -100},{100,100}}),
                       graphics),
-      experiment(StopTime=60, Algorithm="Dassl"),
-      experimentSetupOutput,
       Documentation(info="<html>
 <p><ul>
 <li> packed column</li>

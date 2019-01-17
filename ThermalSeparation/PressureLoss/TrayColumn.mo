@@ -73,7 +73,7 @@ package TrayColumn
     final parameter Real K=(deltaP_nom/Vdot_nom)/n;
 
   equation
-    // die max-Abfrage braucht man, für den Fall, daß man die Kolonne leer initialisiert und das Inertgas nicht mit abbildet: in dem Fall würde sonst ein Volumenstrom in die falsche Richtung entstehen
+    // die max-Abfrage braucht man, fÃ¼r den Fall, daÃŸ man die Kolonne leer initialisiert und das Inertgas nicht mit abbildet: in dem Fall wÃ¼rde sonst ein Volumenstrom in die falsche Richtung entstehen
 
   if homotopyMethod.bool_dp and homotopyMethod.useHomotopy then
     for j in 1:n - 1 loop
@@ -111,7 +111,7 @@ package TrayColumn
     final parameter Real K=(deltaP_nom/Vdot_nom)/n;
 
   equation
-    // die max-Abfrage braucht man, für den Fall, daß man die Kolonne leer initialisiert und das Inertgas nicht mit abbildet: in dem Fall würde sonst ein Volumenstrom in die falsche Richtung entstehen
+    // die max-Abfrage braucht man, fÃ¼r den Fall, daÃŸ man die Kolonne leer initialisiert und das Inertgas nicht mit abbildet: in dem Fall wÃ¼rde sonst ein Volumenstrom in die falsche Richtung entstehen
 
     for j in 1:n - 1 loop
         Vdot[j] = if startUp[j] then 0 else  max(0,sign(p[j] - p[j + 1])*max(0, (abs(p[j] - p[j + 1])/K)));

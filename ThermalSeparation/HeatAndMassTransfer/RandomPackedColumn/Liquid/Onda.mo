@@ -23,7 +23,7 @@ protected
   Boolean liquidExists[n](each start=false) "true if liquid is on the stage";
 
 equation
-  // Werte belegen, damit das System nicht singul‰r wird:
+  // Werte belegen, damit das System nicht singul√§r wird:
 //   Re[:]=fill(0,n);
 //   Sc[:,:]=fill(0,n,a);
 //   Sh[:,:]=fill(0,n,a);

@@ -18,9 +18,9 @@ protected
   // Real Re_out;
 
 equation
-//Gleichung aus Engel: Fluiddynamik in Füllkörper- und Packungskolonnen ..., Gl. (10); in der Gleichung (3.13b) von Forner ist wohl ein Fehler (h_j)
+//Gleichung aus Engel: Fluiddynamik in FÃ¼llkÃ¶rper- und Packungskolonnen ..., Gl. (10); in der Gleichung (3.13b) von Forner ist wohl ein Fehler (h_j)
 
-// die max-Abfrage braucht man, für den Fall, daß man die Kolonne leer initialisiert und das Inertgas nicht mit abbildet: in dem Fall würde sonst ein Volumenstrom in die falsche Richtung entstehen
+// die max-Abfrage braucht man, fÃ¼r den Fall, daÃŸ man die Kolonne leer initialisiert und das Inertgas nicht mit abbildet: in dem Fall wÃ¼rde sonst ein Volumenstrom in die falsche Richtung entstehen
 
 for j in 1:n-1 loop
   rho_v_av[j] = (rho_v_calc[j]+rho_v_calc[j+1])/2;

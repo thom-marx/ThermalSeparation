@@ -7,7 +7,7 @@ model Margules
 
  // parameter Real a[nS+5] = fill(100,nS+5)
   //  "vector with binary coefficients: for example: {a12, a13, a23}";
-  //                                        //hier nochmal gucken.. wusste nicht genau was das ist und hab es so ge‰ndert dass es l‰uft!
+  //                                        //hier nochmal gucken.. wusste nicht genau was das ist und hab es so ge√§ndert dass es l√§uft!
   parameter Real a[aux2] = fill(100,aux2);
 protected
   Real A[nS,nS] "matrix with the binary coefficients";

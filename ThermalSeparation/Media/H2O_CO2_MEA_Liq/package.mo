@@ -27,7 +27,7 @@ constant Integer ic[nSubstance]=zeros(nSubstance);
    // Real m[nSubstance]; // molarity in mol i / kg H2O
    Real m_av; // average molarity
    Modelica.SIunits.Temperature Theta = T - 273.15;
-                                      // Temperature in 캜
+                                      // Temperature in 째C
    Real d_koeff[8];
    CalcSpecificEnthalpy calcSpecificEnthalpy(T0=T0, T=T, p=p, x=x);
 
@@ -59,9 +59,9 @@ constant Integer ic[nSubstance]=zeros(nSubstance);
 
      u = h - p / d * MM;
 
-     eta = 0.001002; // for water @ 20캜
+     eta = 0.001002; // for water @ 20째C
 
-     sigma = 0.0728; // for water @ 20캜
+     sigma = 0.0728; // for water @ 20째C
 
      v = MM / d;
 
@@ -125,7 +125,7 @@ constant Integer ic[nSubstance]=zeros(nSubstance);
   // Real m[nSubstance]; // molarity in mol i / kg H2O
   Real m_av; // average molarity
   Modelica.SIunits.Temperature Theta=T - 273.15;
-                                     // Temperature in 캜
+                                     // Temperature in 째C
   Modelica.SIunits.MolarMass MM;
 
   parameter Real omega_k=0.05

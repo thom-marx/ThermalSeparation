@@ -324,7 +324,7 @@ equation
     n_i_vap[j,:]=c_v[j,:].*eps_vap[j]*A*H/n*eps;
   end for;
 
-  //Verkn¸pfung der Konnektorgrˆﬂen mit Variablen
+  //Verkn√ºpfung der Konnektorgr√∂√üen mit Variablen
   //upstream
   x_v_in = inStream(upStreamIn.x_outflow);
   h_v_in = inStream(upStreamIn.h_outflow);
@@ -368,7 +368,7 @@ Vdot_l_in= Ndot_l_in / rho_l_in*MM_l_in "total molar flow rate vapour";
 
 if considerStartUp then
   for j in 1:n loop
-    when p_bub[j] + friggelfaktor >= p_initial then // der Druck, den auch das Medienmodell sieht, friggelfaktor, weil sonst Umschalten zu sp‰t
+    when p_bub[j] + friggelfaktor >= p_initial then // der Druck, den auch das Medienmodell sieht, friggelfaktor, weil sonst Umschalten zu sp√§t
       startUp[j] = false;
     end when;
 //      if p_bub[j] <= p_v[j] then

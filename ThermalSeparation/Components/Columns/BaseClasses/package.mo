@@ -309,7 +309,8 @@ public
       annotation (Placement(transformation(extent={{-102,-66},{-92,-56}})));
     Modelica.Blocks.Interfaces.BooleanInput ShutDown_signal
       annotation (Placement(transformation(extent={{-102,-50},{-92,-40}})));
-    ThermalSeparation.Components.Columns.BaseClasses.InternalStepSequence internalStepSequence[n] annotation (Placement(transformation(extent={{-20,0},{0,20}})));
+    ThermalSeparation.Components.Columns.BaseClasses.InternalStepSequence_StateGraph1 internalStepSequence[n]
+      annotation (Placement(transformation(extent={{-20,0},{0,20}})));
     Modelica.Blocks.Routing.BooleanReplicator shutDownReplicator(nout=n)
       annotation (Placement(transformation(extent={{-24,-48},{-16,-42}})));
     Modelica.Blocks.Routing.BooleanReplicator startUpReplicator(nout=n)
@@ -386,7 +387,7 @@ public
 
     upStreamIn.p = p_v_in;
     upStreamOut.p = p_hyd[n+1];
-      if ShutDown_signal and time >100 then
+      if ShutDown_signal and time >=100 then
         if nSV>=3 then
         N_dummyShutDown = Ndot_v_in;
          //upStreamIn.Ndot + N_dummyShutDown = Ndot_v_in;
@@ -701,16 +702,10 @@ public
   equation
     connect(StartUp_signal, startUpReplicator.u) annotation (Line(points={{-97,-61},
             {-87.5,-61},{-73,-61}},      color={255,0,255}));
-    connect(startUpReplicator.y, internalStepSequence.StartUp_signal1) annotation (
-        Line(points={{-61.5,-61},{-1.9,-61},{-1.9,0.1}}, color={255,0,255}));
     connect(endPhase1.u, booleanExpression.y) annotation (Line(points={{-38.8,11},
             {-43.4,11},{-43.4,12},{-49.3,12}}, color={255,0,255}));
-    connect(endPhase1.y, internalStepSequence.endPhase1) annotation (Line(points={
-            {-29.6,11},{-24.8,11},{-24.8,11.2},{-19.8,11.2}}, color={255,0,255}));
     connect(ShutDown_signal, shutDownReplicator.u) annotation (Line(points={{-97,-45},
             {-61.5,-45},{-24.8,-45}}, color={255,0,255}));
-    connect(shutDownReplicator.y, internalStepSequence.shutDown_signal)
-      annotation (Line(points={{-15.6,-45},{-6.2,-45},{-6.2,0}}, color={255,0,255}));
       if switchingCondition_Boiling then
         for i in 1:n loop
         internalStepSequence[i].endPhase2=p_bub[i]+friggelfaktor>p_v[i];
@@ -720,6 +715,12 @@ public
         internalStepSequence[i].endPhase2=true;
         end for;
       end if;
+    connect(shutDownReplicator.y, internalStepSequence.shutDown_signal)
+      annotation (Line(points={{-15.6,-45},{-6.2,-45},{-6.2,0}}, color={255,0,255}));
+    connect(startUpReplicator.y, internalStepSequence.StartUp_signal1)
+      annotation (Line(points={{-61.5,-61},{-1.9,-61},{-1.9,0.1}}, color={255,0,255}));
+    connect(endPhase1.y, internalStepSequence.endPhase1)
+      annotation (Line(points={{-29.6,11},{-24.8,11},{-24.8,11.2},{-19.8,11.2}}, color={255,0,255}));
     annotation (         Icon(graphics),
       Documentation(revisions="<html>
 <table cellspacing=\"2\" cellpadding=\"0\" border=\"1\"><tr>
@@ -1040,8 +1041,8 @@ public
           iconTransformation(extent={{-94,8},{-74,28}})));
 
     ThermalSeparation.Utilities.MediumLink mediumVapourLink[n];
-    MediumVapour.BaseProperties mediumVapourFeed[numberVapourFeeds](each T0=T_ref, each p=p_v[n+1],c=c_v_feed,h=actualStream(feedVapour.h_outflow), x=actualStream(feedVapour.x_outflow),  x_star=actualStream(feedVapour.x_outflow)) if                   hasVapourFeed;
-
+    MediumVapour.BaseProperties mediumVapourFeed[numberVapourFeeds](each T0=T_ref, each p=p_v[n+1],h=actualStream(feedVapour.h_outflow),c=c_v_feed_used, x=actualStream(feedVapour.x_outflow),  x_star=actualStream(feedVapour.x_outflow)) if                   hasVapourFeed;
+  //c=c_v_feed,
     ThermalSeparation.Interfaces.GasPortIn[numberVapourFeeds] feedVapour_dummy(redeclare
       each package                                                                                    Medium =
           MediumVapour);
@@ -1065,6 +1066,9 @@ public
     SourcesSinks.SinkLiquid sinkLiquid[numberLiquidFeeds](redeclare each
       package                                                                    Medium =
           MediumLiquid,                                                                               each p=100000) if not hasLiquidFeed;
+
+    Real c_v_feed_used[numberVapourFeeds,nSV];
+
 
   equation
     /*** link to base class ***/
@@ -1166,6 +1170,10 @@ public
     end for;
   end if;
 
+  for i in 1:numberVapourFeeds loop
+      c_v_feed_used[i]= c_v_feed[stageVapourFeed[i],:];
+  end for;
+
   /***LIQUID FEED ***/
   initial algorithm
   aux2 :={i for i in 1:n};
@@ -1200,7 +1208,6 @@ public
           counterLV:=counterLV + 1;
       end if;
   end for;
-
     annotation (Diagram(graphics),
                          Icon(graphics),
       Documentation(info="<html>

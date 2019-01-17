@@ -38,7 +38,7 @@ model DiffMoleculesIons
 
 protected
    parameter Integer counter1[nS-1]={nS-i+1 for i in 2:nS};
-   Integer counter[nS];  //für nS=4: {0,3,2,1};
+   Integer counter[nS];  //fÃ¼r nS=4: {0,3,2,1};
     SI.MoleFraction x_mod[nS]
     "modified mole fraction to treat liquid systems with dissolved ideal gas components";
     SI.MoleFraction x_mod0[nS]

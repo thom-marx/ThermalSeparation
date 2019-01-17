@@ -89,7 +89,7 @@ required from medium model \""   + mediumName + "\".");
    output Modelica.SIunits.Temperature T_sat_water;
 protected
    Modelica.SIunits.SpecificEnthalpy hX[nSubstance];
-    /***Berechnung der Sättigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
+    /***Berechnung der SÃ¤ttigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
     Real pi "dimensionless pressure";
     Real[20] o "vector of auxiliary variables";
 
@@ -106,7 +106,7 @@ protected
       Real cp_coeff_CO2[5];
 
   equation
-        /***Berechnung der Sättigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
+        /***Berechnung der SÃ¤ttigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
       //Vorkehrungen treffen, falls der Wasseranteil null ist (x[1] = 0)
       pi =  max(1e-4,p*x[1])*1e-6/f_psat;//min(p,data.PCRIT)*data.IPSTAR;
     o[1] =  pi^0.25;

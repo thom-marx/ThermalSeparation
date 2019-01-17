@@ -315,9 +315,7 @@ extends ThermalSeparation.Icons.Library.Red;
         smooth=Smooth.None));
     annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
               -100},{100,100}}),
-                     graphics),
-      experiment(StopTime=400000, __Dymola_NumberOfIntervals=4000),
-      __Dymola_experimentSetupOutput(events=false));
+                     graphics));
   end CcounterFlowHeatExchanger;
 
   model LiquidTube "ideal - no pressure loss"
@@ -348,7 +346,7 @@ extends ThermalSeparation.Icons.Library.Red;
 
   //parameter Boolean inertLiquid[nSL] = fill(false,nSL);
 
-    final parameter Integer nSL = 3;//MediumLiquid.nSubstance;
+    final parameter Integer nSL = MediumLiquid.nSubstance;
 
   /*** Medium properties ***/
   Modelica.SIunits.Density rho_l;

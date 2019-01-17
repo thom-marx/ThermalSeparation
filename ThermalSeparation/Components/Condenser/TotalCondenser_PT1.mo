@@ -55,7 +55,7 @@ parameter Modelica.SIunits.Pressure p_cond=1e5 "Kondensationsdruck";
 //Druck in der obersten Stufe
 Modelica.SIunits.Pressure p_1;
 
-//SI.Temperature T_set; // feste Temperatur für das Kondensat
+//SI.Temperature T_set; // feste Temperatur fÃ¼r das Kondensat
 parameter Modelica.SIunits.Temperature T_set=303.15;
 Modelica.SIunits.HeatFlowRate Q_kond;
 
@@ -67,7 +67,7 @@ Modelica.SIunits.HeatFlowRate Q_kond;
         MediumVapour)
      annotation (Placement(transformation(extent={{-6,88},{14,108}}),
         iconTransformation(extent={{-26,68},{14,108}})));
-/*** für die Bestimmung der Kondensationstemperatur ***/
+/*** fÃ¼r die Bestimmung der Kondensationstemperatur ***/
   parameter
     ThermalSeparation.Components.Condenser.Enumerations.OutletTempOption
     outletTempOption=
@@ -229,7 +229,7 @@ firstOrder13.u = x_l[4];
 
     vapourIn.h_outflow = h_l;
        vapourIn.x_outflow = x_l;
-//Medienübergabe
+//MedienÃ¼bergabe
 
    MM_v = mediumVapourIn.MM;
    rho_v = mediumVapourIn.d;

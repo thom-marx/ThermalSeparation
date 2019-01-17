@@ -2,7 +2,7 @@
 model Stichlmair
   //extends ThermalSeparation.FilmModel.BaseClasses.TrayColumn.BaseMSVapour;
   extends BaseVapMT;
-//Stichlmair: Grundlagen der Dimensionierung des Gas/Flüssigkeit-Kontaktapparates Bodenkolonne, Weinheim, NY: Verlag Chemie, 1978, p. 142
+//Stichlmair: Grundlagen der Dimensionierung des Gas/FlÃ¼ssigkeit-Kontaktapparates Bodenkolonne, Weinheim, NY: Verlag Chemie, 1978, p. 142
 equation
 
   for j in 1:n loop

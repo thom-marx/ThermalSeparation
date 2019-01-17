@@ -25,7 +25,7 @@ equation
 //    Fr[j] =max(0, w_eff_l[j]*w_eff_l[j]/(geometry.S*Modelica.Constants.g_n));
 //    Ft[j] = 29.12 * (We[j]*Fr[j])^0.15*geometry.S^0.359/(Re[j]^0.2*geometry.eps^0.6*(1-0.93*0.62)*sin_theta^0.3);
 //  end for;
-  // die max-Abfrage braucht man, für den Fall, daß man die Kolonne leer initialisiert und das Inertgas nicht mit abbildet: in dem Fall würde sonst ein Volumenstrom in die falsche Richtung entstehen
+  // die max-Abfrage braucht man, fÃ¼r den Fall, daÃŸ man die Kolonne leer initialisiert und das Inertgas nicht mit abbildet: in dem Fall wÃ¼rde sonst ein Volumenstrom in die falsche Richtung entstehen
 
 if homotopyMethod.bool_dp and homotopyMethod.useHomotopy then
   for j in 1:n - 1 loop

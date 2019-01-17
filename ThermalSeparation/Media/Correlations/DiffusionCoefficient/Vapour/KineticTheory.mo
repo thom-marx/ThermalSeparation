@@ -7,7 +7,7 @@ model KineticTheory
     parameter Real sigma[nS];
     parameter Real epsilon_k[nS];
 protected
-  parameter Integer counter1[nS-1]={nS-i+1 for i in 2:nS};//für nS=4: {0,3,2,1};
+  parameter Integer counter1[nS-1]={nS-i+1 for i in 2:nS};//fÃ¼r nS=4: {0,3,2,1};
   Integer counter[nS];
   Real sigma_mix[a] "Lennard-Jones force constant), constant value";
   Real epsilon_k_mix[a]

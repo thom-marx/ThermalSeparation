@@ -36,7 +36,7 @@ public
             -94,-14},{-74,6}}))); // ;
 
   ThermalSeparation.Utilities.MediumLink mediumLink[n];
-  MediumLiquid.BaseProperties mediumLiquidFeed[numberLiquidFeeds](each T0=T_ref,  each p=p_v[n+1],h=actualStream(feedLiquid_dummy.h_outflow), x=actualStream(feedLiquid_dummy.x_outflow)) if                  hasLiquidFeed;
+  MediumLiquid.BaseProperties mediumLiquidFeed[numberLiquidFeeds](each T0=T_ref, c=c_v_feed_used,  each p=p_v[n+1],h=actualStream(feedLiquid_dummy.h_outflow), x=actualStream(feedLiquid_dummy.x_outflow)) if                  hasLiquidFeed;
 
 /***VAPOUR FEED ***/
 //   ThermalSeparation.Interfaces.GasPortOut[n] feedVapourInternal(redeclare each
@@ -65,7 +65,8 @@ public
             -94,8},{-74,28}})));
 
   ThermalSeparation.Utilities.MediumLink mediumVapourLink[n];
-  MediumVapour.BaseProperties mediumVapourFeed[numberVapourFeeds](each T0=T_ref, each p=p_v[n+1]/*, TODO FIXME! c=c_v_feed */,h=actualStream(feedVapour_dummy.h_outflow), x=actualStream(feedVapour_dummy.x_outflow),  x_star=actualStream(feedVapour_dummy.x_outflow)) if                   hasVapourFeed;
+  MediumVapour.BaseProperties mediumVapourFeed[numberVapourFeeds](each T0=T_ref, each p=p_v[n+1],    c=c_v_used,                         h=actualStream(feedVapour_dummy.h_outflow), x=actualStream(feedVapour_dummy.x_outflow),  x_star=actualStream(feedVapour_dummy.x_outflow)) if                   hasVapourFeed;
+                                                                                                /*, TODO FIXME! c=c_v_feed */
  // Modelica.Blocks.Interfaces.RealInput h_help;
 
   ThermalSeparation.Interfaces.GasPortIn[numberVapourFeeds] feedVapour_dummy(redeclare
@@ -90,6 +91,9 @@ public
         MediumVapour,                                                                        each p=100000) if not hasVapourFeed;
   SourcesSinks.SinkLiquid sinkLiquid[numberLiquidFeeds](redeclare each package Medium =
         MediumLiquid,                                                                               each p=100000) if not hasLiquidFeed;
+
+  Real c_v_feed_used[numberVapourFeeds,nSV];
+
 equation
   for i in 1:numberVapourFeeds loop
     if hasVapourFeed then
@@ -190,6 +194,10 @@ else
     mediumVapourLink[j].mediumConIn.MM = 1;
   end for;
 end if;
+
+for i in 1:numberVapourFeeds loop
+    c_v_feed_used[i]= c_v_feed[stageVapourFeed[i],:];
+end for;
 
 /***LIQUID FEED ***/
 initial algorithm

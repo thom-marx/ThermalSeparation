@@ -414,11 +414,6 @@ package OldStartUpExample
     annotation (
       Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
               200}})),
-      experiment(
-        StopTime=30000,
-        NumberOfIntervals=10000,
-        Tolerance=1e-005,
-        Algorithm="Dassl"),
       experimentSetupOutput(equdistant=false),
       Documentation(info="<html>
 <p><ul>

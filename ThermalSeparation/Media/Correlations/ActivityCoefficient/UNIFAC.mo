@@ -1,22 +1,22 @@
 ï»¿within ThermalSeparation.Media.Correlations.ActivityCoefficient;
 model UNIFAC
-            //** Alle Werte sowie Beispiel in Gmehling & Kolbe S. 246 ff.*** // Nur für binäre Gemische
+            //** Alle Werte sowie Beispiel in Gmehling & Kolbe S. 246 ff.*** // Nur fÃ¼r binÃ¤re Gemische
   extends BaseActivityCoefficient;
 
-   //müssen ins Medienmodel:
+   //mÃ¼ssen ins Medienmodel:
    parameter Integer SG_1=2;//Anzahl der verschiedenen Strukturgruppen einer Komponente (z.B. '1'=n-Hexan, '2'=Butanon)
    parameter Integer SG_2=3;
    parameter Integer SG_v=3;//Anzahl der insgesamt verschiedenen Strukturgruppen
-   parameter Real Q_m[SG_v]={0.848,0.54,1.488} "group volume";//relative van der Waalsschen Gruppenoberflächen
+   parameter Real Q_m[SG_v]={0.848,0.54,1.488} "group volume";//relative van der Waalsschen GruppenoberflÃ¤chen
    parameter Real Q_1[SG_1]={0.848,0.54};
    parameter Real Q_2[SG_2]={0.848,0.54,1.488};
    parameter Real R_m[SG_v]={0.9011,0.6744,1.6724} "group surface area";//relative van der Waalsschen Gruppenvolumina
   parameter Real A_m[SG_v,SG_v]={{0,0,476.4},{0,0,476.4},{26.76,26.76,0}}
-    "binary interaction parameter between the group";                                                                       //Matrix mit Werten für die Gruppenwechselwirkungsparameter der Hauptstrukturgruppen
+    "binary interaction parameter between the group";                                                                       //Matrix mit Werten fÃ¼r die Gruppenwechselwirkungsparameter der Hauptstrukturgruppen
    parameter Real A_1[SG_1,SG_1]={{0,0},{0,0}};
    parameter Real A_2[SG_2,SG_2]={{0,0,476.4},{0,0,476.4},{26.76,26.76,0}};
 
-   parameter Real v[nS,SG_v]={{2,4,0},{1,1,1}}; // Anzahl der einzelnen Strukturgruppen innerhalb eines Moleküls
+   parameter Real v[nS,SG_v]={{2,4,0},{1,1,1}}; // Anzahl der einzelnen Strukturgruppen innerhalb eines MolekÃ¼ls
 
 protected
    Real psi_m[SG_v,SG_v];
@@ -29,8 +29,8 @@ protected
    Real theta_m[SG_v];
    Real theta_1[SG_1];
    Real theta_2[SG_2];
-   Real ln_Gamma_m[SG_v];//Gruppenaktivitätskoeffizient der Mischung
-   Real ln_Gamma_r_1[SG_1];//Gruppenaktivitätskoeffizient der Reinstoffe
+   Real ln_Gamma_m[SG_v];//GruppenaktivitÃ¤tskoeffizient der Mischung
+   Real ln_Gamma_r_1[SG_1];//GruppenaktivitÃ¤tskoeffizient der Reinstoffe
    Real ln_Gamma_r_2[SG_2];
    Real V[nS];
    Real F[nS];

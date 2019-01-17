@@ -261,7 +261,7 @@ package OldCompressorModels
 
   Real sum_x=sum(gasPortOut.x);
   //Real xxx= alpha_in_internal;//if time < 100 then alpha_in_internal else min(20,max(-20,alpha_in_internal));
-  parameter Real eta_el = 0.82; //angepasst, damit die Leistung für den 100%-Fall mit der Messung übereinstimmt
+  parameter Real eta_el = 0.82; //angepasst, damit die Leistung fÃ¼r den 100%-Fall mit der Messung Ã¼bereinstimmt
   SI.Power P_el = gasPortIn.Vdot*Medium.density(stateIn)* (Medium.specificEnthalpy(stateOut) - Medium.specificEnthalpy(stateIn))/eta_el;
 
   parameter SI.Pressure p_const_in = 0.96e5 "constant inlet pressure";

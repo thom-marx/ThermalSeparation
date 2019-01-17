@@ -21,9 +21,9 @@ model StructuredPackedColumn_external
  redeclare package MediumVapour = MediumVapour,
  propsLiq = mediumLiquid.properties,   considerStartUp =   considerStartUp,
  Edot_l_transfer=Edot_l_transfer,c_l=c_l,nS=nS, mapping=mapping, n=n, nSL=nSL, inertLiquid=inertLiquid, inertVapour=inertVapour, nSV=nSV, p_v=p_v[1:n], p_v_start=p_v_start, Ndot_v_transfer=Ndot_v_transfer, x_l=x_l, x_v=x_v, x_l_start=x_l_start, x_v_start=x_v_start, n_mol_L=n_mol_L, n_mol_V=n_mol_V, x_l_star=x_l_star, x_v_star=x_v_star, x_total_start=x_total_start, T_v=T_v, T_l=T_l, T_v_start=T_v_start, T_l_start=T_l_start);
-// c_A in mol_A / m3_gas ODER mol_A / m3_flüssig
+// c_A in mol_A / m3_gas ODER mol_A / m3_flÃ¼ssig
 // rho_v in mol_ges(vap)/m3_gas oder kg_ges(vap)/m3_gas
-// eps_liq in m3 Flüssigkeit / m3 freies Volumen
+// eps_liq in m3 FlÃ¼ssigkeit / m3 freies Volumen
 // eps in m3 Solid / m3 gesamt
 
   replaceable model Reaction = ThermalSeparation.Reaction.NoReaction constrainedby

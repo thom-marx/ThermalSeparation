@@ -11,7 +11,7 @@ extends BaseVapMT;
 //liquids: 1e-4 to 1e-5 (for liquids in pores, the value can be smaller, for example 1e-6)
 equation
 
-    // Werte belegen, damit das System nicht singul‰r wird:
+    // Werte belegen, damit das System nicht singul√§r wird:
 //   Re[:]=fill(0,n);
 //   Sc[:,:]=fill(0,n,a);
 //   Sh[:,:]=fill(0,n,a);

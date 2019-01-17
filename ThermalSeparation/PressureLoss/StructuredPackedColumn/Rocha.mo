@@ -42,7 +42,7 @@ equation
  end for;
 
 if homotopyMethod.bool_dp and homotopyMethod.useHomotopy then
-  // die max-Abfrage braucht man, für den Fall, daß man die Kolonne leer initialisiert und das Inertgas nicht mit abbildet: in dem Fall würde sonst ein Volumenstrom in die falsche Richtung entstehen
+  // die max-Abfrage braucht man, fÃ¼r den Fall, daÃŸ man die Kolonne leer initialisiert und das Inertgas nicht mit abbildet: in dem Fall wÃ¼rde sonst ein Volumenstrom in die falsche Richtung entstehen
 
   for j in 1:n - 1 loop
  // C[j]=- (p[j] - p[j + 1])/(geometry.H/n)*(1-(0.164 + 71.35*geometry.S)*(4*Ft[j]/geometry.S)^(2/3)  *(3*eta_l_calc[j] * w_sup_l[j]/(rho_l_calc[j]*sin_theta*geometry.eps*9.81*((rho_l_calc[j]-rho_v_calc[j])/rho_l_calc[j]*max(0.1,(1-(p[j] - p[j + 1])/(geometry.H/n)/deltaP_flood)))))^(1/3))^5;
@@ -65,7 +65,7 @@ end for;
 
 else
 
-  // die max-Abfrage braucht man, für den Fall, daß man die Kolonne leer initialisiert und das Inertgas nicht mit abbildet: in dem Fall würde sonst ein Volumenstrom in die falsche Richtung entstehen
+  // die max-Abfrage braucht man, fÃ¼r den Fall, daÃŸ man die Kolonne leer initialisiert und das Inertgas nicht mit abbildet: in dem Fall wÃ¼rde sonst ein Volumenstrom in die falsche Richtung entstehen
 
   for j in 1:n - 1 loop
  // C[j]=- (p[j] - p[j + 1])/(geometry.H/n)*(1-(0.164 + 71.35*geometry.S)*(4*Ft[j]/geometry.S)^(2/3)  *(3*eta_l_calc[j] * w_sup_l[j]/(rho_l_calc[j]*sin_theta*geometry.eps*9.81*((rho_l_calc[j]-rho_v_calc[j])/rho_l_calc[j]*max(0.1,(1-(p[j] - p[j + 1])/(geometry.H/n)/deltaP_flood)))))^(1/3))^5;

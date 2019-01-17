@@ -36,7 +36,7 @@ extends ThermalSeparation.Media.BaseMediumVapour(MMX={ 0.0440095,  0.01801528}, 
 
     /*** Berechnung von eta ***/
 
-  /***Berechnung der Sättigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
+  /***Berechnung der SÃ¤ttigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
 protected
     Real pi "dimensionless pressure";
     Real[20] o "vector of auxiliary variables";
@@ -58,7 +58,7 @@ protected
     // 200 K <= T <= 6000 K
     // required from medium model \""   + mediumName + "\".");
 
-      /***Berechnung der Sättigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
+      /***Berechnung der SÃ¤ttigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
       //Vorkehrungen treffen, falls der Wasseranteil null ist (x[1] = 0)
       pi =  max(1e-4,p*x[2])*1e-6;//min(p,data.PCRIT)*data.IPSTAR;
     o[1] =  pi^0.25;

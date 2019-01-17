@@ -28,8 +28,8 @@ package C2H5OH_Water_Liq "2 components: C2H5OH, H2O"
     constant Real IPSTAR=1.0e-6
       "normalization pressure for inverse function in region 2 IF97";
 
-  constant SI.DynamicViscosity sigma_EtOH=0.02255;// bei 20 °C N/m
-  constant SI.DynamicViscosity sigma_H2O=0.0728;// bei 20 °C N/m
+  constant SI.DynamicViscosity sigma_EtOH=0.02255;// bei 20 Â°C N/m
+  constant SI.DynamicViscosity sigma_H2O=0.0728;// bei 20 Â°C N/m
 
   Real MM_min;
   Real MM_var;
@@ -64,11 +64,11 @@ package C2H5OH_Water_Liq "2 components: C2H5OH, H2O"
 
     h = calcSpecificEnthalpy.h;//h_Jkg * MM;
     u = h - p/d*MM;
-    p_sat[1]=10^(8.11220-1592.864/((T-273.15)+226.184))*133.322; // Saturationpressure for Ethanol Perry's Chemical Engineers 13-14 in Pa (T=20-93°C)
-    p_sat[2]=10^(8.07131-1730.63/((T-273.15)+233.426))*133.322; // Saturationpressure for Water Perry's Chemical Engineers 13-14 in Pa (T=1-100°C)
+    p_sat[1]=10^(8.11220-1592.864/((T-273.15)+226.184))*133.322; // Saturationpressure for Ethanol Perry's Chemical Engineers 13-14 in Pa (T=20-93Â°C)
+    p_sat[2]=10^(8.07131-1730.63/((T-273.15)+233.426))*133.322; // Saturationpressure for Water Perry's Chemical Engineers 13-14 in Pa (T=1-100Â°C)
 
             /*** density ***/
-            d1=761.2; // bei 50 °C aus VDI Wärmeatlas
+            d1=761.2; // bei 50 Â°C aus VDI WÃ¤rmeatlas
   //     d2 = p/( RH2O * T * pi * gpi);
   //     pi = p/ PSTAR1;
   //     gpi = pi1*(pi1*(o[10]*(0.000095038934535162 + o[2]*(

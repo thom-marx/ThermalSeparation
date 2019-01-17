@@ -5,7 +5,7 @@ record Geometry
   //packing data
  parameter Real zeta = 0.01 "pressure loss coefficient";
 
- //(Fluiddynamik in Füllkörper und Packungskolonnen)
+ //(Fluiddynamik in FÃ¼llkÃ¶rper und Packungskolonnen)
   parameter Real C_L = 0.4 "constant used for pressure drop calculation";
   parameter SI.Diameter d_char = 0.01
     "characteristic length of filling material, for Re calculation";

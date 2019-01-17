@@ -79,7 +79,7 @@ package Condenser
     gasPortOut.h_outflow = mediumVapour.h;
 
     liquidPortOut.x_outflow = {1,0,0};
-    if time>5 then
+    if time>=5 then
     -liquidPortOut.Ndot * liquidPortOut.x_outflow[onlyLiq] = inStream(gasPortIn.x_outflow[onlyLiq]) * gasPortIn.Ndot;
     else
      liquidPortOut.Ndot=0;

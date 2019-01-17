@@ -100,7 +100,7 @@ SI.MoleFraction x_v[nSV];
     SI.MolarFlowRate Ndot_v_transfer[      nSV](start=fill(-0.1,nSV));
   SI.MolarFlowRate Ndot_l_transfer[        nSL](start=fill(0.1,nSL));
 
-//Variablen zur Enthalpiestromberechnung über die Phasengrenze
+//Variablen zur Enthalpiestromberechnung Ã¼ber die Phasengrenze
   SI.MolarFlowRate Ndot_fromL[nSL];
    SI.MolarFlowRate Ndot_fromV[nSV];
     SI.MoleFraction x_transfer_fromL[nSL];
@@ -236,7 +236,7 @@ equation
   end for;
 
 /*** StartUp ***/
-  when p_bub + friggelfaktor >= p_initial then // der Druck, den auch das Medienmodell sieht, friggelfaktor, weil sonst Umschalten zu spät
+  when p_bub + friggelfaktor >= p_initial then // der Druck, den auch das Medienmodell sieht, friggelfaktor, weil sonst Umschalten zu spÃ¤t
     startUp = false;
   end when;
 
@@ -261,7 +261,7 @@ p_hyd[2] = p_out;
    V* der(eps_liq*c_l[i]) = Vdot_l_in*c_l_in[i] - Vdot_l * c_l[i] + Ndot_l_transfer[i] + reaction.Ndot[i];
   end for;
   // total mole balance for liquid and vapour
-  //reaction.Ndot muß nicht berücksichtigt werden, da die Reaktion ja in der Flüssigphase stattfindet und nur "Flüssigkeit zu Flüssigkeit" wird
+  //reaction.Ndot muÃŸ nicht berÃ¼cksichtigt werden, da die Reaktion ja in der FlÃ¼ssigphase stattfindet und nur "FlÃ¼ssigkeit zu FlÃ¼ssigkeit" wird
    if eps_liq<1e-5 and Vdot_l_in<1e-8 then
      bool_eps=true;
      der(eps_liq)=0;
@@ -277,7 +277,7 @@ p_hyd[2] = p_out;
 V * der(eps_liq*sum(c_l[:])*u_l)  = Vdot_l_in*sum(c_l_in)*h_l_in - Vdot_l*sum(c_l[:])*h_l  + Edot_l_transfer  +reaction.deltaH_R + Qdot_wall -Qdot_evap;
  V * der(eps_vap*sum(c_v[:])*u_v)  =  - Vdot_v*sum(c_v[:])*h_v +Edot_v_transfer +Ndot_source_startUp*h_v;// + Qdot_wall;// + Vdot_v_in*sum(c_v_in[:])*mediumVapourIn.h;
 
- //zur Berechnung der Enthalpieströme über die Phasengrenze
+ //zur Berechnung der EnthalpiestrÃ¶me Ã¼ber die Phasengrenze
   for i in 1:nSL loop
     Ndot_fromL[i] = -1*min(0,Ndot_l_transfer[i]);
     x_transfer_fromL[i] = Ndot_fromL[i]/max(1e-5,sum(Ndot_fromL[:]));
@@ -359,8 +359,8 @@ end for;
 
   Vdot_l = Vdot_v*eps_liq/eps_vap;
 
-/*** Der Gleichung für Druckverlust bei Umströmung von Rohrbündeln nachempfunden (VDI-Wärmeatlas; Ld1, Gl. (1)), zeta wird allerdings als Parameter vorgegeben
-     Sowieso alles nur mäßig gut, weil der Volumenstrom sich ja signifikant über die HX-Höhe ändert ***/
+/*** Der Gleichung fÃ¼r Druckverlust bei UmstrÃ¶mung von RohrbÃ¼ndeln nachempfunden (VDI-WÃ¤rmeatlas; Ld1, Gl. (1)), zeta wird allerdings als Parameter vorgegeben
+     Sowieso alles nur mig gut, weil der Volumenstrom sich ja signifikant Ã¼ber die HX-HÃ¶he Ã¤ndert ***/
  Vdot_v = pressureLoss.Vdot;//sign(p_hyd[1] - p_hyd[2])*max(0, (abs(p_hyd[1] - p_hyd[2])/(0.05e5/0.02)));
 
 /*** system pressure ***/

@@ -70,7 +70,7 @@ package C2H5OH_Water_Vap "2 components: C2H5OH, H2O"
   redeclare replaceable model extends EvaporationEnthalpy
 
   protected
-        constant ThermalSeparation.Units.MolarEnthalpy h_v_H2O =  2382.2e3*MMX[2];// spezifische Verdampfungsenthalpie bei 50°C
+        constant ThermalSeparation.Units.MolarEnthalpy h_v_H2O =  2382.2e3*MMX[2];// spezifische Verdampfungsenthalpie bei 50Â°C
            ThermalSeparation.Units.MolarEnthalpy h_v_EtOH;
   equation
       /*** enthalpy ***/
@@ -83,13 +83,13 @@ package C2H5OH_Water_Vap "2 components: C2H5OH, H2O"
 
   redeclare replaceable model extends CalcSpecificEnthalpy
 
-    /***Berechnung der Sättigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
+    /***Berechnung der SÃ¤ttigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
 
    constant SI.MolarHeatCapacity cp_v_EtOH = 1765*MMX[1]; // J/kgK
     constant SI.MolarHeatCapacity cp_v_H2O = 2027*MMX[2];
     constant SI.MolarHeatCapacity cp_l_EtOH = 2443.48*MMX[1];
     constant SI.MolarHeatCapacity cp_l_H2O = 4187*MMX[2];
-     // constant ThermalSeparation.Units.MolarEnthalpy h_v_H2O =  2382.2e3*MMX[2];// spezifische Verdampfungsenthalpie bei 50°C
+     // constant ThermalSeparation.Units.MolarEnthalpy h_v_H2O =  2382.2e3*MMX[2];// spezifische Verdampfungsenthalpie bei 50Â°C
 
       SI.MolarMass MM;
 

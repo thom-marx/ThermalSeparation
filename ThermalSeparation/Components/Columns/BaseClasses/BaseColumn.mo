@@ -356,7 +356,7 @@ end if;
 equation
 
   for j in 1:n loop
-  x_vap_liq[j,:] = n_tot[j,:]./sum(n_tot[j,:]);
+    x_vap_liq[j,:] = n_tot[j,:]./sum(n_tot[j,:]);
     for i in 1:nS loop
     n_tot[j,i]= (c_v[j,mapping[i,1]].* (1-eps_liq[j]) + c_l[j,mapping[i,2]].* eps_liq[j])*H*A/n;
     end for;
@@ -465,7 +465,7 @@ end if;
 /*** calculation of molar fraction using the pressure and the molar concentration ***/
 for j in 1:n loop
 
-    for i in 1:nS loop
+  for i in 1:nS loop
     // x_l[j,i] = if use_v then c_l[j,i] * mediumLiquid[j].v else c_l[j,i] * MM_l[j] /rho_l[j];
     x_l[j,i] = c_l[j,i]  * mediumLiquid[j].v;
     x_v[j,i] = c_v[j,i] * MM_v[j] /rho_v[j];

@@ -44,9 +44,9 @@ package SprayColumn
 
    // c_rel[j] =  min(200,sqrt(max(1e-5,(1-rho_v[j]/rho_l[j])*Modelica.Constants.g_n*4/3 / zeta[j] * rho_l[j]/rho_v[j] * d_drop[j])));
   c_rel[j] = ((1-rho_vap[j]/rho_liq[j])*Modelica.Constants.g_n*4/3 / 24 / max(1e-8,eta_vap[j])* rho_liq[j])^3*(geometry.A*eps_liq[j]/max(2e-5,Vdot_l_in) *d_drop_in^3)^2;
-  /*** für Gleichstrom: ***/
+  /*** fÃ¼r Gleichstrom: ***/
    // c_drop[j] = max(0,abs(Vdot_v[j])/geometry.A + c_rel[j]);
-  /*** für Gegenstrom: ***/
+  /*** fÃ¼r Gegenstrom: ***/
   c_drop[j] = max(0, c_rel[j] - abs(Vdot_v[j]/geometry.A));
     c_vapour[j] = abs(Vdot_v[j])/geometry.A;
     d_drop[j] = (geometry.A * geometry.H/n * eps_liq[j] / max(1e-5,n_drop[j]) *6 /Modelica.Constants.pi)^(1/3);

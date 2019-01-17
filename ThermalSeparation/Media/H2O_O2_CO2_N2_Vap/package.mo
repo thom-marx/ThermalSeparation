@@ -83,7 +83,7 @@ required from medium model \""   + mediumName + "\".");
 
    output Modelica.SIunits.Temperature T_sat_water;
 
-    /***Berechnung der Sättigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
+    /***Berechnung der SÃ¤ttigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
 
 protected
    Modelica.SIunits.SpecificEnthalpy hX[4];
@@ -97,7 +97,7 @@ protected
       parameter Modelica.SIunits.SpecificHeatCapacity cp_water=4200;
 
   equation
-        /***Berechnung der Sättigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
+        /***Berechnung der SÃ¤ttigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
       //Vorkehrungen treffen, falls der Wasseranteil null ist (x[1] = 0)
     /*** Antoine-Gleichung von Siemens ***/
 

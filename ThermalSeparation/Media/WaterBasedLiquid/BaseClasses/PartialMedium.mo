@@ -2,7 +2,7 @@ within ThermalSeparation.Media.WaterBasedLiquid.BaseClasses;
 partial package PartialMedium
   "Partial medium properties (base package of all media packages)"
   extends ThermalSeparation.Media.BaseMediumLiquid;
-  import SI = Modelica.SIunits;
+  //import SI = Modelica.SIunits;
   extends Modelica.Icons.Library;
 
   // Constants to be set in Medium
@@ -27,7 +27,7 @@ partial package PartialMedium
     "Default value for pressure of medium (for initialization)";
   constant Temperature T_default = Modelica.SIunits.Conversions.from_degC(20)
     "Default value for temperature of medium (for initialization)";
-  constant SpecificEnthalpy h_default = specificEnthalpy_pTX(p_default, T_default, X_default)
+  constant SpecificEnthalpy h_default = ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.PartialMedium.specificEnthalpy_pTX(p_default, T_default, X_default)
     "Default value for specific enthalpy of medium (for initialization)";
   constant MassFraction X_default[nX]=reference_X
     "Default value for mass fractions of medium (for initialization)";
@@ -98,7 +98,6 @@ partial package PartialMedium
 
     annotation(Documentation(info="<html></html>"));
   end FluidConstants;
-
 constant FluidConstants[nS] fluidConstants "constant data for the fluid";
 
   replaceable record SaturationProperties
@@ -120,10 +119,10 @@ constant FluidConstants[nS] fluidConstants "constant data for the fluid";
     parameter Boolean preferredMediumStates=false
       "= true if StateSelect.prefer shall be used for the independent property variables of the medium"
       annotation (Hide=true, Evaluate=true, Dialog(tab="Advanced"));
-    SI.Conversions.NonSIunits.Temperature_degC T_degC=
+    Modelica.SIunits.Conversions.NonSIunits.Temperature_degC T_degC=
         Modelica.SIunits.Conversions.to_degC(T)
       "Temperature of medium in [degC]";
-    SI.Conversions.NonSIunits.Pressure_bar p_bar=
+    Modelica.SIunits.Conversions.NonSIunits.Pressure_bar p_bar=
      Modelica.SIunits.Conversions.to_bar(p)
       "Absolute pressure of medium in [bar]";
     parameter Boolean standardOrderComponents = true
@@ -638,7 +637,6 @@ T_ambient.
   end specificHeatCapacityCp;
 
   function heatCapacity_cp = specificHeatCapacityCp "alias for deprecated name";
-
   function specificHeatCapacityCv
     "Return specific heat capacity at constant volume"
     extends Modelica.Icons.Function;
@@ -665,7 +663,6 @@ T_ambient.
   end specificHeatCapacityCv;
 
   function heatCapacity_cv = specificHeatCapacityCv "alias for deprecated name";
-
   function isentropicExponent "Return isentropic exponent"
     extends Modelica.Icons.Function;
     input ThermodynamicState state "thermodynamic state record";
@@ -754,12 +751,11 @@ T_ambient.
 
   function beta = isobaricExpansionCoefficient
     "alias for isobaricExpansionCoefficient for user convenience";
-
   function isothermalCompressibility
     "Return overall the isothermal compressibility factor"
     extends Modelica.Icons.Function;
     input ThermodynamicState state "thermodynamic state record";
-    output SI.IsothermalCompressibility kappa "Isothermal compressibility";
+    output Modelica.SIunits.IsothermalCompressibility kappa "Isothermal compressibility";
   algorithm
     if dT_explicit then
       kappa :=
@@ -782,7 +778,6 @@ T_ambient.
 
   function kappa = isothermalCompressibility
     "alias of isothermalCompressibility for user convenience";
-
   // explicit derivative functions for finite element models
   function density_derp_h
     "Return density derivative wrt pressure at const specific enthalpy"
@@ -941,7 +936,7 @@ T_ambient.
    function bubbleEnthalpy "Return bubble point specific enthalpy"
       extends Modelica.Icons.Function;
       input SaturationProperties sat "saturation property record";
-      output SI.SpecificEnthalpy hl "boiling curve specific enthalpy";
+      output Modelica.SIunits.SpecificEnthalpy hl "boiling curve specific enthalpy";
    algorithm
      hl :=
        ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.IF97_Utilities.BaseIF97.Regions.hl_p(
@@ -952,7 +947,7 @@ T_ambient.
     function dewEnthalpy "Return dew point specific enthalpy"
       extends Modelica.Icons.Function;
       input SaturationProperties sat "saturation property record";
-      output SI.SpecificEnthalpy hv "dew curve specific enthalpy";
+      output Modelica.SIunits.SpecificEnthalpy hv "dew curve specific enthalpy";
 
     algorithm
       hv :=
@@ -964,7 +959,7 @@ T_ambient.
     function bubbleEntropy "Return bubble point specific entropy"
     extends Modelica.Icons.Function;
     input SaturationProperties sat "saturation property record";
-    output SI.SpecificEntropy sl "boiling curve specific entropy";
+    output Modelica.SIunits.SpecificEntropy sl "boiling curve specific entropy";
     algorithm
       sl :=
         ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.IF97_Utilities.BaseIF97.Regions.sl_p(
@@ -976,7 +971,7 @@ T_ambient.
     replaceable partial function dewEntropy "Return dew point specific entropy"
     extends Modelica.Icons.Function;
     input SaturationProperties sat "saturation property record";
-    output SI.SpecificEntropy sv "dew curve specific entropy";
+    output Modelica.SIunits.SpecificEntropy sv "dew curve specific entropy";
     algorithm
       sv :=
         ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.IF97_Utilities.BaseIF97.Regions.sv_p(
@@ -1241,10 +1236,10 @@ T_ambient.
 
   function rho_boiling
     input Integer i;
-    output SI.Density rho_boiling "density at boiling temperatur in kg/m3";
+    output Modelica.SIunits.Density rho_boiling "density at boiling temperatur in kg/m3";
    //constant values at 1 bar; O2, N2, SO2, H2O: Refprop, CO2: Refprop extrapolated, HF, HCl: Linde
   protected
-    SI.Density rho_boiling_const[:] = {807, 1142, 1300, 959};
+    Modelica.SIunits.Density rho_boiling_const[:] = {807, 1142, 1300, 959};
   algorithm
     rho_boiling:=rho_boiling_const[i];
   end rho_boiling;

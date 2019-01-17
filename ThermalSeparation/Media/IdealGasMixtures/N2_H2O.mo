@@ -35,7 +35,7 @@ package N2_H2O "2 components: N2, H2O"
 
   Real p_start(start=1.6e5);
 
-   /***Berechnung der Sättigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
+   /***Berechnung der SÃ¤ttigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
   protected
      Real pi "dimensionless pressure";
      Real[20] o "vector of auxiliary variables";
@@ -57,7 +57,7 @@ package N2_H2O "2 components: N2, H2O"
  200 K <= T <= 6000 K
  required from medium model");
 
-       /***Berechnung der Sättigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
+       /***Berechnung der SÃ¤ttigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
        //Vorkehrungen treffen, falls der Wasseranteil null ist (x[1] = 0)
        pi =  max(1e-4,p*x[2])*1e-6;//min(p,data.PCRIT)*data.IPSTAR;
      o[1] =  pi^0.25;

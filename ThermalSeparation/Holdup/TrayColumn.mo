@@ -73,10 +73,10 @@ package TrayColumn
       F_min_2[j] = sqrt(0.37 * geometry.d_h * Modelica.Constants.g_n * (rho_liq[j] - rho_vap[j])^(5/4)/rho_vap[j]^0.25);
       F_min[j] = min(F_min_1[j],F_min_2[j]);
 
-        /*** Frickel-Lsg, da sonst die StartUp-Rektifikationskolonne nicht läuft ***/
+        /*** Frickel-Lsg, da sonst die StartUp-Rektifikationskolonne nicht lÃ¤uft ***/
       delta_h_corr[j] =if considerStartUp then 0 else omega[j]* max(0,125/(Modelica.Constants.g_n * (rho_liq[j]-rho_vap[j])) * (F[j] - 0.2 * sqrt(rho_vap[j]) / (1-eps_liq_2ph[j]))^2);
 
-  /*** Stichlmair: Dimensionierung des Gas/Flüssigkeits-Kontaktapparates Bodenkolonne, Teil II, Chem. Ing. Tech. 50, Nr. 5, Gl. (3.2) ***/
+  /*** Stichlmair: Dimensionierung des Gas/FlÃ¼ssigkeits-Kontaktapparates Bodenkolonne, Teil II, Chem. Ing. Tech. 50, Nr. 5, Gl. (3.2) ***/
      Vdot[j] = if h[j]/eps_liq_2ph[j] > geometry.h_w then sign(h[j]/eps_liq_2ph[j]-geometry.h_w)* geometry.l_w
    *eps_liq_2ph[j]*(abs(h[j]/eps_liq_2ph[j]-geometry.h_w - delta_h_corr[j])*Modelica.Constants.g_n^(1/3)
    /1.45)^(3/2) else 0;
@@ -121,10 +121,10 @@ package TrayColumn
       F[j] = F_corr[j]*aux_F + F_const *(1-aux_F);
       F_corr[j] =  max(1e-5,Vdot_v[j]/geometry.A_plate * sqrt(rho_vap[j]));
 
-        /*** Frickel-Lsg, da sonst die StartUp-Rektifikationskolonne nicht läuft ***/
+        /*** Frickel-Lsg, da sonst die StartUp-Rektifikationskolonne nicht lÃ¤uft ***/
       delta_h_corr[j] =if considerStartUp then 0 else omega[j]* max(0,125/(Modelica.Constants.g_n * (rho_liq[j]-rho_vap[j])) * (F[j] - 0.2 * sqrt(rho_vap[j]) / (1-eps_liq_2ph[j]))^2);
 
-  /*** Stichlmair: Dimensionierung des Gas/Flüssigkeits-Kontaktapparates Bodenkolonne, Teil II, Chem. Ing. Tech. 50, Nr. 5, Gl. (3.2) ***/
+  /*** Stichlmair: Dimensionierung des Gas/FlÃ¼ssigkeits-Kontaktapparates Bodenkolonne, Teil II, Chem. Ing. Tech. 50, Nr. 5, Gl. (3.2) ***/
      Vdot[j] = if h[j]/eps_liq_2ph[j] > geometry.h_w then sign(h[j]/eps_liq_2ph[j]-geometry.h_w)* geometry.l_w
    *eps_liq_2ph[j]*(abs(h[j]/eps_liq_2ph[j]-geometry.h_w - delta_h_corr[j])*Modelica.Constants.g_n^(1/3)
    /1.45)^(3/2) else 0;

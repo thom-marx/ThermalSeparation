@@ -95,8 +95,8 @@ constant Boolean psat_Antoine = false;
     p(stateSelect=if (pT_explicit or ph_explicit) and preferredMediumStates then StateSelect.prefer else StateSelect.default))
     "Base properties of water"
 
-    SaturationProperties sat(Tsat(start=300.0), psat(start=1.0e5))
-      "saturation temperature and pressure";
+   // SaturationProperties sat(Tsat(start=300.0), psat(start=1.0e5))
+   //   "saturation temperature and pressure";
 
           CalcSpecificEnthalpy calcSpecificEnthalpy(T0=T0, p=p, T=T, x=x);
 

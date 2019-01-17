@@ -3,11 +3,11 @@ model Fuller "correlation of Fuller"
   extends
     ThermalSeparation.Media.Correlations.DiffusionCoefficient.Vapour.BaseDiffusionCoeffGas;
 
-  //Werte für N2, H2O, CO2, O2, Taylor S. 69
+  //Werte fÃ¼r N2, H2O, CO2, O2, Taylor S. 69
   parameter SI.MolarMass MMX[nS];
   parameter SI.Volume V[nS] "diffusion volumes";
 protected
-  parameter Integer counter1[nS-1]={nS-i+1 for i in 2:nS};//für nS=4: {0,3,2,1};
+  parameter Integer counter1[nS-1]={nS-i+1 for i in 2:nS};//fÃ¼r nS=4: {0,3,2,1};
   final parameter Real C= 1.013e-2;
   Integer counter[nS];
 

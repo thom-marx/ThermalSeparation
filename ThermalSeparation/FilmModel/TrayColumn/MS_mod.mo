@@ -78,14 +78,14 @@ equation
 
                            //Erstellen der K Matrix:
        for j in 1:n loop
-    //Erstellen einer Matrix aus den bin‰ren Stoff¸bergangskoeffizienten
+    //Erstellen einer Matrix aus den bin√§ren Stoff√ºbergangskoeffizienten
      for i in 1:nSL loop
        for m in i:nSL loop
          if i==m then
-           //die Eintr‰ge auf der Diagonalen, werden auf irgendeinen Wert gesetzt, da eh nie benutzt
+           //die Eintr√§ge auf der Diagonalen, werden auf irgendeinen Wert gesetzt, da eh nie benutzt
            k_l[j,i,m] = 10;
          else
-           //die Eintr‰ge des Vektors werden an die richtigen Stellen auf der Matrix verteilt
+           //die Eintr√§ge des Vektors werden an die richtigen Stellen auf der Matrix verteilt
            k_l[j,i,m] = max(massTransferCoeffLiq.k[j,m-2+i],1e-10);
            end if;
          end for;
@@ -96,14 +96,14 @@ equation
      end for;
          end for;
                 for j in 1:n loop
-    //Erstellen einer Matrix aus den bin‰ren Stoff¸bergangskoeffizienten
+    //Erstellen einer Matrix aus den bin√§ren Stoff√ºbergangskoeffizienten
      for i in 1:nSV loop
        for m in i:nSV loop
          if i==m then
-           //die Eintr‰ge auf der Diagonalen, werden auf irgendeinen Wert gesetzt, da eh nie benutzt
+           //die Eintr√§ge auf der Diagonalen, werden auf irgendeinen Wert gesetzt, da eh nie benutzt
            k_v[j,i,m] = 10;
          else
-           //die Eintr‰ge des Vektors werden an die richtigen Stellen auf der Matrix verteilt
+           //die Eintr√§ge des Vektors werden an die richtigen Stellen auf der Matrix verteilt
            k_v[j,i,m] = max(massTransferCoeffVap.k[j,m-2+i],1e-10);
            end if;
          end for;

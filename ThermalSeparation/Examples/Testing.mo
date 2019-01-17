@@ -523,13 +523,13 @@ package Testing
         redeclare record Geometry =
             ThermalSeparation.Geometry.StructuredPackedColumn.Mellapak250Y (                        d=14.56, H=15),
         redeclare model HeatTransferWall = Wall.ConstAlpha,
+        redeclare model ThermoEquilibrium =
+            PhaseEquilibrium.H2O_CO2_MEA_startUp (                                factor_K={1,1.03,1}),
         p_v_start_inlet=100000,
         p_v_start_outlet=100000,
         T_vapour_start=308.15,
-        T_liquid_start=308.15,
-        redeclare model ThermoEquilibrium =
-            PhaseEquilibrium.H2O_CO2_MEA_startUp (                                factor_K={1,1.03,1}))
-        annotation (Placement(transformation(extent={{-178,-30},{-80,68}})));
+        T_liquid_start=308.15)
+        annotation (Placement(transformation(extent={{-178,-28},{-80,70}})));
 
       ThermalSeparation.Components.SourcesSinks.SinkGas sinkGas(redeclare
           package                                                                 Medium =
@@ -835,7 +835,7 @@ package Testing
           thickness=1,
           smooth=Smooth.None));
       connect(Absorber.downStreamIn,cooler. coldLiquidOut) annotation (Line(
-          points={{-94.7,63.1},{-94.7,86},{-79.88,86}},
+          points={{-94.7,65.1},{-94.7,86},{-79.88,86}},
           color={153,217,234},
           thickness=1,
           smooth=Smooth.None));
@@ -868,7 +868,7 @@ package Testing
           thickness=1,
           smooth=Smooth.None));
       connect(Absorber.heatPort,ambientHeatSink. heatPort1) annotation (Line(
-          points={{-87.84,19},{-72.96,19},{-72.96,20}},
+          points={{-87.84,21},{-72.96,21},{-72.96,20}},
           color={188,51,69},
           thickness=1,
           smooth=Smooth.None));
@@ -891,7 +891,7 @@ package Testing
           color={191,0,0},
           smooth=Smooth.None));
       connect(sinkGas.gasPortIn,Absorber. upStreamOut) annotation (Line(
-          points={{-162.5,140.68},{-162.5,63.1},{-163.3,63.1}},
+          points={{-162.5,140.68},{-162.5,65.1},{-163.3,65.1}},
           color={255,127,39},
           thickness=1,
           smooth=Smooth.None));
@@ -905,7 +905,7 @@ package Testing
           thickness=1));
       connect(Absorber.downStreamOut,combLiquid_x. liquidPortIn2) annotation (
           Line(
-          points={{-94.7,-25.1},{-94.7,-43.85},{-96.5,-43.85},{-96.5,-62}},
+          points={{-94.7,-23.1},{-94.7,-43.85},{-96.5,-43.85},{-96.5,-62}},
           color={153,217,234},
           thickness=1));
       connect(combLiquid_x2.liquidPortOut,cooler. hotLiquidIn) annotation (Line(
@@ -944,11 +944,11 @@ package Testing
           color={255,127,39},
           thickness=1));
       connect(integerToBoolean.y,Absorber. StartUp_signal) annotation (Line(points={{-203,
-              -20},{-192,-20},{-192,-10.89},{-176.53,-10.89}}, color={255,0,255}));
+              -20},{-192,-20},{-192,-8.89},{-176.53,-8.89}},   color={255,0,255}));
       connect(integerToBoolean1.y,Desorber. StartUp_signal) annotation (Line(points={{75,-36},{93.35,-36},{93.35,-36.475}},
                                                  color={255,0,255}));
       connect(sourceGas_Vdot.gasPortOut, Absorber.upStreamIn) annotation (Line(
-          points={{-163,-50.6},{-163,-39.3},{-163.3,-39.3},{-163.3,-25.1}},
+          points={{-163,-50.6},{-163,-39.3},{-163.3,-39.3},{-163.3,-23.1}},
           color={255,127,39},
           thickness=1));
       connect(T_RG.y, sourceGas_Vdot.T_in) annotation (Line(points={{-183.4,-84},{
@@ -968,7 +968,8 @@ package Testing
               0,0,127}));
       connect(mdot_in.y[1], sourceGas_Vdot.Flow_in) annotation (Line(points={{
               -149.5,-123},{-167,-123},{-167,-72}}, color={0,0,127}));
-      connect(booleanExpression.y, Absorber.ShutDown_signal) annotation (Line(points={{-211,8},{-192,8},{-192,-3.05},{-176.53,-3.05}}, color={255,0,255}));
+      connect(booleanExpression.y, Absorber.ShutDown_signal) annotation (Line(points={{-211,8},
+              {-192,8},{-192,-1.05},{-176.53,-1.05}},                                                                                  color={255,0,255}));
       connect(booleanExpression1.y, Desorber.ShutDown_signal) annotation (Line(points={{71,-80},{80,-80},{80,-28.875},{93.35,-28.875}}, color={255,0,255}));
       annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-200,-180},
                 {240,180}})), Diagram(coordinateSystem(preserveAspectRatio=false,
@@ -1504,7 +1505,8 @@ package Testing
         use_Flow=false,
         T=313.15)
         annotation (Placement(transformation(extent={{88,74},{68,54}})));
-      Components.SourcesSinks.SinkLiquid sinkLiquid annotation (Placement(transformation(extent={{72,-64},{92,-44}})));
+      Components.SourcesSinks.SinkLiquid sinkLiquid(redeclare package Medium =
+            Media.H2O_CO2_MEA_Liq)                  annotation (Placement(transformation(extent={{72,-64},{92,-44}})));
       Components.SourcesSinks.AmbientHeatSink                   ambientHeatSink
         annotation (Placement(transformation(extent={{66,0},{78,12}})));
       inner SystemTS systemTS
@@ -1656,7 +1658,8 @@ package Testing
         annotation (Placement(transformation(extent={{46,-124},{66,-104}})));
       Components.SourcesSinks.AmbientHeatSink                   ambientHeatSink4
         annotation (Placement(transformation(extent={{104,90},{116,102}})));
-      Components.SourcesSinks.SinkLiquid sinkLiquid annotation (Placement(transformation(extent={{64,-160},{84,-140}})));
+      Components.SourcesSinks.SinkLiquid sinkLiquid(redeclare package Medium =
+            Media.H2O_CO2_MEA_Liq)                  annotation (Placement(transformation(extent={{64,-160},{84,-140}})));
       Modelica.Blocks.Sources.BooleanExpression booleanExpression1
         annotation (Placement(transformation(extent={{-38,-98},{-18,-78}})));
       Modelica.Blocks.Sources.IntegerExpression integerExpression1
@@ -1735,7 +1738,8 @@ package Testing
           points={{112.5,48},{120,48},{120,64},{126.6,64}},
           color={153,217,234},
           thickness=1));
-      annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-160},{260,180}})), Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-160},{260,180}})));
+      annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-160},{260,180}})), Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-160},{260,180}})),
+        experiment(StopTime=25000));
     end DesorptionColumnStartUp;
   end Column;
 
