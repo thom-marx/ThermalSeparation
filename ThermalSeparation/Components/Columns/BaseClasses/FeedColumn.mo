@@ -51,7 +51,7 @@ protected
 public
   parameter Boolean hasVapourFeed = false "true, if there exist a liquid feed" annotation(Dialog(tab="Feed", group="Vapour Feed"));
   parameter Integer numberVapourFeeds(min=0,max=n) = 1  annotation(Dialog(enable = hasVapourFeed, tab="Feed", group="Vapour Feed"));
-  parameter Integer[numberVapourFeeds] stageVapourFeed={2}
+  parameter Integer[numberVapourFeeds] stageVapourFeed={1}
     "number of stage where feed enters the column" annotation(Dialog(enable = hasVapourFeed,tab="Feed", group="Vapour Feed"));
   final parameter Integer numberVapourFeedsInternal(min=0,max=n) = if hasVapourFeed then numberVapourFeeds else 0;
 //   ThermalSeparation.Utilities.LinkVapourSink[n] linkVapour(redeclare each
@@ -65,7 +65,7 @@ public
             -94,8},{-74,28}})));
 
   ThermalSeparation.Utilities.MediumLink mediumVapourLink[n];
-  MediumVapour.BaseProperties mediumVapourFeed[numberVapourFeeds](each T0=T_ref, each p=p_v[n+1],    c=c_v_used,                         h=actualStream(feedVapour_dummy.h_outflow), x=actualStream(feedVapour_dummy.x_outflow),  x_star=actualStream(feedVapour_dummy.x_outflow)) if                   hasVapourFeed;
+  MediumVapour.BaseProperties mediumVapourFeed[numberVapourFeeds](each T0=T_ref, each p=p_v[n+1],    c=c_v_feed_used,                         h=actualStream(feedVapour_dummy.h_outflow), x=actualStream(feedVapour_dummy.x_outflow),  x_star=actualStream(feedVapour_dummy.x_outflow)) if                   hasVapourFeed;
                                                                                                 /*, TODO FIXME! c=c_v_feed */
  // Modelica.Blocks.Interfaces.RealInput h_help;
 

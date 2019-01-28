@@ -1029,7 +1029,7 @@ protected
 public
     parameter Boolean hasVapourFeed = false "true, if there exist a liquid feed" annotation(Dialog(tab="Feed", group="Vapour Feed"));
     parameter Integer numberVapourFeeds(min=0,max=n) = 1  annotation(Dialog(enable = hasVapourFeed, tab="Feed", group="Vapour Feed"));
-    parameter Integer[numberVapourFeeds] stageVapourFeed={2} "number of stage where feed enters the column"
+    parameter Integer[numberVapourFeeds] stageVapourFeed={1} "number of stage where feed enters the column"
                                                      annotation(Dialog(enable = hasVapourFeed,tab="Feed", group="Vapour Feed"));
     final parameter Integer numberVapourFeedsInternal(min=0,max=n) = if hasVapourFeed then numberVapourFeeds else 0;
   //   ThermalSeparation.Utilities.LinkVapourSink[n] linkVapour(redeclare each
