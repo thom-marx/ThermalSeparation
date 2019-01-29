@@ -36,7 +36,7 @@ public
             -94,-14},{-74,6}}))); // ;
 
   ThermalSeparation.Utilities.MediumLink mediumLink[n];
-  MediumLiquid.BaseProperties mediumLiquidFeed[numberLiquidFeeds](each T0=T_ref, c=c_v_feed_used,  each p=p_v[n+1],h=actualStream(feedLiquid_dummy.h_outflow), x=actualStream(feedLiquid_dummy.x_outflow)) if                  hasLiquidFeed;
+  MediumLiquid.BaseProperties mediumLiquidFeed[numberLiquidFeeds](each T0=T_ref, each p=p_v[n+1],h=actualStream(feedLiquid_dummy.h_outflow), x=actualStream(feedLiquid_dummy.x_outflow)) if                  hasLiquidFeed;
 
 /***VAPOUR FEED ***/
 //   ThermalSeparation.Interfaces.GasPortOut[n] feedVapourInternal(redeclare each
