@@ -25,8 +25,8 @@ uses(Modelica(version="3.2.2"), Modelica_StateGraph2(version="2.0.3")),
 </ul>
 <p><br>For getting started please take a look at the<a href=\"Modelica://ThermalSeparation.UsersGuide\"> User&apos;s Guide</a>.</p>
 <p><img src=\"../images/tt_tuhh_logo.gif\"/></p>
-<p><br>Technische Universit&auml;t Hamburg-Harburg </p>
-<p>Institut f&uuml;r Thermofluiddynamik, Technische Thermodynamik </p>
+<p><br>Technische Universit&auml;t Hamburg</p>
+<p>Institut f&uuml;r Technische Thermodynamik </p>
 <p>Denickestra&szlig;e 17 </p>
 <p>D-21073 Hamburg </p>
 <p>Germany </p>

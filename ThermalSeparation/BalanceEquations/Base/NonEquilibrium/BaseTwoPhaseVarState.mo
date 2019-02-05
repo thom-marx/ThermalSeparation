@@ -14,6 +14,18 @@ equation
 stat=false;
 
 /*** MOLE BALANCES ***/
+
+//    if n == 1 then
+//      bool_eps[1] = if (eps_liq[1]<1e-5 and Vdot_l_in<1e-8) then true else false;
+//    else
+//      bool_eps[1] = if eps_liq[1]<1e-5 and Vdot_l[2]<1e-8 then true else false;
+//
+//      for j in 2:n-1 loop
+//        bool_eps[j] = if eps_liq[j]<1e-5 and Vdot_l[j+1]<1e-8 then true else false;
+//      end for;
+//      bool_eps[n] = if (eps_liq[n]<1e-5 and Vdot_l_in<1e-8) then true else false;
+//    end if;
+
 if n==1 then
 
    // component balance for vapour
@@ -23,10 +35,10 @@ if n==1 then
 
   // total mole balance for liquid and vapour
    if eps_liq[1]<1e-5 and Vdot_l_in<1e-8 then
-       bool_eps[1]=true;
+       //bool_eps[1]=true;
        der(eps_liq[1])=0;
    else
-   bool_eps[1]=false;
+   //bool_eps[1]=false;
     A*H/n*eps* der(eps_liq[1]/propsLiq[1].v) =  Vdot_l_in*rho_l_in/MM_l_in -  Vdot_l[1]*rho_l[1]/MM_l[1] + sum(Ndot_l_transfer[1,:]) + sum(Ndot_reac[1,:]) + Vdot_l_feed[1]*rho_l_feed[1]/MM_l_feed[1] - Vdot_le[1]*rho_l[1]/MM_l[1];
    //    A*H/n*eps* der(eps_liq[1]*rho_l[1]/MM_l[1]) =  Vdot_l_in*rho_l_in/MM_l_in -  Vdot_l[1]*rho_l[1]/MM_l[1] + sum(Ndot_l_transfer[1,:]) + sum(reaction.Ndot[1,:]) + Vdot_l_feed[1]*rho_l_feed[1]/MM_l_feed[1] - Vdot_le[1]*rho_l[1]/MM_l[1];
    end if;
@@ -43,10 +55,10 @@ if n==1 then
     // total mole balance for liquid and vapour
 
      if eps_liq[1]<1e-5 and Vdot_l[2]<1e-8 then
-       bool_eps[1]=true;
+      // bool_eps[1]=true;
        der(eps_liq[1])=0;
    else
-     bool_eps[1]=false;
+     //bool_eps[1]=false;
       A*H/n*eps* der(eps_liq[1]/propsLiq[1].v) =  Vdot_l[2]*rho_l[2]/MM_l[2] -Ndot_l[1] + sum(Ndot_l_transfer[1,:]) + sum(Ndot_reac[1,:]) + Vdot_l_feed[1]*rho_l_feed[1]/MM_l_feed[1] - Vdot_le[1]*rho_l[1]/MM_l[1];
      //    A*H/n*eps* der(eps_liq[1]*rho_l[1]/MM_l[1]) =  Vdot_l[2]*rho_l[2]/MM_l[2] -  Vdot_l[1]*rho_l[1]/MM_l[1] + sum(Ndot_l_transfer[1,:]) + sum(reaction.Ndot[1,:]) + Vdot_l_feed[1]*rho_l_feed[1]/MM_l_feed[1] - Vdot_le[1]*rho_l[1]/MM_l[1];
      end if;
@@ -65,10 +77,10 @@ if n==1 then
       end for;
      // total mole balance for liquid and vapour
      if eps_liq[j]<1e-5 and Vdot_l[j+1]<1e-8 then
-       bool_eps[j]=true;
+       //bool_eps[j]=true;
       der(eps_liq[j])=0;
      else
-       bool_eps[j]=false;
+       //bool_eps[j]=false;
      A*H/n*eps* der(eps_liq[j]/propsLiq[j].v) = Vdot_l[j+1]*rho_l[j+1]/MM_l[j+1] -  Vdot_l[j]*rho_l[j]/MM_l[j]  + sum(Ndot_l_transfer[j,:])+ sum(Ndot_reac[j,:]) + Vdot_l_feed[j]*rho_l_feed[j]/MM_l_feed[j] + Vdot_le[j-1]*rho_l[j-1]/MM_l[j-1] - Vdot_le[j]*rho_l[j]/MM_l[j];
      //   A*H/n*eps* der(eps_liq[j]*rho_l[j]/MM_l[j]) = Vdot_l[j+1]*rho_l[j+1]/MM_l[j+1] -  Vdot_l[j]*rho_l[j]/MM_l[j]  + sum(Ndot_l_transfer[j,:])+ sum(reaction.Ndot[j,:]) + Vdot_l_feed[j]*rho_l_feed[j]/MM_l_feed[j] + Vdot_le[j-1]*rho_l[j-1]/MM_l[j-1] - Vdot_le[j]*rho_l[j]/MM_l[j];
      end if;
@@ -86,10 +98,10 @@ if n==1 then
     // total mole balance for liquid and vapour
 
      if eps_liq[n]<1e-5 and Vdot_l_in<1e-8 then
-       bool_eps[n]=true;
+       //bool_eps[n]=true;
       der(eps_liq[n])=0;
      else
-       bool_eps[n]=false;
+       //bool_eps[n]=false;
      A*H/n*eps* der(eps_liq[n]/propsLiq[n].v) = Ndot_l_in -  Vdot_l[n]*rho_l[n]/MM_l[n] + sum(Ndot_l_transfer[n,:])+ sum(Ndot_reac[n,:]) + Vdot_l_feed[n]*rho_l_feed[n]/MM_l_feed[n] + Vdot_le[n-1]*rho_l[n-1]/MM_l[n-1];
      //   A*H/n*eps* der(eps_liq[n]*rho_l[n]/MM_l[n]) = Vdot_l_in*rho_l_in/MM_l_in -  Vdot_l[n]*rho_l[n]/MM_l[n] + sum(Ndot_l_transfer[n,:])+ sum(reaction.Ndot[n,:]) + Vdot_l_feed[n]*rho_l_feed[n]/MM_l_feed[n] + Vdot_le[n-1]*rho_l[n-1]/MM_l[n-1];
      end if;

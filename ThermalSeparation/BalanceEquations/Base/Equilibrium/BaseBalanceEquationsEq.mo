@@ -161,6 +161,17 @@ extends ThermalSeparation.BalanceEquations.Base.BaseBalanceEquations;
   final Boolean stat "true for steady state balancing equations";
 
 equation
+       if n == 1 then
+     bool_eps[1] = if (eps_liq[1]<1e-5 and Vdot_l_in<1e-8) then true else false;
+   else
+     bool_eps[1] = if eps_liq[1]<1e-5 and Vdot_l[2]<1e-8 then true else false;
+
+     for j in 2:n-1 loop
+       bool_eps[j] = if eps_liq[j]<1e-5 and Vdot_l[j+1]<1e-8 then true else false;
+     end for;
+     bool_eps[n] = if (eps_liq[n]<1e-5 and Vdot_l_in<1e-8) then true else false;
+   end if;
+
   for j in 1:n loop
     c_l_star[j,:] =c_l[j,:];
     c_v_star[j,:] =c_v[j,:];

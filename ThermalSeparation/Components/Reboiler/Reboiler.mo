@@ -231,6 +231,13 @@ SI.Pressure deltaP = p_in-p_out;
         iconTransformation(extent={{72,-10},{92,10}})));
 
 equation
+   if eps_liq<1e-5 and liquidIn.Ndot<1e-8 then
+     bool_eps=true;
+   else
+     bool_eps=false;
+   end if;
+
+
  liquidIn.x_outflow = inStream(liquidOut.x_outflow);
  liquidIn.h_outflow = inStream(liquidOut.h_outflow);
 
@@ -309,10 +316,10 @@ p_hyd[2] = p_out;
   // total mole balance for liquid and vapour
   //reaction.Ndot mu nicht bercksichtigt werden, da die Reaktion ja in der Flssigphase stattfindet und nur "Flssigkeit zu Flssigkeit" wird
    if eps_liq<1e-5 and liquidIn.Ndot<1e-8 then
-     bool_eps=true;
+     //bool_eps=true;
      der(eps_liq)=0;
  else
-   bool_eps=false;
+  // bool_eps=false;
     V* der(eps_liq*rho_l/MM_l) =  liquidIn.Ndot +liquidOut.Ndot + sum(Ndot_l_transfer[:]) + sum(reaction.Ndot[:]);
     end if;
        V* der(eps_vap*rho_v/MM_v) =  vapourOut.Ndot + sum(Ndot_v_transfer[:]) + Ndot_source_startUp;
