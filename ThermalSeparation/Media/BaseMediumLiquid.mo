@@ -52,7 +52,7 @@ replaceable partial model BaseProperties
   output ThermalSeparation.Media.Types.Density d "Density of medium";
 
   output ThermalSeparation.Media.Types.MolarMass MM "Molar mass of mixture";
-  output SI.MolarVolume v(start=1e-5); //unit: m3/mol
+  output SI.MolarVolume v(start=1e-5,stateSelect=StateSelect.never); //unit: m3/mol
   output SI.ThermalConductivity lambda;
   output SI.SpecificHeatCapacity cp;
 
