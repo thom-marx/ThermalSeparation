@@ -155,7 +155,7 @@ replaceable partial model DiffusionCoefficient
 
    // Diffusion coefficents in the following form: D12, D13, D14, D23, D24, D34
    // the numbers correspond to the ordering of the substances
-   output SI.DiffusionCoefficient D[a] "Maxwell-Stefan diffusion coefficients";
+   output SI.DiffusionCoefficient D[a](start=fill(1e-5,a)) "Maxwell-Stefan diffusion coefficients";
    output SI.DiffusionCoefficient D_matrix[nSubstance,nSubstance]
       "Maxwell-Stefan diffusion coefficients in matrix form, where D_12 = D_21";
 
@@ -342,8 +342,7 @@ type AbsolutePressure = SI.AbsolutePressure (
   type Temperature = SI.Temperature (
       min=1,
       max=1.e4,
-      nominal=300,
-      start=300) "Type for temperature with medium specific attributes";
+      nominal=300) "Type for temperature with medium specific attributes";
   type ThermalConductivity = SI.ThermalConductivity (
       min=0,
       max=500,

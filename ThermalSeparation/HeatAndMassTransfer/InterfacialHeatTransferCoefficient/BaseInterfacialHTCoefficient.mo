@@ -4,9 +4,9 @@ partial model BaseInterfacialHTCoefficient
 
   parameter Integer n(min=1);
   parameter Integer nS(min=2);
-  input ThermalSeparation.Units.CoefficentOfMassTransfer k_av[  n]
+  input ThermalSeparation.Units.CoefficentOfMassTransfer k_av[n]
     "averaged mass transfer coefficient";
-  input SI.DiffusionCoefficient D_av[  n] "averaged diffusion coefficient";
+  input SI.DiffusionCoefficient D_av[n] "averaged diffusion coefficient";
   input SI.Density rho[n];
   input SI.Concentration c[n,nS];
 

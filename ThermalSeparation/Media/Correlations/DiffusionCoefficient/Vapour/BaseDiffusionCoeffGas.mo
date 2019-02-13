@@ -9,7 +9,7 @@ input SI.Pressure p;
   parameter SI.Volume V[nS] "diffusion volumes";
 
   //Diff.koeff. z.B.: D12, D13, D14, D23, D24, D34
-  output SI.DiffusionCoefficient D[a];
+  output SI.DiffusionCoefficient D[a](start=fill(1e-5,a));
   output SI.DiffusionCoefficient D_matrix[nS,nS];
 
 protected

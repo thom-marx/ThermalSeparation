@@ -43,6 +43,7 @@ extends ThermalSeparation.BalanceEquations.Base.BaseBalanceEquations;
    SI.MolarMass MM_v[n](start=0.028*ones(n))=propsVap.MM
     "molar mass of the vapour mixture ";
    SI.MolarMass MM_v_in=propsVapIn.MM;
+   SI.MolarMass MM_v_star[n](start=fill(0.03,n))=mediumVapourStar.MM;
    ThermalSeparation.Units.MolarEnthalpy h_v[n]=propsVap.h;
    ThermalSeparation.Units.MolarEnthalpy h_v_in=propsVapIn.h;
    input SI.Pressure p_v[n+1];

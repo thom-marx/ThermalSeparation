@@ -42,8 +42,7 @@ replaceable model MassTransferCoeffLiq =
 
    HeatTransferVapour heatTransferCoeffVap(
    redeclare replaceable package Medium =  MediumVapour,
-   n=n, nS=nSV,  k_av=k_av_vap, D_av=D_av_vap,
-   rho=propsVap.rho,  c=c_v, props=propsVap);
+   props=propsVap,n=n, nS=nSV,  k_av=k_av_vap, D_av=D_av_vap,rho=propsVap.rho,c=c_v);
 
      replaceable model HeatTransferLiquid =
       ThermalSeparation.HeatAndMassTransfer.InterfacialHeatTransferCoefficient.Liquid.Constant
@@ -66,7 +65,7 @@ SI.DiffusionCoefficient D_av_vap[n];
     x=x_l,
     eta=eta_comp);
      SI.DiffusionCoefficient D_liq[n,aux[nSL-1]]=diffCoeffLiq.D;
-       MediumVapour.DiffusionCoefficient[n] diffCoeffVap(T=T_v, p=p_v[1:n]);
+     MediumVapour.DiffusionCoefficient[n] diffCoeffVap(T=T_v, p=p_v[1:n]);
      SI.DiffusionCoefficient D_vap[n,aux[nSV-1]]=diffCoeffVap.D;
      SI.Velocity w_sup_l[n] "superficial liquid velocity";
      SI.Velocity w_sup_v[n] "superficial vapour velocity";

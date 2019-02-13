@@ -120,12 +120,12 @@ replaceable package MediumLiquid =
 
 //Variables upStream
   SI.Concentration c_v_in[nSV];
-  SI.Concentration c_v[n,nSV](each stateSelect=StateSelect.default) annotation(Dialog(group="Initialization",showStartAttribute=true));
+  SI.Concentration c_v[n,nSV](each start=10,each stateSelect=StateSelect.default) annotation(Dialog(group="Initialization",showStartAttribute=true));
   SI.MoleFraction x_v_in[nSV];
   SI.MoleFraction x_v[n,nSV](start=x_v_start);
   SI.VolumeFlowRate Vdot_v_in(nominal=1e-2);
-  SI.VolumeFlowRate Vdot_v[n](nominal=fill(1e-2,n));
-  SI.Temperature T_v_in;
+  SI.VolumeFlowRate Vdot_v[n](start=fill(1e-2,n),nominal=fill(1e-2,n));
+  SI.Temperature T_v_in(start=T_v_start[1]);
   SI.MoleFraction x_upStreamIn_act[nSV];
   SI.MoleFraction x_upStreamOut_act[nSV];
   ThermalSeparation.Units.MolarEnthalpy h_upStreamIn_act;
@@ -138,13 +138,13 @@ replaceable package MediumLiquid =
   //Variables downStream
   SI.Concentration c_l_in[nSL]
     "molar concentration in the liquid at the liquid outlet of each stage";
-  SI.Concentration c_l[n,nSL](each stateSelect=StateSelect.default) annotation(Dialog(group="Initialization",showStartAttribute=true));
+  SI.Concentration c_l[n,nSL](each start=10, each stateSelect=StateSelect.default) annotation(Dialog(group="Initialization",showStartAttribute=true));
 
   SI.MoleFraction x_l_in[nSL];
   SI.MoleFraction x_l[n,nSL](start=x_l_start);
   SI.VolumeFlowRate Vdot_l_in(start=0.03, nominal=1e-4);
   SI.VolumeFlowRate Vdot_l[n](start=fill(0.03,n),nominal=fill(1e-4,n));
-  SI.Temperature T_l_in;
+  SI.Temperature T_l_in(start=T_l_start[1]);
   SI.Temperature T_l[n];
   SI.MoleFraction x_downStreamIn_act[nSL];
   SI.MoleFraction x_downStreamOut_act[nSL];
@@ -508,7 +508,6 @@ end for;
 //   end for;
 
 initial equation
-
   annotation (Diagram(graphics),
                        Icon(coordinateSystem(preserveAspectRatio=false, extent=
             {{-100,-100},{100,100}}),

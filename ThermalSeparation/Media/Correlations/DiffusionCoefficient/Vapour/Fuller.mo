@@ -9,18 +9,17 @@ model Fuller "correlation of Fuller"
 protected
   parameter Integer counter1[nS-1]={nS-i+1 for i in 2:nS};//für nS=4: {0,3,2,1};
   final parameter Real C= 1.013e-2;
-  Integer counter[nS];
+  parameter Integer counter[nS]=cat(1,{0},counter1);
 
 equation
-  counter[1]=0;
-  counter[2:nS] = counter1;
+ // counter[1]=0;
+  //counter[2:nS] = counter1;
 
 for i in 1:nS-1 loop
   for k in i+1:nS loop
- D[k-i+ sum(counter[1:i])] = ((MMX[i] + MMX[k])/(MMX[i] * MMX[k]*1000))^0.5 * C * T^1.75/p/(V[i]^(1/3) + V[k]^(1/3))^2;
+   D[k-i+ sum(counter[1:i])] = ((MMX[i] + MMX[k])/(MMX[i] * MMX[k]*1000))^0.5 * C * T^1.75/p/(V[i]^(1/3) + V[k]^(1/3))^2;
   end for;
   end for;
-
   for i in 1:nS loop
     for k in 1:nS loop
       D_matrix[i,k]= ((MMX[i] + MMX[k])/(MMX[i] * MMX[k]*1000))^0.5 * C * T^1.75/p/(V[i]^(1/3) + V[k]^(1/3))^2;

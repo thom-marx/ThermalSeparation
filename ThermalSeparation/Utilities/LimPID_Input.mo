@@ -131,9 +131,10 @@ public
     Modelica.Blocks.Interfaces.RealInput input_u_s;
 initial equation
   if initType==InitPID.InitialOutput then
-     y = y_start;
+     gainPID.y = y_start;
   end if;
 equation
+
     output_u_s=u_s;
     output_u_m=u_m;
   assert(yMax >= yMin, "LimPID: Limits must be consistent. However, yMax (=" + String(yMax) +

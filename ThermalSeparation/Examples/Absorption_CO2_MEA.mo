@@ -58,12 +58,12 @@ ThermalSeparation.Components.Columns.StructuredPackedColumn column(
         ThermalSeparation.Components.Columns.BaseClasses.Initialization.Homotopy.NoHomotopy,
     x_l_start_const={0.88,0.01,0.11},
     x_v_start_const={0.1841,0.0471,0.04,0.7768},
-    n_elements=10,
     p_v_start_inlet=101000,
     p_v_start_outlet=100000,
-    T_vapour_start=313.15,
-    T_liquid_start=313.15)
-                         annotation (Placement(transformation(extent={{-36,-6},
+    T_vapour_start=333.15,
+    T_liquid_start=333.15,
+    p_v_in(start=101000),
+    n_elements=5)        annotation (Placement(transformation(extent={{-36,-6},
             {12,40}}, rotation=0)));
 
   ThermalSeparation.Components.SourcesSinks.SourceGas

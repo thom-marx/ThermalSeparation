@@ -31,7 +31,7 @@ model DiffMolecules
 
 protected
    parameter Integer counter1[nS-1]={nS-i+1 for i in 2:nS};
-   Integer counter[nS];  //für nS=4: {0,3,2,1};
+   parameter Integer counter[nS]=cat(1,{0},counter1);  //für nS=4: {0,3,2,1};
     SI.MoleFraction x_mod[nS]
     "modified mole fraction to treat liquid systems with dissolved ideal gas components";
     SI.MoleFraction x_mod0[nS]
@@ -44,8 +44,8 @@ protected
     "number of binary diffusion coefficients depending on the number of substances";
 
 equation
- counter[1]=0;
- counter[2:nS] = counter1;
+ //counter[1]=0;
+ //counter[2:nS] = counter1;
  if eta_pure then
    x_mod=x;
    x_mod0 = x "x_mod0 not used in this case";

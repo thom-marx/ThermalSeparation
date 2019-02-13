@@ -9,7 +9,6 @@ constant Boolean psat_Antoine = false;
      constant Real henry_C[:]={0,1500,2400,1300}
   "constant to calculate temperature dependency";
      constant Modelica.SIunits.Temperature henry_T_norm=298 "norm temperature";
-
   import
   ThermalSeparation.Media.IdealGasMixtures.BaseClasses.PartialMedium.Choices.ReferenceEnthalpy;
 
@@ -78,7 +77,6 @@ required from medium model \""   + mediumName + "\".");
     annotation (structurallyIncomplete);
  end BaseProperties;
 
-
   redeclare replaceable model extends CalcSpecificEnthalpy
 
    output Modelica.SIunits.Temperature T_sat_water;
@@ -143,7 +141,6 @@ protected
               fillColor={255,255,255},
               fillPattern=FillPattern.Solid)}));
   end CalcSpecificEnthalpy;
-
 
   redeclare replaceable model extends EvaporationEnthalpy
 
