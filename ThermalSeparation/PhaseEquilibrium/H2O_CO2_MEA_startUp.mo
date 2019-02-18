@@ -27,8 +27,8 @@ equation
 
 /* equilibirum of H2O (cf. Oexmann) */
 
-   //Modelica.Math.log(p_sat_H2O) = 73.649 - 7258.2 / T - 7.3037 * Modelica.Math.log(T) + 4.1653e-6 * T^2;
-    p_sat_H2O=10^(8.07131-1730.63/((T-273.15)+233.426))*133.322;
+   Modelica.Math.log(p_sat_H2O) = 73.649 - 7258.2 / T - 7.3037 * Modelica.Math.log(T) + 4.1653e-6 * T^2;
+    //p_sat_H2O=10^(8.07131-1730.63/((T-273.15)+233.426))*133.322;
 
   // K[nS-1] = p_sat_H2O/p;
 

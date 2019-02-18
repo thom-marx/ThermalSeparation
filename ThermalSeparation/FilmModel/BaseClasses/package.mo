@@ -158,7 +158,7 @@ protected
     SI.MolarMass MM_v[n] = propsVap.MM;
 
      replaceable model ThermoEquilibrium =
-        PhaseEquilibrium.RealGasActivityCoeffLiquid constrainedby
+        ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid constrainedby
     PhaseEquilibrium.BasePhaseEquilibrium
          annotation(Dialog(tab="Propagated from Column",group="These variables are propagated from the column model and do not have to be set by the user!",enable=false));
 

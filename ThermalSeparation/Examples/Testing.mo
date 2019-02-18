@@ -713,7 +713,7 @@ package Testing
         annotation (Placement(transformation(extent={{-15,-15},{15,15}},
             rotation=180,
             origin={217,-99})));
-      ThermalSeparation.Components.Reboiler.KettleReboilerEq_StartUpCCS
+      ThermalSeparation.Components.Reboiler.KettleReboilerEq_StartUpCCS_dummy_p
         sumpV(
         m_Reb=1000,
         eps_liq_init=0.001,
@@ -739,7 +739,7 @@ package Testing
         redeclare record Geometry =
             Geometry.StructuredPackedColumn.Mellapak250Y,
         redeclare model ThermoEquilibrium =
-            PhaseEquilibrium.CO2_CO2_MEA_StartUpReboiler,
+            PhaseEquilibrium.CO2_CO2_MEA_StartUpReboiler_newFormulation,
         T_init=313.15,
         p_init=100000,
         p_friggel=25000)
@@ -877,7 +877,7 @@ package Testing
           color={0,0,127},
           smooth=Smooth.None));
       connect(sumpV.gasPortOut,Desorber. upStreamIn) annotation (Line(
-          points={{131,-93},{100,-93},{100,-50.25},{105.5,-50.25}},
+          points={{130.2,-93},{100,-93},{100,-50.25},{105.5,-50.25}},
           color={255,127,39},
           thickness=1,
           smooth=Smooth.None));
@@ -1292,6 +1292,113 @@ package Testing
         experiment(StopTime=1500),
         __Dymola_experimentSetupOutput);
     end Reboiler;
+
+    model Reboiler_StartUp
+      Components.SourcesSinks.SinkGas                   sinkGas(redeclare
+          package Medium = Media.H2O_CO2_Vap, p=200000)
+        annotation (Placement(transformation(
+            extent={{-10,-10},{10,10}},
+            rotation=180,
+            origin={-30,30})));
+      Components.SourcesSinks.SourceLiquid                   sourceLiquid(
+        flowOption=ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowVdot,
+        redeclare package MediumLiquid = Media.H2O_CO2_MEA_Liq,
+        x={0.87,0.05,0.1},
+        Flow=1,
+        T=313.15,
+        useT_In=true)
+                  annotation (Placement(transformation(
+            extent={{-10,-10},{10,10}},
+            rotation=180,
+            origin={32,30})));
+
+      Components.SourcesSinks.SinkLiquid                   sinkLiquid(
+          redeclare package Medium = Media.H2O_CO2_MEA_Liq)
+        annotation (Placement(transformation(
+            extent={{-10,-10},{10,10}},
+            rotation=270,
+            origin={0,-34})));
+      Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow
+        annotation (Placement(transformation(extent={{-7,-7},{7,7}},
+            rotation=180,
+            origin={27,2})));
+      inner SystemTS                   systemTS annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+      Modelica.Blocks.Sources.CombiTimeTable Q_Reboiler(
+        smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
+        extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint,
+        offset={1},
+        startTime=0,
+        table=[0,0.0; 3000,0; 3240,2.13584e8; 5000,2.13584e8; 20000,2.13584e8])
+        annotation (Placement(transformation(extent={{-15,-15},{15,15}},
+            rotation=180,
+            origin={69,3})));
+      Components.Reboiler.KettleReboilerEq_StartUpCCS_dummy_p sumpV1(
+        m_Reb=1000,
+        initOption_TepsXfixed=false,
+        initOption_withoutT=false,
+        initOption_standalone=false,
+        x_init=0.8593,
+        inert_liq={false,false,true},
+        startup=true,
+        A=50,
+        H=2,
+        redeclare model InnerHT =
+            HeatAndMassTransfer.HTResistance.NoHTResistance,
+        Vdot_nom=100,
+        redeclare package MediumLiquid = Media.H2O_CO2_MEA_Liq,
+        redeclare model Reaction = Reaction.ReactionEquilibrium.CO2_MEA,
+        init_option=ThermalSeparation.Components.Reboiler.InitOptionEq.initOption_startup_inert_Dyn,
+
+        deltap_nom=10,
+        redeclare record Geometry =
+            Geometry.StructuredPackedColumn.Mellapak250Y,
+        beta_eps=0.001,
+        initOption_startup_RebplusDes=true,
+        initOption_startup_RebplusDesalone=false,
+        mapping=[1,1; 2,2],
+        nS=2,
+        redeclare package MediumVapour = Media.H2O_CO2_Vap,
+        redeclare model ThermoEquilibrium =
+            PhaseEquilibrium.CO2_CO2_MEA_StartUpReboiler_newFormulation,
+        eps_liq_init=0.0001,
+        T_init=313.15,
+        p_init=100000,
+        p_friggel=25000,
+        p_dummy=200000)
+        annotation (Placement(transformation(extent={{-8,-10},{12,10}})));
+
+      Modelica.Blocks.Sources.Ramp T_solvent(
+        height=60,
+        duration=2000,
+        offset=313.15,
+        startTime=3240) annotation (Placement(transformation(
+            extent={{6,-6},{-6,6}},
+            rotation=0,
+            origin={64,36})));
+    equation
+      connect(prescribedHeatFlow.Q_flow, Q_Reboiler.y[1]) annotation (Line(
+            points={{34,2},{44,2},{44,3},{52.5,3},{52.5,3}}, color={0,0,127}));
+      connect(sumpV1.liquidPortOut, sinkLiquid.liquidPortIn) annotation (Line(
+          points={{2,-9},{2,-24.4},{0,-24.4}},
+          color={153,217,234},
+          thickness=1));
+      connect(sumpV1.gasPortOut, sinkGas.gasPortIn) annotation (Line(
+          points={{-3.8,9},{-3.8,29.5},{-20.4,29.5},{-20.4,30}},
+          color={255,127,39},
+          thickness=1));
+      connect(sourceLiquid.liquidPortOut, sumpV1.liquidPortIn) annotation (Line(
+          points={{20.6,30},{20.6,29},{7,29},{7,9}},
+          color={153,217,234},
+          thickness=1));
+      connect(prescribedHeatFlow.port, sumpV1.heatPort) annotation (Line(points=
+             {{20,2},{16,2},{16,0},{10.2,0}}, color={191,0,0}));
+      connect(sourceLiquid.T_In, T_solvent.y) annotation (Line(points={{42,30},
+              {50,30},{50,36},{57.4,36}}, color={0,0,127}));
+      annotation (
+        Icon(coordinateSystem(preserveAspectRatio=false)),
+        Diagram(coordinateSystem(preserveAspectRatio=false)),
+        experiment(StopTime=25000, __Dymola_NumberOfIntervals=5000));
+    end Reboiler_StartUp;
   end Reboiler;
 
   package Column
@@ -1446,11 +1553,11 @@ package Testing
             FilmModel.StructuredPackedColumn.TrueEquilibriumStartUpCCSAbsorption
             ( faktor_Ndot_v=30000),
         redeclare model HeatTransferWall = Wall.Adiabatic,
+        n_elements=15,
         p_v_start_inlet=100000,
         p_v_start_outlet=100000,
-        T_vapour_start=308.15,
-        T_liquid_start=308.15,
-        n_elements=15)
+        T_vapour_start=313.15,
+        T_liquid_start=313.15)
         annotation (Placement(transformation(extent={{-58,-44},{40,54}})));
       Modelica.Blocks.Math.IntegerToBoolean integerToBoolean
         annotation (Placement(transformation(extent={{-102,-32},{-82,-12}})));
@@ -1493,7 +1600,9 @@ package Testing
             origin={7,-85})));
       Components.SourcesSinks.SinkGas                   sinkGas(redeclare
           package                                                                 Medium =
-                   Media.H2O_O2_CO2_N2_Vap, p=102600)
+                   Media.H2O_O2_CO2_N2_Vap,
+        use_p=true,
+        p=102600)
         annotation (Placement(transformation(extent={{-17,-21.5},{17,21.5}},
             rotation=90,
             origin={-44.5,93})));
@@ -1546,7 +1655,7 @@ package Testing
       Components.SourcesSinks.AmbientHeatSink                   ambientHeatSink2
         annotation (Placement(transformation(extent={{50,3},{62,12}})));
       Components.SourcesSinks.SinkGas                   sinkGas1(redeclare
-          package                                                                  Medium =
+          package Medium =
                    Media.H2O_CO2_Vap, p=200000)
         annotation (Placement(transformation(extent={{-16,-17.5},{16,17.5}},
             rotation=90,
@@ -1554,7 +1663,7 @@ package Testing
       Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow
         annotation (Placement(transformation(extent={{-7,-7},{7,7}},
             rotation=180,
-            origin={87,-114})));
+            origin={89,-122})));
       Components.Columns.StructuredPackedColumn_newStartUpShutDown
                                                         Desorber(
         mapping={{1,1},{2,2}},
@@ -1577,7 +1686,6 @@ package Testing
         redeclare model Holdup =
             ThermalSeparation.Holdup.StructuredPackedColumn.StichlmairStat,
         x_v_start_const={0,1},
-        x_l_start_const={0.8593,0.0325,0.1082},
         y_PID=1000,
         Vdot_startUp_pressure=5,
         gain=100,
@@ -1595,22 +1703,23 @@ package Testing
         redeclare model PressureLoss =
             PressureLoss.StructuredPackedColumn.NominalLinear (                           Vdot_nom=0.4, deltaP_nom(displayUnit="Pa") = 3),
         redeclare model HeatTransferWall = Wall.ConstAlpha,
+        redeclare model FilmModel =
+            FilmModel.StructuredPackedColumn.TrueEquilibriumStartUpCCSDesorption
+            (faktor_Ndot_v=30000, redeclare model StateSelection =
+                ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.None),
+        redeclare model ThermoEquilibrium =
+            PhaseEquilibrium.H2O_CO2_MEA_startUp,
         p_v_start_inlet=100000,
         p_v_start_outlet=100000,
+        x_l_start_const={0.8593,0.0325,0.1082},
         T_vap_start_bottom=313.15,
         T_vap_start_top=313.15,
         T_liq_start_bottom=313.15,
         T_liq_start_top=313.15,
         T_vapour_start=323.15,
-        T_liquid_start=323.15,
-        redeclare model ThermoEquilibrium =
-            PhaseEquilibrium.H2O_CO2_MEA_startUp,
-        redeclare model FilmModel =
-            FilmModel.StructuredPackedColumn.TrueEquilibriumStartUpCCSDesorption
-            (                                                                                             faktor_Ndot_v=30000, redeclare
-              model                                                                                                                            StateSelection =
-                ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.StateSelection3))
+        T_liquid_start=323.15)
         annotation (Placement(transformation(extent={{12,-67},{102,28}})));
+
       Components.Condenser.FlashCondenser_CO2_H2O                   flash_Condenser_simple(T_out(
             displayUnit="degC") = 313.15)
         annotation (Placement(transformation(extent={{38,70},{90,118}})));
@@ -1621,12 +1730,12 @@ package Testing
         extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint,
         offset={1},
         startTime=0,
-        table=[0,0.0; 3000,0; 3240,2.13584e8; 5000,2.13584e8; 20000,2.13584e8; 23000,1])
+        table=[0,0.0; 3000,0; 3240,2.13584e8; 5000,2.13584e8; 20000,2.13584e8;
+            23000,2.13584e8])
         annotation (Placement(transformation(extent={{-15,-15},{15,15}},
             rotation=180,
             origin={137,-111})));
-      Components.Reboiler.KettleReboilerEq_StartUpCCS
-        sumpV(
+      Components.Reboiler.KettleReboilerEq_StartUpCCS_dummy_p sumpV(
         m_Reb=1000,
         eps_liq_init=0.001,
         initOption_TepsXfixed=false,
@@ -1642,40 +1751,42 @@ package Testing
         redeclare model InnerHT =
             HeatAndMassTransfer.HTResistance.NoHTResistance,
         Vdot_nom=100,
-        beta_eps=0.001,
         redeclare package MediumLiquid = Media.H2O_CO2_MEA_Liq,
         redeclare package MediumVapour = Media.H2O_CO2_Vap,
         redeclare model Reaction = Reaction.ReactionEquilibrium.CO2_MEA,
         init_option=ThermalSeparation.Components.Reboiler.InitOptionEq.initOption_startup_inert_Dyn,
+
         deltap_nom=10,
         redeclare record Geometry =
             Geometry.StructuredPackedColumn.Mellapak250Y,
         redeclare model ThermoEquilibrium =
-            PhaseEquilibrium.CO2_CO2_MEA_StartUpReboiler,
+            PhaseEquilibrium.CO2_CO2_MEA_StartUpReboiler_newFormulation,
+        beta_eps=0.0001,
         T_init=313.15,
         p_init=100000,
         p_friggel=25000)
-        annotation (Placement(transformation(extent={{46,-124},{66,-104}})));
+        annotation (Placement(transformation(extent={{48,-132},{68,-112}})));
       Components.SourcesSinks.AmbientHeatSink                   ambientHeatSink4
         annotation (Placement(transformation(extent={{104,90},{116,102}})));
       Components.SourcesSinks.SinkLiquid sinkLiquid(redeclare package Medium =
             Media.H2O_CO2_MEA_Liq)                  annotation (Placement(transformation(extent={{64,-160},{84,-140}})));
       Modelica.Blocks.Sources.BooleanExpression booleanExpression1
-        annotation (Placement(transformation(extent={{-38,-98},{-18,-78}})));
+        annotation (Placement(transformation(extent={{-38,-34},{-18,-14}})));
       Modelica.Blocks.Sources.IntegerExpression integerExpression1
         annotation (Placement(transformation(extent={{-84,-64},{-64,-44}})));
       Modelica.Blocks.Math.IntegerToBoolean integerToBoolean1
-        annotation (Placement(transformation(extent={{-34,-54},{-14,-34}})));
+        annotation (Placement(transformation(extent={{-36,-64},{-16,-44}})));
       inner SystemTS systemTS
         annotation (Placement(transformation(extent={{-100,160},{-80,180}})));
       Components.SourcesSinks.SourceLiquid                   sourceLiquid_x(
         redeclare package MediumLiquid = Media.H2O_CO2_MEA_Liq,
         flowOption=ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowVdot,
         Flow=1,
-        x={0.85,0.03,0.12},
+        use_Flow=false,
+        useT_In=true,
         T=313.15,
-        use_Flow=false)
-        annotation (Placement(transformation(extent={{148,74},{128,54}})));
+        x={0.85,0.03,0.12})
+        annotation (Placement(transformation(extent={{146,74},{126,54}})));
       Components.SourcesSinks.CombLiquid_x                   combLiquid_x2(
         x_start={0.8593,0.0325,0.1082},
         redeclare package Medium = Media.H2O_CO2_MEA_Liq,
@@ -1683,6 +1794,14 @@ package Testing
             extent={{-5,-5},{5,5}},
             rotation=270,
             origin={110,43})));
+      Modelica.Blocks.Sources.Ramp T_solvent(
+        height=60,
+        duration=2000,
+        offset=313.15,
+        startTime=3240) annotation (Placement(transformation(
+            extent={{6,-6},{-6,6}},
+            rotation=0,
+            origin={182,70})));
     equation
       connect(Desorber.upStreamOut,flash_Condenser_simple. gasPortIn) annotation (
           Line(
@@ -1691,21 +1810,16 @@ package Testing
           thickness=1,
           smooth=Smooth.None));
       connect(Q_Reboiler.y[1],prescribedHeatFlow. Q_flow) annotation (Line(
-          points={{120.5,-111},{102,-111},{102,-114},{94,-114}},
+          points={{120.5,-111},{102,-111},{102,-122},{96,-122}},
           color={0,0,127},
           smooth=Smooth.None));
-      connect(sumpV.gasPortOut,Desorber. upStreamIn) annotation (Line(
-          points={{51,-105},{20,-105},{20,-62.25},{25.5,-62.25}},
-          color={255,127,39},
-          thickness=1,
-          smooth=Smooth.None));
       connect(sumpV.liquidPortIn,Desorber. downStreamOut) annotation (Line(
-          points={{61,-105},{86,-105},{86,-62.25},{88.5,-62.25}},
+          points={{63,-113},{86,-113},{86,-62.25},{88.5,-62.25}},
           color={153,217,234},
           thickness=1,
           smooth=Smooth.None));
       connect(prescribedHeatFlow.port,sumpV. heatPort) annotation (Line(
-          points={{80,-114},{64.2,-114}},
+          points={{82,-122},{66.2,-122}},
           color={191,0,0},
           smooth=Smooth.None));
       connect(ambientHeatSink3.heatPort1,Desorber. heatPort) annotation (Line(points={{115.04,-18},{94.8,-18},{94.8,-19.5}},
@@ -1718,14 +1832,15 @@ package Testing
         annotation (Line(points={{103.04,96},{98,96},{98,94},{84.8,94}},
             color={188,51,69}));
       connect(sinkLiquid.liquidPortIn, sumpV.liquidPortOut) annotation (Line(
-          points={{64.4,-150},{56,-150},{56,-123}},
+          points={{64.4,-150},{58,-150},{58,-131}},
           color={153,217,234},
           thickness=1));
-      connect(booleanExpression1.y, Desorber.ShutDown_signal) annotation (Line(points={{-17,-88},{-8,-88},{-8,-40.875},{13.35,-40.875}}, color={255,0,255}));
+      connect(booleanExpression1.y, Desorber.ShutDown_signal) annotation (Line(points={{-17,-24},
+              {-8,-24},{-8,-40.875},{13.35,-40.875}},                                                                                    color={255,0,255}));
       connect(integerExpression1.y,integerToBoolean1. u)
-        annotation (Line(points={{-63,-54},{-63,-44},{-36,-44}},
-                                                              color={255,127,0}));
-      connect(integerToBoolean1.y, Desorber.StartUp_signal) annotation (Line(points={{-13,-44},{0,-44},{0,-48.475},{13.35,-48.475}}, color={255,0,255}));
+        annotation (Line(points={{-63,-54},{-38,-54}},        color={255,127,0}));
+      connect(integerToBoolean1.y, Desorber.StartUp_signal) annotation (Line(points={{-15,-54},
+              {0,-54},{0,-48.475},{13.35,-48.475}},                                                                                  color={255,0,255}));
       connect(combLiquid_x2.liquidPortOut, Desorber.downStreamIn) annotation (Line(
           points={{110,38},{88.5,38},{88.5,23.25}},
           color={153,217,234},
@@ -1735,8 +1850,14 @@ package Testing
           color={153,217,234},
           thickness=1));
       connect(combLiquid_x2.liquidPortIn1, sourceLiquid_x.liquidPortOut) annotation (Line(
-          points={{112.5,48},{120,48},{120,64},{126.6,64}},
+          points={{112.5,48},{120,48},{120,64},{124.6,64}},
           color={153,217,234},
+          thickness=1));
+      connect(T_solvent.y, sourceLiquid_x.T_In) annotation (Line(points={{175.4,
+              70},{166,70},{166,64},{146,64}}, color={0,0,127}));
+      connect(sumpV.gasPortOut, Desorber.upStreamIn) annotation (Line(
+          points={{52.2,-113},{52.2,-88.5},{25.5,-88.5},{25.5,-62.25}},
+          color={255,127,39},
           thickness=1));
       annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-160},{260,180}})), Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-160},{260,180}})),
         experiment(StopTime=25000));

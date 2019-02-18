@@ -178,9 +178,9 @@ replaceable package MediumLiquid =
             {60,-100},{80,-80}})));
 
   //initial equation for eps_liq is supplied in the extending class!
-  SI.VolumeFraction eps_liq[        n](each stateSelect=StateSelect.default)
+  SI.VolumeFraction eps_liq[n](each stateSelect=StateSelect.default)
     "liquid volume fraction";
-  SI.VolumeFraction eps_vap[        n](start=fill(0.99,n))
+  SI.VolumeFraction eps_vap[n](start=fill(0.99,n))
     "vapour volume fraction";
   SI.Temperature T[n];
   SI.HeatFlowRate Qdot_wall[n] "heat flow rate to wall";

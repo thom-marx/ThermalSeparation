@@ -3,7 +3,7 @@ model SourceLiquid
   extends Icons.Icons.LiquidSource;
 replaceable package MediumLiquid =
     ThermalSeparation.Media.BaseMediumLiquid "medium to be used"                                    annotation(choicesAllMatching);
-    MediumLiquid.BaseProperties medium(T0=T_ref, p=p, T=T, x=x_in_internal,h=h);
+    MediumLiquid.BaseProperties medium(T0=T_ref, p=p, T=T_In_internal, x=x_in_internal,h=h);
 
   outer ThermalSeparation.SystemTS systemTS;
 parameter SI.Temperature T_ref = systemTS.T_ref "reference temperature" annotation(Dialog(tab="Advanced"));

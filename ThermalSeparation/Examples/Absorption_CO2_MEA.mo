@@ -39,8 +39,6 @@ ThermalSeparation.Components.Columns.StructuredPackedColumn column(
         ThermalSeparation.Reaction.ReactionEquilibrium.CO2_MEA,
     redeclare model InitOption =
         ThermalSeparation.Components.Columns.BaseClasses.Initialization.Init_T_xv_p_Ndot0,
-    redeclare model ThermoEquilibrium =
-        ThermalSeparation.PhaseEquilibrium.H2O_CO2_MEA (factor_K={1,1.1,1}),
     wettedInitial=false,
     eps_liq_start=0.05,
     redeclare model HeatTransferWall = ThermalSeparation.Wall.Adiabatic,
@@ -56,14 +54,16 @@ ThermalSeparation.Components.Columns.StructuredPackedColumn column(
             ThermalSeparation.FilmModel.StructuredPackedColumn.MS),
     redeclare model HomotopyMethod =
         ThermalSeparation.Components.Columns.BaseClasses.Initialization.Homotopy.NoHomotopy,
-    x_l_start_const={0.88,0.01,0.11},
     x_v_start_const={0.1841,0.0471,0.04,0.7768},
+    x_l_start_const={0.85,0.05,0.1},
+    n_elements=2,
     p_v_start_inlet=101000,
     p_v_start_outlet=100000,
     T_vapour_start=333.15,
     T_liquid_start=333.15,
     p_v_in(start=101000),
-    n_elements=5)        annotation (Placement(transformation(extent={{-36,-6},
+    redeclare model ThermoEquilibrium = PhaseEquilibrium.H2O_CO2_MEA)
+                         annotation (Placement(transformation(extent={{-36,-6},
             {12,40}}, rotation=0)));
 
   ThermalSeparation.Components.SourcesSinks.SourceGas

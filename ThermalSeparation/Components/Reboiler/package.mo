@@ -111,8 +111,8 @@ package Reboiler "this package contains components which have both a liquid and 
 
   //Temperatures
   parameter SI.Temperature T_ref = systemTS.T_ref;
-  SI.Temperature T;
-  SI.Temperature T_liq_in;
+  SI.Temperature T(start=T_init);
+  SI.Temperature T_liq_in(start=T_init);
 
   //pressure
   SI.Pressure p_sys;
@@ -241,6 +241,7 @@ package Reboiler "this package contains components which have both a liquid and 
   //p_sys=gasPortOut.p;
   //3
   V_vap_out=max(0,k*(p_sys-gasPortOut.p));
+  //p_sys=gasPortOut.p;
 
   //ports
   gasPortOut.Ndot=-N_vap_out;
@@ -307,9 +308,9 @@ package Reboiler "this package contains components which have both a liquid and 
   //         K[i]=thermoEquilibrium.K[i];
   //   end for;
 
-   for i in 2:nS loop
+  for i in 2:nS loop
        K[i]=thermoEquilibrium.K[i];
-   end for;
+  end for;
 
   for i in 1:nS loop
     y[mapping[i,1]]= K[i]*x[mapping[i,2]];
@@ -340,10 +341,14 @@ package Reboiler "this package contains components which have both a liquid and 
     if startupCalc then
       p_sys=p_amb;
     else
+      //y[mapping[1,1]]= K[1]*x[mapping[1,2]];
       K[1]=thermoEquilibrium.K[1];
+     //sum(y[:])=1;
     end if;
   else
+   //y[mapping[1,1]]= K[1]*x[mapping[1,2]];
     K[1]=thermoEquilibrium.K[1];
+    //sum(y[:])=1;
   end if;
 
   sum(x[:])=1;

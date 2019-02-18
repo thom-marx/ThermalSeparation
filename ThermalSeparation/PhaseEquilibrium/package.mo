@@ -20,12 +20,12 @@ package PhaseEquilibrium "Models for the Phase Equilibrium between the two Phase
   equation
   /* equilibirum of CO2 and carbamate (cf. Oexmann) */
 
-      if startUp then
-       x_v[mapping[2,1]]=0.2;
-      else
-        Modelica.Math.log(max(1e-1,x_v[mapping[2,1]]*p)) =eq_koeff[1] + eq_koeff[2] / T + eq_koeff[3] * alpha + eq_koeff[4] * alpha / T+ eq_koeff[5] * alpha^2 +
+      //if startUp then
+      // x_v[mapping[2,1]]=0.2;
+      //else
+        Modelica.Math.log(max(1e-7,x_v[mapping[2,1]]*p)) =eq_koeff[1] + eq_koeff[2] / T + eq_koeff[3] * alpha + eq_koeff[4] * alpha / T+ eq_koeff[5] * alpha^2 +
                       eq_koeff[6] * alpha^2 / T + eq_koeff[7] * alpha^3 + eq_koeff[8] * alpha^3 / T + eq_koeff[9] * alpha^4;
-      end if;
+      //end if;
 
        eq_koeff = {22.53,-7904,105.0,-16810,-286.4,26480,381.70,8295,-257.4};
 
@@ -35,7 +35,7 @@ package PhaseEquilibrium "Models for the Phase Equilibrium between the two Phase
 
   /* equilibirum of H2O (cf. Oexmann) */
 
-      //Modelica.Math.log(p_sat_H2O) = 73.649 - 7258.2 / T - 7.3037 * Modelica.Math.log(T) + 4.1653e-6 * T^2;
+     // Modelica.Math.log(p_sat_H2O) = 73.649 - 7258.2 / T - 7.3037 * Modelica.Math.log(T) + 4.1653e-6 * T^2;
      p_sat_H2O=10^(8.07131-1730.63/((T-273.15)+233.426))*133.322;
 
     // K[nS-1] = p_sat_H2O/p;
