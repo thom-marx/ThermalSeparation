@@ -129,7 +129,7 @@ model StructuredPackedColumn
        each final n= n,  c=c_l, V=A*H/n*(eps_liq), Ndot_l_transfer=Ndot_l_transfer,  gamma=activityCoeff[:].gamma,
     redeclare package MediumLiquid =   MediumLiquid);
 
-  final parameter Integer aux[  :] = {1,3,6,10,15, 21, 28, 36, 45};
+  final parameter Integer aux[:] = {1,3,6,10,15, 21, 28, 36, 45};
 
   parameter Integer n_elements(min=1)=2
     "number of discrete elements or number of equilibrium stages (for equilibrium film model)";

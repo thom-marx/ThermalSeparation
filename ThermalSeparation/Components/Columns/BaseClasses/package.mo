@@ -1135,7 +1135,7 @@ public
       mediumLink[aux1[j]].mediumConIn.MM = 1;
     end for;
     for j in 1:numberLiquidFeeds loop
-      internalFeedPort[stageLiquidFeed[j]].feedLiquidInternal.h_outflow = h_l[stageLiquidFeed[j]];//1e5;
+      internalFeedPort[stageLiquidFeed[j]].feedLiquidInternal.h_outflow =h_l[stageLiquidFeed[j]];//1e5;
       internalFeedPort[stageLiquidFeed[j]].feedLiquidInternal.x_outflow = x_l[stageLiquidFeed[j],:];//1/nSL * ones(nSL);
     end for;
   else

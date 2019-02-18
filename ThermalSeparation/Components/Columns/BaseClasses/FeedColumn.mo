@@ -49,6 +49,11 @@ protected
     "counting the stages; equals n at end of algorithm";
 
 public
+    parameter Integer nonFeed_stages_v[n-numberVapourFeeds]={i for i in 1:(n-numberVapourFeeds)}
+                                       annotation(Dialog(tab="Feed", group="Vapour Feed"));
+  parameter Integer nonFeed_stages_l[n-numberLiquidFeeds]={i for i in 1:(n-numberLiquidFeeds)}
+                                       annotation(Dialog(tab="Feed", group="Liquid Feed"));
+
   parameter Boolean hasVapourFeed = false "true, if there exist a liquid feed" annotation(Dialog(tab="Feed", group="Vapour Feed"));
   parameter Integer numberVapourFeeds(min=0,max=n) = 1  annotation(Dialog(enable = hasVapourFeed, tab="Feed", group="Vapour Feed"));
   parameter Integer[numberVapourFeeds] stageVapourFeed={1}
@@ -65,8 +70,8 @@ public
             -94,8},{-74,28}})));
 
   ThermalSeparation.Utilities.MediumLink mediumVapourLink[n];
-  MediumVapour.BaseProperties mediumVapourFeed[numberVapourFeeds](each T0=T_ref, each p=p_v[n+1],    c=c_v_feed_used,                         h=actualStream(feedVapour_dummy.h_outflow), x=actualStream(feedVapour_dummy.x_outflow),  x_star=actualStream(feedVapour_dummy.x_outflow)) if                   hasVapourFeed;
-                                                                                                /*, TODO FIXME! c=c_v_feed */
+  MediumVapour.BaseProperties mediumVapourFeed[numberVapourFeeds](each T0=T_ref, each p=p_v[n+1],    c=c_v_feed_used, h=actualStream(feedVapour_dummy.h_outflow), x=actualStream(feedVapour_dummy.x_outflow),  x_star=actualStream(feedVapour_dummy.x_outflow)) if                   hasVapourFeed;
+
  // Modelica.Blocks.Interfaces.RealInput h_help;
 
   ThermalSeparation.Interfaces.GasPortIn[numberVapourFeeds] feedVapour_dummy(redeclare
@@ -139,17 +144,24 @@ for j in 1:n loop
   internalFeedPort[j].feedLiquidInternal.p = p_v[j];
 end for;
 if hasLiquidFeed then
-  for j in 1:(n-numberLiquidFeeds) loop
-    internalFeedPort[aux1[j]].feedLiquidInternal.h_outflow = h_l[aux1[j]];//1e5;
-    internalFeedPort[aux1[j]].feedLiquidInternal.x_outflow = x_l[aux1[j],:];//1/nSL * ones(nSL);//
+   for j in 1:(n-numberLiquidFeeds) loop
+//      internalFeedPort[aux1[j]].feedLiquidInternal.h_outflow =1e5;// h_l[aux1[j]];//1e5;
+//      internalFeedPort[aux1[j]].feedLiquidInternal.x_outflow = 1/nSL * ones(nSL);//x_l[aux1[j],:];//1/nSL * ones(nSL);//
+     mediumLink[nonFeed_stages_l[j]].mediumConIn.h = 1;
+     mediumLink[nonFeed_stages_l[j]].mediumConIn.rho = 1;
+     mediumLink[nonFeed_stages_l[j]].mediumConIn.MM = 1;
+   end for;
+//    for j in 1:numberLiquidFeeds loop
+//      internalFeedPort[stageLiquidFeed[j]].feedLiquidInternal.h_outflow = h_l[stageLiquidFeed[j]];//1e5;
+//      internalFeedPort[stageLiquidFeed[j]].feedLiquidInternal.x_outflow = x_l[stageLiquidFeed[j],:];//1/nSL * ones(nSL);
+//    end for;
+  for j in 1:n loop
+    internalFeedPort[j].feedLiquidInternal.h_outflow = h_l[j];//1e5;
+    internalFeedPort[j].feedLiquidInternal.x_outflow = x_l[j,:];//nSL * ones(nSL);
 
-    mediumLink[aux1[j]].mediumConIn.h = 1;
-    mediumLink[aux1[j]].mediumConIn.rho = 1;
-    mediumLink[aux1[j]].mediumConIn.MM = 1;
-  end for;
-  for j in 1:numberLiquidFeeds loop
-    internalFeedPort[stageLiquidFeed[j]].feedLiquidInternal.h_outflow = h_l[stageLiquidFeed[j]];//1e5;
-    internalFeedPort[stageLiquidFeed[j]].feedLiquidInternal.x_outflow = x_l[stageLiquidFeed[j],:];//1/nSL * ones(nSL);
+//      mediumLink[j].mediumConIn.h = 1;
+//      mediumLink[j].mediumConIn.rho = 1;
+//      mediumLink[j].mediumConIn.MM = 1;
   end for;
 else
   for j in 1:n loop
@@ -173,17 +185,25 @@ for j in 1:n loop
 end for;
 if hasVapourFeed then
 for j in 1:(n-numberVapourFeeds) loop
-  internalFeedPort[testV[j]].feedVapourInternal.h_outflow = h_v[testV[j]];//1e5;//
-  internalFeedPort[testV[j]].feedVapourInternal.x_outflow = x_v[testV[j],:];//1/nSV * ones(nSV);//
+  //internalFeedPort[testV[j]].feedVapourInternal.h_outflow = 1e5;//h_v[testV[j]];//1e5;//
+  //internalFeedPort[testV[j]].feedVapourInternal.x_outflow = 1/nSV * ones(nSV);//x_v[testV[j],:];//1/nSV * ones(nSV);//
 
-  mediumVapourLink[testV[j]].mediumConIn.h = 1;
-  mediumVapourLink[testV[j]].mediumConIn.rho = 1;
-  mediumVapourLink[testV[j]].mediumConIn.MM = 1;
+  mediumVapourLink[nonFeed_stages_v[j]].mediumConIn.h = 1;
+  mediumVapourLink[nonFeed_stages_v[j]].mediumConIn.rho = 1;
+  mediumVapourLink[nonFeed_stages_v[j]].mediumConIn.MM = 1;
 end for;
-  for j in 1:numberVapourFeeds loop
-    internalFeedPort[stageVapourFeed[j]].feedVapourInternal.h_outflow = h_v[stageVapourFeed[j]];//1e5;
-    internalFeedPort[stageVapourFeed[j]].feedVapourInternal.x_outflow = x_v[stageVapourFeed[j],:];//
+ for j in 1:n loop
+    internalFeedPort[j].feedVapourInternal.h_outflow = h_v[j];//1e5;
+    internalFeedPort[j].feedVapourInternal.x_outflow = x_v[j,:];//nSL * ones(nSL);
+
+    // mediumVapourLink[j].mediumConIn.h = 1;
+    // mediumVapourLink[j].mediumConIn.rho = 1;
+    // mediumVapourLink[j].mediumConIn.MM = 1;
   end for;
+//   for j in 1:numberVapourFeeds loop
+//     internalFeedPort[stageVapourFeed[j]].feedVapourInternal.h_outflow = h_v[stageVapourFeed[j]];//1e5;
+//     internalFeedPort[stageVapourFeed[j]].feedVapourInternal.x_outflow = x_v[stageVapourFeed[j],:];//
+//   end for;
 else
   for j in 1:n loop
     internalFeedPort[j].feedVapourInternal.h_outflow = h_v[j];//1e5;

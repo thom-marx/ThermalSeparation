@@ -45,12 +45,16 @@ ThermalSeparation.Components.Columns.StructuredPackedColumn column(
     redeclare model ThermoEquilibrium =
         ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid (factor_K=
            {0.8,0.8,0.8}),
-    n_elements=5,
     hasVapourFeed=true,
-    p_v_start_inlet=156000,
-    p_v_start_outlet=152000,
     hasLiquidFeed=true,
-    stageLiquidFeed={3}) annotation (Placement(transformation(extent={{-32,-12},
+    n_elements=5,
+    stageLiquidFeed={3},
+    stageVapourFeed={2},
+    nonFeed_stages_l={1,2,4,5},
+    nonFeed_stages_v={1,3,4,5},
+    p_v_start_inlet=156000,
+    p_v_start_outlet=152000)
+                         annotation (Placement(transformation(extent={{-32,-12},
             {16,34}}, rotation=0)));
 
   ThermalSeparation.Components.SourcesSinks.SourceGas

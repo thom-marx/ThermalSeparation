@@ -48,6 +48,7 @@ ThermalSeparation.Components.Columns.SprayColumn baseStage_GF1(
     redeclare record Geometry =
         ThermalSeparation.Geometry.StructuredPackedColumn.Geometry (
                                                           d=5),
+    nonFeed_stages_l={1,2,3,4,5,7,8},
     p_v_start_inlet=156000,
     p_v_start_outlet=152000)                 annotation (Placement(transformation(extent={{-34,-14},
             {14,32}}, rotation=0)));
@@ -68,11 +69,10 @@ ThermalSeparation.Components.Columns.SprayColumn baseStage_GF1(
     height=0) annotation (Placement(transformation(extent={{-68,-64},{-48,-44}},
           rotation=0)));
   ThermalSeparation.Components.SourcesSinks.AmbientHeatSink ambientHeatSink
-    annotation (Placement(transformation(extent={{24,-10},{44,10}},
-                                                                  rotation=0)));
+    annotation (Placement(transformation(extent={{20,-2},{30,14}},rotation=0)));
 
   inner SystemTS systemTS
-    annotation (Placement(transformation(extent={{-64,2},{-44,22}})));
+    annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
   ThermalSeparation.Components.SourcesSinks.SplitLiquid_1p splitLiquid_x(
     redeclare package Medium =
         ThermalSeparation.Media.WaterBasedLiquid.N2_O2_CO2_SO2_HCl_HF_H2O)
@@ -136,7 +136,7 @@ equation
       thickness=1,
       smooth=Smooth.None));
   connect(baseStage_GF1.heatPort, ambientHeatSink.heatPort1) annotation (Line(
-      points={{9.68,9},{18,9},{18,0},{22.4,0}},
+      points={{9.68,9},{18,9},{18,6},{19.2,6}},
       color={188,51,69},
       smooth=Smooth.None));
   connect(splitLiquid_x.liquidPortIn, baseStage_GF1.downStreamOut) annotation (
