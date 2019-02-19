@@ -1,6 +1,6 @@
 within ThermalSeparation.Interfaces;
 connector HeatPort
-  extends Icons.Icons.HeatPort;
+  extends Icons.Color.HeatPort;
  //parameter Integer n;
  flow SI.HeatFlowRate Qdot;
  SI.Temperature T;

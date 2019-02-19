@@ -1,6 +1,6 @@
 within ThermalSeparation.Components.LiquidVolumes;
 model Volume "Liquid volume, constant fill level"
- extends Icons.Icons.Tank;
+ extends Icons.Color.Tank;
   ThermalSeparation.Interfaces.LiquidPortIn
                           portIn(redeclare package Medium=MediumLiquid)
     annotation (Placement(transformation(extent={{100,-20},{124,4}}),

@@ -1,6 +1,6 @@
 within ThermalSeparation.Components.SourcesSinks;
 model SourceGas "source for gas"
- extends Icons.Icons.GasSource;
+ extends Icons.Color.GasSource;
 replaceable package Medium =
    ThermalSeparation.Media.BaseMediumVapour "medium to be used"                                                     annotation(choicesAllMatching);
 Medium.BaseProperties medium(p=gasPortOut.p,x=x_in_internal, T=T_in_internal, c=c, x_star=x_in_internal);

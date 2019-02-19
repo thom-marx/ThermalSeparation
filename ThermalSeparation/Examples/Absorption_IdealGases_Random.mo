@@ -45,7 +45,7 @@ ThermalSeparation.Components.SourcesSinks.SinkGas
               annotation (Placement(transformation(extent={{-68,-64},{-48,-44}},
           rotation=0)));
   inner SystemTS systemTS
-    annotation (Placement(transformation(extent={{-74,-8},{-54,12}})));
+    annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
 
 Components.Columns.RandomPackedColumn                       column1(
     hasLiquidFeed=false,
@@ -65,7 +65,6 @@ Components.Columns.RandomPackedColumn                       column1(
     redeclare model ThermoEquilibrium =
         ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid (factor_K=
            {0.8,0.8,0.8}),
-    n_elements=10,
     wettedInitial=true,
     redeclare model PressureLoss =
         ThermalSeparation.PressureLoss.RandomPackedColumn.Particlemodel,
@@ -74,10 +73,11 @@ Components.Columns.RandomPackedColumn                       column1(
         ThermalSeparation.BalanceEquations.RandomPackedColumn.NonEquilibrium.TwoPhaseVarState
         (redeclare model FilmModel =
             ThermalSeparation.FilmModel.RandomPackedColumn.MS),
-    p_v_start_inlet=156000,
-    p_v_start_outlet=152000,
     redeclare model HomotopyMethod =
-        ThermalSeparation.Components.Columns.BaseClasses.Initialization.Homotopy.NoHomotopy)
+        ThermalSeparation.Components.Columns.BaseClasses.Initialization.Homotopy.NoHomotopy,
+    n_elements=5,
+    p_v_start_inlet=156000,
+    p_v_start_outlet=152000)
                          annotation (Placement(transformation(extent={{-34,18},
             {14,64}}, rotation=0)));
 

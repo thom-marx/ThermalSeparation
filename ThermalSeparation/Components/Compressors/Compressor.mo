@@ -1,7 +1,7 @@
 within ThermalSeparation.Components.Compressors;
 model Compressor
   "Base class for components with two fluid portsTable look-up in two dimensions (matrix/file) "
-   extends Icons.Icons.Compressors;
+   extends Icons.Color.Compressors;
   parameter Boolean tableOnFile=false
     "true, if table is defined on file or in function usertab"
     annotation(Dialog(group="table data definition"));

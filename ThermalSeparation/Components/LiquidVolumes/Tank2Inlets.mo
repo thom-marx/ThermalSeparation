@@ -1,6 +1,6 @@
 within ThermalSeparation.Components.LiquidVolumes;
 model Tank2Inlets "tank model with varying liquid level and two inlet ports"
- extends Icons.Icons.ExpansionTank;
+ extends Icons.Color.ExpansionTank;
   ThermalSeparation.Interfaces.LiquidPortIn
                           portIn(redeclare package Medium=MediumLiquid)
     annotation (Placement(transformation(extent={{100,-40},{120,-20}}),

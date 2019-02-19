@@ -1,6 +1,6 @@
 within ThermalSeparation.Interfaces;
 connector LiquidPortIn
-  extends Icons.Icons.LiquidPortIn;
+  extends Icons.Color.LiquidPortIn;
  replaceable package Medium = Media.BaseMediumLiquid;
  stream SI.MoleFraction x_outflow[Medium.nSubstance];
  stream ThermalSeparation.Units.MolarEnthalpy h_outflow;

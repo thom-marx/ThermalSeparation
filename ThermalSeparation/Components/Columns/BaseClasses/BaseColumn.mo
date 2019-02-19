@@ -12,6 +12,7 @@ parameter SI.Temperature T_ref = systemTS.T_ref "reference temperature" annotati
   parameter SI.Pressure p_v_start_inlet = 1.9e5 annotation(Dialog(tab="Initialization"));
   parameter SI.Pressure p_v_start_outlet = 1.8e5 annotation(Dialog(tab="Initialization"));
   final parameter SI.Pressure p_v_start[n] = if n==1 then {p_v_start_outlet} else linspace(p_v_start_inlet,p_v_start_outlet,n);
+  final parameter SI.Pressure p_v_start_comp[n+1]=cat(1,p_v_start,{p_v_start[n]});
   parameter Boolean x_l_profile = false  annotation(Dialog( tab="Initialization"));
   parameter Boolean x_v_profile = false annotation(Dialog( tab="Initialization"));
   parameter SI.MoleFraction x_l_start_const[nSL]= fill(1/nSL,nSL)                                 annotation(Dialog(enable=not x_l_profile, tab="Initialization"));
@@ -131,9 +132,9 @@ replaceable package MediumLiquid =
   ThermalSeparation.Units.MolarEnthalpy h_upStreamIn_act;
   ThermalSeparation.Units.MolarEnthalpy h_upStreamOut_act;
 
-  SI.Pressure p_v[n+1]( start=fill(1.0e5,n+1))
+  SI.Pressure p_v[n+1](start=p_v_start_comp)
     "p_v[j] = pressure on the j-th stage, p_v[n+1] is the pressure in the first element of the sucesseding component";
-  SI.Temperature T_v[n](nominal=fill(350,n),start=fill(350,n));
+  SI.Temperature T_v[n](start=T_v_start);
 
   //Variables downStream
   SI.Concentration c_l_in[nSL]
@@ -145,7 +146,7 @@ replaceable package MediumLiquid =
   SI.VolumeFlowRate Vdot_l_in(start=0.03, nominal=1e-4);
   SI.VolumeFlowRate Vdot_l[n](start=fill(0.03,n),nominal=fill(1e-4,n));
   SI.Temperature T_l_in(start=T_l_start[1]);
-  SI.Temperature T_l[n];
+  SI.Temperature T_l[n](start=T_l_start);
   SI.MoleFraction x_downStreamIn_act[nSL];
   SI.MoleFraction x_downStreamOut_act[nSL];
   ThermalSeparation.Units.MolarEnthalpy h_downStreamIn_act;
@@ -178,7 +179,7 @@ replaceable package MediumLiquid =
             {60,-100},{80,-80}})));
 
   //initial equation for eps_liq is supplied in the extending class!
-  SI.VolumeFraction eps_liq[n](each stateSelect=StateSelect.default)
+  SI.VolumeFraction eps_liq[n](each stateSelect=StateSelect.default,each start=eps_liq_start)
     "liquid volume fraction";
   SI.VolumeFraction eps_vap[n](start=fill(0.99,n))
     "vapour volume fraction";
@@ -284,6 +285,9 @@ public
                                                                               annotation(Dialog(tab="StartUp"));
   parameter Real y_PID=10 "maximal value for supply startUp PID controller" annotation(Dialog(tab="StartUp"));
   parameter Real Vdot_startUp_pressure=0.005 "value when supply PID controller is switched off" annotation(Dialog(tab="StartUp"));
+
+     parameter Real eps_liq_start = 0.06
+    "start value for liquid content if it is not exactly wetted but with more or less liquid"  annotation(Dialog(enable=not wettedInitial, tab="Initialization", group="Initial liquid content"));
 
 
 /*** monitoring ***/

@@ -1,6 +1,6 @@
 within ThermalSeparation.Components.SourcesSinks;
 model SourceLiquid
-  extends Icons.Icons.LiquidSource;
+  extends Icons.Color.LiquidSource;
 replaceable package MediumLiquid =
     ThermalSeparation.Media.BaseMediumLiquid "medium to be used"                                    annotation(choicesAllMatching);
     MediumLiquid.BaseProperties medium(T0=T_ref, p=p, T=T_In_internal, x=x_in_internal,h=h);

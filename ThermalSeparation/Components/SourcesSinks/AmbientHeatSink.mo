@@ -1,6 +1,6 @@
 within ThermalSeparation.Components.SourcesSinks;
 model AmbientHeatSink
-   extends Icons.Icons.AmbientHeatSink;
+   extends Icons.Color.AmbientHeatSink;
   ThermalSeparation.Interfaces.HeatPort heatPort1
     annotation (Placement(transformation(extent={{-146,-30},{-106,10}},
                                                                      rotation=0),

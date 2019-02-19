@@ -41,16 +41,15 @@ ThermalSeparation.Components.Columns.TrayColumn column(
     entrainment=false,
     redeclare model InitOption =
         ThermalSeparation.Components.Columns.BaseClasses.Initialization.Init_x_T_p,
-    n_trays=40,
-    h_start=0.03*ones(40),
+    h_start=0.03*ones(column.n_trays),
     redeclare record Geometry = Geometry.PlateColumn.Geometry (
         h_w=0.05,
         d=2,
         H=40),
     p_v_start_inlet=170000,
-    p_v_start_outlet=150000)
-                         annotation (Placement(transformation(extent={{-36,-14},
-            {12,32}}, rotation=0)));
+    p_v_start_outlet=150000,
+    n_trays=10)          annotation (Placement(transformation(extent={{-36,-16},{12,30}},
+                      rotation=0)));
 
   ThermalSeparation.Components.SourcesSinks.SourceGas
                                              sourceGas_Vdot(
@@ -107,7 +106,7 @@ equation
       thickness=1,
       smooth=Smooth.None));
   connect(column.downStreamOut, splitLiquid_x.liquidPortIn) annotation (Line(
-      points={{4.8,-11.7},{13.4,-11.7},{13.4,-12},{24,-12}},
+      points={{4.8,-13.7},{13.4,-13.7},{13.4,-12},{24,-12}},
       color={153,217,234},
       thickness=1,
       smooth=Smooth.None));
@@ -124,21 +123,21 @@ equation
       thickness=1,
       smooth=Smooth.None));
   connect(column.downStreamIn, combLiquid_x.liquidPortOut) annotation (Line(
-      points={{4.8,29.7},{14,29.7},{14,36},{20,36}},
+      points={{4.8,27.7},{14,27.7},{14,36},{20,36}},
       color={153,217,234},
       thickness=1,
       smooth=Smooth.None));
   connect(column.heatPort, ambientHeatSink.heatPort1) annotation (Line(
-      points={{8.16,9},{16.88,9}},
+      points={{8.16,7},{12,7},{12,9},{16.88,9}},
       color={188,51,69},
       smooth=Smooth.None));
   connect(column.upStreamIn, sourceGas_Vdot.gasPortOut) annotation (Line(
-      points={{-28.8,-11.7},{-28.8,-19.85},{-28,-19.85},{-28,-26.6}},
+      points={{-28.8,-13.7},{-28.8,-19.85},{-28,-19.85},{-28,-26.6}},
       color={255,127,39},
       thickness=1,
       smooth=Smooth.None));
   connect(column.upStreamOut, sinkGas.gasPortIn) annotation (Line(
-      points={{-28.8,29.7},{-28.8,34.85},{-30,34.85},{-30,40.4}},
+      points={{-28.8,27.7},{-28.8,34.85},{-30,34.85},{-30,40.4}},
       color={255,127,39},
       thickness=1,
       smooth=Smooth.None));

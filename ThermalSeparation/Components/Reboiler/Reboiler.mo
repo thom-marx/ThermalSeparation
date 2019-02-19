@@ -1,6 +1,6 @@
 within ThermalSeparation.Components.Reboiler;
 model Reboiler "reboiler with connectors"
-    extends Icons.Icons.Reboiler;
+    extends Icons.Color.Reboiler;
     outer ThermalSeparation.SystemTS systemTS;
 
     parameter SI.Temperature T_ref = systemTS.T_ref "reference temperature" annotation(Dialog(tab="Advanced"));
@@ -76,24 +76,24 @@ parameter Boolean inertLiquid[nSL] = {false, false, true};
   ThermalSeparation.Units.MolarEnthalpy h_l_in;//=mediumLiquidIn.h;
     ThermalSeparation.Units.MolarEnthalpy h_transfer_fromL= liqToFilmB.h;
   ThermalSeparation.Units.MolarEnthalpy h_transfer_toL= filmToVapB.h;
-  SI.MolarInternalEnergy u_l(stateSelect=StateSelect.always) =  mediumLiquid.u;
+  SI.MolarInternalEnergy u_l(stateSelect=StateSelect.default) =  mediumLiquid.u;
 
 /*** Medium properties ***/
-SI.Concentration c_l[nSL](each stateSelect=StateSelect.always) annotation(Dialog(group="Initialization",showStartAttribute=true));
+SI.Concentration c_l[nSL](each stateSelect=StateSelect.default,each start=10) annotation(Dialog(group="Initialization",showStartAttribute=true));
 SI.MoleFraction x_l[nSL](start=x_l_start);
 
 SI.MoleFraction x_l_in[nSL];
-SI.Concentration c_v[nSV](each stateSelect=StateSelect.default) annotation(Dialog(group="Initialization",showStartAttribute=true));
+SI.Concentration c_v[nSV](each stateSelect=StateSelect.default, each start=10) annotation(Dialog(group="Initialization",showStartAttribute=true));
 SI.MoleFraction x_v[nSV];
   SI.Concentration c_l_star[nSL];
     SI.Temperature T_l_in;
   SI.Temperature T_l;
-  SI.Temperature T_v(stateSelect=StateSelect.always);
+  SI.Temperature T_v(stateSelect=StateSelect.default);
 
   SI.VolumeFlowRate Vdot_v(start=1e-4);
   SI.VolumeFlowRate Vdot_l;
 
-  Real eps_liq(stateSelect=StateSelect.always);
+  Real eps_liq(stateSelect=StateSelect.default,start=0.01);
   Real eps_vap;
 
     SI.MolarFlowRate Ndot_v_transfer[      nSV](start=fill(-0.1,nSV));

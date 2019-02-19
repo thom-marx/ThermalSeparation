@@ -1,6 +1,6 @@
 within ThermalSeparation.Interfaces;
 connector GasPortIn
-  extends Icons.Icons.GasPortIn;
+  extends Icons.Color.GasPortIn;
  replaceable package Medium = Media.BaseMediumVapour;
   stream SI.MoleFraction x_outflow[Medium.nSubstance];
   stream ThermalSeparation.Units.MolarEnthalpy h_outflow;

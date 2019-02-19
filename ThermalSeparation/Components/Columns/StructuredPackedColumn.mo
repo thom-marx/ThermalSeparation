@@ -138,8 +138,7 @@ model StructuredPackedColumn
   parameter Boolean wettedInitial = true
     "true if package material is already wetted (i.e. if liquid enters the column there is immediately a liquid stream leaving the column)"
                                                                                                         annotation(Dialog(tab="Initialization", group="Initial liquid content"));
-   parameter Real eps_liq_start = 0.06
-    "start value for liquid content if it is not exactly wetted but with more or less liquid"  annotation(Dialog(enable=not wettedInitial, tab="Initialization", group="Initial liquid content"));
+
 
   replaceable record Geometry =
       ThermalSeparation.Geometry.StructuredPackedColumn.Geometry               constrainedby

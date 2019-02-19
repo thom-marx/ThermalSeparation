@@ -1,6 +1,6 @@
 within ThermalSeparation.Components.Compressors;
 model CompressorSimple "isentropic compressor"
-   extends Icons.Icons.Compressors;
+   extends Icons.Color.Compressors;
 replaceable package Medium =
     ThermalSeparation.Media.BaseMediumVapour                        constrainedby
     ThermalSeparation.Media.BaseMediumVapour                                                                               annotation(choicesAllMatching=true);

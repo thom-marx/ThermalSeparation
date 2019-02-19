@@ -1,6 +1,6 @@
 within ThermalSeparation.Components.Pumps;
 model idealPumpControlledVdot
- extends Icons.Icons.Pumps;
+ extends Icons.Color.Pumps;
   outer ThermalSeparation.SystemTS systemTS;
 parameter SI.Temperature T_ref = systemTS.T_ref "reference temperature" annotation(Dialog(tab="Advanced"));
 
@@ -40,7 +40,7 @@ SI.MoleFraction x_l[nSL];
 
 SI.MoleFraction x_l_in[nSL];
   ThermalSeparation.Units.MolarEnthalpy h_l_in;//=mediumLiquidIn.h;
-  MediumLiquid.Temperature T_l_in;
+  MediumLiquid.Temperature T_l_in(start=350);
   MediumLiquid.Temperature T_l(start=350);
   SI.VolumeFlowRate Vdot_l(start=1e-3, nominal = 1e-3)= liquidOut.Ndot *MM_l/rho_l;
   SI.VolumeFlowRate Vdot_l_in(start=1e-3, nominal = 1e-3)=liquidIn.Ndot *mediumLiquidIn.MM/mediumLiquidIn.d;

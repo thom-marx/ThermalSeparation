@@ -115,7 +115,7 @@ extends ThermalSeparation.BalanceEquations.Base.BaseBalanceEquations;
   input SI.MolarFlowRate Ndot_v_in "total molar flow rate vapour";
   input SI.MolarFlowRate Ndot_l[n] "total molar flow rate liquid";
   input SI.MolarFlowRate Ndot_l_in "total molar flow rate vapour";
-  input SI.VolumeFraction eps_liq[n](each stateSelect=StateSelect.default)
+  input SI.VolumeFraction eps_liq[n](each stateSelect=StateSelect.default,each start=0.05)
     "liquid volume fraction";
   input SI.VolumeFraction eps_vap[n](start=fill(0.99,n))
     "vapour volume fraction";

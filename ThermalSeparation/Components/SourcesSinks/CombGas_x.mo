@@ -1,6 +1,6 @@
 within ThermalSeparation.Components.SourcesSinks;
 model CombGas_x
-     extends Icons.Icons.LiquidMixer;
+     extends Icons.Color.LiquidMixer;
   final parameter Integer nS=Medium.nSubstance;
 
   outer ThermalSeparation.SystemTS systemTS;

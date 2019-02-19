@@ -1,6 +1,6 @@
 within ThermalSeparation.Components.LiquidVolumes;
 model Tank "tank model with varying liquid level"
- extends Icons.Icons.ExpansionTank;
+ extends Icons.Color.ExpansionTank;
   ThermalSeparation.Interfaces.LiquidPortIn
                           portIn(redeclare package Medium=MediumLiquid)
     annotation (Placement(transformation(extent={{100,0},{120,20}}),
@@ -26,11 +26,13 @@ ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby
 
   final parameter Integer nSL = MediumLiquid.nSubstance;
 
+  parameter Boolean avoid_sum_mole=true "parameter to avoid the sum equation of molar fractions";
+
 /*** Medium properties ***/
  SI.Density rho_l = mediumLiquid.d;
  SI.Density rho_l_in = mediumLiquidIn.d;
-  SI.Concentration dummy(stateSelect=StateSelect.always)=c_l[1];
-   ThermalSeparation.Units.MolarEnthalpy h_l(stateSelect=StateSelect.always);
+  //SI.Concentration dummy(stateSelect=StateSelect.default)=c_l[1];
+   ThermalSeparation.Units.MolarEnthalpy h_l(stateSelect=StateSelect.default);
    ThermalSeparation.Units.MolarEnthalpy u_l = mediumLiquid.u;
    SI.MolarMass MM_l = mediumLiquid.MM;
    SI.MolarMass MM_l_in = mediumLiquidIn.MM;
@@ -38,12 +40,12 @@ ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby
    ThermalSeparation.Units.MolarEnthalpy h_l_in= inStream(portIn.h_outflow);
 
     SI.Concentration c_l[nSL](each stateSelect=StateSelect.default);
-  output SI.MoleFraction x_l[ nSL];
-  SI.Pressure p(start=2e5);
+  SI.MoleFraction x_l[nSL](start=x_l_start);
+  SI.Pressure p(start=1.1e5);
 
   /*** geometry data ***/
     final parameter SI.Area A= Modelica.Constants.pi/4* d_volume^2;
-  SI.Height level(stateSelect=StateSelect.always);
+  SI.Height level(stateSelect=StateSelect.default,start=level_start);
 
   parameter SI.Diameter d_volume = 0.025 "diameter of the tank";
   parameter Real zeta=2 "friction factor";
@@ -68,13 +70,13 @@ SI.Volume V_liq = A*level;
 Real sum_x = sum(x_l);
 SI.MassFlowRate mdot_in = portIn.Ndot*MM_l_in;
 SI.MassFlowRate mdot_out=portOut.Ndot*MM_l;
-SI.Temperature T_out;
-SI.Temperature T_in;
+SI.Temperature T_out(start=T_start);
+SI.Temperature T_in(start=T_start);
 SI.VolumeFlowRate Vdot_in = portIn.Ndot *MM_l_in/rho_l_in;
 
 equation
-  portIn.x_outflow = x_l;
-  portIn.h_outflow = h_l;
+  portIn.x_outflow = fill(1,nSL);
+  portIn.h_outflow = 1e5;
 
   portOut.x_outflow = x_l;
   portOut.h_outflow = mediumLiquid.h;
@@ -87,22 +89,32 @@ equation
    end for;
 
      /***energy balance ***/
-   A* der(sum(c_l[:])*h_l*level)  =   portIn.Ndot*h_l_in  + portOut.Ndot*h_l;
+    der(A*sum(c_l[:])*h_l*level) =   portIn.Ndot*h_l_in  + portOut.Ndot*h_l;
     /*** mass balance ***/
-     for i in 1:nSL loop
-   A* der(c_l[i]*level) = portIn.Ndot*x_l_in[i]+ portOut.Ndot*x_l[i];
-        end for;
-
+     for i in 1:nSL-1 loop
+   der(A*c_l[i]*level) = portIn.Ndot*x_l_in[i]+ portOut.Ndot*x_l[i];
+     end for;
+     if avoid_sum_mole then
+       der(A*c_l[3]*level) = portIn.Ndot*x_l_in[3]+ portOut.Ndot*x_l[3];
+     else
+       sum(x_l[:])=1;
+     end if;
 /*** fill level ***/
 A*der(level*rho_l/MM_l) = portIn.Ndot  + portOut.Ndot;
 
+
 p=level*9.8*rho_l+portIn.p - zeta* rho_l/2*(Vdot_in/A)^2;
+
 
 portIn.p =p_gas;
 
 initial equation
-   T_out=T_start;
-   x_l=x_l_start;
+  T_out=T_start;
+  if avoid_sum_mole then
+  x_l=x_l_start;
+  else
+  x_l[2:nSL]=x_l_start[2:nSL];
+  end if;
   level=level_start;
 
   annotation (Diagram(graphics), Icon(coordinateSystem(preserveAspectRatio=false,

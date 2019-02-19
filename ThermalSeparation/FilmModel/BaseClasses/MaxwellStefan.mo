@@ -55,8 +55,8 @@ Real k_l[n,nSL,nSL];
   Real R_v[n,nSV-1,nSV-1]= maxwellStefanMatrixVap.matrix;
 
 protected
-   Real vector_liq[ n,nSL];
-   Real vector_vap[ n,nSV];
+   Real vector_liq[n,nSL](each start=1e-4);
+   Real vector_vap[n,nSV](each start=1e-2);
 
    SI.MolarFlowRate Ndot_v_transfer_cond[     n,nSV](start=fill(-0.1,n,nSV))
     "all vapour is condensing";

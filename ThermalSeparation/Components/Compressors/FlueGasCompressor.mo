@@ -1,7 +1,7 @@
 within ThermalSeparation.Components.Compressors;
 model FlueGasCompressor
   "simple model for flue gas compressor with fixed inlet pressure "
-   extends Icons.Icons.Compressors;
+   extends Icons.Color.Compressors;
       outer ThermalSeparation.SystemTS systemTS;
     parameter SI.Temperature T_ref = systemTS.T_ref "reference temperature" annotation(Dialog(tab="Advanced"));
 

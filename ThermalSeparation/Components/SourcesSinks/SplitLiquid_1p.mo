@@ -1,6 +1,6 @@
 within ThermalSeparation.Components.SourcesSinks;
 model SplitLiquid_1p "splitter, defining outlet pressure at only one port"
-   extends Icons.Icons.LiquidSplitter;
+   extends Icons.Color.LiquidSplitter;
    replaceable package Medium = Media.BaseMediumLiquid annotation(choicesAllMatching);
   final parameter Integer nS(min=1)=Medium.nSubstance;
 

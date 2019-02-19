@@ -21,7 +21,7 @@ ThermalSeparation.Components.SourcesSinks.SinkLiquid
 
 ThermalSeparation.Components.SourcesSinks.SinkGas
                                          sinkGas(redeclare package Medium =
-        ThermalSeparation.Media.H2O_O2_CO2_N2_Vap, p=100000)
+        ThermalSeparation.Media.H2O_O2_CO2_N2_Vap, p=99000)
                 annotation (Placement(transformation(extent={{-10,-10},{10,10}},
           rotation=90,
         origin={-30,64})));
@@ -45,7 +45,6 @@ ThermalSeparation.Components.Columns.StructuredPackedColumn column(
     redeclare record Geometry =
         ThermalSeparation.Geometry.StructuredPackedColumn.Mellapak250Y (d=15, H=
            15),
-    T_l_profile=false,
     redeclare model PressureLoss =
         ThermalSeparation.PressureLoss.StructuredPackedColumn.Stichlmair,
     redeclare model BalanceEquations =
@@ -56,13 +55,19 @@ ThermalSeparation.Components.Columns.StructuredPackedColumn column(
         ThermalSeparation.Components.Columns.BaseClasses.Initialization.Homotopy.NoHomotopy,
     x_v_start_const={0.1841,0.0471,0.04,0.7768},
     x_l_start_const={0.85,0.05,0.1},
-    n_elements=2,
+    redeclare model ThermoEquilibrium = PhaseEquilibrium.H2O_CO2_MEA,
+    n_elements=5,
     p_v_start_inlet=101000,
     p_v_start_outlet=100000,
+    T_l_profile=true,
+    T_v_profile=true,
+    T_vap_start_bottom=329.15,
+    T_vap_start_top=343.15,
+    T_liq_start_bottom=329.15,
+    T_liq_start_top=343.15,
     T_vapour_start=333.15,
     T_liquid_start=333.15,
-    p_v_in(start=101000),
-    redeclare model ThermoEquilibrium = PhaseEquilibrium.H2O_CO2_MEA)
+    p_v_in(start=101300))
                          annotation (Placement(transformation(extent={{-36,-6},
             {12,40}}, rotation=0)));
 

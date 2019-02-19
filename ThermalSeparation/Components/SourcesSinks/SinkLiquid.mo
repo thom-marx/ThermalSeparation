@@ -1,6 +1,6 @@
 within ThermalSeparation.Components.SourcesSinks;
 model SinkLiquid
-   extends Icons.Icons.LiquidSink;
+   extends Icons.Color.LiquidSink;
    replaceable package Medium=Media.BaseMediumLiquid "medium to be used" annotation(choicesAllMatching);
  // parameter Integer nS(min=1);
   //parameter SI.Length h = 5;

@@ -1,6 +1,6 @@
 within ThermalSeparation.Components.LiquidVolumes;
 model Sump
- extends Icons.Icons.Sump;
+ extends Icons.Color.Sump;
 replaceable package MediumLiquid =
 ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby
     ThermalSeparation.Media.BaseMediumLiquid                                                          annotation(choicesAllMatching);
