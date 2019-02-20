@@ -12,20 +12,20 @@ ThermalSeparation.Components.SourcesSinks.SourceLiquid
     x={0,0,1},
     T=323.15)             annotation (Placement(transformation(extent={{-10,-10},
             {10,10}}, rotation=270,
-        origin={8,88})));
+        origin={10,62})));
 ThermalSeparation.Components.SourcesSinks.SinkLiquid
                                             sinkLiquid(         redeclare
       package Medium = ThermalSeparation.Media.WaterBasedLiquid.N2_O2_H2O)
                       annotation (Placement(transformation(extent={{-10,-10},{10,
             10}},  rotation=270,
-        origin={8,-28})));
+        origin={10,-54})));
 
 ThermalSeparation.Components.SourcesSinks.SinkGas
                                          sinkGas(         redeclare package
       Medium = ThermalSeparation.Media.IdealGasMixtures.N2_H2O_O2, p=149910)
                 annotation (Placement(transformation(extent={{-10,-10},{10,10}},
           rotation=90,
-        origin={-30,84})));
+        origin={-28,58})));
 
   ThermalSeparation.Components.SourcesSinks.SourceGas
                                              sourceGas_Vdot(
@@ -35,14 +35,14 @@ ThermalSeparation.Components.SourcesSinks.SinkGas
     flowOption=ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowNdot,
     T=417.15)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},   rotation=90,
-        origin={-26,-28})));
+        origin={-24,-54})));
 
   Modelica.Blocks.Sources.Ramp ramp(
     duration=1,
     startTime=100,
     height=0,
     offset=450)
-              annotation (Placement(transformation(extent={{-68,-64},{-48,-44}},
+              annotation (Placement(transformation(extent={{-66,-90},{-46,-70}},
           rotation=0)));
   inner SystemTS systemTS
     annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
@@ -69,46 +69,50 @@ Components.Columns.RandomPackedColumn                       column1(
     redeclare model PressureLoss =
         ThermalSeparation.PressureLoss.RandomPackedColumn.Particlemodel,
     T_l_profile=false,
-    redeclare model BalanceEquations =
-        ThermalSeparation.BalanceEquations.RandomPackedColumn.NonEquilibrium.TwoPhaseVarState
-        (redeclare model FilmModel =
-            ThermalSeparation.FilmModel.RandomPackedColumn.MS),
     redeclare model HomotopyMethod =
         ThermalSeparation.Components.Columns.BaseClasses.Initialization.Homotopy.NoHomotopy,
     n_elements=5,
     p_v_start_inlet=156000,
-    p_v_start_outlet=152000)
-                         annotation (Placement(transformation(extent={{-34,18},
-            {14,64}}, rotation=0)));
+    p_v_start_outlet=152000,
+    T_vapour_start=328.15,
+    T_liquid_start=328.15,
+    redeclare model BalanceEquations =
+        ThermalSeparation.BalanceEquations.RandomPackedColumn.NonEquilibrium.TwoPhaseVarState
+        (redeclare model FilmModel =
+            ThermalSeparation.FilmModel.RandomPackedColumn.MS (redeclare model
+              StateSelection =
+                ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.StateSelection1)))
+                         annotation (Placement(transformation(extent={{-32,-8},
+            {16,38}}, rotation=0)));
 
   ThermalSeparation.Components.SourcesSinks.AmbientHeatSink ambientHeatSink1
-    annotation (Placement(transformation(extent={{24,31},{44,51}},rotation=0)));
+    annotation (Placement(transformation(extent={{26,5},{46,25}}, rotation=0)));
 equation
   connect(ramp.y, sourceGas_Vdot.Flow_in) annotation (Line(
-      points={{-47,-54},{-44,-54},{-44,-38},{-30,-38}},
+      points={{-45,-80},{-42,-80},{-42,-64},{-28,-64}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(column1.upStreamOut, sinkGas.gasPortIn) annotation (Line(
-      points={{-26.8,61.7},{-26.8,67.85},{-30,67.85},{-30,74.4}},
+      points={{-24.8,35.7},{-24.8,41.85},{-28,41.85},{-28,48.4}},
       color={255,127,39},
       thickness=1,
       smooth=Smooth.None));
   connect(column1.downStreamIn, sourceLiquid.liquidPortOut) annotation (Line(
-      points={{6.8,61.7},{6.8,68.85},{8,68.85},{8,76.6}},
+      points={{8.8,35.7},{8.8,42.85},{10,42.85},{10,50.6}},
       color={153,217,234},
       thickness=1,
       smooth=Smooth.None));
   connect(column1.heatPort, ambientHeatSink1.heatPort1) annotation (Line(
-      points={{10.16,41},{22.4,41}},
+      points={{12.16,15},{24.4,15}},
       color={188,51,69},
       smooth=Smooth.None));
   connect(sinkLiquid.liquidPortIn, column1.downStreamOut) annotation (Line(
-      points={{8,-18.4},{8,20.3},{6.8,20.3}},
+      points={{10,-44.4},{10,-5.7},{8.8,-5.7}},
       color={153,217,234},
       thickness=1,
       smooth=Smooth.None));
   connect(sourceGas_Vdot.gasPortOut, column1.upStreamIn) annotation (Line(
-      points={{-26,-16.6},{-26,20.3},{-26.8,20.3}},
+      points={{-24,-42.6},{-24,-5.7},{-24.8,-5.7}},
       color={255,127,39},
       thickness=1,
       smooth=Smooth.None));

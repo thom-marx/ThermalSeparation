@@ -17,11 +17,11 @@ block LimPID_Input
   parameter Modelica.Blocks.Types.SimpleController controllerType=
          Modelica.Blocks.Types.SimpleController.PID "Type of controller";
   parameter Real k(min=0) = 1 "Gain of controller";
-  parameter Modelica.SIunits.Time Ti(min=Modelica.Constants.small, start=0.5)
+  parameter Modelica.SIunits.Time Ti(min=Modelica.Constants.small, start=0.5)=0.5
     "Time constant of Integrator block"
      annotation(Dialog(enable=controllerType==SimpleController.PI or
                               controllerType==SimpleController.PID));
-  parameter Modelica.SIunits.Time Td(min=0, start=0.1)
+  parameter Modelica.SIunits.Time Td(min=0, start=0.1)=0.1
     "Time constant of Derivative block"
        annotation(Dialog(enable=controllerType==SimpleController.PD or
                                 controllerType==SimpleController.PID));

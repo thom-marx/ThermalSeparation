@@ -254,7 +254,7 @@ record ThermodynamicProperties "thermodynamic properties"
 
   ThermalSeparation.Media.Types.MolarMass MM
       "Molar mass (of mixture or single fluid)";
-  SI.MolarVolume v(start=1e-5); //Einheit: m3/mol
+  SI.MolarVolume v(start=1e-5,stateSelect=StateSelect.never); //Einheit: m3/mol
   SI.MoleFraction x[nSubstance];
   SI.Density d;
   ThermalSeparation.Units.MolarEnthalpy h;

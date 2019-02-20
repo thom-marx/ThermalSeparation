@@ -53,17 +53,18 @@ ThermalSeparation.Components.Columns.SprayColumn column(
     redeclare model InitOption =
         ThermalSeparation.Components.Columns.BaseClasses.Initialization.Special_x_l,
     x_v_start_const={0,0,0.0496,0.0494,0.004859,0.004857,0.7838},
-    T_vapour_start(displayUnit="K") = 355,
-    T_liquid_start(displayUnit="K") = 354.4,
     c_v(start=fill({1,1,1,1,1,1,60}, 8)),
     c_l(start=fill({500,500,500,500,500,500,50000,1,1}, 8)),
-    p_v_start_inlet=150500,
-    p_v_start_outlet=150100,
     redeclare model BalanceEquations =
         ThermalSeparation.BalanceEquations.SprayColumn.NonEquilibrium.TwoPhaseVarState
         (redeclare model FilmModel = ThermalSeparation.FilmModel.SprayColumn.MS
             (redeclare replaceable model StateSelection =
-                ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.None)))
+                ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.None)),
+
+    p_v_start_inlet=150500,
+    p_v_start_outlet=150100,
+    T_vapour_start(displayUnit="degC") = 323.15,
+    T_liquid_start(displayUnit="degC") = 323.15)
                                      annotation (Placement(transformation(extent={{-34,-14},
             {14,32}}, rotation=0)));
 

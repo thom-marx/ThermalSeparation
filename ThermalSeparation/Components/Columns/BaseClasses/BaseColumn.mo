@@ -139,13 +139,13 @@ replaceable package MediumLiquid =
   //Variables downStream
   SI.Concentration c_l_in[nSL]
     "molar concentration in the liquid at the liquid outlet of each stage";
-  SI.Concentration c_l[n,nSL](each start=10, each stateSelect=StateSelect.default) annotation(Dialog(group="Initialization",showStartAttribute=true));
+  SI.Concentration c_l[n,nSL](each start=1, each stateSelect=StateSelect.default) annotation(Dialog(group="Initialization",showStartAttribute=true));
 
   SI.MoleFraction x_l_in[nSL];
   SI.MoleFraction x_l[n,nSL](start=x_l_start);
   SI.VolumeFlowRate Vdot_l_in(start=0.03, nominal=1e-4);
   SI.VolumeFlowRate Vdot_l[n](start=fill(0.03,n),nominal=fill(1e-4,n));
-  SI.Temperature T_l_in(start=T_l_start[1]);
+  SI.Temperature T_l_in(start=T_l_start[n]);
   SI.Temperature T_l[n](start=T_l_start);
   SI.MoleFraction x_downStreamIn_act[nSL];
   SI.MoleFraction x_downStreamOut_act[nSL];

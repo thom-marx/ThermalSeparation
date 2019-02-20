@@ -75,11 +75,12 @@ ThermalSeparation.Components.Columns.StructuredPackedColumn column1(
             true),
     redeclare model BalanceEquations =
         ThermalSeparation.BalanceEquations.StructuredPackedColumn.Equilibrium.TwoPhaseSteadyState,
+    n_elements=1,
     p_v_start_inlet=302000,
     p_v_start_outlet=300000,
     T_vapour_start=303.15,
-    T_liquid_start=303.15,
-    n_elements=1)        annotation (Placement(transformation(extent={{-34,18},
+    T_liquid_start=303.15)
+                         annotation (Placement(transformation(extent={{-34,18},
             {14,64}}, rotation=0)));
 
   ThermalSeparation.Components.SourcesSinks.AmbientHeatSink ambientHeatSink1

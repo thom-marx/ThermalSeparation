@@ -51,7 +51,6 @@ ThermalSeparation.Components.Columns.StructuredPackedColumn column1(
     redeclare model Reaction = ThermalSeparation.Reaction.NoReaction,
     redeclare record Geometry =
         ThermalSeparation.Geometry.StructuredPackedColumn.Geometry (H=10, d=4.9),
-    x_l_start_const={1e-5,1 - 2e-5},
     redeclare package MediumLiquid =
         ThermalSeparation.Media.WaterBasedLiquid.CO2_water,
     nS=2,
@@ -65,13 +64,20 @@ ThermalSeparation.Components.Columns.StructuredPackedColumn column1(
         ThermalSeparation.PhaseEquilibrium.IdealGasIdealLiquid,
     redeclare model InitOption =
         ThermalSeparation.Components.Columns.BaseClasses.Initialization.Init_EquilibriumBalancing,
-    n_elements=3,
+
+    n_elements=1,
+    x_l_start_const={1e-3,1 - 1e-3},
+    p_v_start_inlet=157500,
+    p_v_start_outlet=152000,
+    T_vapour_start=323.15,
+    T_liquid_start=323.15,
+    p_v_in(start=158000),
     redeclare model BalanceEquations =
         ThermalSeparation.BalanceEquations.StructuredPackedColumn.Equilibrium.TwoPhaseVarState
         (redeclare model FilmModel =
-            ThermalSeparation.FilmModel.StructuredPackedColumn.EffectiveDiff),
-    p_v_start_inlet=156000,
-    p_v_start_outlet=152000)
+            ThermalSeparation.FilmModel.StructuredPackedColumn.EffectiveDiff (
+              redeclare model StateSelection =
+                ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.StateSelection1)))
                          annotation (Placement(transformation(extent={{-34,18},
             {14,64}}, rotation=0)));
 
