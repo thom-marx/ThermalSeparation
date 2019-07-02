@@ -22,7 +22,7 @@ algorithm
   for j in 1:n loop
     Gr[j] :=Modelica.Constants.g_n*geometry.H^3*rho/eta*abs(T_wall[j] - T_amb)/T_amb;
     Ra[j] :=Gr[j]*Pr;
-    Nu[j] :=(0.825 + 0.387*(Ra[j]*(1 + (0.492/Pr)^(9/16))^(-16/9))^(1/6))^2 + 0.97*
+    Nu[j] :=(0.825 + 0.387*(Ra[j]*(1 + (0.492/Pr)^(9/16))^(-16/9))^(1/6))^2 + 0.435*
     geometry.H/(2*geometry.r2);
     alpha[j] :=Nu[j]*lambda_air/geometry.H;
     if geometry.hasInsulation then
