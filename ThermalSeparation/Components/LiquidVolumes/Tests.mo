@@ -49,7 +49,7 @@ package Tests
 
     /*** geometry data ***/
       final parameter SI.Area A= Modelica.Constants.pi/4* d_volume^2;
-    SI.Height level(stateSelect=StateSelect.always);
+    SI.Height level(stateSelect=StateSelect.prefer);
 
     parameter SI.Length height_in = -0.15;
     parameter SI.Length length_out = 0.15;

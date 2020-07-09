@@ -35,7 +35,7 @@ SI.Density rho_l;
 parameter SI.Concentration c_l_start[nSL]={5,40000};
 SI.Concentration c_l[nSL](start = c_l_start, nominal = 1e4);
 SI.MoleFraction x_l[nSL];
-  ThermalSeparation.Units.MolarEnthalpy h_l(stateSelect=StateSelect.always,start=1e6);
+  ThermalSeparation.Units.MolarEnthalpy h_l(stateSelect=StateSelect.prefer,start=1e6);
   ThermalSeparation.Units.MolarEnthalpy u_l;
   SI.MolarMass MM_l;
   SI.Concentration c_l_in[nSL](nominal = 1e4);
@@ -54,8 +54,8 @@ SI.MoleFraction x_l_in[nSL];
   SI.Pressure p;//(stateSelect=StateSelect.prefer,start=2e5);
 
   parameter Boolean ss_c2=false "true if c_l[2] is to be a state";
-  SI.Concentration dummy(stateSelect=StateSelect.always)=c_l[2] if ss_c2;
-//    SI.Concentration dummy2(stateSelect=StateSelect.always)=c_l[3] if ss_c2;
+  SI.Concentration dummy(stateSelect=StateSelect.prefer)=c_l[2] if ss_c2;
+//    SI.Concentration dummy2(stateSelect=StateSelect.prefer)=c_l[3] if ss_c2;
 
 public
   Real a = Qdot_wall/(2500*Vdot_l_in*1000);

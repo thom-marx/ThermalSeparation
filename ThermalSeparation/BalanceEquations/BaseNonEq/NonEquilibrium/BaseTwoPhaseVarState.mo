@@ -7,7 +7,7 @@ extends ThermalSeparation.BalanceEquations.BaseNonEq.BaseBalanceEq;
   output SI.MolarInternalEnergy u_l[n](stateSelect=StateSelect.default);
 
 protected
-  Real eps_liq_state[n]( stateSelect=StateSelect.always)=eps_liq;
+  Real eps_liq_state[n]( stateSelect=StateSelect.prefer)=eps_liq;
 
 equation
 /*** MOLE BALANCES ***/

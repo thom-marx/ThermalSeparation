@@ -23,9 +23,9 @@ ThermalSeparation.Media.ModelicaMedia.Water.Absorption.CO2_H2O
 
 /*** Medium properties ***/
  SI.Density rho_l = mediumLiquid.d;
- // SI.Concentration dummy[nSL-1](stateSelect=StateSelect.always)={c_l[1],c_l[2]};
+ // SI.Concentration dummy[nSL-1](stateSelect=StateSelect.prefer)={c_l[1],c_l[2]};
    ThermalSeparation.Units.MolarEnthalpy h_l(stateSelect=StateSelect.default)= mediumLiquid.h;
-   ThermalSeparation.Units.MolarEnthalpy u_l(stateSelect=StateSelect.always) = mediumLiquid.u;
+   ThermalSeparation.Units.MolarEnthalpy u_l(stateSelect=StateSelect.prefer) = mediumLiquid.u;
    SI.MolarMass MM_l = mediumLiquid.MM;
         SI.Concentration c_l_in[nSL] = portIn.c;
    ThermalSeparation.Units.MolarEnthalpy h_l_in= mediumLiquidIn.h;
@@ -33,7 +33,7 @@ ThermalSeparation.Media.ModelicaMedia.Water.Absorption.CO2_H2O
    SI.MolarMass MM_l_in = mediumLiquidIn.MM;
 
     SI.Concentration c_l[nSL](stateSelect=StateSelect.default);
-    SI.MoleFraction x_l[nSL](stateSelect=StateSelect.always);
+    SI.MoleFraction x_l[nSL](stateSelect=StateSelect.prefer);
   SI.Pressure p(start=2e5);
   SI.VolumeFlowRate Vdot_l_out;
 

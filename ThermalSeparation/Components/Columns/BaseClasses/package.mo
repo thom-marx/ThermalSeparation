@@ -154,7 +154,7 @@ package BaseClasses "base classes for columns"
               {80,-80}}, rotation=0), iconTransformation(extent={{60,-100},{80,-80}})));
 
     //initial equation for eps_liq is supplied in the extending class!
-    SI.VolumeFraction eps_liq[        n](each stateSelect=StateSelect.always) "liquid volume fraction";
+    SI.VolumeFraction eps_liq[        n](each stateSelect=StateSelect.prefer) "liquid volume fraction";
     SI.VolumeFraction eps_vap[        n](start=fill(0.99,n)) "vapour volume fraction";
     SI.Temperature T[n];
     SI.HeatFlowRate Qdot_wall[n] "heat flow rate to wall";

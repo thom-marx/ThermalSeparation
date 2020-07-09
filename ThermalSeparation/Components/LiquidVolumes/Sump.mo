@@ -36,10 +36,10 @@ ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby
 
   SI.Density rho_l = mediumLiquid.d;
   SI.Concentration c_l[nSL];
-  Real dummy1(stateSelect=StateSelect.always)=c_l[1];
-  //Real dummy2(stateSelect=StateSelect.always)=c_l[2];
+  Real dummy1(stateSelect=StateSelect.prefer)=c_l[1];
+  //Real dummy2(stateSelect=StateSelect.prefer)=c_l[2];
    ThermalSeparation.Units.MolarEnthalpy h_l;//= mediumLiquid.h;
-   ThermalSeparation.Units.MolarEnthalpy u_l(stateSelect=StateSelect.always) = mediumLiquid.u;
+   ThermalSeparation.Units.MolarEnthalpy u_l(stateSelect=StateSelect.prefer) = mediumLiquid.u;
    SI.MolarMass MM_l = mediumLiquid.MM;
   SI.MoleFraction x_l[nSL];
 

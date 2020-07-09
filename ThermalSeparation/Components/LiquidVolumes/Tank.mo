@@ -29,8 +29,8 @@ ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby
 /*** Medium properties ***/
  SI.Density rho_l = mediumLiquid.d;
  SI.Density rho_l_in = mediumLiquidIn.d;
-  SI.Concentration dummy(stateSelect=StateSelect.always)=c_l[1];
-   ThermalSeparation.Units.MolarEnthalpy h_l(stateSelect=StateSelect.always);
+  SI.Concentration dummy(stateSelect=StateSelect.prefer)=c_l[1];
+   ThermalSeparation.Units.MolarEnthalpy h_l(stateSelect=StateSelect.prefer);
    ThermalSeparation.Units.MolarEnthalpy u_l = mediumLiquid.u;
    SI.MolarMass MM_l = mediumLiquid.MM;
    SI.MolarMass MM_l_in = mediumLiquidIn.MM;
@@ -43,7 +43,7 @@ ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby
 
   /*** geometry data ***/
     final parameter SI.Area A= Modelica.Constants.pi/4* d_volume^2;
-  SI.Height level(stateSelect=StateSelect.always);
+  SI.Height level(stateSelect=StateSelect.prefer);
 
   parameter SI.Diameter d_volume = 0.025 "diameter of the tank";
   parameter Real zeta=2 "friction factor";

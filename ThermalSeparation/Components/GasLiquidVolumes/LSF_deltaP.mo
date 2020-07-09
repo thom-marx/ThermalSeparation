@@ -9,7 +9,7 @@ replaceable model PressureLoss =
 PressureLoss pressureLoss(zeta=zeta, p_in = p_hyd[1], p_out = p_hyd[2], eps_liq = eps_liq, rho_l = rho_l, rho_v = rho_v, d_HX = d_HX, length_HX = length_HX, d_tube=d_tube, Nw=Nw);
 parameter Real zeta =  8.6;
 
-SI.MolarMass MM_v_state(  stateSelect=StateSelect.always)=MM_v;
+SI.MolarMass MM_v_state(  stateSelect=StateSelect.prefer)=MM_v;
 equation
 
 /*** Der Gleichung für Druckverlust bei Umströmung von Rohrbündeln nachempfunden (VDI-Wärmeatlas), zeta wird allerdings als Parameter vorgegeben

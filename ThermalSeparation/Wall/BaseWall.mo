@@ -21,7 +21,7 @@ partial model BaseWall "Model of the heat loss at the column outer wall"
     "heat transfer coefficient at inner side of the wall";
 //Dummy temperature which is needed in order to use the temperature as state if the wall is not calculated steady-state
 protected
-  SI.Temperature T_dummy[n](each stateSelect=StateSelect.always, start=fill(T_start,n)) = T_wall if not stat;
+  SI.Temperature T_dummy[n](each stateSelect=StateSelect.prefer, start=fill(T_start,n)) = T_wall if not stat;
 
 equation
   for j in 1:n loop

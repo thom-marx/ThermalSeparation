@@ -76,10 +76,10 @@ parameter Boolean inertLiquid[nSL] = {false, false, true};
   ThermalSeparation.Units.MolarEnthalpy h_l_in=mediumLiquidIn.h;
     ThermalSeparation.Units.MolarEnthalpy h_transfer_fromL= liqToFilmB.h;
   ThermalSeparation.Units.MolarEnthalpy h_transfer_toL= filmToVapB.h;
-  SI.MolarInternalEnergy u_l(stateSelect=StateSelect.always) =  mediumLiquid.u;
+  SI.MolarInternalEnergy u_l(stateSelect=StateSelect.prefer) =  mediumLiquid.u;
 
 /*** Medium properties ***/
-SI.Concentration c_l[nSL](stateSelect=StateSelect.always) annotation(Dialog(group="Initialization",showStartAttribute=true));
+SI.Concentration c_l[nSL](stateSelect=StateSelect.prefer) annotation(Dialog(group="Initialization",showStartAttribute=true));
 SI.MoleFraction x_l[nSL](start=x_l_start);
   SI.Concentration c_l_in[nSL];
 SI.MoleFraction x_l_in[nSL];
@@ -88,13 +88,13 @@ SI.MoleFraction x_v[nSV];
   SI.Concentration c_l_star[nSL];
     SI.Temperature T_l_in;
   SI.Temperature T_l;
-  SI.Temperature T_v(stateSelect=StateSelect.always);
+  SI.Temperature T_v(stateSelect=StateSelect.prefer);
 
   SI.VolumeFlowRate Vdot_v(start=1e-4);
   SI.VolumeFlowRate Vdot_l;
   SI.VolumeFlowRate Vdot_l_in(start=1e-4);
 
-  Real eps_liq(stateSelect=StateSelect.always);
+  Real eps_liq(stateSelect=StateSelect.prefer);
   Real eps_vap;
 
     SI.MolarFlowRate Ndot_v_transfer[      nSV](start=fill(-0.1,nSV));

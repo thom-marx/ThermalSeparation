@@ -48,7 +48,7 @@ model KettleReboilerEq "equilibrium model"
   Modelica.SIunits.MolarFlowRate F_out_l(start=1e-4);
   Modelica.SIunits.MolarFlowRate F_out_v(start=1e-4);
 
-  Modelica.SIunits.AmountOfSubstance HU_l(start=1000, stateSelect=StateSelect.always);
+  Modelica.SIunits.AmountOfSubstance HU_l(start=1000, stateSelect=StateSelect.prefer);
   Modelica.SIunits.AmountOfSubstance HU_v(start=100);
 
   replaceable package MediumVapour = ThermalSeparation.Media.C2H5OH_Water_Vap
@@ -126,7 +126,7 @@ Modelica.SIunits.MolarFlowRate Ndot_l_transfer[nSL];
   ThermalSeparation.Units.MolarEnthalpy h_v = mediumVapour.h;
   ThermalSeparation.Units.MolarEnthalpy h_l;// = mediumLiquid.h;
   ThermalSeparation.Units.MolarEnthalpy h_feed = 0; //simplification
-  ThermalSeparation.Units.MolarEnthalpy u_l(stateSelect=StateSelect.always) = mediumLiquid.u;
+  ThermalSeparation.Units.MolarEnthalpy u_l(stateSelect=StateSelect.prefer) = mediumLiquid.u;
   ThermalSeparation.Units.MolarEnthalpy u_v = mediumVapour.u;
 
   Modelica.SIunits.MolarMass MM_l=mediumLiquid.MM;
@@ -144,7 +144,7 @@ Modelica.SIunits.MolarFlowRate Ndot_l_transfer[nSL];
   Modelica.SIunits.Volume V_abs;
 
   Modelica.SIunits.Concentration c_l[nSL];
-  Real dummy_c_l(stateSelect=StateSelect.always)=c_l[2];
+  Real dummy_c_l(stateSelect=StateSelect.prefer)=c_l[2];
   Modelica.SIunits.Concentration c_v[nSV];
 
   Modelica.SIunits.VolumeFlowRate vdot_l;
