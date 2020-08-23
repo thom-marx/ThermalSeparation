@@ -10,7 +10,7 @@ extends
   parameter Real eps_liq_user=0.28;
 
 protected
-  Real eps_liq_state[n]=eps_liq;//( stateSelect=StateSelect.always)=eps_liq;
+  Real eps_liq_state[n]=eps_liq;//( stateSelect=StateSelect.prefer)=eps_liq;
 
 equation
 stat=false;

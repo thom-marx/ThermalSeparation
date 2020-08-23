@@ -147,9 +147,9 @@ SI.Concentration c_liq_in[nL];
 SI.Concentration c_liq[nL];
 SI.Concentration c_vap[nV];
 
-Real dummy(stateSelect=StateSelect.always);
-Real dummy2(stateSelect=StateSelect.always);
-Real dummy3(stateSelect=StateSelect.always);
+Real dummy(stateSelect=StateSelect.prefer);
+Real dummy2(stateSelect=StateSelect.prefer);
+Real dummy3(stateSelect=StateSelect.prefer);
 
 //molar fractions of liquid and gas phase
 SI.MoleFraction y[nV](start=fill(1/nV,nV));

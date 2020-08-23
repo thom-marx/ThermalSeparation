@@ -88,7 +88,7 @@ replaceable package MediumLiquid =
   SI.MolarMass MM_v_in( start=0.03) = mediumVapourIn.MM;
   ThermalSeparation.Units.MolarEnthalpy h_v[n] = mediumVapour.h;
   ThermalSeparation.Units.MolarEnthalpy h_v_in = mediumVapourIn.h;
-  SI.MolarInternalEnergy u_v[n](stateSelect=StateSelect.always)= mediumVapour.u;
+  SI.MolarInternalEnergy u_v[n](stateSelect=StateSelect.prefer)= mediumVapour.u;
   SI.Concentration c_v_star[n,nSV];
   SI.Density rho_v_star[n] = mediumVapourStar.d;
 
@@ -102,7 +102,7 @@ replaceable package MediumLiquid =
   SI.MolarMass MM_l_star[n]= mediumLiquidStar.MM;
   ThermalSeparation.Units.MolarEnthalpy h_l[n]= mediumLiquid.h;
   ThermalSeparation.Units.MolarEnthalpy h_l_in=mediumLiquidIn.h;
-  SI.MolarInternalEnergy u_l[n](stateSelect=StateSelect.always) =  mediumLiquid.u;
+  SI.MolarInternalEnergy u_l[n](stateSelect=StateSelect.prefer) =  mediumLiquid.u;
 
 //Variables upStream
   SI.Concentration c_v_in[nSV];
@@ -293,10 +293,10 @@ Real check[nS-1];
 
 /*** changes to reduce index ***/
 Modelica.SIunits.AmountOfSubstance n_mol[n,nS];
-Modelica.SIunits.AmountOfSubstance n_mol_L[n](stateSelect=StateSelect.always);
-Modelica.SIunits.AmountOfSubstance n_mol_V[n](stateSelect=StateSelect.always);
-Real n_mol_L_i[n,nSL](stateSelect=StateSelect.always);
-Real n_mol_V_i[n,nSV](stateSelect=StateSelect.always);
+Modelica.SIunits.AmountOfSubstance n_mol_L[n](stateSelect=StateSelect.prefer);
+Modelica.SIunits.AmountOfSubstance n_mol_V[n](stateSelect=StateSelect.prefer);
+Real n_mol_L_i[n,nSL](stateSelect=StateSelect.prefer);
+Real n_mol_V_i[n,nSV](stateSelect=StateSelect.prefer);
 
 initial algorithm
 

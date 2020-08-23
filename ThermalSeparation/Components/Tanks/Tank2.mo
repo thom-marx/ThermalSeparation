@@ -28,8 +28,8 @@ ThermalSeparation.Media.ModelicaMedia.Water.Absorption.CO2_H2O
 /*** Medium properties ***/
  SI.Density rho_l = mediumLiquid.d;
  SI.Density rho_l_in = mediumLiquidIn.d;
-  SI.Concentration dummy(stateSelect=StateSelect.always)=c_l[1];
-   ThermalSeparation.Units.MolarEnthalpy h_l(stateSelect=StateSelect.always)= mediumLiquid.h;
+  SI.Concentration dummy(stateSelect=StateSelect.prefer)=c_l[1];
+   ThermalSeparation.Units.MolarEnthalpy h_l(stateSelect=StateSelect.prefer)= mediumLiquid.h;
    ThermalSeparation.Units.MolarEnthalpy u_l = mediumLiquid.u;
    SI.MolarMass MM_l = mediumLiquid.MM;
    SI.MolarMass MM_l_in = mediumLiquidIn.MM;
@@ -42,7 +42,7 @@ ThermalSeparation.Media.ModelicaMedia.Water.Absorption.CO2_H2O
 
   /*** geometry data ***/
     final parameter SI.Area A= Modelica.Constants.pi/4* d_volume^2;
-  SI.Height level(stateSelect=StateSelect.always);
+  SI.Height level(stateSelect=StateSelect.prefer);
 
   parameter SI.Diameter d_volume = 0.025;
   parameter Real zeta=2;

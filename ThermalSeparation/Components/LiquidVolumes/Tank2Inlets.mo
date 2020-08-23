@@ -31,9 +31,9 @@ ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby
   SI.Density rho_l_in = mediumLiquidIn.d;
   SI.Density rho_l_in_recirc = mediumLiquidInRecirc.d;
  SI.Concentration c_l[nSL](each stateSelect=StateSelect.default);
-  SI.Concentration dummy(stateSelect=StateSelect.always)=c_l[1];
+  SI.Concentration dummy(stateSelect=StateSelect.prefer)=c_l[1];
  SI.MoleFraction x_l[nSL];
-   ThermalSeparation.Units.MolarEnthalpy h_l(stateSelect=StateSelect.always)= mediumLiquid.h;
+   ThermalSeparation.Units.MolarEnthalpy h_l(stateSelect=StateSelect.prefer)= mediumLiquid.h;
    ThermalSeparation.Units.MolarEnthalpy u_l = mediumLiquid.u;
 
  SI.MoleFraction x_l_in[nSL] = inStream(portIn.x_outflow);
@@ -50,7 +50,7 @@ ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby
 
   /*** geometry data ***/
     final parameter SI.Area A= Modelica.Constants.pi/4* d_volume^2;
-  SI.Height level(stateSelect=StateSelect.always);
+  SI.Height level(stateSelect=StateSelect.prefer);
 
   parameter SI.Diameter d_volume = 0.025;
   parameter Real zeta=2;

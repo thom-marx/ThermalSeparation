@@ -153,7 +153,7 @@ replaceable package MediumLiquid =
           extent={{50,-100},{70,-80}}, rotation=0)));
 
   //initial equation for eps_liq is supplied in the extending class!
-  SI.VolumeFraction eps_liq[        n]( stateSelect=StateSelect.always)
+  SI.VolumeFraction eps_liq[        n]( stateSelect=StateSelect.prefer)
     "liquid volume fraction";
   SI.VolumeFraction eps_vap[        n](start=fill(0.99,n))
     "vapour volume fraction";

@@ -13,7 +13,7 @@ extends
   Modelica.SIunits.AmountOfSubstance n_mol[n,nS];
 
 protected
-  Real eps_liq_state[n](each stateSelect=StateSelect.always)=eps_liq;
+  Real eps_liq_state[n](each stateSelect=StateSelect.prefer)=eps_liq;
 
 equation
 stat=false;
