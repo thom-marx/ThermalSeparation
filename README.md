@@ -1,6 +1,6 @@
 # ThermalSeparation
 
-The ThermalSeparation library is an open-source Modelica library developed at Technische Universität Hamburg-Harburg.
+The ThermalSeparation library is an open-source Modelica library developed at Technische Universität Hamburg.
 
 ## Copyright
 Copyright 2017, [Institute of Engineering ThermoDynamics (Hamburg University of Technology (TUHH))](http://www.tu-harburg.de/tt)
