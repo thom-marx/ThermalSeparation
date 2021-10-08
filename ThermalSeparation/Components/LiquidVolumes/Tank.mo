@@ -29,15 +29,10 @@ ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby
   parameter Boolean avoid_sum_mole=true "parameter to avoid the sum equation of molar fractions";
 
 /*** Medium properties ***/
- SI.Density rho_l = mediumLiquid.d;
- SI.Density rho_l_in = mediumLiquidIn.d;
-<<<<<<< HEAD
+  SI.Density rho_l = mediumLiquid.d;
+  SI.Density rho_l_in = mediumLiquidIn.d;
   //SI.Concentration dummy(stateSelect=StateSelect.default)=c_l[1];
    ThermalSeparation.Units.MolarEnthalpy h_l(stateSelect=StateSelect.default);
-=======
-  SI.Concentration dummy(stateSelect=StateSelect.prefer)=c_l[1];
-   ThermalSeparation.Units.MolarEnthalpy h_l(stateSelect=StateSelect.prefer);
->>>>>>> Replaces StateSelect.always with StateSelect.prefer. StateSelect.always cannot always be respected, e.g. when coupling medium models to algebraic models or in case of index reduction, and may cause compilation failures
    ThermalSeparation.Units.MolarEnthalpy u_l = mediumLiquid.u;
    SI.MolarMass MM_l = mediumLiquid.MM;
    SI.MolarMass MM_l_in = mediumLiquidIn.MM;
@@ -50,11 +45,7 @@ ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby
 
   /*** geometry data ***/
     final parameter SI.Area A= Modelica.Constants.pi/4* d_volume^2;
-<<<<<<< HEAD
   SI.Height level(stateSelect=StateSelect.default,start=level_start);
-=======
-  SI.Height level(stateSelect=StateSelect.prefer);
->>>>>>> Replaces StateSelect.always with StateSelect.prefer. StateSelect.always cannot always be respected, e.g. when coupling medium models to algebraic models or in case of index reduction, and may cause compilation failures
 
   parameter SI.Diameter d_volume = 0.025 "diameter of the tank";
   parameter Real zeta=2 "friction factor";
