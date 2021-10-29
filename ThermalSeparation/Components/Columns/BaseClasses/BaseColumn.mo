@@ -51,8 +51,7 @@ Boolean useHomotopy=false annotation(Dialog(tab="Initialization", group="Homotop
 
 replaceable model HomotopyMethod =
       ThermalSeparation.Components.Columns.BaseClasses.Initialization.Homotopy.NoHomotopy
-                              constrainedby
-    ThermalSeparation.Components.Columns.BaseClasses.Initialization.Homotopy.BaseHomotopy
+                              constrainedby ThermalSeparation.Components.Columns.BaseClasses.Initialization.Homotopy.BaseHomotopy
     "activate homotopy and set nominal values"                          annotation(Dialog(tab="Initialization", group="Homotopy"),choicesAllMatching=true);
 
 HomotopyMethod homotopyMethod(nS=nS, useHomotopy=useHomotopy);
@@ -217,8 +216,7 @@ Real n_tot[n,nS];
 
 /*** thermodynamic equilibrium ***/
  replaceable model ThermoEquilibrium =
-      ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby
-    ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium
+      ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium
     "model for phase equilibrium"                                                         annotation(choicesAllMatching=true);
 //     ThermoEquilibrium bubblePressure[n](x_vap_liq=x_vap_liq,each nS=nS,  each mapping =                            mapping,
 //     redeclare replaceable package MediumVapour =   MediumVapour,

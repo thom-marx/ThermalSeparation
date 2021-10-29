@@ -9,8 +9,8 @@ model FlueGasCompressor
 
    replaceable package Medium =
        ThermalSeparation.Media.IdealGasMixtures.H2O_O2_CO2_N2
-                                                            constrainedby
-    ThermalSeparation.Media.BaseMediumVapour                                                           annotation(choicesAllMatching);
+                                                            constrainedby ThermalSeparation.Media.BaseMediumVapour
+                                                                                                       annotation(choicesAllMatching);
 
   Medium.BaseProperties mediumIn(c=gasPortIn.c, T0=T_ref, p=gasPortIn.p, T=gasPortIn.T, x=gasPortIn.x,  x_star=gasPortIn.x);
   Medium.BaseProperties mediumOut(c=gasPortOut.c, T0=T_ref,p=gasPortOut.p, T=gasPortOut.T, x=gasPortOut.x,  x_star=gasPortOut.x);

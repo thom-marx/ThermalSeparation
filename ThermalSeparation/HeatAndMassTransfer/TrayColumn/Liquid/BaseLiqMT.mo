@@ -5,8 +5,7 @@ partial model BaseLiqMT "base model for liquid mass transfer coefficient"
     "number of calculated mass transfer coefficients - nSL or k";
 
     replaceable record Geometry =
-      ThermalSeparation.Geometry.PlateColumn.Geometry                            constrainedby
-    ThermalSeparation.Geometry.PlateColumn.Geometry;
+      ThermalSeparation.Geometry.PlateColumn.Geometry                            constrainedby ThermalSeparation.Geometry.PlateColumn.Geometry;
     Geometry geometry(final n=n);
     input SI.Height h[n] "height of the two-phase regime on the tray";
 input Real eps_liq_2ph[n]

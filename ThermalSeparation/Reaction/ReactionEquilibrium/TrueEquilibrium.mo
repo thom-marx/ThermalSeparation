@@ -3,8 +3,8 @@ model TrueEquilibrium "true equilibrium"
 //homogeneous reaction
 //Skript Keil, S. 126 - 148 und Bsp. S. 272
 
-extends ThermalSeparation.Reaction.BaseReaction(film=false, redeclare
-      replaceable package MediumLiquid =
+extends ThermalSeparation.Reaction.BaseReaction(film=false, redeclare replaceable package
+                          MediumLiquid =
         ThermalSeparation.Media.BaseMediumLiquidReaction);
  //Bsp: 2NO --> N2 + O2   nS=1--> NO, nS=2--> N2, nS=3--> O2    r_N2 = k*NO    reacComp = 2
    constant Integer nR=MediumLiquid.nR "number of reactions";

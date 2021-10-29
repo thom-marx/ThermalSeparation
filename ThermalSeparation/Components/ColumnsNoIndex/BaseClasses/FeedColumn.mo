@@ -12,8 +12,8 @@ model InternalFeedPort "internal model for conditional stream connectors"
   ThermalSeparation.Interfaces.LiquidPortOut          feedLiquidInternal;
   ThermalSeparation.Interfaces.GasPortOut          feedVapourInternal;
 end InternalFeedPort;
-  InternalFeedPort internalFeedPort[n](feedLiquidInternal(redeclare each
-        package Medium =
+  InternalFeedPort internalFeedPort[n](feedLiquidInternal(redeclare each package
+                Medium =
           MediumLiquid),feedVapourInternal(redeclare each package Medium =
           MediumVapour));
 protected
@@ -29,8 +29,8 @@ public
     "number of stage where feed enters the column" annotation(Dialog(enable = hasLiquidFeed, tab="Feed", group="Liquid Feed"));
   final parameter Integer numberLiquidFeedsInternal(min=0,max=n) = if hasLiquidFeed then numberLiquidFeeds else 0;
   ThermalSeparation.Interfaces.LiquidPortIn[
-                                   numberLiquidFeeds] feedLiquid(redeclare
-      each package Medium =
+                                   numberLiquidFeeds] feedLiquid(redeclare each package
+                   Medium =
         MediumLiquid) if hasLiquidFeed annotation (Placement(transformation(
           extent={{-94,-14},{-74,6}}, rotation=0), iconTransformation(extent={{
             -94,-14},{-74,6}})));
@@ -58,8 +58,8 @@ public
 //       package Medium =
 //         MediumVapour,   p=p_v[1:n]);
   ThermalSeparation.Interfaces.GasPortIn[
-                                numberVapourFeeds] feedVapour(redeclare each
-      package Medium =
+                                numberVapourFeeds] feedVapour(redeclare each package
+              Medium =
         MediumVapour) if hasVapourFeed annotation (Placement(transformation(
           extent={{-94,8},{-74,28}}, rotation=0), iconTransformation(extent={{
             -94,8},{-74,28}})));

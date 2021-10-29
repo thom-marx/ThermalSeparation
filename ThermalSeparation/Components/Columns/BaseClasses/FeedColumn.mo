@@ -11,8 +11,8 @@ model InternalFeedPort "internal model for conditional stream connectors"
   ThermalSeparation.Interfaces.LiquidPortOut          feedLiquidInternal;
   ThermalSeparation.Interfaces.GasPortOut          feedVapourInternal;
 end InternalFeedPort;
-  InternalFeedPort internalFeedPort[n](feedLiquidInternal(redeclare each
-        package Medium =
+  InternalFeedPort internalFeedPort[n](feedLiquidInternal(redeclare each package
+                Medium =
           MediumLiquid),feedVapourInternal(redeclare each package Medium =
           MediumVapour));
 protected
@@ -28,8 +28,8 @@ public
     "number of stage where feed enters the column" annotation(Dialog(enable = hasLiquidFeed, tab="Feed", group="Liquid Feed"));
   final parameter Integer numberLiquidFeedsInternal(min=0,max=n) = if hasLiquidFeed then numberLiquidFeeds else 0;
   ThermalSeparation.Interfaces.LiquidPortIn[numberLiquidFeeds]
-                                                      feedLiquid(redeclare
-      each package Medium =
+                                                      feedLiquid(redeclare each package
+                   Medium =
         MediumLiquid) if hasLiquidFeed
                      annotation (Placement(transformation(
           extent={{-94,-14},{-74,6}}, rotation=0), iconTransformation(extent={{
@@ -63,8 +63,8 @@ public
 //       package Medium =
 //         MediumVapour,   p=p_v[1:n]);
   ThermalSeparation.Interfaces.GasPortIn[numberVapourFeeds]
-                                                   feedVapour(redeclare each
-      package Medium =
+                                                   feedVapour(redeclare each package
+              Medium =
         MediumVapour) if hasVapourFeed annotation (Placement(transformation(
           extent={{-94,8},{-74,28}}, rotation=0), iconTransformation(extent={{
             -94,8},{-74,28}})));
@@ -74,23 +74,17 @@ public
 
  // Modelica.Blocks.Interfaces.RealInput h_help;
 
-  ThermalSeparation.Interfaces.GasPortIn[numberVapourFeeds] feedVapour_dummy(redeclare
-      each package                                                                                  Medium =
+  ThermalSeparation.Interfaces.GasPortIn[numberVapourFeeds] feedVapour_dummy(redeclare each package Medium =
         MediumVapour);
-  ThermalSeparation.Interfaces.LiquidPortIn[numberLiquidFeeds] feedLiquid_dummy(redeclare
-      each package                                                                                     Medium =
+  ThermalSeparation.Interfaces.LiquidPortIn[numberLiquidFeeds] feedLiquid_dummy(redeclare each package Medium =
         MediumLiquid);
-  ThermalSeparation.Interfaces.GasPortOut[numberVapourFeeds] feedVapour_dummy2(redeclare
-      each package                                                                                    Medium =
+  ThermalSeparation.Interfaces.GasPortOut[numberVapourFeeds] feedVapour_dummy2(redeclare each package Medium =
         MediumVapour) if                                                                                                        not hasVapourFeed;
-  ThermalSeparation.Interfaces.LiquidPortOut[numberLiquidFeeds] feedLiquid_dummy2(redeclare
-      each package                                                                                       Medium =
+  ThermalSeparation.Interfaces.LiquidPortOut[numberLiquidFeeds] feedLiquid_dummy2(redeclare each package Medium =
         MediumLiquid) if                                                                                                            not hasLiquidFeed;
-  SourcesSinks.SourceGas sourceGas[numberVapourFeeds](each use_Flow=false, redeclare
-      each package                                                                                Medium =
+  SourcesSinks.SourceGas sourceGas[numberVapourFeeds](each use_Flow=false, redeclare each package Medium =
         MediumVapour,                                                                                                 each T=293.15,each x = x_v_start_const,each Flow=1) if not hasVapourFeed;
-  SourcesSinks.SourceLiquid sourceLiquid[numberLiquidFeeds](each use_Flow=false,redeclare
-      each package                                                                                     MediumLiquid =
+  SourcesSinks.SourceLiquid sourceLiquid[numberLiquidFeeds](each use_Flow=false,redeclare each package MediumLiquid =
         MediumLiquid,                                                                                                            each T=293.15,each x=x_l_start_const,each Flow=1) if not hasLiquidFeed;
   SourcesSinks.SinkGas sinkGas[numberVapourFeeds](redeclare each package Medium =
         MediumVapour,                                                                        each p=100000) if not hasVapourFeed;

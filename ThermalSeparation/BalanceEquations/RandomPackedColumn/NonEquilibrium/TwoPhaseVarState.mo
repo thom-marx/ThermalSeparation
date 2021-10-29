@@ -9,15 +9,13 @@ parameter Boolean EQ=filmModel.EQ;
 
 /*** geometry ***/
   replaceable record Geometry =
-      ThermalSeparation.Geometry.RandomPackedColumn.Geometry                constrainedby
-    ThermalSeparation.Geometry.RandomPackedColumn.Geometry "column geometry"            annotation(Dialog(tab="Propagated from Column",group="These variables are propagated from the column model and do not have to be set by the user!",enable=false));
+      ThermalSeparation.Geometry.RandomPackedColumn.Geometry                constrainedby ThermalSeparation.Geometry.RandomPackedColumn.Geometry
+                                                           "column geometry"            annotation(Dialog(tab="Propagated from Column",group="These variables are propagated from the column model and do not have to be set by the user!",enable=false));
 
   replaceable model FilmModel =
-      ThermalSeparation.FilmModel.RandomPackedColumn.MS (redeclare replaceable
-        model StateSelection =
-          ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.StateSelection2)
-                                                                                                        constrainedby
-    ThermalSeparation.FilmModel.RandomPackedColumn.BaseFilmPacked(
+      ThermalSeparation.FilmModel.RandomPackedColumn.MS (redeclare replaceable model
+              StateSelection =
+          ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.StateSelection2)   constrainedby ThermalSeparation.FilmModel.RandomPackedColumn.BaseFilmPacked(
     redeclare replaceable package MediumLiquid =  MediumLiquid,
         redeclare replaceable model Reaction =  Reaction,
         redeclare replaceable package MediumVapour =  MediumVapour)

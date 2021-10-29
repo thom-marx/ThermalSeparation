@@ -6,14 +6,14 @@ parameter Real timeConstant = 100;
       parameter Modelica.SIunits.Temperature T_ref=systemTS.T_ref
     "reference temperature"                                                 annotation (Dialog(tab="Advanced"));
 replaceable package MediumVapour =
-      ThermalSeparation.Media.Methylacetatsynthese_Vap                                                 constrainedby
-    ThermalSeparation.Media.BaseMediumVapour                                                            annotation(choicesAllMatching);
+      ThermalSeparation.Media.Methylacetatsynthese_Vap                                                 constrainedby ThermalSeparation.Media.BaseMediumVapour
+                                                                                                        annotation(choicesAllMatching);
 
     MediumVapour.BaseProperties mediumVapourIn(T0 = T_ref, c=x_v*rho_v/MM_v,p=vapourIn.p, T=T_v, x=x_v,  x_star=x_v);
 
   replaceable package MediumLiquid =
-  ThermalSeparation.Media.C2H5OH_Water_Liq            constrainedby
-    ThermalSeparation.Media.BaseMediumLiquid                                                            annotation(choicesAllMatching);
+  ThermalSeparation.Media.C2H5OH_Water_Liq            constrainedby ThermalSeparation.Media.BaseMediumLiquid
+                                                                                                        annotation(choicesAllMatching);
 
     MediumLiquid.BaseProperties mediumLiquid(T0 = T_ref, p=p_cond, T=T_l, x=x_l);
     MediumLiquid.BaseProperties mediumLiquid2(T0 = T_ref, p=p_cond, T=T_cond, x=x_l);

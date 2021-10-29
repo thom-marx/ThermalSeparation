@@ -12,8 +12,7 @@ replaceable package MediumLiquid =
                                                annotation(choicesAllMatching);
  replaceable model InnerHT =
     ThermalSeparation.HeatAndMassTransfer.HTResistance.NoHTResistance
-    constrainedby
-    ThermalSeparation.HeatAndMassTransfer.HTResistance.BaseHTResistance               "heat transfer mechanism between bulk and wall"                     annotation(choicesAllMatching=true);
+    constrainedby ThermalSeparation.HeatAndMassTransfer.HTResistance.BaseHTResistance "heat transfer mechanism between bulk and wall"                     annotation(choicesAllMatching=true);
 
   InnerHT innerHT(n=1,T={T},A={A_HT},Qdot={Q_in},p={p_sys});
 

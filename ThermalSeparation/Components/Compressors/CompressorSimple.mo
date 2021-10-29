@@ -2,8 +2,7 @@ within ThermalSeparation.Components.Compressors;
 model CompressorSimple "isentropic compressor"
    extends Icons.Color.Compressors;
 replaceable package Medium =
-    ThermalSeparation.Media.BaseMediumVapour                        constrainedby
-    ThermalSeparation.Media.BaseMediumVapour                                                                               annotation(choicesAllMatching=true);
+    ThermalSeparation.Media.BaseMediumVapour                        constrainedby ThermalSeparation.Media.BaseMediumVapour annotation(choicesAllMatching=true);
 
 Medium.BaseProperties mediumIn(p=gasPortIn.p,x=inStream(gasPortIn.x_outflow),x_star=inStream(gasPortIn.x_outflow),c=c,h=inStream(gasPortIn.h_outflow));
 Medium.BaseProperties mediumOut(p=gasPortOut.p,x=gasPortOut.x_outflow,x_star=gasPortOut.x_outflow,c=c);

@@ -40,8 +40,8 @@ MediumLiquid.DiffusionCoefficient[n,m] diffCoeffLiqMatrix(
     "Maxwell-Stefan diffusion matrix, see Taylor & Krishna, p. 25";
 
     replaceable model ThermoEquilibrium =
-      ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby
-    ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium annotation (Dialog(
+      ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium
+                                                            annotation (Dialog(
       tab="Propagated from Column",
       group=
           "These variables are propagated from the column model and do not have to be set by the user!",
@@ -87,8 +87,8 @@ SI.MolarMass MM_v[n] = propsVap.MM;
   /*** reaction ***/
   MediumLiquid.BaseProperties mediumLiquid[n,m+1](each T0=T_ref,  p=p_film, T=T_z, x= x_l_z);
 
-  Reaction reaction[n,m](redeclare record Geometry=BaseGeometry, redeclare
-      each replaceable package MediumLiquid =
+  Reaction reaction[n,m](redeclare record Geometry=BaseGeometry, redeclare each replaceable package
+                               MediumLiquid =
         MediumLiquid,
         propsLiq= mediumLiquid[:,1:m].properties,
        each final n= n, each final nS=nSL, c=c_l_z[:,1:m,:], V=V_reac, Ndot_l_transfer=Ndot_z[:,1:m,:],  gamma=gamma_z);

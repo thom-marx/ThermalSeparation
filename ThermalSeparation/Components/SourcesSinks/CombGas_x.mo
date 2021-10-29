@@ -7,8 +7,8 @@ model CombGas_x
 parameter SI.Temperature T_ref = systemTS.T_ref "reference temperature" annotation(Dialog(tab="Advanced"));
 
   replaceable package Medium =
-      ThermalSeparation.Media.BaseMediumVapour constrainedby
-    ThermalSeparation.Media.BaseMediumVapour "medium to be used"                                                         annotation(choicesAllMatching);
+      ThermalSeparation.Media.BaseMediumVapour constrainedby ThermalSeparation.Media.BaseMediumVapour
+                                             "medium to be used"                                                         annotation(choicesAllMatching);
     Medium.BaseProperties medium(T0=T_ref,p=1.5e5, T=T, x=x, x_star=x, c=c);
 SI.Temperature T;
 parameter Real mass = 10 "mass";

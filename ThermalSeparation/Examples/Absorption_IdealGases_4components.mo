@@ -14,8 +14,8 @@ ThermalSeparation.Components.SourcesSinks.SourceLiquid
             {10,10}}, rotation=270,
         origin={6,54})));
 ThermalSeparation.Components.SourcesSinks.SinkLiquid
-                                            sinkLiquid(         redeclare
-      package Medium = ThermalSeparation.Media.WaterBasedLiquid.N2_O2_CO2_H2O)
+                                            sinkLiquid(         redeclare package
+              Medium = ThermalSeparation.Media.WaterBasedLiquid.N2_O2_CO2_H2O)
                       annotation (Placement(transformation(extent={{-10,-10},{
             10,10}},
                    rotation=270,

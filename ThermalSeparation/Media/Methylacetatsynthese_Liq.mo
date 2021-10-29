@@ -13,8 +13,8 @@ package Methylacetatsynthese_Liq "Methylacetat, Essigsäe, Methanol, Wasser"
   henry=fill(false,nSubstance),
  nR=1, nu={{1,-1,-1,1}},  reacComp={1}, nS_reac=4, redeclare model
       MolarReactionEnthalpy =
-        ThermalSeparation.Media.Correlations.Reaction.MolarReactionEnthalpy.EnthalpyOfFormation
-        ( nR=nR));
+        ThermalSeparation.Media.Correlations.Reaction.MolarReactionEnthalpy.EnthalpyOfFormation (
+          nR=nR));
 
   constant Integer n = nSubstance "number of components";
 
@@ -527,18 +527,14 @@ end HenryCoefficient;
          redeclare model extends EquilibriumConstant
 
                /*** reaction rate coefficient ***/
-           replaceable model RRC_forward =
-        ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.Arrhenius
-                                                                      constrainedby
-      ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.BaseReactionRateCoeff
+           replaceable model RRC_forward = ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.Arrhenius
+                                                                      constrainedby ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.BaseReactionRateCoeff
                                                                                                           annotation(choicesAllMatching=true);
 
            RRC_forward rrc_forward(nR=nR, T= propsLiq.T, k_0=8.497e6*ones(nR), E=60.47e3*ones(nR));
 
-          replaceable model RRC_reverse =
-        ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.Arrhenius
-                                                                      constrainedby
-      ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.BaseReactionRateCoeff
+          replaceable model RRC_reverse = ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.Arrhenius
+                                                                      constrainedby ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.BaseReactionRateCoeff
                                                                                                           annotation(choicesAllMatching=true);
 
            RRC_reverse rrc_reverse(nR=nR, T = propsLiq.T, k_0=6.127e5*ones(nR), E=63.73e3*ones(nR));

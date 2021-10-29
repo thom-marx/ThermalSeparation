@@ -7,8 +7,8 @@ model Volume "Liquid volume, constant fill level"
         iconTransformation(extent={{-20,76},{20,116}})));
 
 replaceable package MediumLiquid =
-ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby
-    ThermalSeparation.Media.BaseMediumLiquid                                                          annotation(choicesAllMatching);
+ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby ThermalSeparation.Media.BaseMediumLiquid
+                                                                                                      annotation(choicesAllMatching);
    outer ThermalSeparation.SystemTS systemTS;
  parameter SI.Temperature T_ref = systemTS.T_ref "reference temperature" annotation(Dialog(tab="Advanced"));
 

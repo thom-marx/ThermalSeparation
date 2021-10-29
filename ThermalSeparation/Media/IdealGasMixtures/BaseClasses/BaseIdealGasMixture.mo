@@ -1462,8 +1462,7 @@ average of the pure component conductivities.
   redeclare replaceable model extends FugacityCoefficient
     /*** vapour fugacity coefficient for each component ***/
     replaceable model FugacityCoeff =
-        ThermalSeparation.Media.Correlations.FugacityCoefficient.IdealGas                                constrainedby
-      ThermalSeparation.Media.Correlations.FugacityCoefficient.BaseFugacityCoefficient;
+        ThermalSeparation.Media.Correlations.FugacityCoefficient.IdealGas                                constrainedby ThermalSeparation.Media.Correlations.FugacityCoefficient.BaseFugacityCoefficient;
     FugacityCoeff fugacityCoeff(nS=nSubstance, T=T,p=p, y=x, v=v, Tcrit=Tcrit, pcrit=pcrit, Vcrit=Vcrit, omega=omega, mu=mu);
 
   equation

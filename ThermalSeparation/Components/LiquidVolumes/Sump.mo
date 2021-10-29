@@ -2,12 +2,12 @@ within ThermalSeparation.Components.LiquidVolumes;
 model Sump
  extends Icons.Color.Sump;
 replaceable package MediumLiquid =
-ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby
-    ThermalSeparation.Media.BaseMediumLiquid                                                          annotation(choicesAllMatching);
+ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby ThermalSeparation.Media.BaseMediumLiquid
+                                                                                                      annotation(choicesAllMatching);
 
     replaceable package MediumVapour =
-      ThermalSeparation.Media.IdealGasMixtures.H2O_CO2     constrainedby
-    ThermalSeparation.Media.BaseMediumVapour                                                          annotation(choicesAllMatching);
+      ThermalSeparation.Media.IdealGasMixtures.H2O_CO2     constrainedby ThermalSeparation.Media.BaseMediumVapour
+                                                                                                      annotation(choicesAllMatching);
   outer ThermalSeparation.SystemTS systemTS;
   parameter SI.Temperature T_ref = systemTS.T_ref "reference temperature" annotation(Dialog(tab="Advanced"));
 

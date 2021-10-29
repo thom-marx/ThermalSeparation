@@ -7,8 +7,8 @@ model Tank2Inlets "tank model with varying liquid level and two inlet ports"
         iconTransformation(extent={{-58,76},{-18,116}})));
 
 replaceable package MediumLiquid =
-ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby
-    ThermalSeparation.Media.BaseMediumLiquid                                                          annotation(choicesAllMatching);
+ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby ThermalSeparation.Media.BaseMediumLiquid
+                                                                                                      annotation(choicesAllMatching);
    outer ThermalSeparation.SystemTS systemTS;
    parameter SI.Pressure p_gas= 1e5
     "pressure exerted by the (inert) gas above the liquid";

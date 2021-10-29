@@ -2,8 +2,7 @@ within ThermalSeparation.HeatAndMassTransfer.InterfacialArea.RandomPackedColumn;
 partial model BasePacked
   extends Base;
       replaceable record Geometry =
-      ThermalSeparation.Geometry.RandomPackedColumn.Geometry                  constrainedby
-    ThermalSeparation.Geometry.RandomPackedColumn.Geometry;
+      ThermalSeparation.Geometry.RandomPackedColumn.Geometry                  constrainedby ThermalSeparation.Geometry.RandomPackedColumn.Geometry;
     Geometry geometry(final n=n);
     parameter Real frickel=1 "factor to adjust results to measurment data";
 

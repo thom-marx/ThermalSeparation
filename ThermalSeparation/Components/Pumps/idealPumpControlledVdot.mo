@@ -5,8 +5,7 @@ model idealPumpControlledVdot
 parameter SI.Temperature T_ref = systemTS.T_ref "reference temperature" annotation(Dialog(tab="Advanced"));
 
 replaceable package MediumLiquid =
-ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby
-    Media.BaseMediumLiquid                                                                            annotation(choicesAllMatching);
+ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby Media.BaseMediumLiquid             annotation(choicesAllMatching);
   MediumLiquid.BaseProperties mediumLiquid(T0=T_ref, p=p, T=T_l, x=x_l,h=h_l);
     MediumLiquid.BaseProperties mediumLiquidIn(T0=T_ref, p=p_in, T=T_l_in, x=x_l_in,h=h_l_in);
 

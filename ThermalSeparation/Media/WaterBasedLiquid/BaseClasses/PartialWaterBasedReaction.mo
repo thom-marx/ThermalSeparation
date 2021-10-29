@@ -53,8 +53,7 @@ partial package PartialWaterBasedReaction
     "calculates the activity coefficient for each component in the liquid phase"
 
       replaceable model ActivityCoeff =
-          ThermalSeparation.Media.Correlations.ActivityCoefficient.Ideal                                      constrainedby
-      ThermalSeparation.Media.Correlations.ActivityCoefficient.BaseActivityCoefficient
+          ThermalSeparation.Media.Correlations.ActivityCoefficient.Ideal                                      constrainedby ThermalSeparation.Media.Correlations.ActivityCoefficient.BaseActivityCoefficient
         annotation (choicesAllMatching=true, Dialog(tab="General", group=
               "Thermodynamic Equilibrium"));
 
@@ -67,10 +66,8 @@ partial package PartialWaterBasedReaction
 
         redeclare replaceable model extends FugacityCoefficient "calculates the fugacity coefficient at the saturation point for each component in the liquid phase"
 
-            replaceable model FugacityCoeff =
-        ThermalSeparation.Media.Correlations.SaturationFugacityCoefficient.SaturationFugacitycoefficient
-                                                                                                          constrainedby
-      ThermalSeparation.Media.Correlations.SaturationFugacityCoefficient.BaseFugacityCoefficient
+            replaceable model FugacityCoeff = ThermalSeparation.Media.Correlations.SaturationFugacityCoefficient.SaturationFugacitycoefficient
+                                                                                                          constrainedby ThermalSeparation.Media.Correlations.SaturationFugacityCoefficient.BaseFugacityCoefficient
             annotation (choicesAllMatching=true, Dialog(tab="General", group=
                   "Thermodynamic Equilibrium"));
 

@@ -56,8 +56,8 @@ package N2_O2_CO2_SO2_HCl_HF_H2O_H_HSO3
      nu={{0,0,0,-1,0,0,0,1,1}},
      reacComp={4},nS_reac=3,
      redeclare model MolarReactionEnthalpy =
-        ThermalSeparation.Media.Correlations.Reaction.MolarReactionEnthalpy.EnthalpyOfFormation
-        ( nR=nR));
+        ThermalSeparation.Media.Correlations.Reaction.MolarReactionEnthalpy.EnthalpyOfFormation (
+          nR=nR));
 
     // N2,
     // H2O,
@@ -312,8 +312,7 @@ redeclare model extends HenryCoefficient
      parameter Boolean henry_temp = true;
 
       replaceable model HenryCoeff =
-      ThermalSeparation.Media.Correlations.HenryCoefficient.Exponential                                   constrainedby
-      ThermalSeparation.Media.Correlations.HenryCoefficient.BaseHenry;
+      ThermalSeparation.Media.Correlations.HenryCoefficient.Exponential                                   constrainedby ThermalSeparation.Media.Correlations.HenryCoefficient.BaseHenry;
     HenryCoeff henryCoeff(nS=nSubstance, henry_temp=henry_temp, henry_C=henry_C, henry_H=henry_H, x_l=x_l, T=T);
 equation
   for i in 1:nSubstance loop
@@ -326,12 +325,11 @@ end HenryCoefficient;
     redeclare model extends DiffusionCoefficient
     /*** model which shall be used to calculate the diffusion coefficients in a binary mixture ***/
       model D_Molecules =
-        ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.Molecule.Wilke_Chang_aq
-        (      phi=phi, MMX=MMX);
+        ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.Molecule.Wilke_Chang_aq (
+               phi=phi, MMX=MMX);
 
       model D_Ions =
-        ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.Ion.IndefDilutedIons
-        (                                                                                          lambda0=lambda0);
+        ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.Ion.IndefDilutedIons (    lambda0=lambda0);
 
     /*** model where the diffusion coefficients in a binary mixture are used to calculate the diffusion coefficients in a multicomponent mixture ***/
     ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.DiffMoleculesIons

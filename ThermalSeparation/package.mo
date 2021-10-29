@@ -8,7 +8,7 @@ import SI = Modelica.SIunits;
 
 annotation (preferedView="info",
   version="0.2",
-uses(Modelica(version="3.2.2")),
+uses(Modelica(version="3.2.3")),
      Icon(graphics={Ellipse(
         extent={{-70,70},{70,-70}},
         lineColor={0,0,0},

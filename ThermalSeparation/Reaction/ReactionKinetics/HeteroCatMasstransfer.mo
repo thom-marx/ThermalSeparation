@@ -5,8 +5,8 @@ model HeteroCatMasstransfer
 //Skript Keil, S. 126 - 148 und Bsp. S. 272
 //reaction kinetics taken into account
 extends BaseReaction(redeclare replaceable package MediumLiquid =
-        ThermalSeparation.Media.BaseMediumLiquidReaction, film=false, redeclare
-      replaceable record Geometry =
+        ThermalSeparation.Media.BaseMediumLiquidReaction, film=false, redeclare replaceable record
+                         Geometry =
         ThermalSeparation.Geometry.BasicGeoPackedColumn);
   constant Integer nR=MediumLiquid.nR "number of reactions";
   constant Real nu[nR,nS]=MediumLiquid.nu

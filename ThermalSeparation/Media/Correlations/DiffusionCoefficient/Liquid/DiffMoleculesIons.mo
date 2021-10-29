@@ -23,16 +23,14 @@ model DiffMoleculesIons
 /*** Diffusion model for molecules (=nonelectrolytes or undissociated electrolytes) ***/
    replaceable model D_Molecules =
       ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.Molecule.Const_Molecule
-                                               constrainedby
-    ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.Molecule.BaseMolecules
+                                               constrainedby ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.Molecule.BaseMolecules
                                                               annotation(choicesAllMatching=true);
    D_Molecules d_molecules( nS=nS, a=a, T=T, p=p, x=x, eta=eta, has_etaSubstance = has_etaSubstance);
 
    /*** Diffusion model for ions ***/
    replaceable model D_Ions =
       ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.Ion.Const_Ion
-    constrainedby
-    ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.Ion.BaseIons
+    constrainedby ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.Ion.BaseIons
                                                                  annotation(choicesAllMatching=true);
    D_Ions d_ion( nS=nS, T=T, ic=ic);
 

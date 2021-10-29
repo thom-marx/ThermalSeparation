@@ -84,16 +84,14 @@ model KettleReboilerEq "equilibrium model"
    constrainedby ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium "model for phase equilibrium"  annotation (choicesAllMatching=true);
 
       ThermoEquilibrium thermoEquilibrium(nS=nS,mapping = mapping,
-      redeclare replaceable package MediumVapour = MediumVapour, redeclare
-      replaceable package                                                                      MediumLiquid =
+      redeclare replaceable package MediumVapour = MediumVapour, redeclare replaceable package MediumLiquid =
       MediumLiquid, p=p_sys, T=T, x_v=x_v, x_l=x_l, p_sat=p_sat,  v_v=MM_v./rho_v,x_vap_liq=fill(1/nS,nS));
 
 /* Reaction */
 Modelica.SIunits.MolarFlowRate Ndot_l_transfer[nSL];
 
   replaceable model Reaction =
-  ThermalSeparation.Reaction.NoReaction constrainedby
-    ThermalSeparation.Reaction.BaseReaction                                                    "model for chemical reaction"                               annotation(choicesAllMatching=true);
+  ThermalSeparation.Reaction.NoReaction constrainedby ThermalSeparation.Reaction.BaseReaction  "model for chemical reaction"                               annotation(choicesAllMatching=true);
 
   Reaction reaction(
    final n=1, c=c_l, V=V_liq,Ndot_l_transfer=Ndot_l_transfer,  gamma=fill(1,nSL),
@@ -109,8 +107,7 @@ Modelica.SIunits.MolarFlowRate Ndot_l_transfer[nSL];
 
   replaceable model InnerHT =
       ThermalSeparation.HeatAndMassTransfer.HTResistance.NoHTResistance
-    constrainedby
-    ThermalSeparation.HeatAndMassTransfer.HTResistance.BaseHTResistance               "heat transfer mechanism between bulk and wall"                     annotation(choicesAllMatching=true);
+    constrainedby ThermalSeparation.HeatAndMassTransfer.HTResistance.BaseHTResistance "heat transfer mechanism between bulk and wall"                     annotation(choicesAllMatching=true);
 
   InnerHT innerHT(n=1,T={T},A={A_HT},Qdot={Q_in},p={p_sys});
 

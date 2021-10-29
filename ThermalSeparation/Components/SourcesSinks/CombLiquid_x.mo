@@ -7,8 +7,8 @@ model CombLiquid_x
 parameter SI.Temperature T_ref = systemTS.T_ref "reference temperature" annotation(Dialog(tab="Advanced"));
 
   replaceable package Medium =
-      ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O             constrainedby
-    ThermalSeparation.Media.BaseMediumLiquid "medium to be used"                                                         annotation(choicesAllMatching);
+      ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O             constrainedby ThermalSeparation.Media.BaseMediumLiquid
+                                             "medium to be used"                                                         annotation(choicesAllMatching);
 Medium.BaseProperties medium(T0=T_ref,p=1.5e5, T=T, x=x,h=liquidPortOut.h_outflow);
 SI.Temperature T;
 parameter Real mass = 10 "mass";

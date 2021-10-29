@@ -7,8 +7,8 @@ SI.MolarMass MM_v[n] = propsVap.MM;
 
    replaceable model ThermoEquilibrium =
       ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid
-                                 constrainedby
-    ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium annotation (Dialog(
+                                 constrainedby ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium
+                                                            annotation (Dialog(
       tab="Propagated from Column",
       group=
           "These variables are propagated from the column model and do not have to be set by the user!",
@@ -23,8 +23,7 @@ SI.MolarMass MM_v[n] = propsVap.MM;
   /*** state variables ***/
   replaceable model StateSelection =
       ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.BaseStateSelectionNoneq
-                                                                                                        constrainedby
-    ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.BaseStateSelectionNoneq
+                                                                                                        constrainedby ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.BaseStateSelectionNoneq
                                                                                 annotation(choicesAllMatching,Dialog(enable=enableDialog));
   StateSelection stateSelection(
      redeclare replaceable package MediumVapour =  MediumVapour,

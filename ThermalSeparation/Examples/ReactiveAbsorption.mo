@@ -56,11 +56,10 @@ ThermalSeparation.Components.Columns.SprayColumn column(
     c_v(start=fill({1,1,1,1,1,1,60}, 8)),
     c_l(start=fill({500,500,500,500,500,500,50000,1,1}, 8)),
     redeclare model BalanceEquations =
-        ThermalSeparation.BalanceEquations.SprayColumn.NonEquilibrium.TwoPhaseVarState
-        (redeclare model FilmModel = ThermalSeparation.FilmModel.SprayColumn.MS
-            (redeclare replaceable model StateSelection =
+        ThermalSeparation.BalanceEquations.SprayColumn.NonEquilibrium.TwoPhaseVarState (
+         redeclare model FilmModel = ThermalSeparation.FilmModel.SprayColumn.MS (
+             redeclare replaceable model StateSelection =
                 ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.None)),
-
     p_v_start_inlet=150500,
     p_v_start_outlet=150100,
     T_vapour_start(displayUnit="degC") = 323.15,

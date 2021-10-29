@@ -12,8 +12,7 @@ model StructuredPackedColumn
 /*** balance equations ***/
   replaceable model BalanceEquations =
       ThermalSeparation.BalanceEquations.StructuredPackedColumn.NonEquilibrium.TwoPhaseVarState
-                                                                                           constrainedby
-    ThermalSeparation.BalanceEquations.StructuredPackedColumn.BaseStructured
+                                                                                           constrainedby ThermalSeparation.BalanceEquations.StructuredPackedColumn.BaseStructured
     "selection balance equations, film model and states"  annotation(choicesAllMatching=true);
   BalanceEquations balanceEquations(
                                     redeclare replaceable model HomotopyMethod =
@@ -21,15 +20,15 @@ model StructuredPackedColumn
                                     redeclare replaceable package MediumLiquid =
         MediumLiquid,
                       redeclare replaceable model Reaction = Reaction,
-                                                                        redeclare
-      replaceable record  Geometry =                                                                             Geometry,
-                                                                        redeclare
-      replaceable model ThermoEquilibrium =
+                                                                        redeclare replaceable record
+                          Geometry =                                                                             Geometry,
+                                                                        redeclare replaceable model
+                        ThermoEquilibrium =
         ThermoEquilibrium,
-                                                                         redeclare
-      replaceable model   InitOption =                                                                              InitOption,
-                                                                                               redeclare
-      replaceable package MediumVapour =
+                                                                         redeclare replaceable model
+                          InitOption =                                                                              InitOption,
+                                                                                               redeclare replaceable package
+                          MediumVapour =
         MediumVapour,
                                     n=n,
                                               final nS=nS,
@@ -108,9 +107,7 @@ model StructuredPackedColumn
                                                                                                         delay_startUp);
 
    replaceable model InitOption =
-      ThermalSeparation.Components.Columns.BaseClasses.Initialization.Init_T_xv_p_Ndot0
-                                                                                                   constrainedby
-    ThermalSeparation.Components.Columns.BaseClasses.Initialization.BaseInit
+      ThermalSeparation.Components.Columns.BaseClasses.Initialization.Init_T_xv_p_Ndot0            constrainedby ThermalSeparation.Components.Columns.BaseClasses.Initialization.BaseInit
         annotation(Dialog(tab="Initialization"),choicesAllMatching=true);
 
  InitOption initOption(
@@ -123,8 +120,8 @@ model StructuredPackedColumn
 // eps_liq in m3 Flssigkeit / m3 freies Volumen
 // eps in m3 Solid / m3 gesamt
 
-  replaceable model Reaction = ThermalSeparation.Reaction.NoReaction constrainedby
-    ThermalSeparation.Reaction.BaseReaction "model for chemical reaction"                                                                            annotation(choicesAllMatching=true);
+  replaceable model Reaction = ThermalSeparation.Reaction.NoReaction constrainedby ThermalSeparation.Reaction.BaseReaction
+                                            "model for chemical reaction"                                                                            annotation(choicesAllMatching=true);
  Reaction reaction[n](redeclare record Geometry =  Geometry,propsLiq=mediumLiquid.properties,
        each final n= n,  c=c_l, V=A*H/n*(eps_liq), Ndot_l_transfer=Ndot_l_transfer,  gamma=activityCoeff[:].gamma,
     redeclare package MediumLiquid =   MediumLiquid);
@@ -141,14 +138,12 @@ model StructuredPackedColumn
 
 
   replaceable record Geometry =
-      ThermalSeparation.Geometry.StructuredPackedColumn.Geometry               constrainedby
-    ThermalSeparation.Geometry.StructuredPackedColumn.Geometry
+      ThermalSeparation.Geometry.StructuredPackedColumn.Geometry               constrainedby ThermalSeparation.Geometry.StructuredPackedColumn.Geometry
     "column geometry" annotation(choicesAllMatching);
 
    replaceable model PressureLoss =
       ThermalSeparation.PressureLoss.StructuredPackedColumn.Stichlmair (
-       redeclare record Geometry =                                                                    Geometry)                         constrainedby
-    ThermalSeparation.PressureLoss.StructuredPackedColumn.BasicPressureLossPacked
+       redeclare record Geometry =                                                                    Geometry)                         constrainedby ThermalSeparation.PressureLoss.StructuredPackedColumn.BasicPressureLossPacked
     "pressure loss correlation"                                                  annotation(choicesAllMatching);
 
   PressureLoss pressureLoss(redeclare model HomotopyMethod =
@@ -160,8 +155,7 @@ model StructuredPackedColumn
     Vdot_in=Vdot_v_in, hu_dyn = holdup.hu_dyn, eps_liq=eps_liq);
 
   replaceable model HeatTransferWall =
-      ThermalSeparation.Wall.ConstAlpha                                            constrainedby
-    ThermalSeparation.Wall.BaseWall
+      ThermalSeparation.Wall.ConstAlpha                                            constrainedby ThermalSeparation.Wall.BaseWall
     "heat transfer mechanism between bulk and wall"                                                                                                annotation(choicesAllMatching=true);
     //instances of connector for heat loss
   ThermalSeparation.Interfaces.HeatPort heatPort(Qdot=-sum(heatTransferWall.Qdot_out))
@@ -170,8 +164,7 @@ model StructuredPackedColumn
         iconTransformation(extent={{74,-10},{94,10}})));
 
   replaceable model Holdup =
-      ThermalSeparation.Holdup.StructuredPackedColumn.StichlmairStat              constrainedby
-    ThermalSeparation.Holdup.StructuredPackedColumn.BaseHoldup
+      ThermalSeparation.Holdup.StructuredPackedColumn.StichlmairStat              constrainedby ThermalSeparation.Holdup.StructuredPackedColumn.BaseHoldup
     "calculation of holdup inside the column"                                                                                                     annotation(choicesAllMatching);
   Holdup holdup(
       redeclare package MediumLiquid = MediumLiquid,

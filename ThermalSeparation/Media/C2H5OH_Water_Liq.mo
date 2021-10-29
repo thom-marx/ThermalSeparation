@@ -147,8 +147,7 @@ package C2H5OH_Water_Liq "2 components: C2H5OH, H2O"
 redeclare replaceable model extends ActivityCoefficient
 
   replaceable model ActivityCoeff =
-      ThermalSeparation.Media.Correlations.ActivityCoefficient.Ideal                                     constrainedby
-      ThermalSeparation.Media.Correlations.ActivityCoefficient.BaseActivityCoefficient
+      ThermalSeparation.Media.Correlations.ActivityCoefficient.Ideal                                     constrainedby ThermalSeparation.Media.Correlations.ActivityCoefficient.BaseActivityCoefficient
     annotation (choicesAllMatching=true, Dialog(tab="General", group=
           "Thermodynamic Equilibrium"));
    ActivityCoeff activityCoeff(nS=nSubstance, T=T, x_l = x_l);
@@ -162,9 +161,7 @@ redeclare model extends FugacityCoefficient
     "calculates the fugacity coefficient at the saturation point for each component in the liquid phase"
 
     replaceable model FugacityCoeff =
-      ThermalSeparation.Media.Correlations.SaturationFugacityCoefficient.SaturationFugacitycoefficient
-                                                                                                        constrainedby
-      ThermalSeparation.Media.Correlations.SaturationFugacityCoefficient.BaseFugacityCoefficient
+      ThermalSeparation.Media.Correlations.SaturationFugacityCoefficient.SaturationFugacitycoefficient  constrainedby ThermalSeparation.Media.Correlations.SaturationFugacityCoefficient.BaseFugacityCoefficient
     annotation (choicesAllMatching=true, Dialog(tab="General", group=
           "Thermodynamic Equilibrium"));
 

@@ -16,16 +16,14 @@ parameter Boolean EQ=filmModel.EQ;
 
 /*** geometry ***/
   replaceable record Geometry =
-      ThermalSeparation.Geometry.PlateColumn.Geometry                constrainedby
-    ThermalSeparation.Geometry.PlateColumn.Geometry "column geometry"          annotation(Dialog(tab="Propagated from Column",group="These variables are propagated from the column model and do not have to be set by the user!",enable=false));
+      ThermalSeparation.Geometry.PlateColumn.Geometry                constrainedby ThermalSeparation.Geometry.PlateColumn.Geometry
+                                                    "column geometry"          annotation(Dialog(tab="Propagated from Column",group="These variables are propagated from the column model and do not have to be set by the user!",enable=false));
 
  /*** film model ***/
    replaceable model FilmModel =
        ThermalSeparation.FilmModel.TrayColumn.MS (redeclare replaceable model
         StateSelection =
-      ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.StateSelection2)
-                                                                                                        constrainedby
-    ThermalSeparation.FilmModel.TrayColumn.BaseFilmTray(
+      ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.StateSelection2)       constrainedby ThermalSeparation.FilmModel.TrayColumn.BaseFilmTray(
      redeclare replaceable package MediumLiquid =  MediumLiquid,
          redeclare replaceable model Reaction =  Reaction,
          redeclare replaceable package MediumVapour =  MediumVapour)
@@ -39,8 +37,8 @@ parameter Boolean EQ=filmModel.EQ;
   stateLiq=stateLiq, stateVap=stateVap, Ndot_l_transfer=Ndot_l_transfer,
   eps_liq=eps_liq, eta_comp=propsLiq.eta_comp, x_l=x_l, p_sat=p_sat,x_v_in=x_v_in,gamma=gamma,
   redeclare final model ThermoEquilibrium =     ThermoEquilibrium,
-  c_v_star=c_v_star,x_vap_liq=x_vap_liq,F=F, F_max=F_max, eps_liq_2ph=eps_liq_2ph,h=h,redeclare
-      replaceable model HomotopyMethod =
+  c_v_star=c_v_star,x_vap_liq=x_vap_liq,F=F, F_max=F_max, eps_liq_2ph=eps_liq_2ph,h=h,redeclare replaceable model
+                        HomotopyMethod =
         HomotopyMethod,
           k=k,
           smooth_startUp=smooth_startUp,

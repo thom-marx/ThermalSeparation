@@ -299,8 +299,7 @@ redeclare model extends HenryCoefficient
      parameter Boolean henry_temp = true;
 
       replaceable model HenryCoeff =
-      ThermalSeparation.Media.Correlations.HenryCoefficient.Exponential                                   constrainedby
-      ThermalSeparation.Media.Correlations.HenryCoefficient.BaseHenry;
+      ThermalSeparation.Media.Correlations.HenryCoefficient.Exponential                                   constrainedby ThermalSeparation.Media.Correlations.HenryCoefficient.BaseHenry;
     HenryCoeff henryCoeff(nS=nSubstance, henry_temp=henry_temp, henry_C=henry_C, henry_H=henry_H, x_l=x_l, T=T);
 equation
   for i in 1:nSubstance loop
@@ -313,8 +312,8 @@ end HenryCoefficient;
     redeclare model extends DiffusionCoefficient
     /*** model which shall be used to calculate the diffusion coefficients in a binary mixture ***/
       model D_Molecules =
-        ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.Molecule.Wilke_Chang_aq
-        (    phi=phi, MMX=MMX);
+        ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.Molecule.Wilke_Chang_aq (
+             phi=phi, MMX=MMX);
 
     /*** model where the diffusion coefficients in a binary mixture are used to calculate the diffusion coefficients in a multicomponent mixture ***/
     ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.DiffMolecules

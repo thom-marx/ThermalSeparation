@@ -15,8 +15,7 @@ model StructuredPackedColumn_newStartUpShutDown
 
    replaceable model InitOption =
     ThermalSeparation.Components.Columns.BaseClasses.Initialization.Init_T_xv_p_Ndot0
-    constrainedby
-    ThermalSeparation.Components.Columns.BaseClasses.Initialization.BaseInit
+    constrainedby ThermalSeparation.Components.Columns.BaseClasses.Initialization.BaseInit
         annotation(Dialog(tab="Initialization"),choicesAllMatching=true);
 
  InitOption initOption(
@@ -36,12 +35,10 @@ model StructuredPackedColumn_newStartUpShutDown
     redeclare package MediumLiquid =   MediumLiquid);
 
   replaceable model FilmModel =
-      ThermalSeparation.FilmModel.StructuredPackedColumn.TrueEquilibriumStartUpCCSAbsorption
-      (
+      ThermalSeparation.FilmModel.StructuredPackedColumn.TrueEquilibriumStartUpCCSAbsorption (
       redeclare replaceable package MediumLiquid = MediumLiquid,
       redeclare replaceable model Reaction = Reaction,
-      redeclare replaceable package MediumVapour = MediumVapour) constrainedby
-    ThermalSeparation.FilmModel.StructuredPackedColumn.BaseFilmPacked(
+      redeclare replaceable package MediumVapour = MediumVapour) constrainedby ThermalSeparation.FilmModel.StructuredPackedColumn.BaseFilmPacked(
     redeclare replaceable package MediumLiquid = MediumLiquid,
     redeclare replaceable model Reaction = Reaction,
     redeclare replaceable package MediumVapour = MediumVapour) "heat and mass transfer mechanism across phase boundary"                                        annotation(choicesAllMatching=true);
@@ -67,15 +64,12 @@ propsLiq = mediumLiquid.properties, propsVap = mediumVapour.properties,
                                                                                             annotation(Dialog(enable=not wettedInitial, tab="Initialization", group="Initial liquid content"));
 
   replaceable record Geometry =
-      ThermalSeparation.Geometry.StructuredPackedColumn.Geometry constrainedby
-    ThermalSeparation.Geometry.StructuredPackedColumn.Geometry                                                                            "column geometry"
+      ThermalSeparation.Geometry.StructuredPackedColumn.Geometry constrainedby ThermalSeparation.Geometry.StructuredPackedColumn.Geometry "column geometry"
                                                                                             annotation(choicesAllMatching);
 
    replaceable model PressureLoss =
       ThermalSeparation.PressureLoss.StructuredPackedColumn.Stichlmair (
-        redeclare record Geometry = Geometry) constrainedby
-    ThermalSeparation.PressureLoss.StructuredPackedColumn.BasicPressureLossPacked
-                                                                                                                                          "pressure loss correlation"
+        redeclare record Geometry = Geometry) constrainedby ThermalSeparation.PressureLoss.StructuredPackedColumn.BasicPressureLossPacked "pressure loss correlation"
                                 annotation (choicesAllMatching);
 
   PressureLoss pressureLoss(redeclare model HomotopyMethod =
@@ -87,8 +81,7 @@ propsLiq = mediumLiquid.properties, propsVap = mediumVapour.properties,
     Vdot_in=Vdot_v_in, hu_dyn = holdup.hu_dyn, eps_liq=eps_liq);
 
   replaceable model HeatTransferWall =
-      ThermalSeparation.Wall.ConstAlpha constrainedby
-    ThermalSeparation.Wall.BaseWall                                                   "heat transfer mechanism between bulk and wall"              annotation(choicesAllMatching=true);
+      ThermalSeparation.Wall.ConstAlpha constrainedby ThermalSeparation.Wall.BaseWall "heat transfer mechanism between bulk and wall"              annotation(choicesAllMatching=true);
     //instances of connector for heat loss
   ThermalSeparation.Interfaces.HeatPort heatPort(Qdot=-sum(heatTransferWall.Qdot_out))
     annotation (Placement(transformation(extent={{74,-10},{94,10}}, rotation=0),

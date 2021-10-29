@@ -20,14 +20,14 @@ parameter InitOption initOption=InitOption.initEQ
     annotation(Dialog(tab="Initialization"),Evaluate=true);
   replaceable package MediumVapour =
       ThermalSeparation.Media.IdealGasMixtures.H2O_O2_CO2_N2
-                                                           constrainedby
-    ThermalSeparation.Media.BaseMediumVapour                                                          annotation(choicesAllMatching);
+                                                           constrainedby ThermalSeparation.Media.BaseMediumVapour
+                                                                                                      annotation(choicesAllMatching);
   MediumVapour.BaseProperties mediumVapour(c=c_v,T0=T_ref, p=p, T=T_v, x=x_v,  x_star=x_v);
 
 replaceable package MediumLiquid =
 ApplicationsThermalSeparation.Media.WaterBasedLiquid.BCBO_H2O_AAS
-                                                      constrainedby
-    ThermalSeparation.Media.BaseMediumLiquid                                                          annotation(choicesAllMatching);
+                                                      constrainedby ThermalSeparation.Media.BaseMediumLiquid
+                                                                                                      annotation(choicesAllMatching);
   MediumLiquid.BaseProperties mediumLiquid(T0=T_ref, p=p, T=T_l, x=x_l);
     MediumLiquid.BaseProperties mediumLiquidIn(T0=T_ref,p=p, T=T_l_in, x=x_l_in);
  parameter Integer mapping[nS,2] = {{1,2},{3,1}}
@@ -105,8 +105,7 @@ SI.MoleFraction x_v[nSV];
   parameter SI.Pressure p_start=1.025e5 annotation(Dialog(tab="Initialization"));
 
       replaceable model PressureLoss =
-      ThermalSeparation.PressureLoss.Reboiler.TubeHX                                  constrainedby
-    ThermalSeparation.PressureLoss.Reboiler.BasePressureLoss annotation (
+      ThermalSeparation.PressureLoss.Reboiler.TubeHX                                  constrainedby ThermalSeparation.PressureLoss.Reboiler.BasePressureLoss annotation (
       choicesAllMatching=true);
 PressureLoss pressureLoss(zeta=zeta, p_in = p_hyd[1], p_out = p_hyd[2], eps_liq = eps_liq, rho_l = rho_l, rho_v = rho_v, d_HX = d_HX, length_HX = length_HX, d_tube=d_tube, Nw=Nw);
 

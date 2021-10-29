@@ -7,8 +7,8 @@ SI.Density rho_v[n]=propsVap.rho;
 SI.MolarMass MM_v[n] = propsVap.MM;
 
    replaceable model ThermoEquilibrium =
-      ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby
-    ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium annotation (Dialog(
+      ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium
+                                                            annotation (Dialog(
       tab="Propagated from Column",
       group=
           "These variables are propagated from the column model and do not have to be set by the user!",
@@ -21,18 +21,16 @@ SI.MolarMass MM_v[n] = propsVap.MM;
     p=p_v[1:n], T=T_star, x_v=x_v_star, x_l=x_l_star, p_sat=p_sat,  v_v=MM_v./rho_v);
 
   replaceable model Enhancementfactor =
-      ThermalSeparation.FilmModel.BaseClasses.EnhancementFactor.BaseEnhancement
-                                                                                                        annotation(choicesAllMatching);
+      ThermalSeparation.FilmModel.BaseClasses.EnhancementFactor.BaseEnhancement                         annotation(choicesAllMatching);
 
-   Enhancementfactor enhancementfactor[n](each nS= nSL,c=c_l,c_l_star=c_l_star,eta_comp=eta_comp,k_l=k_l,p=p_v[1:n],T=T_l,x=x_l,redeclare
-      replaceable package MediumLiquid =
+   Enhancementfactor enhancementfactor[n](each nS= nSL,c=c_l,c_l_star=c_l_star,eta_comp=eta_comp,k_l=k_l,p=p_v[1:n],T=T_l,x=x_l,redeclare replaceable package
+                          MediumLiquid =
          MediumLiquid, gamma=gamma, propsLiq=propsLiq);
 
   /*** state variables ***/
   replaceable model StateSelection =
       ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.BaseStateSelectionNoneq
-                                                                                                        constrainedby
-    ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.BaseStateSelectionNoneq
+                                                                                                        constrainedby ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.BaseStateSelectionNoneq
                                                                                 annotation(choicesAllMatching,Dialog(enable=enableDialog));
   StateSelection stateSelection(
      redeclare replaceable package MediumVapour =  MediumVapour,

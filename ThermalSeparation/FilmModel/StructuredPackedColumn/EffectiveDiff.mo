@@ -11,9 +11,7 @@ extends ThermalSeparation.FilmModel.BaseClasses.EffectiveDiff(redeclare record
 Geometry geometry(n=n);
 
       replaceable model InterfacialArea =
-      ThermalSeparation.HeatAndMassTransfer.InterfacialArea.StructuredPackedColumn.RochaStructured
-                                                                                                        constrainedby
-    ThermalSeparation.HeatAndMassTransfer.InterfacialArea.StructuredPackedColumn.BasePacked
+      ThermalSeparation.HeatAndMassTransfer.InterfacialArea.StructuredPackedColumn.RochaStructured      constrainedby ThermalSeparation.HeatAndMassTransfer.InterfacialArea.StructuredPackedColumn.BasePacked
                                                                                                       annotation(choicesAllMatching=true,Dialog( tab="Heat and Mass Transfer", group="Contact area between liquid and vapour phase"));
     InterfacialArea interfacialArea(
       redeclare record Geometry=Geometry,
@@ -21,8 +19,7 @@ Geometry geometry(n=n);
 
 replaceable model MassTransferCoeffVap =
       ThermalSeparation.HeatAndMassTransfer.StructuredPackedColumn.Vapour.RochaStructured
-   constrainedby
-    ThermalSeparation.HeatAndMassTransfer.StructuredPackedColumn.Vapour.BaseVapMT
+   constrainedby ThermalSeparation.HeatAndMassTransfer.StructuredPackedColumn.Vapour.BaseVapMT
      annotation(choicesAllMatching=true,Dialog( tab="Heat and Mass Transfer", group="Liquid and vapour mass transfer"));
 
  MassTransferCoeffVap massTransferCoeffVap(
@@ -31,8 +28,7 @@ replaceable model MassTransferCoeffVap =
 
 replaceable model MassTransferCoeffLiq =
       ThermalSeparation.HeatAndMassTransfer.StructuredPackedColumn.Liquid.RochaStructured
-   constrainedby
-    ThermalSeparation.HeatAndMassTransfer.StructuredPackedColumn.Liquid.BaseLiqMT
+   constrainedby ThermalSeparation.HeatAndMassTransfer.StructuredPackedColumn.Liquid.BaseLiqMT
      annotation(choicesAllMatching=true,Dialog( tab="Heat and Mass Transfer", group="Liquid and vapour mass transfer"));
 
  MassTransferCoeffLiq massTransferCoeffLiq(
@@ -41,8 +37,7 @@ replaceable model MassTransferCoeffLiq =
 
    replaceable model HeatTransferVapour =
       ThermalSeparation.HeatAndMassTransfer.InterfacialHeatTransferCoefficient.Vapour.Constant
-     constrainedby
-    ThermalSeparation.HeatAndMassTransfer.InterfacialHeatTransferCoefficient.Vapour.BaseVapour
+     constrainedby ThermalSeparation.HeatAndMassTransfer.InterfacialHeatTransferCoefficient.Vapour.BaseVapour
                                                                                                         annotation(choicesAllMatching=true,Dialog( tab="Heat and Mass Transfer", group="Heat transfer between liquid and vapour phase"));
 
    HeatTransferVapour heatTransferCoeffVap(
@@ -52,8 +47,7 @@ replaceable model MassTransferCoeffLiq =
 
      replaceable model HeatTransferLiquid =
       ThermalSeparation.HeatAndMassTransfer.InterfacialHeatTransferCoefficient.Liquid.Constant
-     constrainedby
-    ThermalSeparation.HeatAndMassTransfer.InterfacialHeatTransferCoefficient.Liquid.BaseLiquid
+     constrainedby ThermalSeparation.HeatAndMassTransfer.InterfacialHeatTransferCoefficient.Liquid.BaseLiquid
                                                                                                         annotation(choicesAllMatching=true,Dialog( tab="Heat and Mass Transfer", group="Heat transfer between liquid and vapour phase"));
 
    HeatTransferLiquid heatTransferCoeffLiq(

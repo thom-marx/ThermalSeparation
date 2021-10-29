@@ -14,8 +14,8 @@ ThermalSeparation.Components.SourcesSinks.SourceLiquid
             {10,10}}, rotation=270,
         origin={6,88})));
 ThermalSeparation.Components.SourcesSinks.SinkLiquid
-                                            sinkLiquid(         redeclare
-      package Medium = ThermalSeparation.Media.WaterBasedLiquid.N2_O2_H2O)
+                                            sinkLiquid(         redeclare package
+              Medium = ThermalSeparation.Media.WaterBasedLiquid.N2_O2_H2O)
                       annotation (Placement(transformation(extent={{-10,-10},{
             10,10}},
                    rotation=270,
@@ -67,9 +67,9 @@ Components.Columns.SprayColumn                              column1(
            {0.8,0.8,0.8}),
     n_elements=10,
     redeclare model BalanceEquations =
-        ThermalSeparation.BalanceEquations.SprayColumn.NonEquilibrium.TwoPhaseVarState
-        (redeclare model FilmModel = ThermalSeparation.FilmModel.SprayColumn.MS
-            (redeclare replaceable model StateSelection =
+        ThermalSeparation.BalanceEquations.SprayColumn.NonEquilibrium.TwoPhaseVarState (
+         redeclare model FilmModel = ThermalSeparation.FilmModel.SprayColumn.MS (
+             redeclare replaceable model StateSelection =
                 ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.StateSelection1)),
     redeclare model PressureLoss =
         ThermalSeparation.PressureLoss.SprayColumn.PipeFlow,

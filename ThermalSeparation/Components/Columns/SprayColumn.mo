@@ -12,9 +12,7 @@ model SprayColumn
 
 /*** balance equations ***/
   replaceable model BalanceEquations =
-      ThermalSeparation.BalanceEquations.SprayColumn.NonEquilibrium.TwoPhaseVarState
-                                                                                           constrainedby
-    ThermalSeparation.BalanceEquations.SprayColumn.BaseSpray
+      ThermalSeparation.BalanceEquations.SprayColumn.NonEquilibrium.TwoPhaseVarState       constrainedby ThermalSeparation.BalanceEquations.SprayColumn.BaseSpray
     "selection balance equations, film model and states"  annotation(choicesAllMatching=true);
   BalanceEquations balanceEquations(
                                     redeclare replaceable model HomotopyMethod =
@@ -22,15 +20,15 @@ model SprayColumn
                                     redeclare replaceable package MediumLiquid =
         MediumLiquid,
                       redeclare replaceable model Reaction = Reaction,
-                                                                        redeclare
-      replaceable record  Geometry =                                                                             Geometry,
-                                                                        redeclare
-      replaceable model ThermoEquilibrium =
+                                                                        redeclare replaceable record
+                          Geometry =                                                                             Geometry,
+                                                                        redeclare replaceable model
+                        ThermoEquilibrium =
         ThermoEquilibrium,
-                                                                         redeclare
-      replaceable model   InitOption =                                                                              InitOption,
-                                                                                               redeclare
-      replaceable package MediumVapour =
+                                                                         redeclare replaceable model
+                          InitOption =                                                                              InitOption,
+                                                                                               redeclare replaceable package
+                          MediumVapour =
         MediumVapour,
                                     final n=n,
                                               final nS=nS,
@@ -108,9 +106,7 @@ model SprayColumn
                                                                                                         delay_startUp);
 
   replaceable model InitOption =
-      ThermalSeparation.Components.Columns.BaseClasses.Initialization.Init_T_xv_p_Ndot0
-                                                                                                   constrainedby
-    ThermalSeparation.Components.Columns.BaseClasses.Initialization.BaseInit
+      ThermalSeparation.Components.Columns.BaseClasses.Initialization.Init_T_xv_p_Ndot0            constrainedby ThermalSeparation.Components.Columns.BaseClasses.Initialization.BaseInit
         annotation(Dialog(tab="Initialization"),choicesAllMatching=true);
 
  InitOption initOption(
@@ -123,8 +119,8 @@ model SprayColumn
 // eps_liq in m3 Flssigkeit / m3 freies Volumen
 // eps in m3 Solid / m3 gesamt
 
-  replaceable model Reaction = ThermalSeparation.Reaction.NoReaction constrainedby
-    ThermalSeparation.Reaction.BaseReaction "model for chemical reaction"                                                                            annotation(choicesAllMatching=true);
+  replaceable model Reaction = ThermalSeparation.Reaction.NoReaction constrainedby ThermalSeparation.Reaction.BaseReaction
+                                            "model for chemical reaction"                                                                            annotation(choicesAllMatching=true);
  Reaction reaction[n](redeclare record Geometry =  Geometry,propsLiq=mediumLiquid.properties,
        each final n= n,  c=c_l, V=A*H/n*(eps_liq), Ndot_l_transfer=Ndot_l_transfer,  gamma=activityCoeff[:].gamma,
     redeclare package MediumLiquid =   MediumLiquid);
@@ -134,9 +130,8 @@ model SprayColumn
     "number of discrete elements, or number of equilibrium stages (for equilibrium film model)";
 
   replaceable model PressureLoss =
-      ThermalSeparation.PressureLoss.SprayColumn.PipeFlow (                redeclare
-        record Geometry =                                                                            Geometry)                         constrainedby
-    ThermalSeparation.PressureLoss.SprayColumn.BasicPressureLossSpray
+      ThermalSeparation.PressureLoss.SprayColumn.PipeFlow (                redeclare record
+               Geometry =                                                                            Geometry)                         constrainedby ThermalSeparation.PressureLoss.SprayColumn.BasicPressureLossSpray
                                                      annotation(choicesAllMatching);
 
     PressureLoss pressureLoss(redeclare model HomotopyMethod =
@@ -147,8 +142,8 @@ model SprayColumn
     redeclare record Geometry = Geometry, final n=n,p= p_hyd, Vdot_in=Vdot_v_in,   eps_liq=eps_liq);
 
   replaceable model HeatTransferWall =
-      ThermalSeparation.Wall.ConstAlpha                                            constrainedby
-    ThermalSeparation.Wall.BaseWall                                                                 annotation(choicesAllMatching=true);
+      ThermalSeparation.Wall.ConstAlpha                                            constrainedby ThermalSeparation.Wall.BaseWall
+                                                                                                    annotation(choicesAllMatching=true);
     //instances of connector for heat loss
   ThermalSeparation.Interfaces.HeatPort heatPort(Qdot=-sum(heatTransferWall.Qdot_out))
     annotation (Placement(transformation(extent={{72,-10},{92,10}},
@@ -157,17 +152,16 @@ model SprayColumn
 
     /*** geometry ***/
     replaceable record Geometry =
-      ThermalSeparation.Geometry.StructuredPackedColumn.Geometry                constrainedby
-    ThermalSeparation.Geometry.StructuredPackedColumn.Geometry                                                                  annotation(choicesAllMatching);
+      ThermalSeparation.Geometry.StructuredPackedColumn.Geometry                constrainedby ThermalSeparation.Geometry.StructuredPackedColumn.Geometry
+                                                                                                                                annotation(choicesAllMatching);
   Geometry geometry(n=n);
 
-  HeatTransferWall heatTransferWall(n=n,T=T, T_amb=heatPort.T, T_start = T_l_start[1], redeclare
-      record Geometry =
+  HeatTransferWall heatTransferWall(n=n,T=T, T_amb=heatPort.T, T_start = T_l_start[1], redeclare record
+             Geometry =
         Geometry);
 
    replaceable model Holdup =
-      ThermalSeparation.Holdup.SprayColumn.IdealDroplets                         constrainedby
-    ThermalSeparation.Holdup.SprayColumn.BaseHoldup                                                                                            annotation(choicesAllMatching=true);
+      ThermalSeparation.Holdup.SprayColumn.IdealDroplets                         constrainedby ThermalSeparation.Holdup.SprayColumn.BaseHoldup annotation(choicesAllMatching=true);
 
    Holdup holdup(redeclare record Geometry = Geometry, n=n, rho_l=rho_l, rho_v=rho_v, eta_v = mediumVapour.eta, Vdot_v=Vdot_v, eps_liq=eps_liq, Vdot_l_in = Vdot_l_in);
 

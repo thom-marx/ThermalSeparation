@@ -4,8 +4,7 @@ partial model BaseFilmTray "base film model for tray column"
      annotation(Dialog(tab="Propagated from Column",group="These variables are propagated from the column model and do not have to be set by the user!",enable=false));
 
   replaceable record Geometry =
-      ThermalSeparation.Geometry.PlateColumn.Geometry                           constrainedby
-    ThermalSeparation.Geometry.PlateColumn.Geometry
+      ThermalSeparation.Geometry.PlateColumn.Geometry                           constrainedby ThermalSeparation.Geometry.PlateColumn.Geometry
   annotation(Dialog(tab="Propagated from Column",group="These variables are propagated from the column model and do not have to be set by the user!",enable=false));
 
   input Real eps_liq_2ph[nn]

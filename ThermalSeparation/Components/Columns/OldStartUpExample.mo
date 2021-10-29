@@ -50,8 +50,7 @@ package OldStartUpExample
       redeclare model ThermoEquilibrium =
           ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid,
       redeclare model Reaction =
-          ThermalSeparation.Reaction.ReactionKinetics.PseudoHomegeneousCatalysis
-          (                                                                                              m_cat=1850),
+          ThermalSeparation.Reaction.ReactionKinetics.PseudoHomegeneousCatalysis (                       m_cat=1850),
       p_v_start_inlet=100000,
       p_v_start_outlet=100000,
       T_vap_start_bottom=373.15,
@@ -61,9 +60,7 @@ package OldStartUpExample
       T_vapour_start=298.15,
       T_liquid_start=298.15,
       redeclare model BalanceEquations =
-          ThermalSeparation.BalanceEquations.StructuredPackedColumn.NonEquilibrium.TwoPhaseVarState
-          (                                                                                                                         redeclare
-            model                                                                                                                                   FilmModel =
+          ThermalSeparation.BalanceEquations.StructuredPackedColumn.NonEquilibrium.TwoPhaseVarState (                               redeclare model FilmModel =
               ThermalSeparation.FilmModel.StructuredPackedColumn.MS))
                              annotation (Placement(transformation(extent={{-46,-18},{8,34}},
                             rotation=0)));
@@ -135,10 +132,9 @@ package OldStartUpExample
       T_vapour_start=298.15,
       T_liquid_start=298.15,
       redeclare model BalanceEquations =
-          ThermalSeparation.BalanceEquations.StructuredPackedColumn.NonEquilibrium.TwoPhaseVarState
-          (redeclare model FilmModel =
-              ThermalSeparation.FilmModel.StructuredPackedColumn.MS (redeclare
-                replaceable model                                                                StateSelection =
+          ThermalSeparation.BalanceEquations.StructuredPackedColumn.NonEquilibrium.TwoPhaseVarState (
+           redeclare model FilmModel =
+              ThermalSeparation.FilmModel.StructuredPackedColumn.MS (redeclare replaceable model StateSelection =
                   ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.StateSelection1)))
                              annotation (Placement(transformation(extent={{-42,96},
               {12,148}},    rotation=0)));
@@ -257,10 +253,9 @@ package OldStartUpExample
       T_vapour_start=298.15,
       T_liquid_start=298.15,
       redeclare model BalanceEquations =
-          ThermalSeparation.BalanceEquations.StructuredPackedColumn.NonEquilibrium.TwoPhaseVarState
-          (redeclare model FilmModel =
-              ThermalSeparation.FilmModel.StructuredPackedColumn.MS (redeclare
-                replaceable model                                                                StateSelection =
+          ThermalSeparation.BalanceEquations.StructuredPackedColumn.NonEquilibrium.TwoPhaseVarState (
+           redeclare model FilmModel =
+              ThermalSeparation.FilmModel.StructuredPackedColumn.MS (redeclare replaceable model StateSelection =
                   ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.StateSelection3)))
                              annotation (Placement(transformation(extent={{-40,-88},
               {14,-36}},    rotation=0)));

@@ -23,118 +23,106 @@ package Testing
       // Modelica.SIunits.MassFlowRate bal_comb1 = combLiquid_x1.liquidPortIn1.Vdot*combLiquid_x1.mediumIn1.d+combLiquid_x1.liquidPortIn2.Vdot*combLiquid_x1.mediumIn2.d+combLiquid_x1.liquidPortOut.Vdot*combLiquid_x1.mediumOut.d;
       //
       // Modelica.SIunits.MassFlowRate bal_total = Absorber.upStreamIn.Vdot*Absorber.mediumVapourIn.d+Absorber.upStreamOut.Vdot*Absorber.mediumVapour[30].d+ flash_Condenser_simple.gasPortOut.Vdot*flash_Condenser_simple.mediumVapour.d+combLiquid_x1.liquidPortIn1.Vdot*combLiquid_x1.mediumIn1.d;
-      ThermalSeparation.Components.Columns.StructuredPackedColumn Absorber(inertVapour = {false, true, false, true}, inertLiquid = {false, false, true}, nS = 2, redeclare
-          model                                                                                                                                                                  HeatTransferWall =
-            ThermalSeparation.Wall.Adiabatic,                                                                                                                                                                                         mapping = {{1, 1}, {3, 2}}, wettedInitial = false, x_l_start_const = {0.88, 0.01, 0.11}, redeclare
-          record                                                                                                                                                                                                         Geometry =
-            ThermalSeparation.Geometry.StructuredPackedColumn.Mellapak250Y (                                                                                                                                                                                                        d = 15, H = 15), redeclare
-          model                                                                                                                                                                                                         PressureLoss =
-            ThermalSeparation.PressureLoss.StructuredPackedColumn.Stichlmair,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         Holdup =
-            ThermalSeparation.Holdup.StructuredPackedColumn.StichlmairStat,                                                                                                                                                                                                        eps_liq_start = 0.05, x_v_start_const = {0.1841, 0.0471, 0.08, 0.7}, redeclare
-          package                                                                                                                                                                                                         MediumVapour =
-            Media.H2O_O2_CO2_N2_Vap,                                                                                                                                                                                                        redeclare
-          package                                                                                                                                                                                                         MediumLiquid =
-            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         ThermoEquilibrium =
-            PhaseEquilibrium.H2O_CO2_MEA (                                                                                                                                                                                                        factor_K = {1, 1.1, 1}), redeclare
-          model                                                                                                                                                                                                         Reaction =
-            Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         BalanceEquations =
-            BalanceEquations.StructuredPackedColumn.NonEquilibrium.TwoPhaseVarState
-            (                                                                                                                                                                                                        redeclare
-              model                                                                                                                                                                                                         FilmModel =
-                ThermalSeparation.FilmModel.StructuredPackedColumn.TrueEquilibrium),                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         InitOption =
+      ThermalSeparation.Components.Columns.StructuredPackedColumn Absorber(inertVapour = {false, true, false, true}, inertLiquid = {false, false, true}, nS = 2, redeclare model HeatTransferWall =
+            ThermalSeparation.Wall.Adiabatic,                                                                                                                                                                                         mapping = {{1, 1}, {3, 2}}, wettedInitial = false, x_l_start_const = {0.88, 0.01, 0.11}, redeclare record
+                                                                                                                                                                                                        Geometry =
+            ThermalSeparation.Geometry.StructuredPackedColumn.Mellapak250Y (                                                                                                                                                                                                        d = 15, H = 15), redeclare model
+                                                                                                                                                                                                        PressureLoss =
+            ThermalSeparation.PressureLoss.StructuredPackedColumn.Stichlmair,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        Holdup =
+            ThermalSeparation.Holdup.StructuredPackedColumn.StichlmairStat,                                                                                                                                                                                                        eps_liq_start = 0.05, x_v_start_const = {0.1841, 0.0471, 0.08, 0.7}, redeclare package
+                                                                                                                                                                                                        MediumVapour =
+            Media.H2O_O2_CO2_N2_Vap,                                                                                                                                                                                                        redeclare package
+                                                                                                                                                                                                        MediumLiquid =
+            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        ThermoEquilibrium =
+            PhaseEquilibrium.H2O_CO2_MEA (                                                                                                                                                                                                        factor_K = {1, 1.1, 1}), redeclare model
+                                                                                                                                                                                                        Reaction =
+            Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        BalanceEquations =
+            BalanceEquations.StructuredPackedColumn.NonEquilibrium.TwoPhaseVarState (                                                                                                                                redeclare model
+                                                                                                                                                                                                        FilmModel =
+                ThermalSeparation.FilmModel.StructuredPackedColumn.TrueEquilibrium),                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        InitOption =
             Components.Columns.BaseClasses.Initialization.Dyncap1_GG,                                                                                                                                                                                                        p_v_start_inlet = 100500, p_v_start_outlet = 100000, T_vapour_start = 323.15, T_liquid_start = 323.15, n_elements = 25) annotation (
         Placement(transformation(extent = {{-88, -42}, {-42, 4}})));
-      ThermalSeparation.Components.SourcesSinks.SinkGas sinkGas(redeclare
-          package                                                                 Medium =
+      ThermalSeparation.Components.SourcesSinks.SinkGas sinkGas(redeclare package Medium =
             Media.H2O_O2_CO2_N2_Vap,                                                                                p = 97000) annotation (
         Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 90, origin = {-81, 46})));
       inner ThermalSeparation.SystemTS systemTS annotation (
         Placement(transformation(extent = {{-100, 80}, {-80, 100}})));
-      ThermalSeparation.Components.SourcesSinks.SourceGas sourceGas_Vdot(flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowMdot, x = {0.075, 0.034, 0.145, 0.746}, redeclare
-          package                                                                                                                                                                                                     Medium =
+      ThermalSeparation.Components.SourcesSinks.SourceGas sourceGas_Vdot(flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowMdot, x = {0.075, 0.034, 0.145, 0.746}, redeclare package Medium =
             Media.H2O_O2_CO2_N2_Vap,                                                                                                                                                                                                        T = 308.15) annotation (
         Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 90, origin = {-81, -66})));
       Modelica.Blocks.Sources.Ramp Vdot(offset = 330, duration = 0.1, height = -0.2 * 330, startTime = 2000) annotation (
         Placement(transformation(extent = {{-77, -94}, {-85, -86}})));
       ThermalSeparation.Components.SourcesSinks.AmbientHeatSink ambientHeatSink annotation (
         Placement(transformation(extent = {{-38, -24}, {-26, -12}})));
-      ThermalSeparation.Components.HeatExchanger.CcounterFlowHeatExchanger counterFlowHeatExchanger(c_l_start_hot = fill(1000, 3), c_l_start_cold = fill(1000, 3), ss_hot_c2 = false, ss_cold_c2 = false, nScold = 2, surfaceArea = 3, redeclare
-          package                                                                                                                                                                                                         MediumLiquidCold =
-            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare
-          package                                                                                                                                                                                                         MediumLiquidHot =
+      ThermalSeparation.Components.HeatExchanger.CcounterFlowHeatExchanger counterFlowHeatExchanger(c_l_start_hot = fill(1000, 3), c_l_start_cold = fill(1000, 3), ss_hot_c2 = false, ss_cold_c2 = false, nScold = 2, surfaceArea = 3, redeclare package
+                                                                                                                                                                                                        MediumLiquidCold =
+            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare package
+                                                                                                                                                                                                        MediumLiquidHot =
             Media.H2O_CO2_MEA_Liq)                                                                                                                                                                                                         annotation (
         Placement(transformation(extent = {{-14, -2}, {20, -32}})));
-      ThermalSeparation.Components.HeatExchanger.LiquidCooler cooler(T_set = 313.15, redeclare
-          package                                                                                      MediumLiquid =
+      ThermalSeparation.Components.HeatExchanger.LiquidCooler cooler(T_set = 313.15, redeclare package MediumLiquid =
             Media.H2O_CO2_MEA_Liq)                                                                                                           annotation (
         Placement(transformation(extent = {{7, -9}, {-7, 9}}, rotation = 270, origin = {-33, 15})));
       ThermalSeparation.Components.SourcesSinks.AmbientHeatSink ambientHeatSink1 annotation (
         Placement(transformation(extent = {{-20, 28}, {-12, 36}})));
       ThermalSeparation.Components.SourcesSinks.AmbientHeatSink ambientHeatSink2 annotation (
         Placement(transformation(extent = {{130, 15}, {142, 24}})));
-      ThermalSeparation.Components.SourcesSinks.SinkGas sinkGas1(redeclare
-          package                                                                  Medium =
+      ThermalSeparation.Components.SourcesSinks.SinkGas sinkGas1(redeclare package Medium =
             Media.H2O_CO2_Vap,                                                                                 p = 200000) annotation (
         Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 90, origin = {97, 86})));
-      ThermalSeparation.Components.Reboiler.KettleReboilerEq sumpV(A = 50, H = 2, inert_Liquid = {false, false, true}, A_HT = 150, eps_liq_init = 0.58, x_total_start = {0.8, 0.2}, init_standalone = false, fixed_mol_init = 7, redeclare
-          model                                                                                                                                                                                                         InnerHT =
-            ThermalSeparation.HeatAndMassTransfer.HTResistance.NoHTResistance,                                                                                                                                                                                                        redeclare
-          package                                                                                                                                                                                                         MediumVapour =
-            Media.H2O_CO2_Vap,                                                                                                                                                                                                        redeclare
-          package                                                                                                                                                                                                         MediumLiquid =
-            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         ThermoEquilibrium =
-            PhaseEquilibrium.H2O_CO2_MEA,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         Reaction =
+      ThermalSeparation.Components.Reboiler.KettleReboilerEq sumpV(A = 50, H = 2, inert_Liquid = {false, false, true}, A_HT = 150, eps_liq_init = 0.58, x_total_start = {0.8, 0.2}, init_standalone = false, fixed_mol_init = 7, redeclare model
+                                                                                                                                                                                                        InnerHT =
+            ThermalSeparation.HeatAndMassTransfer.HTResistance.NoHTResistance,                                                                                                                                                                                                        redeclare package
+                                                                                                                                                                                                        MediumVapour =
+            Media.H2O_CO2_Vap,                                                                                                                                                                                                        redeclare package
+                                                                                                                                                                                                        MediumLiquid =
+            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        ThermoEquilibrium =
+            PhaseEquilibrium.H2O_CO2_MEA,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        Reaction =
             Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        init_option = ThermalSeparation.Components.Reboiler.InitOptionEq.init_mol, T_init = 397.15, p_init = 213000) annotation (
         Placement(transformation(extent = {{94, -38}, {114, -18}})));
       Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow annotation (
         Placement(transformation(extent = {{70, -35}, {84, -21}})));
-      ThermalSeparation.Components.Columns.StructuredPackedColumn Desorber(mapping = {{1, 1}, {2, 2}}, inertLiquid = {false, false, true}, redeclare
-          model                                                                                                                                            HeatTransferWall =
-            ThermalSeparation.Wall.Adiabatic,                                                                                                                                                                   T_l_profile = false, x_l_start_in = {0.8, 0.1, 0.1}, x_l_start_out = {0.5, 0.2, 0.3}, x_l_profile = false, wettedInitial = true, T_v_profile = false, x_l_start_const = {0.6, 0.25, 0.15}, x_v_start_const = {0.35, 0.65}, nS = 2, redeclare
-          model                                                                                                                                                                                                         PressureLoss =
-            ThermalSeparation.PressureLoss.StructuredPackedColumn.Stichlmair,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         Holdup =
-            ThermalSeparation.Holdup.StructuredPackedColumn.StichlmairStat,                                                                                                                                                                                                        eps_liq_start = 0.05, redeclare
-          package                                                                                                                                                                                                         MediumVapour =
-            Media.H2O_CO2_Vap,                                                                                                                                                                                                        redeclare
-          package                                                                                                                                                                                                         MediumLiquid =
-            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         ThermoEquilibrium =
-            PhaseEquilibrium.H2O_CO2_MEA,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         Reaction =
-            Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        redeclare
-          record                                                                                                                                                                                                         Geometry =
-            Geometry.StructuredPackedColumn.Mellapak250Y (                                                                                                                                                                                                        d = 8.65), redeclare
-          model                                                                                                                                                                                                         BalanceEquations =
-            BalanceEquations.StructuredPackedColumn.NonEquilibrium.TwoPhaseVarState
-            (                                                                                                                                                                                                        redeclare
-              model                                                                                                                                                                                                         FilmModel =
-                ThermalSeparation.FilmModel.StructuredPackedColumn.TrueEquilibrium),                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         InitOption =
+      ThermalSeparation.Components.Columns.StructuredPackedColumn Desorber(mapping = {{1, 1}, {2, 2}}, inertLiquid = {false, false, true}, redeclare model HeatTransferWall =
+            ThermalSeparation.Wall.Adiabatic,                                                                                                                                                                   T_l_profile = false, x_l_start_in = {0.8, 0.1, 0.1}, x_l_start_out = {0.5, 0.2, 0.3}, x_l_profile = false, wettedInitial = true, T_v_profile = false, x_l_start_const = {0.6, 0.25, 0.15}, x_v_start_const = {0.35, 0.65}, nS = 2, redeclare model
+                                                                                                                                                                                                        PressureLoss =
+            ThermalSeparation.PressureLoss.StructuredPackedColumn.Stichlmair,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        Holdup =
+            ThermalSeparation.Holdup.StructuredPackedColumn.StichlmairStat,                                                                                                                                                                                                        eps_liq_start = 0.05, redeclare package
+                                                                                                                                                                                                        MediumVapour =
+            Media.H2O_CO2_Vap,                                                                                                                                                                                                        redeclare package
+                                                                                                                                                                                                        MediumLiquid =
+            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        ThermoEquilibrium =
+            PhaseEquilibrium.H2O_CO2_MEA,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        Reaction =
+            Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        redeclare record
+                                                                                                                                                                                                        Geometry =
+            Geometry.StructuredPackedColumn.Mellapak250Y (                                                                                                                                                                                                        d = 8.65), redeclare model
+                                                                                                                                                                                                        BalanceEquations =
+            BalanceEquations.StructuredPackedColumn.NonEquilibrium.TwoPhaseVarState (                                                                                                                                redeclare model
+                                                                                                                                                                                                        FilmModel =
+                ThermalSeparation.FilmModel.StructuredPackedColumn.TrueEquilibrium),                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        InitOption =
             Components.Columns.BaseClasses.Initialization.Dyncap1_GG,                                                                                                                                                                                                        n_elements = 30, p_v_start_inlet = 200500, p_v_start_outlet = 200000, T_vap_start_bottom = 383.15, T_vap_start_top = 373.15, T_vapour_start = 373.15, T_liquid_start = 393.15) annotation (
         Placement(transformation(extent = {{80, -5}, {126, 41}})));
-      ThermalSeparation.Components.Pumps.idealPumpControlledVdot idealPumpControlledVdot(V_flow_start = 0.9, T = 1, dT = 0.5, redeclare
-          package                                                                                                                               MediumLiquid =
+      ThermalSeparation.Components.Pumps.idealPumpControlledVdot idealPumpControlledVdot(V_flow_start = 0.9, T = 1, dT = 0.5, redeclare package MediumLiquid =
             Media.H2O_CO2_MEA_Liq)                                                                                                                                                    annotation (
         Placement(transformation(extent = {{11, -10}, {-11, 10}}, rotation = 90, origin = {51, -88})));
       Modelica.Blocks.Continuous.LimPID PID(yMin = 0, y_start = 0.9, yMax = 1.2, controllerType = Modelica.Blocks.Types.SimpleController.PI, initType = Modelica.Blocks.Types.InitPID.InitialOutput, k = 1, Ti = 10) annotation (
         Placement(transformation(extent = {{4, -4}, {-4, 4}}, rotation = 0, origin = {34, -54})));
-      ThermalSeparation.Components.LiquidVolumes.Tank tank(inertLiquid = {false, false, true}, x_l_start = {0.868, 0.022, 0.11}, d_volume = 3, redeclare
-          package                                                                                                                                                MediumLiquid =
+      ThermalSeparation.Components.LiquidVolumes.Tank tank(inertLiquid = {false, false, true}, x_l_start = {0.868, 0.022, 0.11}, d_volume = 3, redeclare package MediumLiquid =
             Media.H2O_CO2_MEA_Liq,                                                                                                                                                                     p_gas = 100000, T_start = 393.15, level_start = 10) annotation (
         Placement(transformation(extent = {{8.5, -9}, {-8.5, 9}}, rotation = 0, origin = {102.5, -79})));
-      ThermalSeparation.Components.LiquidVolumes.Tank tank1(inertLiquid = {false, false, true}, d_volume = 1, x_l_start = {0.84, 0.053, 0.107}, level_start = 10, redeclare
-          package                                                                                                                                                                   MediumLiquid =
+      ThermalSeparation.Components.LiquidVolumes.Tank tank1(inertLiquid = {false, false, true}, d_volume = 1, x_l_start = {0.84, 0.053, 0.107}, level_start = 10, redeclare package MediumLiquid =
             Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                        p_gas = 100000, T_start = 313.15) annotation (
         Placement(transformation(extent = {{-63, -68}, {-43, -48}})));
-      ThermalSeparation.Components.Pumps.idealPumpControlledVdot idealPumpControlledVdot1(V_flow_start = 0.9, T = 1, dT = 0.5, redeclare
-          package                                                                                                                                MediumLiquid =
+      ThermalSeparation.Components.Pumps.idealPumpControlledVdot idealPumpControlledVdot1(V_flow_start = 0.9, T = 1, dT = 0.5, redeclare package MediumLiquid =
             Media.H2O_CO2_MEA_Liq)                                                                                                                                                     annotation (
         Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 270, origin = {-24, -88})));
       Modelica.Blocks.Continuous.LimPID PID1(controllerType = Modelica.Blocks.Types.SimpleController.PI, k = 100, Ti = 0.1, yMin = 0, initType = Modelica.Blocks.Types.InitPID.InitialOutput, y_start = 0.1, yMax = 1.2) annotation (
@@ -145,8 +133,7 @@ package Testing
         Placement(transformation(extent = {{-36, -70}, {-28, -64}})));
       ThermalSeparation.Components.SourcesSinks.AmbientHeatSink ambientHeatSink3 annotation (
         Placement(transformation(extent = {{132, 56}, {144, 68}})));
-      ThermalSeparation.Components.SourcesSinks.CombLiquid_x combLiquid_x(x_start = {0.868, 0.022, 0.11}, redeclare
-          package                                                                                                           Medium =
+      ThermalSeparation.Components.SourcesSinks.CombLiquid_x combLiquid_x(x_start = {0.868, 0.022, 0.11}, redeclare package Medium =
             Media.H2O_CO2_MEA_Liq,                                                                                                                          T_start = 393.15) annotation (
         Placement(transformation(extent = {{-5, -5}, {5, 5}}, rotation = 270, origin = {100, -45})));
       Modelica.Blocks.Continuous.LimPID PID2(yMax = 300000000, yMin = 50000000, y_start = 201000000, initType = Modelica.Blocks.Types.InitPID.InitialOutput, controllerType = Modelica.Blocks.Types.SimpleController.PI, k = 10000, Ti = 0.005) annotation (
@@ -155,12 +142,11 @@ package Testing
         Placement(transformation(extent = {{-6, -4}, {6, 4}}, rotation = 0, origin = {46, -16})));
       Modelica.Blocks.Sources.RealExpression T_set(y = 124 + 273) annotation (
         Placement(transformation(extent = {{40, -31}, {50, -25}})));
-      ThermalSeparation.Components.SourcesSinks.CombLiquid_x combLiquid_x1(x_start = {0.868, 0.022, 0.11}, redeclare
-          package                                                                                                            Medium =
+      ThermalSeparation.Components.SourcesSinks.CombLiquid_x combLiquid_x1(x_start = {0.868, 0.022, 0.11}, redeclare package Medium =
             Media.H2O_CO2_MEA_Liq,                                                                                                                           T_start = 393.15) annotation (
         Placement(transformation(extent = {{-5, -5}, {5, 5}}, rotation = 270, origin = {102, -59})));
-      ThermalSeparation.Components.SourcesSinks.SourceLiquid sourceLiquid_x(flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowMdot, Flow = 1021, use_Flow = true, x = {1, 0, 0}, redeclare
-          package                                                                                                                                                                                                         MediumLiquid =
+      ThermalSeparation.Components.SourcesSinks.SourceLiquid sourceLiquid_x(flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowMdot, Flow = 1021, use_Flow = true, x = {1, 0, 0}, redeclare package
+                                                                                                                                                                                                        MediumLiquid =
             Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        T = 393.15) annotation (
         Placement(transformation(extent = {{138, -46}, {118, -66}})));
       Modelica.Blocks.Sources.RealExpression Water_in(y = -water_diff) annotation (
@@ -253,98 +239,87 @@ package Testing
       Real x_CO2_removed = max(1e-7, 1 - Absorber.x_v[Absorber.n, 3] / max(0.001, sourceGas_Vdot.x[3]));
       Modelica.SIunits.MassFlowRate water_diff = Absorber.Ndot_v_in * Absorber.x_v_in[1] * 0.018 - Absorber.Ndot_v[Absorber.n] * Absorber.x_v[Absorber.n, 1] * 0.018;
       Real qspec = sumpV.Q_in / 1000 ^ 2 * 1 / max(0.04, Desorber.mdot_v[Desorber.n] * Desorber.X_v[Desorber.n, 2]);
-      ThermalSeparation.Components.Columns.StructuredPackedColumn_newStartUpShutDown Absorber(inertVapour = {false, true, false, true}, inertLiquid = {false, false, true}, nS = 2, mapping = {{1, 1}, {3, 2}}, wettedInitial = false, redeclare
-          model                                                                                                                                                                                                         Holdup =
-            ThermalSeparation.Holdup.StructuredPackedColumn.StichlmairStat,                                                                                                                                                                                                        considerStartUp = true, StartUp_CCS = true, friggelfaktor = 0.2e5, smooth_startUp = false, delay_startUp = 750, lowBoilingPoint = {false, true, true, true}, eps_liq_start = 0.001, x_v_start_const = {0.048, 0.2, 0.001, 0.751}, switchingCondition_Boiling = false, x_v_dummy = {1, 0, 0, 0}, y_PID = 1000, gain = 100, Vdot_startUp_pressure = 5, x_l_start_const = {0.8593, 0.0325, 0.1082}, redeclare
-          package                                                                                                                                                                                                         MediumVapour =
-            ThermalSeparation.Media.H2O_O2_CO2_N2_Vap,                                                                                                                                                                                                        redeclare
-          package                                                                                                                                                                                                         MediumLiquid =
-            ThermalSeparation.Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         Reaction =
-            Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        n_elements = 15, redeclare
-          model                                                                                                                                                                                                         FilmModel =
-            FilmModel.StructuredPackedColumn.TrueEquilibriumStartUpCCSAbsorption
-            (                                                                                                                                                                                                        faktor_Ndot_v = 30000, redeclare
-              model                                                                                                                                                                                                         StateSelection =
-                ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.StateSelection3),                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         PressureLoss =
-            ThermalSeparation.PressureLoss.StructuredPackedColumn.NominalLinear
-            (                                                                                                                                                                                                        deltaP_nom(displayUnit = "Pa") = 10, Vdot_nom = 1), redeclare
-          model                                                                                                                                                                                                         InitOption =
-            Components.Columns.BaseClasses.Initialization.DyncapStartUpAbsorption,                                                                                                                                                                                                        redeclare
-          record                                                                                                                                                                                                         Geometry =
-            ThermalSeparation.Geometry.StructuredPackedColumn.Mellapak250Y (                                                                                                                                                                                                        d = 14.56, H = 15), redeclare
-          model                                                                                                                                                                                                         HeatTransferWall =
-            Wall.ConstAlpha,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         ThermoEquilibrium =
+      ThermalSeparation.Components.Columns.StructuredPackedColumn_newStartUpShutDown Absorber(inertVapour = {false, true, false, true}, inertLiquid = {false, false, true}, nS = 2, mapping = {{1, 1}, {3, 2}}, wettedInitial = false, redeclare model
+                                                                                                                                                                                                        Holdup =
+            ThermalSeparation.Holdup.StructuredPackedColumn.StichlmairStat,                                                                                                                                                                                                        considerStartUp = true, StartUp_CCS = true, friggelfaktor = 0.2e5, smooth_startUp = false, delay_startUp = 750, lowBoilingPoint = {false, true, true, true}, eps_liq_start = 0.001, x_v_start_const = {0.048, 0.2, 0.001, 0.751}, switchingCondition_Boiling = false, x_v_dummy = {1, 0, 0, 0}, y_PID = 1000, gain = 100, Vdot_startUp_pressure = 5, x_l_start_const = {0.8593, 0.0325, 0.1082}, redeclare package
+                                                                                                                                                                                                        MediumVapour =
+            ThermalSeparation.Media.H2O_O2_CO2_N2_Vap,                                                                                                                                                                                                        redeclare package
+                                                                                                                                                                                                        MediumLiquid =
+            ThermalSeparation.Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        Reaction =
+            Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        n_elements = 15, redeclare model
+                                                                                                                                                                                                        FilmModel =
+            FilmModel.StructuredPackedColumn.TrueEquilibriumStartUpCCSAbsorption (                                                                                                                                   faktor_Ndot_v = 30000, redeclare model
+                                                                                                                                                                                                        StateSelection =
+                ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.StateSelection3),                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        PressureLoss =
+            ThermalSeparation.PressureLoss.StructuredPackedColumn.NominalLinear (                                                                                                                                    deltaP_nom(displayUnit = "Pa") = 10, Vdot_nom = 1), redeclare model
+                                                                                                                                                                                                        InitOption =
+            Components.Columns.BaseClasses.Initialization.DyncapStartUpAbsorption,                                                                                                                                                                                                        redeclare record
+                                                                                                                                                                                                        Geometry =
+            ThermalSeparation.Geometry.StructuredPackedColumn.Mellapak250Y (                                                                                                                                                                                                        d = 14.56, H = 15), redeclare model
+                                                                                                                                                                                                        HeatTransferWall =
+            Wall.ConstAlpha,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        ThermoEquilibrium =
             PhaseEquilibrium.H2O_CO2_MEA_startUp (                                                                                                                                                                                                        factor_K = {1, 1.03, 1}), p_v_start_inlet = 100000, p_v_start_outlet = 100000, T_vapour_start = 308.15, T_liquid_start = 308.15) annotation (
         Placement(transformation(extent = {{-178, -28}, {-80, 70}})));
-      ThermalSeparation.Components.SourcesSinks.SinkGas sinkGas(redeclare
-          package                                                                 Medium =
+      ThermalSeparation.Components.SourcesSinks.SinkGas sinkGas(redeclare package Medium =
             Media.H2O_O2_CO2_N2_Vap,                                                                                p = 102600) annotation (
         Placement(transformation(extent = {{-17, -21.5}, {17, 21.5}}, rotation = 90, origin = {-162.5, 157})));
       ThermalSeparation.Components.SourcesSinks.AmbientHeatSink ambientHeatSink annotation (
         Placement(transformation(extent = {{-72, 14}, {-60, 26}})));
-      ThermalSeparation.Components.HeatExchanger.CcounterFlowHeatExchanger counterFlowHeatExchanger(c_l_start_hot = fill(1000, 3), c_l_start_cold = fill(1000, 3), nScold = 2, ss_hot_c2 = true, ss_cold_c2 = true, alpha_input = false, surfaceArea = 550, mFlowHotLiquid_nom = 40, mFlowColdLiquid_nom = 40, redeclare
-          package                                                                                                                                                                                                         MediumLiquidCold =
-            ThermalSeparation.Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare
-          package                                                                                                                                                                                                         MediumLiquidHot =
+      ThermalSeparation.Components.HeatExchanger.CcounterFlowHeatExchanger counterFlowHeatExchanger(c_l_start_hot = fill(1000, 3), c_l_start_cold = fill(1000, 3), nScold = 2, ss_hot_c2 = true, ss_cold_c2 = true, alpha_input = false, surfaceArea = 550, mFlowHotLiquid_nom = 40, mFlowColdLiquid_nom = 40, redeclare package
+                                                                                                                                                                                                        MediumLiquidCold =
+            ThermalSeparation.Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare package
+                                                                                                                                                                                                        MediumLiquidHot =
             ThermalSeparation.Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        ThotLiquidIn_start = 313.15, TcoldLiquidIn_start = 298.15, ThotLiquid_start = 313.15, TcoldLiquid_start = 298.15) annotation (
         Placement(transformation(extent = {{-24, 24}, {36, -30}})));
-      ThermalSeparation.Components.HeatExchanger.LiquidCooler cooler(T_set = 313.15, redeclare
-          package                                                                                      MediumLiquid =
+      ThermalSeparation.Components.HeatExchanger.LiquidCooler cooler(T_set = 313.15, redeclare package MediumLiquid =
             Media.H2O_CO2_MEA_Liq)                                                                                                           annotation (
         Placement(transformation(extent = {{7, -9}, {-7, 9}}, rotation = 270, origin = {-77, 93})));
       ThermalSeparation.Components.SourcesSinks.AmbientHeatSink ambientHeatSink1 annotation (
         Placement(transformation(extent = {{-4, -4}, {4, 4}}, rotation = 90, origin = {-76, 110})));
       ThermalSeparation.Components.SourcesSinks.AmbientHeatSink ambientHeatSink2 annotation (
         Placement(transformation(extent = {{130, 15}, {142, 24}})));
-      ThermalSeparation.Components.SourcesSinks.SinkGas sinkGas1(redeclare
-          package                                                                  Medium =
+      ThermalSeparation.Components.SourcesSinks.SinkGas sinkGas1(redeclare package Medium =
             Media.H2O_CO2_Vap,                                                                                 p = 200000) annotation (
         Placement(transformation(extent = {{-16, -17.5}, {16, 17.5}}, rotation = 90, origin = {146.5, 164})));
       Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow annotation (
         Placement(transformation(extent = {{-7, -7}, {7, 7}}, rotation = 180, origin = {167, -102})));
-      ThermalSeparation.Components.Columns.StructuredPackedColumn_newStartUpShutDown Desorber(mapping = {{1, 1}, {2, 2}}, inertLiquid = {false, false, true}, T_l_profile = false, x_l_start_in = {0.8, 0.1, 0.1}, x_l_start_out = {0.5, 0.2, 0.3}, x_l_profile = false, T_v_profile = false, nS = 2, inertVapour = {false, false}, wettedInitial = false, eps_liq_start = 0.001, considerStartUp = true, StartUp_CCS = true, switchingCondition_Boiling = true, lowBoilingPoint = {false, true}, redeclare
-          model                                                                                                                                                                                                         InitOption =
-            ThermalSeparation.Components.Columns.BaseClasses.Initialization.DyncapStartUpDesorption,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         Holdup =
-            ThermalSeparation.Holdup.StructuredPackedColumn.StichlmairStat,                                                                                                                                                                                                        x_v_start_const = {0, 1}, x_l_start_const = {0.8593, 0.0325, 0.1082}, y_PID = 1000, Vdot_startUp_pressure = 5, gain = 100, smooth_startUp = true, k = 0.04, delay_startUp = 100, friggelfaktor = 0.7e5, redeclare
-          model                                                                                                                                                                                                         Reaction =
-            Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        redeclare
-          record                                                                                                                                                                                                         Geometry =
-            Geometry.StructuredPackedColumn.Mellapak250Y (                                                                                                                                                                                                        d = 8.65, H = 10), redeclare
-          package                                                                                                                                                                                                         MediumVapour =
-            Media.H2O_CO2_Vap,                                                                                                                                                                                                        redeclare
-          package                                                                                                                                                                                                         MediumLiquid =
-            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        n_elements = 10, redeclare
-          model                                                                                                                                                                                                         PressureLoss =
-            PressureLoss.StructuredPackedColumn.NominalLinear (                                                                                                                                                                                                        Vdot_nom = 0.4, deltaP_nom(displayUnit = "Pa") = 3), redeclare
-          model                                                                                                                                                                                                         HeatTransferWall =
-            Wall.ConstAlpha,                                                                                                                                                                                                        p_v_start_inlet = 100000, p_v_start_outlet = 100000, T_vap_start_bottom = 313.15, T_vap_start_top = 313.15, T_liq_start_bottom = 313.15, T_liq_start_top = 313.15, T_vapour_start = 323.15, T_liquid_start = 323.15, redeclare
-          model                                                                                                                                                                                                         ThermoEquilibrium =
-            PhaseEquilibrium.H2O_CO2_MEA_startUp,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         FilmModel =
-            FilmModel.StructuredPackedColumn.TrueEquilibriumStartUpCCSDesorption
-            (                                                                                                                                                                                                        faktor_Ndot_v = 30000, redeclare
-              model                                                                                                                                                                                                         StateSelection =
-                ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.StateSelection3))
-                                                                                                                                                                                                                annotation (
+      ThermalSeparation.Components.Columns.StructuredPackedColumn_newStartUpShutDown Desorber(mapping = {{1, 1}, {2, 2}}, inertLiquid = {false, false, true}, T_l_profile = false, x_l_start_in = {0.8, 0.1, 0.1}, x_l_start_out = {0.5, 0.2, 0.3}, x_l_profile = false, T_v_profile = false, nS = 2, inertVapour = {false, false}, wettedInitial = false, eps_liq_start = 0.001, considerStartUp = true, StartUp_CCS = true, switchingCondition_Boiling = true, lowBoilingPoint = {false, true}, redeclare model
+                                                                                                                                                                                                        InitOption =
+            ThermalSeparation.Components.Columns.BaseClasses.Initialization.DyncapStartUpDesorption,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        Holdup =
+            ThermalSeparation.Holdup.StructuredPackedColumn.StichlmairStat,                                                                                                                                                                                                        x_v_start_const = {0, 1}, x_l_start_const = {0.8593, 0.0325, 0.1082}, y_PID = 1000, Vdot_startUp_pressure = 5, gain = 100, smooth_startUp = true, k = 0.04, delay_startUp = 100, friggelfaktor = 0.7e5, redeclare model
+                                                                                                                                                                                                        Reaction =
+            Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        redeclare record
+                                                                                                                                                                                                        Geometry =
+            Geometry.StructuredPackedColumn.Mellapak250Y (                                                                                                                                                                                                        d = 8.65, H = 10), redeclare package
+                                                                                                                                                                                                        MediumVapour =
+            Media.H2O_CO2_Vap,                                                                                                                                                                                                        redeclare package
+                                                                                                                                                                                                        MediumLiquid =
+            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        n_elements = 10, redeclare model
+                                                                                                                                                                                                        PressureLoss =
+            PressureLoss.StructuredPackedColumn.NominalLinear (                                                                                                                                                                                                        Vdot_nom = 0.4, deltaP_nom(displayUnit = "Pa") = 3), redeclare model
+                                                                                                                                                                                                        HeatTransferWall =
+            Wall.ConstAlpha,                                                                                                                                                                                                        p_v_start_inlet = 100000, p_v_start_outlet = 100000, T_vap_start_bottom = 313.15, T_vap_start_top = 313.15, T_liq_start_bottom = 313.15, T_liq_start_top = 313.15, T_vapour_start = 323.15, T_liquid_start = 323.15, redeclare model
+                                                                                                                                                                                                        ThermoEquilibrium =
+            PhaseEquilibrium.H2O_CO2_MEA_startUp,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        FilmModel =
+            FilmModel.StructuredPackedColumn.TrueEquilibriumStartUpCCSDesorption (                                                                                                                                   faktor_Ndot_v = 30000, redeclare model
+                                                                                                                                                                                                        StateSelection =
+                ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.StateSelection3))                                                                                                       annotation (
         Placement(transformation(extent = {{92, -55}, {182, 40}})));
-      ThermalSeparation.Components.Pumps.idealPumpControlledVdot idealPumpControlledVdot(V_flow_start = 0.9, T = 1, dT = 0.5, redeclare
-          package                                                                                                                               MediumLiquid =
+      ThermalSeparation.Components.Pumps.idealPumpControlledVdot idealPumpControlledVdot(V_flow_start = 0.9, T = 1, dT = 0.5, redeclare package MediumLiquid =
             Media.H2O_CO2_MEA_Liq)                                                                                                                                                    annotation (
         Placement(transformation(extent = {{19.5, -18.5}, {-19.5, 18.5}}, rotation = 90, origin = {61.5, -143.5})));
-      ThermalSeparation.Components.LiquidVolumes.Tank tank(inertLiquid = {false, false, true}, d_volume = 8.65, level_start = 7.5, x_l_start = {0.8525, 0.0401, 0.1074}, redeclare
-          package                                                                                                                                                                          MediumLiquid =
+      ThermalSeparation.Components.LiquidVolumes.Tank tank(inertLiquid = {false, false, true}, d_volume = 8.65, level_start = 7.5, x_l_start = {0.8525, 0.0401, 0.1074}, redeclare package MediumLiquid =
             Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                               p_gas = 100000, T_start = 313.15) annotation (
         Placement(transformation(extent = {{8.5, -9}, {-8.5, 9}}, rotation = 0, origin = {136.5, -139})));
-      ThermalSeparation.Components.LiquidVolumes.Tank tank1(inertLiquid = {false, false, true}, d_volume = 14.56, level_start = 4, x_l_start = {0.8525, 0.0401, 0.1074}, redeclare
-          package                                                                                                                                                                          MediumLiquid =
+      ThermalSeparation.Components.LiquidVolumes.Tank tank1(inertLiquid = {false, false, true}, d_volume = 14.56, level_start = 4, x_l_start = {0.8525, 0.0401, 0.1074}, redeclare package MediumLiquid =
             Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                               p_gas = 100000, T_start = 308.15) annotation (
         Placement(transformation(extent = {{-109, -116}, {-76, -82}})));
-      ThermalSeparation.Components.Pumps.idealPumpControlledVdot idealPumpControlledVdot1(V_flow_start = 0.9, T = 1, dT = 0.5, redeclare
-          package                                                                                                                                MediumLiquid =
+      ThermalSeparation.Components.Pumps.idealPumpControlledVdot idealPumpControlledVdot1(V_flow_start = 0.9, T = 1, dT = 0.5, redeclare package MediumLiquid =
             Media.H2O_CO2_MEA_Liq)                                                                                                                                                     annotation (
         Placement(transformation(extent = {{-23, -21}, {23, 21}}, rotation = 270, origin = {-31, -147})));
       Modelica.Blocks.Sources.RealExpression level(y = 4) annotation (
@@ -353,36 +328,33 @@ package Testing
         Placement(transformation(extent = {{118, 82}, {170, 130}})));
       ThermalSeparation.Components.SourcesSinks.AmbientHeatSink ambientHeatSink3 annotation (
         Placement(transformation(extent = {{196, -12}, {208, 0}})));
-      ThermalSeparation.Components.SourcesSinks.CombLiquid_x combLiquid_x(x_start = {0.8593, 0.0325, 0.1082}, redeclare
-          package                                                                                                               Medium =
+      ThermalSeparation.Components.SourcesSinks.CombLiquid_x combLiquid_x(x_start = {0.8593, 0.0325, 0.1082}, redeclare package Medium =
             Media.H2O_CO2_MEA_Liq,                                                                                                                              T_start = 393.15) annotation (
         Placement(transformation(extent = {{-5, -5}, {5, 5}}, rotation = 270, origin = {-94, -67})));
-      ThermalSeparation.Components.SourcesSinks.SourceLiquid sourceLiquid_x(flowOption = Components.SourcesSinks.Enumerations.FlowOption.FlowMdot, Flow = 1021, use_Flow = true, x = {1, 0, 0}, redeclare
-          package                                                                                                                                                                                                 MediumLiquid =
+      ThermalSeparation.Components.SourcesSinks.SourceLiquid sourceLiquid_x(flowOption = Components.SourcesSinks.Enumerations.FlowOption.FlowMdot, Flow = 1021, use_Flow = true, x = {1, 0, 0}, redeclare package MediumLiquid =
             Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        T = 313.15) annotation (
         Placement(transformation(extent = {{-14, 118}, {-34, 98}})));
       Modelica.Blocks.Sources.RealExpression Water_in(y = -water_diff) annotation (
         Placement(transformation(extent = {{9.5, -9}, {-9.5, 9}}, rotation = 0, origin = {6.5, 103})));
       Modelica.Blocks.Sources.CombiTimeTable Q_Reboiler(smoothness = Modelica.Blocks.Types.Smoothness.LinearSegments, extrapolation = Modelica.Blocks.Types.Extrapolation.HoldLastPoint, offset = {1}, startTime = 0, table = [0, 0.0; 3000, 0; 3240, 2.13584e8; 5000, 2.13584e8; 20000, 2.13584e8; 23000, 1]) annotation (
         Placement(transformation(extent = {{-15, -15}, {15, 15}}, rotation = 180, origin = {217, -99})));
-      ThermalSeparation.Components.Reboiler.KettleReboilerEq_StartUpCCS_dummy_p sumpV(m_Reb = 1000, eps_liq_init = 0.001, initOption_TepsXfixed = false, initOption_withoutT = false, initOption_standalone = false, initOption_startup_RebplusDes = true, x_init = 0.8593, inert_liq = {false, false, true}, nS = 2, startup = true, A = 50, H = 2, redeclare
-          model                                                                                                                                                                                                         InnerHT =
-            HeatAndMassTransfer.HTResistance.NoHTResistance,                                                                                                                                                                                                        Vdot_nom = 100, beta_eps = 0.001, redeclare
-          package                                                                                                                                                                                                         MediumLiquid =
-            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare
-          package                                                                                                                                                                                                         MediumVapour =
-            Media.H2O_CO2_Vap,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         Reaction =
-            Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        init_option = ThermalSeparation.Components.Reboiler.InitOptionEq.initOption_startup_inert_Dyn, deltap_nom = 10, redeclare
-          record                                                                                                                                                                                                         Geometry =
-            Geometry.StructuredPackedColumn.Mellapak250Y,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         ThermoEquilibrium =
+      ThermalSeparation.Components.Reboiler.KettleReboilerEq_StartUpCCS_dummy_p sumpV(m_Reb = 1000, eps_liq_init = 0.001, initOption_TepsXfixed = false, initOption_withoutT = false, initOption_standalone = false, initOption_startup_RebplusDes = true, x_init = 0.8593, inert_liq = {false, false, true}, nS = 2, startup = true, A = 50, H = 2, redeclare model
+                                                                                                                                                                                                        InnerHT =
+            HeatAndMassTransfer.HTResistance.NoHTResistance,                                                                                                                                                                                                        Vdot_nom = 100, beta_eps = 0.001, redeclare package
+                                                                                                                                                                                                        MediumLiquid =
+            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare package
+                                                                                                                                                                                                        MediumVapour =
+            Media.H2O_CO2_Vap,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        Reaction =
+            Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        init_option = ThermalSeparation.Components.Reboiler.InitOptionEq.initOption_startup_inert_Dyn, deltap_nom = 10, redeclare record
+                                                                                                                                                                                                        Geometry =
+            Geometry.StructuredPackedColumn.Mellapak250Y,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        ThermoEquilibrium =
             PhaseEquilibrium.CO2_CO2_MEA_StartUpReboiler_newFormulation,                                                                                                                                                                                                        T_init = 313.15, p_init = 100000, p_friggel = 25000) annotation (
         Placement(transformation(extent = {{126, -112}, {146, -92}})));
       Modelica.Blocks.Continuous.LimPID PIDLim(controllerType = Modelica.Blocks.Types.SimpleController.PI, yMax = 1.5, yMin = 0, k = 100) annotation (
         Placement(transformation(extent = {{-64, -102}, {-44, -82}})));
-      ThermalSeparation.Components.SourcesSinks.CombLiquid_x combLiquid_x2(x_start = {0.8593, 0.0325, 0.1082}, redeclare
-          package                                                                                                                Medium =
+      ThermalSeparation.Components.SourcesSinks.CombLiquid_x combLiquid_x2(x_start = {0.8593, 0.0325, 0.1082}, redeclare package Medium =
             Media.H2O_CO2_MEA_Liq,                                                                                                                               T_start = 308.15) annotation (
         Placement(transformation(extent = {{-5, -5}, {5, 5}}, rotation = 180, origin = {-52, 87})));
       Modelica.Blocks.Math.IntegerToBoolean integerToBoolean annotation (
@@ -395,8 +367,8 @@ package Testing
         Placement(transformation(extent = {{-198, -126}, {-178, -106}})));
       Modelica.Blocks.Sources.Ramp T_RG(height = -4.9, offset = 313.12, startTime = 20000, duration = 2550) annotation (
         Placement(transformation(extent = {{6, -6}, {-6, 6}}, rotation = 180, origin = {-190, -84})));
-      ThermalSeparation.Components.SourcesSinks.SourceGas sourceGas_Vdot(flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowMdot, x = {0.0746, 0.0276, 0.1497, 0.7481}, use_T_in = true, use_x_in = true, redeclare
-          package                                                                                                                                                                                                         Medium =
+      ThermalSeparation.Components.SourcesSinks.SourceGas sourceGas_Vdot(flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowMdot, x = {0.0746, 0.0276, 0.1497, 0.7481}, use_T_in = true, use_x_in = true, redeclare package
+                                                                                                                                                                                                        Medium =
             Media.H2O_O2_CO2_N2_Vap,                                                                                                                                                                                                        T = 312.15) annotation (
         Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 90, origin = {-163, -62})));
       Modelica.Blocks.Sources.IntegerExpression integerExpression annotation (
@@ -507,24 +479,20 @@ package Testing
 
   package Pump
     model PumpSystem
-      ThermalSeparation.Components.Pumps.idealPumpControlledVdot idealPumpControlledVdot(Vdot_l(start = 1), redeclare
-          package                                                                                                             MediumLiquid =
+      ThermalSeparation.Components.Pumps.idealPumpControlledVdot idealPumpControlledVdot(Vdot_l(start = 1), redeclare package MediumLiquid =
             Media.H2O_CO2_MEA_Liq,                                                                                                                                  V_flow_start = 1, T_l_in(start = 308.15), T_l(start = 308.15), p(start = 130000)) annotation (
         Placement(transformation(extent = {{6, 6}, {-6, -6}}, rotation = 180, origin = {-6, 0})));
-      ThermalSeparation.Components.SourcesSinks.SinkLiquid sinkLiquid(redeclare
-          package                                                                       Medium =
+      ThermalSeparation.Components.SourcesSinks.SinkLiquid sinkLiquid(redeclare package Medium =
             Media.H2O_CO2_MEA_Liq)                                                                                      annotation (
         Placement(transformation(extent = {{20, 28}, {40, 48}})));
-      ThermalSeparation.Components.SourcesSinks.SourceLiquid sourceLiquid(Flow = 2, use_Flow = false, flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowVdot, redeclare
-          package                                                                                                                                                                                                MediumLiquid =
+      ThermalSeparation.Components.SourcesSinks.SourceLiquid sourceLiquid(Flow = 2, use_Flow = false, flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowVdot, redeclare package MediumLiquid =
             Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        T = 313.15, x = {0.875, 0.015, 0.11}) annotation (
         Placement(transformation(extent = {{-82, 6}, {-62, 26}})));
       Modelica.Blocks.Sources.Ramp ramp(height = 1, duration = 500, startTime = 500, offset = 1) annotation (
         Placement(transformation(extent = {{-42, 30}, {-32, 40}})));
       inner ThermalSeparation.SystemTS systemTS annotation (
         Placement(transformation(extent = {{-100, 80}, {-80, 100}})));
-      ThermalSeparation.Components.LiquidVolumes.Tank tank(d_volume = 10, redeclare
-          package                                                                           MediumLiquid =
+      ThermalSeparation.Components.LiquidVolumes.Tank tank(d_volume = 10, redeclare package MediumLiquid =
             Media.H2O_CO2_MEA_Liq,                                                                                                inertLiquid = {false, false, true}, x_l_start = {0.875, 0.015, 0.11}, level_start = 2, avoid_sum_mole = false, T_start = 313.15) annotation (
         Placement(transformation(extent = {{-40, -20}, {-20, 0}})));
     equation
@@ -549,16 +517,13 @@ package Testing
         Placement(transformation(extent = {{-62, -20}, {-52, -10}})));
       inner ThermalSeparation.SystemTS systemTS annotation (
         Placement(transformation(extent = {{-100, 80}, {-80, 100}})));
-      ThermalSeparation.Components.Compressors.CompressorSimple compressorSimple(redeclare
-          package                                                                                  Medium =
+      ThermalSeparation.Components.Compressors.CompressorSimple compressorSimple(redeclare package Medium =
             ThermalSeparation.Media.IdealGasMixtures.N2_H2O,                                                                                                 useP = false, P_drive_const = 200000) annotation (
         Placement(transformation(extent = {{0, -4}, {20, 16}})));
-      ThermalSeparation.Components.SourcesSinks.SinkGas sinkGas(redeclare
-          package                                                                 Medium =
+      ThermalSeparation.Components.SourcesSinks.SinkGas sinkGas(redeclare package Medium =
             ThermalSeparation.Media.IdealGasMixtures.N2_H2O,                                                                                use_p = true, p = 500000) annotation (
         Placement(transformation(extent = {{34, 30}, {54, 50}})));
-      ThermalSeparation.Components.SourcesSinks.SourceGas sourceGas(redeclare
-          package                                                                     Medium =
+      ThermalSeparation.Components.SourcesSinks.SourceGas sourceGas(redeclare package Medium =
             ThermalSeparation.Media.IdealGasMixtures.N2_H2O,                                                                                    x = {0.95, 0.05}, T = 300, flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowVdot) annotation (
         Placement(transformation(extent = {{-36, -28}, {-16, -8}})));
     equation
@@ -577,26 +542,24 @@ package Testing
 
   package HeatExchanger
     model HeatExchangerSimple
-      ThermalSeparation.Components.HeatExchanger.CcounterFlowHeatExchanger ccounterFlowHeatExchanger(c_l_start_hot = {5, 5, 5}, c_l_start_cold = {5, 5, 5}, ss_hot_c2 = false, ss_cold_c2 = false, surfaceArea = 3, alphaHot_nom_param = 3600, alphaCold_nom_param = 3600, redeclare
-          package                                                                                                                                                                                                         MediumLiquidCold =
-            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare
-          package                                                                                                                                                                                                         MediumLiquidHot =
+      ThermalSeparation.Components.HeatExchanger.CcounterFlowHeatExchanger ccounterFlowHeatExchanger(c_l_start_hot = {5, 5, 5}, c_l_start_cold = {5, 5, 5}, ss_hot_c2 = false, ss_cold_c2 = false, surfaceArea = 3, alphaHot_nom_param = 3600, alphaCold_nom_param = 3600, redeclare package
+                                                                                                                                                                                                        MediumLiquidCold =
+            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare package
+                                                                                                                                                                                                        MediumLiquidHot =
             Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        ThotLiquidIn_start = 313.15, TcoldLiquidIn_start = 298.15, ThotLiquid_start = 302.15, TcoldLiquid_start = 308.15) annotation (
         Placement(transformation(extent = {{-12, -8}, {8, 12}})));
-      ThermalSeparation.Components.SourcesSinks.SinkLiquid sinkLiquid(redeclare
-          package                                                                       Medium =
+      ThermalSeparation.Components.SourcesSinks.SinkLiquid sinkLiquid(redeclare package Medium =
             Media.H2O_CO2_MEA_Liq)                                                                                      annotation (
         Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 180, origin = {-42, -4})));
-      ThermalSeparation.Components.SourcesSinks.SinkLiquid sinkLiquid1(redeclare
-          package                                                                        Medium =
+      ThermalSeparation.Components.SourcesSinks.SinkLiquid sinkLiquid1(redeclare package Medium =
             Media.H2O_CO2_MEA_Liq)                                                                                       annotation (
         Placement(transformation(extent = {{34, -14}, {54, 6}})));
-      ThermalSeparation.Components.SourcesSinks.SourceLiquid sourceLiquid1(Flow = 0.1, x = {0.87, 0.03, 0.1}, use_Flow = false, useT_In = true, flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowVdot, redeclare
-          package                                                                                                                                                                                                         MediumLiquid =
+      ThermalSeparation.Components.SourcesSinks.SourceLiquid sourceLiquid1(Flow = 0.1, x = {0.87, 0.03, 0.1}, use_Flow = false, useT_In = true, flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowVdot, redeclare package
+                                                                                                                                                                                                        MediumLiquid =
             Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        T = 363.15) annotation (
         Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 180, origin = {32, 28})));
-      ThermalSeparation.Components.SourcesSinks.SourceLiquid sourceLiquid2(Flow = 0.1, x = {0.85, 0.05, 0.1}, useT_In = true, use_Flow = false, flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowVdot, redeclare
-          package                                                                                                                                                                                                         MediumLiquid =
+      ThermalSeparation.Components.SourcesSinks.SourceLiquid sourceLiquid2(Flow = 0.1, x = {0.85, 0.05, 0.1}, useT_In = true, use_Flow = false, flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowVdot, redeclare package
+                                                                                                                                                                                                        MediumLiquid =
             Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        T = 298.15) annotation (
         Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 0, origin = {-30, 28})));
       inner ThermalSeparation.SystemTS systemTS annotation (
@@ -627,28 +590,23 @@ package Testing
 
   package Reboiler
     model Reboiler
-      ThermalSeparation.Components.Reboiler.Reboiler kettleReboilerEq(redeclare
-          package                                                                       MediumVapour =
-            Media.H2O_CO2_Vap,                                                                                            redeclare
-          package                                                                                                                           MediumLiquid =
-            Media.H2O_CO2_MEA_Liq,                                                                                                                                                redeclare
-          record                                                                                                                                                                                   Geometry =
-            Geometry.StructuredPackedColumn.Mellapak250Y,                                                                                                                                                                                                   redeclare
-          model                                                                                                                                                                                                         ThermoEquilibrium =
-            PhaseEquilibrium.H2O_CO2_MEA,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         Reaction =
+      ThermalSeparation.Components.Reboiler.Reboiler kettleReboilerEq(redeclare package MediumVapour =
+            Media.H2O_CO2_Vap,                                                                                            redeclare package MediumLiquid =
+            Media.H2O_CO2_MEA_Liq,                                                                                                                                                redeclare record Geometry =
+            Geometry.StructuredPackedColumn.Mellapak250Y,                                                                                                                                                                                                   redeclare model
+                                                                                                                                                                                                        ThermoEquilibrium =
+            PhaseEquilibrium.H2O_CO2_MEA,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        Reaction =
             Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        T_liquid_start = 393.15, T_vapour_start = 393.15, eps_liq_start = 0.05, inertLiquid = {false, false, true}, inertVapour = {false, false}, initEQ = true, initOption = ThermalSeparation.Components.Reboiler.InitOption.initEQ, mapping = [1, 1; 2, 2], p_start = 200000, x_l_start = {0.85, 0.03, 0.12}, x_v_start = {0.8, 0.2}) annotation (
         Placement(transformation(extent = {{-10, -8}, {10, 12}})));
-      ThermalSeparation.Components.SourcesSinks.SinkGas sinkGas(redeclare
-          package                                                                 Medium =
+      ThermalSeparation.Components.SourcesSinks.SinkGas sinkGas(redeclare package Medium =
             Media.H2O_CO2_Vap,                                                                                p = 200000) annotation (
         Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 180, origin = {-30, 28})));
-      ThermalSeparation.Components.SourcesSinks.SourceLiquid sourceLiquid(flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowVdot, Flow = 0.001472, x = {0.87, 0.03, 0.1}, redeclare
-          package                                                                                                                                                                                                         MediumLiquid =
+      ThermalSeparation.Components.SourcesSinks.SourceLiquid sourceLiquid(flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowVdot, Flow = 0.001472, x = {0.87, 0.03, 0.1}, redeclare package
+                                                                                                                                                                                                        MediumLiquid =
             Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        T = 378.15) annotation (
         Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 180, origin = {30, 24})));
-      ThermalSeparation.Components.SourcesSinks.SinkLiquid sinkLiquid(redeclare
-          package                                                                       Medium =
+      ThermalSeparation.Components.SourcesSinks.SinkLiquid sinkLiquid(redeclare package Medium =
             Media.H2O_CO2_MEA_Liq)                                                                                      annotation (
         Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 270, origin = {0, -34})));
       Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow annotation (
@@ -678,8 +636,7 @@ package Testing
       Components.SourcesSinks.SinkGas sinkGas(redeclare package Medium =
             Media.H2O_CO2_Vap,                                                              p = 200000) annotation (
         Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 180, origin = {-30, 30})));
-      Components.SourcesSinks.SourceLiquid sourceLiquid(flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowVdot, redeclare
-          package                                                                                                                                                  MediumLiquid =
+      Components.SourcesSinks.SourceLiquid sourceLiquid(flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowVdot, redeclare package MediumLiquid =
             Media.H2O_CO2_MEA_Liq,                                                                                                                                                                       x = {0.87, 0.05, 0.1}, Flow = 1, T = 313.15, useT_In = true) annotation (
         Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 180, origin = {32, 30})));
       Components.SourcesSinks.SinkLiquid sinkLiquid(redeclare package Medium =
@@ -691,18 +648,18 @@ package Testing
         Placement(transformation(extent = {{-100, 80}, {-80, 100}})));
       Modelica.Blocks.Sources.CombiTimeTable Q_Reboiler(smoothness = Modelica.Blocks.Types.Smoothness.LinearSegments, extrapolation = Modelica.Blocks.Types.Extrapolation.HoldLastPoint, offset = {1}, startTime = 0, table = [0, 0.0; 3000, 0; 3240, 2.13584e8; 5000, 2.13584e8; 20000, 2.13584e8]) annotation (
         Placement(transformation(extent = {{-15, -15}, {15, 15}}, rotation = 180, origin = {69, 3})));
-      Components.Reboiler.KettleReboilerEq_StartUpCCS_dummy_p sumpV1(m_Reb = 1000, initOption_TepsXfixed = false, initOption_withoutT = false, initOption_standalone = false, x_init = 0.8593, inert_liq = {false, false, true}, startup = true, A = 50, H = 2, redeclare
-          model                                                                                                                                                                                                         InnerHT =
-            HeatAndMassTransfer.HTResistance.NoHTResistance,                                                                                                                                                                                                        Vdot_nom = 100, redeclare
-          package                                                                                                                                                                                                         MediumLiquid =
-            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         Reaction =
-            Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        init_option = ThermalSeparation.Components.Reboiler.InitOptionEq.initOption_startup_inert_Dyn, deltap_nom = 10, redeclare
-          record                                                                                                                                                                                                         Geometry =
-            Geometry.StructuredPackedColumn.Mellapak250Y,                                                                                                                                                                                                        beta_eps = 0.001, initOption_startup_RebplusDes = true, initOption_startup_RebplusDesalone = false, mapping = [1, 1; 2, 2], nS = 2, redeclare
-          package                                                                                                                                                                                                         MediumVapour =
-            Media.H2O_CO2_Vap,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         ThermoEquilibrium =
+      Components.Reboiler.KettleReboilerEq_StartUpCCS_dummy_p sumpV1(m_Reb = 1000, initOption_TepsXfixed = false, initOption_withoutT = false, initOption_standalone = false, x_init = 0.8593, inert_liq = {false, false, true}, startup = true, A = 50, H = 2, redeclare model
+                                                                                                                                                                                                        InnerHT =
+            HeatAndMassTransfer.HTResistance.NoHTResistance,                                                                                                                                                                                                        Vdot_nom = 100, redeclare package
+                                                                                                                                                                                                        MediumLiquid =
+            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        Reaction =
+            Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        init_option = ThermalSeparation.Components.Reboiler.InitOptionEq.initOption_startup_inert_Dyn, deltap_nom = 10, redeclare record
+                                                                                                                                                                                                        Geometry =
+            Geometry.StructuredPackedColumn.Mellapak250Y,                                                                                                                                                                                                        beta_eps = 0.001, initOption_startup_RebplusDes = true, initOption_startup_RebplusDesalone = false, mapping = [1, 1; 2, 2], nS = 2, redeclare package
+                                                                                                                                                                                                        MediumVapour =
+            Media.H2O_CO2_Vap,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        ThermoEquilibrium =
             PhaseEquilibrium.CO2_CO2_MEA_StartUpReboiler_newFormulation,                                                                                                                                                                                                        eps_liq_init = 0.0001, T_init = 313.15, p_init = 100000, p_friggel = 25000, p_dummy = 200000) annotation (
         Placement(transformation(extent = {{-8, -10}, {12, 10}})));
       Modelica.Blocks.Sources.Ramp T_solvent(height = 60, duration = 2000, offset = 313.15, startTime = 3240) annotation (
@@ -729,47 +686,42 @@ package Testing
 
   package Column
     model ColumnSimple
-      ThermalSeparation.Components.SourcesSinks.SinkGas sinkGas(redeclare
-          package                                                                 Medium =
+      ThermalSeparation.Components.SourcesSinks.SinkGas sinkGas(redeclare package Medium =
             Media.H2O_CO2_Vap,                                                                                p = 200000) annotation (
         Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 180, origin = {-50, 72})));
-      ThermalSeparation.Components.SourcesSinks.SourceLiquid sourceLiquid(flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowVdot, Flow = 0.001472, x = {0.87, 0.03, 0.1}, redeclare
-          package                                                                                                                                                                                                         MediumLiquid =
+      ThermalSeparation.Components.SourcesSinks.SourceLiquid sourceLiquid(flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowVdot, Flow = 0.001472, x = {0.87, 0.03, 0.1}, redeclare package
+                                                                                                                                                                                                        MediumLiquid =
             Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        T = 378.15) annotation (
         Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 180, origin = {28, 62})));
-      ThermalSeparation.Components.SourcesSinks.SinkLiquid sinkLiquid(redeclare
-          package                                                                       Medium =
+      ThermalSeparation.Components.SourcesSinks.SinkLiquid sinkLiquid(redeclare package Medium =
             Media.H2O_CO2_MEA_Liq)                                                                                      annotation (
         Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 270, origin = {4, -34})));
       inner ThermalSeparation.SystemTS systemTS annotation (
         Placement(transformation(extent = {{-100, 80}, {-80, 100}})));
-      ThermalSeparation.Components.Columns.StructuredPackedColumn Desorber( redeclare
-          model                                                                             HeatTransferWall =
-            ThermalSeparation.Wall.Adiabatic,                                                                                                    redeclare
-          model                                                                                                                                                  Holdup =
-            ThermalSeparation.Holdup.StructuredPackedColumn.StichlmairStat,                                                                                                                                                               redeclare
-          model                                                                                                                                                                                                         PressureLoss =
-            ThermalSeparation.PressureLoss.StructuredPackedColumn.NominalLinear,                                                                                                                                                                                                        redeclare
-          package                                                                                                                                                                                                         MediumVapour =
-            Media.H2O_CO2_Vap,                                                                                                                                                                                                        redeclare
-          package                                                                                                                                                                                                         MediumLiquid =
-            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         ThermoEquilibrium =
-            PhaseEquilibrium.H2O_CO2_MEA,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         Reaction =
-            Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        redeclare
-          record                                                                                                                                                                                                         Geometry =
-            Geometry.StructuredPackedColumn.Mellapak250Y (                                                                                                                                                                                                        d = 1, H = 1), redeclare
-          model                                                                                                                                                                                                         InitOption =
-            Components.Columns.BaseClasses.Initialization.Init_EquilibriumFilm,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         BalanceEquations =
-            BalanceEquations.StructuredPackedColumn.NonEquilibrium.TwoPhaseVarState
-            (                                                                                                                                                                                                        redeclare
-              model                                                                                                                                                                                                         FilmModel =
+      ThermalSeparation.Components.Columns.StructuredPackedColumn Desorber( redeclare model HeatTransferWall =
+            ThermalSeparation.Wall.Adiabatic,                                                                                                    redeclare model Holdup =
+            ThermalSeparation.Holdup.StructuredPackedColumn.StichlmairStat,                                                                                                                                                               redeclare model
+                                                                                                                                                                                                        PressureLoss =
+            ThermalSeparation.PressureLoss.StructuredPackedColumn.NominalLinear,                                                                                                                                                                                                        redeclare package
+                                                                                                                                                                                                        MediumVapour =
+            Media.H2O_CO2_Vap,                                                                                                                                                                                                        redeclare package
+                                                                                                                                                                                                        MediumLiquid =
+            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        ThermoEquilibrium =
+            PhaseEquilibrium.H2O_CO2_MEA,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        Reaction =
+            Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        redeclare record
+                                                                                                                                                                                                        Geometry =
+            Geometry.StructuredPackedColumn.Mellapak250Y (                                                                                                                                                                                                        d = 1, H = 1), redeclare model
+                                                                                                                                                                                                        InitOption =
+            Components.Columns.BaseClasses.Initialization.Init_EquilibriumFilm,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        BalanceEquations =
+            BalanceEquations.StructuredPackedColumn.NonEquilibrium.TwoPhaseVarState (                                                                                                                                redeclare model
+                                                                                                                                                                                                        FilmModel =
                 ThermalSeparation.FilmModel.StructuredPackedColumn.TrueEquilibrium),                                                                                                                                                                                                        T_l_profile = false, T_liquid_start = 387.15, T_v_profile = false, T_vap_start_bottom = 383.15, T_vap_start_top = 373.15, T_vapour_start = 387.15, eps_liq_start = 0.05, inertLiquid = {false, false, true},mapping = {{1, 1}, {2, 2}}, nS = 2, n_elements = 1, p_v_in(start = 200500), p_v_start_inlet = 200500, p_v_start_outlet = 200000, useHomotopy = false, wettedInitial = true, x_l_profile = false, x_l_start_const = {0.87, 0.03, 0.1}, x_l_start_in = {0.87, 0.03, 0.1}, x_l_start_out = {0.87, 0.03, 0.1}, x_v_start_const = {0.6, 0.4}) annotation (
         Placement(transformation(extent = {{-36, -9}, {10, 37}})));
-      ThermalSeparation.Components.SourcesSinks.SourceGas sourceGas(flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowNdot, Flow = 7, x = {0.7, 0.3}, use_Flow = false, redeclare
-          package                                                                                                                                                                                                         Medium =
+      ThermalSeparation.Components.SourcesSinks.SourceGas sourceGas(flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowNdot, Flow = 7, x = {0.7, 0.3}, use_Flow = false, redeclare package
+                                                                                                                                                                                                        Medium =
             Media.H2O_CO2_Vap,                                                                                                                                                                                                        T = 393.15) annotation (
         Placement(transformation(extent = {{-60, -38}, {-40, -18}})));
       ThermalSeparation.Components.SourcesSinks.AmbientHeatSink ambientHeatSink annotation (
@@ -792,28 +744,26 @@ package Testing
     end ColumnSimple;
 
     model AbsorptionColumnStartUp
-      Components.Columns.StructuredPackedColumn_newStartUpShutDown Absorber(inertVapour = {false, true, false, true}, inertLiquid = {false, false, true}, nS = 2, mapping = {{1, 1}, {3, 2}}, wettedInitial = false, redeclare
-          model                                                                                                                                                                                                         Holdup =
-            ThermalSeparation.Holdup.StructuredPackedColumn.StichlmairStat,                                                                                                                                                                                                        considerStartUp = true, StartUp_CCS = true, friggelfaktor = 0.2e5, smooth_startUp = false, delay_startUp = 750, lowBoilingPoint = {false, true, true, true}, redeclare
-          model                                                                                                                                                                                                         InitOption =
-            ThermalSeparation.Components.Columns.BaseClasses.Initialization.DyncapStartUpAbsorption,                                                                                                                                                                                                        eps_liq_start = 0.001, x_v_start_const = {0.048, 0.2, 0.001, 0.751}, switchingCondition_Boiling = false, x_v_dummy = {1, 0, 0, 0}, y_PID = 1000, gain = 100, Vdot_startUp_pressure = 5, x_l_start_const = {0.8593, 0.0325, 0.1082}, redeclare
-          record                                                                                                                                                                                                         Geometry =
-            ThermalSeparation.Geometry.StructuredPackedColumn.Mellapak250Y (                                                                                                                                                                                                        d = 14.56, H = 15), redeclare
-          model                                                                                                                                                                                                         PressureLoss =
-            ThermalSeparation.PressureLoss.StructuredPackedColumn.NominalLinear
-            (                                                                                                                                                                                                        deltaP_nom(displayUnit = "Pa") = 3), redeclare
-          package                                                                                                                                                                                                         MediumVapour =
-            ThermalSeparation.Media.H2O_O2_CO2_N2_Vap,                                                                                                                                                                                                        redeclare
-          package                                                                                                                                                                                                         MediumLiquid =
-            ThermalSeparation.Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         ThermoEquilibrium =
-            PhaseEquilibrium.H2O_CO2_MEA_startUp (                                                                                                                                                                                                        factor_K = {1, 1.03, 1}), redeclare
-          model                                                                                                                                                                                                         Reaction =
-            Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         FilmModel =
-            FilmModel.StructuredPackedColumn.TrueEquilibriumStartUpCCSAbsorption
-            (                                                                                                                                                                                                        faktor_Ndot_v = 30000), redeclare
-          model                                                                                                                                                                                                         HeatTransferWall =
+      Components.Columns.StructuredPackedColumn_newStartUpShutDown Absorber(inertVapour = {false, true, false, true}, inertLiquid = {false, false, true}, nS = 2, mapping = {{1, 1}, {3, 2}}, wettedInitial = false, redeclare model
+                                                                                                                                                                                                        Holdup =
+            ThermalSeparation.Holdup.StructuredPackedColumn.StichlmairStat,                                                                                                                                                                                                        considerStartUp = true, StartUp_CCS = true, friggelfaktor = 0.2e5, smooth_startUp = false, delay_startUp = 750, lowBoilingPoint = {false, true, true, true}, redeclare model
+                                                                                                                                                                                                        InitOption =
+            ThermalSeparation.Components.Columns.BaseClasses.Initialization.DyncapStartUpAbsorption,                                                                                                                                                                                                        eps_liq_start = 0.001, x_v_start_const = {0.048, 0.2, 0.001, 0.751}, switchingCondition_Boiling = false, x_v_dummy = {1, 0, 0, 0}, y_PID = 1000, gain = 100, Vdot_startUp_pressure = 5, x_l_start_const = {0.8593, 0.0325, 0.1082}, redeclare record
+                                                                                                                                                                                                        Geometry =
+            ThermalSeparation.Geometry.StructuredPackedColumn.Mellapak250Y (                                                                                                                                                                                                        d = 14.56, H = 15), redeclare model
+                                                                                                                                                                                                        PressureLoss =
+            ThermalSeparation.PressureLoss.StructuredPackedColumn.NominalLinear (                                                                                                                                    deltaP_nom(displayUnit = "Pa") = 3), redeclare package
+                                                                                                                                                                                                        MediumVapour =
+            ThermalSeparation.Media.H2O_O2_CO2_N2_Vap,                                                                                                                                                                                                        redeclare package
+                                                                                                                                                                                                        MediumLiquid =
+            ThermalSeparation.Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        ThermoEquilibrium =
+            PhaseEquilibrium.H2O_CO2_MEA_startUp (                                                                                                                                                                                                        factor_K = {1, 1.03, 1}), redeclare model
+                                                                                                                                                                                                        Reaction =
+            Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        FilmModel =
+            FilmModel.StructuredPackedColumn.TrueEquilibriumStartUpCCSAbsorption (                                                                                                                                   faktor_Ndot_v = 30000), redeclare model
+                                                                                                                                                                                                        HeatTransferWall =
             Wall.Adiabatic,
         n_elements=5,
         p_v_start_inlet=100000,
@@ -834,8 +784,8 @@ package Testing
         Placement(transformation(extent = {{-110, -4}, {-90, 16}})));
       Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime = 23000, startValue = false) annotation (
         Placement(transformation(extent = {{-116, 22}, {-96, 42}})));
-      Components.SourcesSinks.SourceGas sourceGas_Vdot(flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowMdot, x = {0.0746, 0.0276, 0.1497, 0.7481}, use_T_in = true, use_x_in = true, redeclare
-          package                                                                                                                                                                                                         Medium =
+      Components.SourcesSinks.SourceGas sourceGas_Vdot(flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowMdot, x = {0.0746, 0.0276, 0.1497, 0.7481}, use_T_in = true, use_x_in = true, redeclare package
+                                                                                                                                                                                                        Medium =
             Media.H2O_O2_CO2_N2_Vap,                                                                                                                                                                                                        T = 312.15) annotation (
         Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 90, origin = {-41, -64})));
       Modelica.Blocks.Sources.CombiTimeTable mdot_in(smoothness = Modelica.Blocks.Types.Smoothness.LinearSegments, extrapolation = Modelica.Blocks.Types.Extrapolation.HoldLastPoint, startTime = 0,
@@ -846,8 +796,7 @@ package Testing
             Media.H2O_O2_CO2_N2_Vap,                                                              use_p = true,
         p=100000)                                                                                                           annotation (
         Placement(transformation(extent = {{-17, -21.5}, {17, 21.5}}, rotation = 90, origin = {-44.5, 93})));
-      Components.SourcesSinks.SourceLiquid sourceLiquid_x(flowOption = Components.SourcesSinks.Enumerations.FlowOption.FlowMdot, Flow = 1021, redeclare
-          package                                                                                                                                               MediumLiquid =
+      Components.SourcesSinks.SourceLiquid sourceLiquid_x(flowOption = Components.SourcesSinks.Enumerations.FlowOption.FlowMdot, Flow = 1021, redeclare package MediumLiquid =
             Media.H2O_CO2_MEA_Liq,                                                                                                                                                                    x = {0.85, 0.03, 0.12}, use_Flow = false, T = 313.15) annotation (
         Placement(transformation(extent = {{88, 74}, {68, 54}})));
       Components.SourcesSinks.SinkLiquid sinkLiquid(redeclare package Medium =
@@ -894,29 +843,28 @@ package Testing
         Placement(transformation(extent = {{-16, -17.5}, {16, 17.5}}, rotation = 90, origin = {66.5, 152})));
       Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow annotation (
         Placement(transformation(extent = {{-7, -7}, {7, 7}}, rotation = 180, origin = {89, -122})));
-      Components.Columns.StructuredPackedColumn_newStartUpShutDown Desorber(mapping = {{1, 1}, {2, 2}}, inertLiquid = {false, false, true}, T_l_profile = false, x_l_start_in = {0.8, 0.1, 0.1}, x_l_start_out = {0.5, 0.2, 0.3}, x_l_profile = false, T_v_profile = false, nS = 2, inertVapour = {false, false}, wettedInitial = false, eps_liq_start = 0.001, considerStartUp = true, StartUp_CCS = true, switchingCondition_Boiling = true, lowBoilingPoint = {false, true}, redeclare
-          model                                                                                                                                                                                                         InitOption =
-            ThermalSeparation.Components.Columns.BaseClasses.Initialization.DyncapStartUpDesorption,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         Holdup =
-            ThermalSeparation.Holdup.StructuredPackedColumn.StichlmairStat,                                                                                                                                                                                                        x_v_start_const = {0, 1}, y_PID = 1000, Vdot_startUp_pressure = 5, gain = 100, smooth_startUp = true, k = 0.04, delay_startUp = 100, friggelfaktor = 0.7e5, redeclare
-          model                                                                                                                                                                                                         Reaction =
-            Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        redeclare
-          record                                                                                                                                                                                                         Geometry =
-            Geometry.StructuredPackedColumn.Mellapak250Y (                                                                                                                                                                                                        d = 8.65, H = 10), redeclare
-          package                                                                                                                                                                                                         MediumVapour =
-            Media.H2O_CO2_Vap,                                                                                                                                                                                                        redeclare
-          package                                                                                                                                                                                                         MediumLiquid =
-            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        n_elements = 10, redeclare
-          model                                                                                                                                                                                                         PressureLoss =
-            PressureLoss.StructuredPackedColumn.NominalLinear (                                                                                                                                                                                                        Vdot_nom = 0.4, deltaP_nom(displayUnit = "Pa") = 3), redeclare
-          model                                                                                                                                                                                                         HeatTransferWall =
-            Wall.ConstAlpha,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         FilmModel =
-            FilmModel.StructuredPackedColumn.TrueEquilibriumStartUpCCSDesorption
-            (                                                                                                                                                                                                        faktor_Ndot_v = 30000, redeclare
-              model                                                                                                                                                                                                         StateSelection =
-                ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.None),                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         ThermoEquilibrium =
+      Components.Columns.StructuredPackedColumn_newStartUpShutDown Desorber(mapping = {{1, 1}, {2, 2}}, inertLiquid = {false, false, true}, T_l_profile = false, x_l_start_in = {0.8, 0.1, 0.1}, x_l_start_out = {0.5, 0.2, 0.3}, x_l_profile = false, T_v_profile = false, nS = 2, inertVapour = {false, false}, wettedInitial = false, eps_liq_start = 0.001, considerStartUp = true, StartUp_CCS = true, switchingCondition_Boiling = true, lowBoilingPoint = {false, true}, redeclare model
+                                                                                                                                                                                                        InitOption =
+            ThermalSeparation.Components.Columns.BaseClasses.Initialization.DyncapStartUpDesorption,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        Holdup =
+            ThermalSeparation.Holdup.StructuredPackedColumn.StichlmairStat,                                                                                                                                                                                                        x_v_start_const = {0, 1}, y_PID = 1000, Vdot_startUp_pressure = 5, gain = 100, smooth_startUp = true, k = 0.04, delay_startUp = 100, friggelfaktor = 0.7e5, redeclare model
+                                                                                                                                                                                                        Reaction =
+            Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        redeclare record
+                                                                                                                                                                                                        Geometry =
+            Geometry.StructuredPackedColumn.Mellapak250Y (                                                                                                                                                                                                        d = 8.65, H = 10), redeclare package
+                                                                                                                                                                                                        MediumVapour =
+            Media.H2O_CO2_Vap,                                                                                                                                                                                                        redeclare package
+                                                                                                                                                                                                        MediumLiquid =
+            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        n_elements = 10, redeclare model
+                                                                                                                                                                                                        PressureLoss =
+            PressureLoss.StructuredPackedColumn.NominalLinear (                                                                                                                                                                                                        Vdot_nom = 0.4, deltaP_nom(displayUnit = "Pa") = 3), redeclare model
+                                                                                                                                                                                                        HeatTransferWall =
+            Wall.ConstAlpha,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        FilmModel =
+            FilmModel.StructuredPackedColumn.TrueEquilibriumStartUpCCSDesorption (                                                                                                                                   faktor_Ndot_v = 30000, redeclare model
+                                                                                                                                                                                                        StateSelection =
+                ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.None),                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        ThermoEquilibrium =
             PhaseEquilibrium.H2O_CO2_MEA_startUp,                                                                                                                                                                                                        p_v_start_inlet = 100000, p_v_start_outlet = 100000, x_l_start_const = {0.8593, 0.0325, 0.1082}, T_vap_start_bottom = 313.15, T_vap_start_top = 313.15, T_liq_start_bottom = 313.15, T_liq_start_top = 313.15, T_vapour_start = 323.15, T_liquid_start = 323.15) annotation (
         Placement(transformation(extent = {{12, -67}, {102, 28}})));
       Components.Condenser.FlashCondenser_CO2_H2O flash_Condenser_simple(T_out(displayUnit = "degC") = 313.15) annotation (
@@ -925,18 +873,18 @@ package Testing
         Placement(transformation(extent = {{116, -24}, {128, -12}})));
       Modelica.Blocks.Sources.CombiTimeTable Q_Reboiler(smoothness = Modelica.Blocks.Types.Smoothness.LinearSegments, extrapolation = Modelica.Blocks.Types.Extrapolation.HoldLastPoint, offset = {1}, startTime = 0, table = [0, 0.0; 3000, 0; 3240, 2.13584e8; 5000, 2.13584e8; 20000, 2.13584e8; 23000, 2.13584e8]) annotation (
         Placement(transformation(extent = {{-15, -15}, {15, 15}}, rotation = 180, origin = {137, -111})));
-      Components.Reboiler.KettleReboilerEq_StartUpCCS_dummy_p sumpV(m_Reb = 1000, eps_liq_init = 0.001, initOption_TepsXfixed = false, initOption_withoutT = false, initOption_standalone = false, initOption_startup_RebplusDes = true, x_init = 0.8593, inert_liq = {false, false, true}, nS = 2, startup = true, A = 50, H = 2, redeclare
-          model                                                                                                                                                                                                         InnerHT =
-            HeatAndMassTransfer.HTResistance.NoHTResistance,                                                                                                                                                                                                        Vdot_nom = 100, redeclare
-          package                                                                                                                                                                                                         MediumLiquid =
-            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare
-          package                                                                                                                                                                                                         MediumVapour =
-            Media.H2O_CO2_Vap,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         Reaction =
-            Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        init_option = ThermalSeparation.Components.Reboiler.InitOptionEq.initOption_startup_inert_Dyn, deltap_nom = 10, redeclare
-          record                                                                                                                                                                                                         Geometry =
-            Geometry.StructuredPackedColumn.Mellapak250Y,                                                                                                                                                                                                        redeclare
-          model                                                                                                                                                                                                         ThermoEquilibrium =
+      Components.Reboiler.KettleReboilerEq_StartUpCCS_dummy_p sumpV(m_Reb = 1000, eps_liq_init = 0.001, initOption_TepsXfixed = false, initOption_withoutT = false, initOption_standalone = false, initOption_startup_RebplusDes = true, x_init = 0.8593, inert_liq = {false, false, true}, nS = 2, startup = true, A = 50, H = 2, redeclare model
+                                                                                                                                                                                                        InnerHT =
+            HeatAndMassTransfer.HTResistance.NoHTResistance,                                                                                                                                                                                                        Vdot_nom = 100, redeclare package
+                                                                                                                                                                                                        MediumLiquid =
+            Media.H2O_CO2_MEA_Liq,                                                                                                                                                                                                        redeclare package
+                                                                                                                                                                                                        MediumVapour =
+            Media.H2O_CO2_Vap,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        Reaction =
+            Reaction.ReactionEquilibrium.CO2_MEA,                                                                                                                                                                                                        init_option = ThermalSeparation.Components.Reboiler.InitOptionEq.initOption_startup_inert_Dyn, deltap_nom = 10, redeclare record
+                                                                                                                                                                                                        Geometry =
+            Geometry.StructuredPackedColumn.Mellapak250Y,                                                                                                                                                                                                        redeclare model
+                                                                                                                                                                                                        ThermoEquilibrium =
             PhaseEquilibrium.CO2_CO2_MEA_StartUpReboiler_newFormulation,                                                                                                                                                                                                        beta_eps = 0.0001, T_init = 313.15, p_init = 100000, p_friggel = 25000) annotation (
         Placement(transformation(extent = {{48, -132}, {68, -112}})));
       Components.SourcesSinks.AmbientHeatSink ambientHeatSink4 annotation (
@@ -955,8 +903,7 @@ package Testing
       Components.SourcesSinks.SourceLiquid sourceLiquid_x(redeclare package MediumLiquid =
             Media.H2O_CO2_MEA_Liq,                                                                                flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowVdot, Flow = 1, use_Flow = false, useT_In = true, T = 313.15, x = {0.85, 0.03, 0.12}) annotation (
         Placement(transformation(extent = {{146, 74}, {126, 54}})));
-      Components.SourcesSinks.CombLiquid_x combLiquid_x2(x_start = {0.8593, 0.0325, 0.1082}, redeclare
-          package                                                                                              Medium =
+      Components.SourcesSinks.CombLiquid_x combLiquid_x2(x_start = {0.8593, 0.0325, 0.1082}, redeclare package Medium =
             Media.H2O_CO2_MEA_Liq,                                                                                                             T_start = 308.15) annotation (
         Placement(transformation(extent = {{-5, -5}, {5, 5}}, rotation = 270, origin = {110, 43})));
       Modelica.Blocks.Sources.Ramp T_solvent(height = 60, duration = 2000, offset = 313.15, startTime = 3240) annotation (
@@ -1003,18 +950,15 @@ package Testing
 
   package LiquidCooler
     model LiquidCoolerSimple
-      ThermalSeparation.Components.SourcesSinks.SinkLiquid sinkLiquid1(redeclare
-          package                                                                        Medium =
+      ThermalSeparation.Components.SourcesSinks.SinkLiquid sinkLiquid1(redeclare package Medium =
             ThermalSeparation.Media.WaterBasedLiquid.N2_H2O)                                                                                       annotation (
         Placement(transformation(extent = {{46, 14}, {66, 34}})));
-      ThermalSeparation.Components.SourcesSinks.SourceLiquid sourceLiquid2(flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowVdot, Flow = 0.1, use_Flow = false, redeclare
-          package                                                                                                                                                                                                   MediumLiquid =
+      ThermalSeparation.Components.SourcesSinks.SourceLiquid sourceLiquid2(flowOption = ThermalSeparation.Components.SourcesSinks.Enumerations.FlowOption.FlowVdot, Flow = 0.1, use_Flow = false, redeclare package MediumLiquid =
             ThermalSeparation.Media.WaterBasedLiquid.N2_H2O,                                                                                                                                                                                                        x = {0.1, 0.9}, useT_In = false, T = 353.15) annotation (
         Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 0, origin = {-30, 28})));
       inner ThermalSeparation.SystemTS systemTS annotation (
         Placement(transformation(extent = {{-100, 80}, {-80, 100}})));
-      ThermalSeparation.Components.HeatExchanger.LiquidCooler liquidCooler(redeclare
-          package                                                                            MediumLiquid =
+      ThermalSeparation.Components.HeatExchanger.LiquidCooler liquidCooler(redeclare package MediumLiquid =
             ThermalSeparation.Media.WaterBasedLiquid.N2_H2O,                                                                                                 T_set = 298.15) annotation (
         Placement(transformation(extent = {{-10, -10}, {10, 10}}, rotation = 90, origin = {16, 38})));
       ThermalSeparation.Components.SourcesSinks.AmbientHeatSink ambientHeatSink annotation (

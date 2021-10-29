@@ -199,8 +199,7 @@ SI.MoleFraction x_vap_liq[n,nS] "total molar fractions";
 
 /*** thermodynamic equilibrium ***/
  replaceable model ThermoEquilibrium =
-      ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby
-    ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium
+      ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium
     "model for phase equilibrium"                                                         annotation(choicesAllMatching=true);
     ThermoEquilibrium bubblePressure[n](x_vap_liq=x_vap_liq,each nS=nS,  each mapping =                            mapping,
     redeclare replaceable package MediumVapour =   MediumVapour,
