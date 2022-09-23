@@ -1,7 +1,6 @@
 within ThermalSeparation.Components.Columns.BaseClasses.Initialization.Homotopy;
 model NoHomotopy
-extends
-    ThermalSeparation.Components.Columns.BaseClasses.Initialization.Homotopy.BaseHomotopy(
+extends ThermalSeparation.Components.Columns.BaseClasses.Initialization.Homotopy.BaseHomotopy(
       useHomotopy=false);
 
 Boolean whichHomotopy[6]=fill(false,6);

@@ -29,5 +29,4 @@ package Reboiler
   equation
     Vdot = sign(p_in - p_out)*max(0, (abs(p_in - p_out)/(dp_nom/Vdot_nom)));
   end Linear;
-
 end Reboiler;

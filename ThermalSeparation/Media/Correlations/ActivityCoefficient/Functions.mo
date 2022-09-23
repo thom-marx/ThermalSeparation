@@ -54,7 +54,7 @@ package Functions
   function MargulesFun
       input Integer nS=3;
       input Integer k;
-      input Modelica.SIunits.MoleFraction x[nS];
+      input Modelica.Units.SI.MoleFraction x[nS];
       input Real A[nS,nS];
       output Real Margules=0;
   protected
@@ -87,8 +87,8 @@ package Functions
   function NRTLFun
    input Integer nS;
    input Integer k;
-   input Modelica.SIunits.MoleFraction x[nS];
-   input Modelica.SIunits.Temperature T;
+   input Modelica.Units.SI.MoleFraction x[nS];
+   input Modelica.Units.SI.Temperature T;
    input Real alpha[nS,nS];
    input Real g[nS,nS];
    output Real NRTL=0;
@@ -138,8 +138,8 @@ package Functions
     parameter Integer z; // z wird hier nicht gesetzt.... sollte 10 sein!
     input Integer nS;
     input Integer k;
-    input Modelica.SIunits.MoleFraction x[nS];
-    input Modelica.SIunits.Temperature T;
+    input Modelica.Units.SI.MoleFraction x[nS];
+    input Modelica.Units.SI.Temperature T;
     input Real r[nS];
     input Real q[nS];
     input Real u[nS,nS];
@@ -188,7 +188,7 @@ package Functions
   function WilsonFun
    input Integer nS;
    input Integer k;
-   input Modelica.SIunits.MoleFraction x[nS];
+   input Modelica.Units.SI.MoleFraction x[nS];
    input Real Lambda[nS,nS];
 
    output Real Wilson=0;

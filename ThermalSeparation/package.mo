@@ -2,13 +2,13 @@ within ;
 package ThermalSeparation "Thermal Separation Library"
 constant Integer inter[:] = {1,3,6,10,15, 21, 28, 36, 45}
   "number of binary interaction values depending on the number of substances";
-import SI = Modelica.SIunits;
+import      Modelica.Units.SI;
 
 
 
 annotation (preferedView="info",
   version="0.2",
-uses(Modelica(version="3.2.3")),
+uses(Modelica(version="4.0.0")),
      Icon(graphics={Ellipse(
         extent={{-70,70},{70,-70}},
         lineColor={0,0,0},

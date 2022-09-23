@@ -1,3 +1,3 @@
 within ThermalSeparation.BalanceEquations.Base;
-package NonEquilibrium 
+package NonEquilibrium
 end NonEquilibrium;

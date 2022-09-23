@@ -74,7 +74,6 @@ protected
     annotation (structurallyIncomplete);
   end BaseProperties;
 
-
         redeclare model extends CalcSpecificEnthalpy
           /*** enthalpy ***/
 
@@ -97,7 +96,6 @@ protected
               fillPattern=FillPattern.Solid)}));
         end CalcSpecificEnthalpy;
 
-
 redeclare model extends HenryCoefficient
      parameter SI.Pressure henry_H[nSubstance] = {1.63e8,0} "Henry coefficient";
      parameter Real henry_C[nSubstance]={2400,0}
@@ -116,7 +114,6 @@ equation
   end for;
 end HenryCoefficient;
 
-
     redeclare model extends DiffusionCoefficient
     /*** model which shall be used to calculate the diffusion coefficients in a binary mixture ***/
       model D_Molecules =
@@ -132,7 +129,6 @@ end HenryCoefficient;
     equation
     D = diffCoeff.D;
     end DiffusionCoefficient;
-
 
   redeclare replaceable model extends ActivityCoefficient
   "calculates the activity coefficient for each component in the liquid phase"
@@ -150,7 +146,6 @@ end HenryCoefficient;
     annotation (structurallyIncomplete);
   end ActivityCoefficient;
 
-
   redeclare replaceable model extends FugacityCoefficient
   "calculates the fugacity coefficient at the saturation point for each component in the liquid phase"
 
@@ -167,13 +162,11 @@ end HenryCoefficient;
     annotation (structurallyIncomplete);
   end FugacityCoefficient;
 
-
   redeclare replaceable model extends ThermodynamicFactor
   equation
   Gamma=diagonal(ones(nSubstance));
     annotation (structurallyIncomplete);
   end ThermodynamicFactor;
-
 
   annotation (Icon(graphics={            Rectangle(
           extent={{-80,100},{100,-80}},

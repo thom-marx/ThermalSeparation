@@ -1,4 +1,4 @@
 within ThermalSeparation.HeatAndMassTransfer.StructuredPackedColumn;
-package Liquid 
+package Liquid
 
 end Liquid;

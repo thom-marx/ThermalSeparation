@@ -2,8 +2,7 @@
 model MS_mod "modified Maxwell-Stefan mass transfer - no film reaction"
   import ThermalSeparation;
 extends BaseNonEqType(nn=n);
-extends ThermalSeparation.FilmModel.BaseClasses.MaxwellStefan_mod(redeclare record
-             BaseGeometry =                                                                     Geometry);
+extends ThermalSeparation.FilmModel.BaseClasses.MaxwellStefan_mod(redeclare record BaseGeometry=Geometry);
 
  final parameter Integer aux[  :] = {1,3,6,10,15, 21, 28, 36, 45};
 Geometry geometry(n=n);

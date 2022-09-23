@@ -3,8 +3,7 @@ model EffectiveDiff
   "effective diffusion coefficient - only for diluted systems"
   import ThermalSeparation;
 extends BaseNonEqType;
-extends ThermalSeparation.FilmModel.BaseClasses.EffectiveDiff(redeclare record
-      BaseGeometry =
+extends ThermalSeparation.FilmModel.BaseClasses.EffectiveDiff(redeclare record BaseGeometry =
         Geometry);
 
  final parameter Integer aux[  :] = {1,3,6,10,15, 21, 28, 36, 45};

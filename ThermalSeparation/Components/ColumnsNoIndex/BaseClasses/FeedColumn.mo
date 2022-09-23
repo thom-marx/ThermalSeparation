@@ -2,8 +2,7 @@ within ThermalSeparation.Components.ColumnsNoIndex.BaseClasses;
 partial model FeedColumn
   "column with optional liquid and or vapour feed inlets"
  //extends BaseColumn;
- extends
-    ThermalSeparation.Components.ColumnsNoIndex.BaseClasses.BaseColumn_external;
+ extends ThermalSeparation.Components.ColumnsNoIndex.BaseClasses.BaseColumn_external;
 // extends ThermalSeparation.Components.Columns.BaseClasses.BaseColumn_external;
 /***LIQUID FEED ***/
 
@@ -12,8 +11,7 @@ model InternalFeedPort "internal model for conditional stream connectors"
   ThermalSeparation.Interfaces.LiquidPortOut          feedLiquidInternal;
   ThermalSeparation.Interfaces.GasPortOut          feedVapourInternal;
 end InternalFeedPort;
-  InternalFeedPort internalFeedPort[n](feedLiquidInternal(redeclare each package
-                Medium =
+  InternalFeedPort internalFeedPort[n](feedLiquidInternal(redeclare each package Medium =
           MediumLiquid),feedVapourInternal(redeclare each package Medium =
           MediumVapour));
 protected
@@ -29,14 +27,13 @@ public
     "number of stage where feed enters the column" annotation(Dialog(enable = hasLiquidFeed, tab="Feed", group="Liquid Feed"));
   final parameter Integer numberLiquidFeedsInternal(min=0,max=n) = if hasLiquidFeed then numberLiquidFeeds else 0;
   ThermalSeparation.Interfaces.LiquidPortIn[
-                                   numberLiquidFeeds] feedLiquid(redeclare each package
-                   Medium =
+                                   numberLiquidFeeds] feedLiquid(redeclare each package Medium =
         MediumLiquid) if hasLiquidFeed annotation (Placement(transformation(
           extent={{-94,-14},{-74,6}}, rotation=0), iconTransformation(extent={{
             -94,-14},{-74,6}})));
 
   ThermalSeparation.Utilities.MediumLink mediumLink[n];
-  MediumLiquid.BaseProperties mediumLiquidFeed[numberLiquidFeeds](each T0=T_ref,  each p=p_v[n+1],h=actualStream(feedLiquid.h_outflow), x=actualStream(feedLiquid.x_outflow)) if                   hasLiquidFeed;
+  MediumLiquid.BaseProperties mediumLiquidFeed[numberLiquidFeeds](each T0=T_ref,  each p=p_v[n+1],h=actualStream(feedLiquid.h_outflow), x=actualStream(feedLiquid.x_outflow))                   if hasLiquidFeed;
 
 /***VAPOUR FEED ***/
 //   ThermalSeparation.Interfaces.GasPortOut[n] feedVapourInternal(redeclare each
@@ -58,14 +55,13 @@ public
 //       package Medium =
 //         MediumVapour,   p=p_v[1:n]);
   ThermalSeparation.Interfaces.GasPortIn[
-                                numberVapourFeeds] feedVapour(redeclare each package
-              Medium =
+                                numberVapourFeeds] feedVapour(redeclare each package Medium =
         MediumVapour) if hasVapourFeed annotation (Placement(transformation(
           extent={{-94,8},{-74,28}}, rotation=0), iconTransformation(extent={{
             -94,8},{-74,28}})));
 
   ThermalSeparation.Utilities.MediumLink mediumVapourLink[n];
-  MediumVapour.BaseProperties mediumVapourFeed[numberVapourFeeds](each T0=T_ref, each p=p_v[n+1],c=c_v_feed,h=actualStream(feedVapour.h_outflow), x=actualStream(feedVapour.x_outflow),  x_star=actualStream(feedVapour.x_outflow)) if                   hasVapourFeed;
+  MediumVapour.BaseProperties mediumVapourFeed[numberVapourFeeds](each T0=T_ref, each p=p_v[n+1],c=c_v_feed,h=actualStream(feedVapour.h_outflow), x=actualStream(feedVapour.x_outflow),  x_star=actualStream(feedVapour.x_outflow))                   if hasVapourFeed;
 
 equation
 /*** link to base class ***/

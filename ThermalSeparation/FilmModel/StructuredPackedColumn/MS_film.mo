@@ -2,8 +2,8 @@
 model MS_film "Maxwell-Stefan mass transfer - film reaction"
   import ThermalSeparation;
 extends BaseNonEqType;
-extends ThermalSeparation.FilmModel.BaseClasses.FilmDiscretization(redeclare record
-             BaseGeometry = Geometry);
+extends ThermalSeparation.FilmModel.BaseClasses.FilmDiscretization(redeclare record BaseGeometry =
+                            Geometry);
 
  final parameter Integer aux[  :] = {1,3,6,10,15, 21, 28, 36, 45};
 Geometry geometry(n=n);

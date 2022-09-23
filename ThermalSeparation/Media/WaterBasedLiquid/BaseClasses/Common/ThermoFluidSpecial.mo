@@ -376,7 +376,6 @@ critical pressure.
 </HTML>
 "));
  end ThermoProperties_dT;
-
  //   record GibbsDerivs
 
    //     "derivatives of dimensionless Gibbs-function w.r.t dimensionless pressure and temperature"
@@ -486,7 +485,7 @@ critical pressure.
    Real vt(unit="m3.kg-1.K-1")
       "derivative of specific volume w.r.t. temperature";
    Real vp(unit="m4.kg-2.s2") "derivative of specific volume w.r.t. pressure";
-   Modelica.SIunits.Density d;
+   Modelica.Units.SI.Density d;
  algorithm
    pro.R := g.R;
    pro.p := g.p;
@@ -710,5 +709,4 @@ critical pressure.
    pro.a := Modelica.Constants.inf;
    pro.dudT := (sat.p - sat.T*sat.dpT)/(sat.d*sat.d);
  end TwoPhaseToProps_dT;
-
 end ThermoFluidSpecial;

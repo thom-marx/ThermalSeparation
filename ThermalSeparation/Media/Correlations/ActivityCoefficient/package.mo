@@ -1,5 +1,5 @@
 within ThermalSeparation.Media.Correlations;
-package ActivityCoefficient 
+package ActivityCoefficient
 
 
 annotation (Documentation(info="<html>

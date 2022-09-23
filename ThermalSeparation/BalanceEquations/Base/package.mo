@@ -1,3 +1,3 @@
 within ThermalSeparation.BalanceEquations;
-package Base 
+package Base
 end Base;

@@ -1,4 +1,4 @@
 within ThermalSeparation.Reaction.ReactionKinetics.CatEffFactor;
-package ThieleModulus 
+package ThieleModulus
 
 end ThieleModulus;

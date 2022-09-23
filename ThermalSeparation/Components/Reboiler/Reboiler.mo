@@ -142,16 +142,12 @@ Boolean bool_eps;
        ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium
                                                             annotation(choicesAllMatching=true);
    ThermoEquilibrium thermoEquilibrium(nS=nS,
-      mapping =                                                                                mapping, redeclare replaceable package
-                          MediumVapour =
-         MediumVapour,                                                                                                    redeclare replaceable package
-                          MediumLiquid =
+      mapping =                                                                                mapping, redeclare replaceable package MediumVapour =
+         MediumVapour,                                                                                                    redeclare replaceable package MediumLiquid =
      MediumLiquid, p=p, T=T_star, x_v=x_v_star, x_l=x_l_star, p_sat=p_sat,  v_v=MM_v/rho_v,x_vap_liq=fill(1/nS,nS));
    ThermoEquilibrium bubblePressure(nS=nS,
-      mapping =                                                                                mapping, redeclare replaceable package
-                          MediumVapour =
-         MediumVapour,                                                                                                    redeclare replaceable package
-                          MediumLiquid =
+      mapping =                                                                                mapping, redeclare replaceable package MediumVapour =
+         MediumVapour,                                                                                                    redeclare replaceable package MediumLiquid =
      MediumLiquid, p=p_initial, T=T_l, x_v=x_v, x_l=x_l, p_sat=p_sat_bulk,  v_v=MM_v/rho_v,x_vap_liq=fill(1/nS,nS));
 
    Real K[nS] "equilibrium constant";
@@ -202,9 +198,9 @@ SI.Pressure deltaP = p_in-p_out;
        u_s = p_initial,
       yMax=100,
       k=0.005,
-     initType=Modelica.Blocks.Types.InitPID.InitialOutput,
+    initType=Modelica.Blocks.Types.Init.InitialOutput,
     Ti=1,
-    Td=1)                                                    annotation (Placement(transformation(extent={{-24,-12},{-4,8}})));
+    Td=1)                                                    annotation (Placement(transformation(extent={{-26,-12},{-6,8}})));
 
       ThermalSeparation.Interfaces.LiquidPortIn
                               liquidIn(redeclare package Medium=MediumLiquid)
@@ -426,7 +422,7 @@ if initOption == InitOption.initEQ and not considerStartUp then
   T_v = T_v_start;
   T_l = T_l_start;
 
-  p = p_start;
+  //p = p_start;
 
   Ndot_v_transfer=zeros(nSV);
 

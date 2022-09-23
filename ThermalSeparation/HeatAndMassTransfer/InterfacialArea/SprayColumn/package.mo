@@ -1,3 +1,3 @@
 within ThermalSeparation.HeatAndMassTransfer.InterfacialArea;
-package SprayColumn 
+package SprayColumn
 end SprayColumn;

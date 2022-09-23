@@ -2,8 +2,7 @@ within ThermalSeparation.BalanceEquations.Base.NonEquilibrium;
 model BaseTwoPhaseVarStateFixEps
   "phases balanced seperately, states optional, eps_liq fixed"
 
-extends
-    ThermalSeparation.BalanceEquations.Base.NonEquilibrium.BaseBalanceEquationsNonEq;
+extends ThermalSeparation.BalanceEquations.Base.NonEquilibrium.BaseBalanceEquationsNonEq;
 
   input SI.MolarInternalEnergy u_v[n](stateSelect=StateSelect.default);
   input SI.MolarInternalEnergy u_l[n](stateSelect=StateSelect.default);

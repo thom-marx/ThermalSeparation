@@ -1,4 +1,4 @@
 within ThermalSeparation.Holdup;
-package RandomPackedColumn 
+package RandomPackedColumn
 
 end RandomPackedColumn;

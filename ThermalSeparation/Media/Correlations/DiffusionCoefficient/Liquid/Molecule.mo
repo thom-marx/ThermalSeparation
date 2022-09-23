@@ -19,8 +19,7 @@ package Molecule
 
   model Const_Molecule
     "constant and equal diffusion coefficients for molecules"
-    extends
-      ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.Molecule.BaseMolecules;
+    extends ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.Molecule.BaseMolecules;
     parameter SI.DiffusionCoefficient D_const_liquid = 2e-9;
   equation
     D=fill(D_const_liquid,nS,nS);

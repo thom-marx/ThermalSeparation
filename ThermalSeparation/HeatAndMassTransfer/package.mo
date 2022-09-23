@@ -1,7 +1,7 @@
 within ThermalSeparation;
 package HeatAndMassTransfer "Models for the Heat and Mass Transfer"
       extends Icons.Library.Orange;
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
 
 
   annotation(preferedView="info", Documentation(revisions="<html>

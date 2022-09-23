@@ -1,8 +1,7 @@
 within ThermalSeparation.FilmModel.BaseClasses;
 model EnhancementMS
   "enhancement of reaction on liquid side, Maxwell-Stefan on gas side"
- extends ThermalSeparation.FilmModel.BaseClasses.BaseFilmModel( redeclare replaceable package
-                          MediumLiquid =
+ extends ThermalSeparation.FilmModel.BaseClasses.BaseFilmModel( redeclare replaceable package MediumLiquid =
         ThermalSeparation.Media.BaseMediumLiquidReaction,
                         final EQ=false);
 SI.Density rho_v[n]=propsVap.rho;
@@ -25,8 +24,7 @@ SI.MolarMass MM_v[n] = propsVap.MM;
   replaceable model Enhancementfactor =
       ThermalSeparation.FilmModel.BaseClasses.EnhancementFactor.BaseEnhancement                         annotation(choicesAllMatching);
 
-  Enhancementfactor enhancementfactor[n](nS= nSL,c=c_l,c_l_star=c_l_star,eta_comp=eta_comp,k_l=k_l,p=p_v[1:n],T=T_l,x=x_l,redeclare replaceable package
-                          MediumLiquid =
+  Enhancementfactor enhancementfactor[n](nS= nSL,c=c_l,c_l_star=c_l_star,eta_comp=eta_comp,k_l=k_l,p=p_v[1:n],T=T_l,x=x_l,redeclare replaceable package MediumLiquid =
         MediumLiquid, gamma=gamma, propsLiq=propsLiq);
 
     /*** state variables ***/

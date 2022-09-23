@@ -20,15 +20,11 @@ model TrayColumn
                                     redeclare replaceable package MediumLiquid =
         MediumLiquid,
                       redeclare replaceable model Reaction = Reaction,
-                                                                        redeclare replaceable record
-                          Geometry =                                                                             Geometry,
-                                                                        redeclare replaceable model
-                        ThermoEquilibrium =
+                                                                        redeclare replaceable record Geometry =  Geometry,
+                                                                        redeclare replaceable model ThermoEquilibrium =
         ThermoEquilibrium,
-                                                                         redeclare replaceable model
-                          InitOption =                                                                              InitOption,
-                                                                                               redeclare replaceable package
-                          MediumVapour =
+                                                                         redeclare replaceable model InitOption =   InitOption,
+                                                                                               redeclare replaceable package MediumVapour =
         MediumVapour,
                                     final n=n,
                                               final nS=nS,
@@ -165,8 +161,8 @@ replaceable model HeatTransferWall =
      final n=n,p= p_hyd, h=h, Vdot_in=Vdot_v_in,
      eps_liq_2ph=holdup.eps_liq_2ph, eps_liq=eps_liq, startUp=startUp);
 
-  HeatTransferWall heatTransferWall(n=n,T=T, T_amb=heatPort.T, T_start = T_l_start[1], redeclare record
-             Geometry =                                                                                         Geometry);
+  HeatTransferWall heatTransferWall(n=n,T=T, T_amb=heatPort.T, T_start = T_l_start[1], redeclare record Geometry =
+                                                                                                                Geometry);
   Geometry geometry(n=n);
 
   replaceable model Holdup = ThermalSeparation.Holdup.TrayColumn.Stichlmair constrainedby ThermalSeparation.Holdup.TrayColumn.BaseHoldup annotation(choicesAllMatching=true);

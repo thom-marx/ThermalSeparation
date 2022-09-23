@@ -3,8 +3,7 @@ model EquilibriumPI "equilibrium on each stage using a PI controller"
   import ThermalSeparation;
   extends BaseNonEqType(nn=n); //for replaceability
   extends ThermalSeparation.FilmModel.BaseClasses.EquilibriumPI(
-                                                              redeclare record
-      BaseGeometry =
+                                                              redeclare record BaseGeometry =
         ThermalSeparation.Geometry);
 
   parameter Real eta_murphree[n,nSV] = 0.8*ones(n,nSV) "Murphree efficientcy"          annotation(Dialog(enable=EQ,tab="Heat and Mass Transfer", group = "Equilibrium"));

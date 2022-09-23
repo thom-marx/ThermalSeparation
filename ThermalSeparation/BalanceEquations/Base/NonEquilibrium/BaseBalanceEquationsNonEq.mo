@@ -60,7 +60,7 @@ extends ThermalSeparation.BalanceEquations.Base.BaseBalanceEquations;
    SI.MolarMass MM_l_in=propsLiqIn.MM;
    ThermalSeparation.Units.MolarEnthalpy h_l[n]=propsLiq.h;
    ThermalSeparation.Units.MolarEnthalpy h_l_in=propsLiqIn.h;
-  parameter Modelica.SIunits.Temperature T_ref;
+  parameter Modelica.Units.SI.Temperature T_ref;
 
   /*** variables upStream ***/
   input SI.Concentration c_v[n,nSV](each stateSelect=StateSelect.default);

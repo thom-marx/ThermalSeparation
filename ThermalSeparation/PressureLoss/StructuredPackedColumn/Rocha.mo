@@ -1,8 +1,7 @@
 ﻿within ThermalSeparation.PressureLoss.StructuredPackedColumn;
 model Rocha "correlation from Rocha et al."
 
-  extends
-    ThermalSeparation.PressureLoss.StructuredPackedColumn.BasicPressureLossPacked;
+  extends ThermalSeparation.PressureLoss.StructuredPackedColumn.BasicPressureLossPacked;
 Real sin_theta = Modelica.Math.sin(geometry.theta*2*Modelica.Constants.pi/360);
 Real A[n] = 0.177*rho_v_calc/(geometry.S * geometry.eps^2 * sin_theta^2);
 Real B[n] = 88.774 * eta_v_calc /(geometry.S^2 * geometry.eps * sin_theta);

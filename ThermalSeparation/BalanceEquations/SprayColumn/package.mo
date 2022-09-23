@@ -1,3 +1,3 @@
 within ThermalSeparation.BalanceEquations;
-package SprayColumn 
+package SprayColumn
 end SprayColumn;

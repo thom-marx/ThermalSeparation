@@ -4,8 +4,8 @@ package N2_H2O_O2_CO2_SO2_HCl_HF "water: N2, H2O, O2, CO2, SO2, HCl, HF"
        constant Real phi[nSubstance]= {1,2.26,1,1,1,1,1}
     "association factor of each substance, if this substance is to be the solvent - used for claculation of diffusion coeffcients";
 
-  extends
-    ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.PartialWaterBased(has_etaSubstance={false, true, false, false, false, false,  false}, Tcrit= {    126.2,
+  extends ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.PartialWaterBased(
+                                                                           has_etaSubstance={false, true, false, false, false, false,  false}, Tcrit= {    126.2,
      647.14,
      154.58,
      304.12,
@@ -329,7 +329,6 @@ end HenryCoefficient;
     equation
     D = diffCoeff.D;
     end DiffusionCoefficient;
-
   annotation (Icon(graphics={Text(
             extent={{-94,84},{94,40}},
             lineColor={127,191,255},

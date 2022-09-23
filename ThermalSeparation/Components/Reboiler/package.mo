@@ -4,7 +4,7 @@ package Reboiler "this package contains components which have both a liquid and 
 
   model KettleReboilerEq_StartUpCCS
 
-    import SI = Modelica.SIunits;
+    import      Modelica.Units.SI;
     //import ThermalSeparation;
     extends ThermalSeparation.Icons.Color.Reboiler;
     outer ThermalSeparation.SystemTS systemTS;
@@ -22,7 +22,7 @@ package Reboiler "this package contains components which have both a liquid and 
     parameter ThermalSeparation.Components.Reboiler.InitOptionEq
       init_option=ThermalSeparation.Components.Reboiler.InitOptionEq.init_x                                         annotation(Dialog(tab="Initialization"),Evaluate=true); // Enumerations.InitializationOption.init_x "initialization options"
 
-    parameter Modelica.SIunits.Area A_HT=5 "heat exchange area";
+    parameter Modelica.Units.SI.Area A_HT=5 "heat exchange area";
 
     replaceable package MediumVapour =
         ThermalSeparation.Media.H2O_CO2_Vap

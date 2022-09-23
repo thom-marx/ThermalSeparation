@@ -2,8 +2,7 @@ within ThermalSeparation.FilmModel.StructuredPackedColumn;
 model Enhancement "Enhancementfactor"
   import ThermalSeparation;
 extends BaseNonEqType;
-extends ThermalSeparation.FilmModel.BaseClasses.Enhancement(redeclare record
-      BaseGeometry =                                                                      Geometry);
+extends ThermalSeparation.FilmModel.BaseClasses.Enhancement(redeclare record BaseGeometry=Geometry);
 
  final parameter Integer aux[  :] = {1,3,6,10,15, 21, 28, 36, 45};
 Geometry geometry(n=n);

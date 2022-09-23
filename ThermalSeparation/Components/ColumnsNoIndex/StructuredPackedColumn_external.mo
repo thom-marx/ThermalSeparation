@@ -68,8 +68,7 @@ propsLiq = mediumLiquid.properties, propsVap = mediumVapour.properties,
     "column geometry"                                                                           annotation(choicesAllMatching);
 
    replaceable model PressureLoss =
-      ThermalSeparation.PressureLoss.StructuredPackedColumn.Stichlmair ( redeclare record
-               Geometry =                                                                             Geometry)                         constrainedby ThermalSeparation.PressureLoss.StructuredPackedColumn.BasicPressureLossPacked
+      ThermalSeparation.PressureLoss.StructuredPackedColumn.Stichlmair ( redeclare record Geometry =  Geometry)                         constrainedby ThermalSeparation.PressureLoss.StructuredPackedColumn.BasicPressureLossPacked
     "pressure loss correlation"                                                  annotation(choicesAllMatching);
 
   PressureLoss pressureLoss(

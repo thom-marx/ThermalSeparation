@@ -1,3 +1,3 @@
 within ThermalSeparation.FilmModel;
-package TrayColumn 
+package TrayColumn
 end TrayColumn;

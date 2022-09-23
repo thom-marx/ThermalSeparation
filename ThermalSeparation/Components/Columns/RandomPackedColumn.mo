@@ -20,15 +20,11 @@ model RandomPackedColumn
                                     redeclare replaceable package MediumLiquid =
         MediumLiquid,
                       redeclare replaceable model Reaction = Reaction,
-                                                                        redeclare replaceable record
-                          Geometry =                                                                             Geometry,
-                                                                        redeclare replaceable model
-                        ThermoEquilibrium =
+                                                                        redeclare replaceable record Geometry =  Geometry,
+                                                                        redeclare replaceable model ThermoEquilibrium =
         ThermoEquilibrium,
-                                                                         redeclare replaceable model
-                          InitOption =                                                                              InitOption,
-                                                                                               redeclare replaceable package
-                          MediumVapour =
+                                                                         redeclare replaceable model InitOption =   InitOption,
+                                                                                               redeclare replaceable package MediumVapour =
         MediumVapour,
                                     final n=n,
                                               final nS=nS,
@@ -142,8 +138,8 @@ model RandomPackedColumn
                                                            "column geometry"                          annotation(choicesAllMatching);
 
    replaceable model PressureLoss =
-      ThermalSeparation.PressureLoss.RandomPackedColumn.Particlemodel (           redeclare record
-               Geometry =                                                                             Geometry)                         constrainedby ThermalSeparation.PressureLoss.RandomPackedColumn.BasicPressureLossPacked
+      ThermalSeparation.PressureLoss.RandomPackedColumn.Particlemodel (           redeclare record Geometry =
+                                                                                                      Geometry)                         constrainedby ThermalSeparation.PressureLoss.RandomPackedColumn.BasicPressureLossPacked
     "pressure loss correlation"                                                  annotation(choicesAllMatching);
 
   PressureLoss pressureLoss(redeclare model HomotopyMethod =

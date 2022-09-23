@@ -272,7 +272,6 @@ type AbsolutePressure = SI.AbsolutePressure (
       max=1.e8,
       nominal=1.e5,
       start=1.e5) "Type for absolute pressure with medium specific attributes";
-
   type Density = SI.Density (
       min=0,
       max=1.e5,
@@ -374,7 +373,6 @@ type AbsolutePressure = SI.AbsolutePressure (
       unit="debye",
       quantity="ElectricDipoleMoment")
     "Type for dipole moment with medium specific attributes";
-
   type DerDensityByPressure = SI.DerDensityByPressure
     "Type for partial derivative of density with resect to pressure with medium specific attributes";
   type DerDensityByEnthalpy = SI.DerDensityByEnthalpy

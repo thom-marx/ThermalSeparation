@@ -4,8 +4,8 @@ package N2_O2_H2O "water: N2, O2, H2O"
             constant Real phi[nSubstance]= {1,1,2.26}
     "association factor of each substance, if this substance is to be the solvent - used for claculation of diffusion coeffcients";
 
-  extends
-    ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.PartialWaterBased(has_etaSubstance={false, false, true}, Tcrit= {126.2,  154.58, 647.14}, pcrit= {3.398e6,  5.043e6, 2.2064e7}, Vcrit = { 90.1e-6,
+  extends ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.PartialWaterBased(
+                                                                           has_etaSubstance={false, false, true}, Tcrit= {126.2,  154.58, 647.14}, pcrit= {3.398e6,  5.043e6, 2.2064e7}, Vcrit = { 90.1e-6,
 73.37e-6,
 55.95e-6}, omega = { 0.037,
  0.022,

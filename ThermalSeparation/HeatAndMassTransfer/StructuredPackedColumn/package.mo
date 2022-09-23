@@ -1,4 +1,4 @@
 within ThermalSeparation.HeatAndMassTransfer;
-package StructuredPackedColumn 
+package StructuredPackedColumn
 
 end StructuredPackedColumn;

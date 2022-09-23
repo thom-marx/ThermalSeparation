@@ -2,10 +2,8 @@ within ThermalSeparation.BalanceEquations.StructuredPackedColumn.Equilibrium;
 model TwoPhaseSteadyState
   "Equilibrium: both phases balanced together, steady state"
 
-extends
-    ThermalSeparation.BalanceEquations.Base.Equilibrium.BaseTwoPhaseSteadyState;
-extends
-    ThermalSeparation.BalanceEquations.StructuredPackedColumn.BaseStructured;
+extends ThermalSeparation.BalanceEquations.Base.Equilibrium.BaseTwoPhaseSteadyState;
+extends ThermalSeparation.BalanceEquations.StructuredPackedColumn.BaseStructured;
 
 parameter Boolean EQ=true;
 Real K[n,nS];
@@ -17,8 +15,7 @@ Real K[n,nS];
 
   /*** film model ***/
     replaceable model FilmModel =
-        ThermalSeparation.FilmModel.StructuredPackedColumn.MS (redeclare replaceable model
-                          StateSelection =
+        ThermalSeparation.FilmModel.StructuredPackedColumn.MS (redeclare replaceable model StateSelection =
        ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.None    constrainedby ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.None,
         enableDialog=false)                                                                             constrainedby ThermalSeparation.FilmModel.StructuredPackedColumn.BaseFilmPacked(
        redeclare replaceable package MediumLiquid =  MediumLiquid,

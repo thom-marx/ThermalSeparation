@@ -1,7 +1,7 @@
 within ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common;
 package OneNonLinearEquation
   "Determine solution of a non-linear algebraic equation in one unknown without derivatives in a reliable and efficient way"
-  extends Modelica.Icons.Library;
+  extends Modelica.Icons.Package;
 
    replaceable record f_nonlinear_Data "Data specific for function f_nonlinear"
      extends Modelica.Icons.Record;
@@ -148,7 +148,6 @@ package OneNonLinearEquation
          end if;
       end while;
    end solve;
-
    annotation (Documentation(info="<html>
 <p>
 This function should currently only be used in Modelica.Media,

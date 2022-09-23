@@ -20,15 +20,11 @@ model SprayColumn
                                     redeclare replaceable package MediumLiquid =
         MediumLiquid,
                       redeclare replaceable model Reaction = Reaction,
-                                                                        redeclare replaceable record
-                          Geometry =                                                                             Geometry,
-                                                                        redeclare replaceable model
-                        ThermoEquilibrium =
+                                                                        redeclare replaceable record Geometry =  Geometry,
+                                                                        redeclare replaceable model ThermoEquilibrium =
         ThermoEquilibrium,
-                                                                         redeclare replaceable model
-                          InitOption =                                                                              InitOption,
-                                                                                               redeclare replaceable package
-                          MediumVapour =
+                                                                         redeclare replaceable model InitOption =   InitOption,
+                                                                                               redeclare replaceable package MediumVapour =
         MediumVapour,
                                     final n=n,
                                               final nS=nS,
@@ -130,8 +126,7 @@ model SprayColumn
     "number of discrete elements, or number of equilibrium stages (for equilibrium film model)";
 
   replaceable model PressureLoss =
-      ThermalSeparation.PressureLoss.SprayColumn.PipeFlow (                redeclare record
-               Geometry =                                                                            Geometry)                         constrainedby ThermalSeparation.PressureLoss.SprayColumn.BasicPressureLossSpray
+      ThermalSeparation.PressureLoss.SprayColumn.PipeFlow (                redeclare record Geometry=Geometry)                         constrainedby ThermalSeparation.PressureLoss.SprayColumn.BasicPressureLossSpray
                                                      annotation(choicesAllMatching);
 
     PressureLoss pressureLoss(redeclare model HomotopyMethod =
@@ -156,8 +151,7 @@ model SprayColumn
                                                                                                                                 annotation(choicesAllMatching);
   Geometry geometry(n=n);
 
-  HeatTransferWall heatTransferWall(n=n,T=T, T_amb=heatPort.T, T_start = T_l_start[1], redeclare record
-             Geometry =
+  HeatTransferWall heatTransferWall(n=n,T=T, T_amb=heatPort.T, T_start = T_l_start[1], redeclare record Geometry =
         Geometry);
 
    replaceable model Holdup =

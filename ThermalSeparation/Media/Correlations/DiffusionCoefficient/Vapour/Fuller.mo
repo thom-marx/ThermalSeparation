@@ -1,7 +1,6 @@
 ﻿within ThermalSeparation.Media.Correlations.DiffusionCoefficient.Vapour;
 model Fuller "correlation of Fuller"
-  extends
-    ThermalSeparation.Media.Correlations.DiffusionCoefficient.Vapour.BaseDiffusionCoeffGas;
+  extends ThermalSeparation.Media.Correlations.DiffusionCoefficient.Vapour.BaseDiffusionCoeffGas;
 
   //Werte für N2, H2O, CO2, O2, Taylor S. 69
   parameter SI.MolarMass MMX[nS];

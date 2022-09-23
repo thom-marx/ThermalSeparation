@@ -4,8 +4,8 @@ package N2_H2O "water: N2, H2O"
        constant Real phi[nSubstance]= {1,2.26}
     "association factor of each substance, if this substance is to be the solvent - used for claculation of diffusion coeffcients";
 
-  extends
-    ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.PartialWaterBased(has_etaSubstance={ false, true}, Tcrit= {126.2, 647.14}, pcrit= {3.398e6, 2.2064e7}, Vcrit = { 90.1e-6,
+  extends ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.PartialWaterBased(
+                                                                           has_etaSubstance={ false, true}, Tcrit= {126.2, 647.14}, pcrit= {3.398e6, 2.2064e7}, Vcrit = { 90.1e-6,
 55.95e-6}, omega = { 0.037,
  0.344}, mu = {0, 1.8}, MMX= {0.0280134, 0.01801528},  eq_Tsonopoulos = {1, 6},
      mediumName="WaterIF97",
@@ -301,7 +301,6 @@ end HenryCoefficient;
     equation
     D = diffCoeff.D;
     end DiffusionCoefficient;
-
   annotation (Icon(graphics={Text(
             extent={{-94,84},{94,40}},
             lineColor={127,191,255},

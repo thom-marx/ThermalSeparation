@@ -1,6 +1,6 @@
 within ThermalSeparation;
 package Interfaces "Connector Classes"
-import SI = Modelica.SIunits;
+import      Modelica.Units.SI;
 
 
 annotation(preferedView="info");

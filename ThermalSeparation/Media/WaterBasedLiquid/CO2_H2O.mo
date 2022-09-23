@@ -6,8 +6,8 @@ constant Boolean psat_Antoine = false;
        constant Real phi[nSubstance]= {1,2.26}
     "association factor of each substance, if this substance is to be the solvent - used for claculation of diffusion coeffcients";
 
-  extends
-    ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.PartialWaterBased(has_etaSubstance={ false, true}, Tcrit= {
+  extends ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.PartialWaterBased(
+                                                                           has_etaSubstance={ false, true}, Tcrit= {
      304.12,
       647.096}, pcrit= {
      7.374e6,

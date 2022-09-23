@@ -1,3 +1,3 @@
 within ThermalSeparation.Media.IdealGasMixtures;
-package BaseClasses 
+package BaseClasses
 end BaseClasses;

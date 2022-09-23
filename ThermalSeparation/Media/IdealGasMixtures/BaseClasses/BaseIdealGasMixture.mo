@@ -1,8 +1,8 @@
 ﻿within ThermalSeparation.Media.IdealGasMixtures.BaseClasses;
 partial package BaseIdealGasMixture
     extends ThermalSeparation.Media.BaseMediumVapour(MMX=data[:].MM, delta_hv_medium=false);
-  import SI = Modelica.SIunits;
-  extends Modelica.Icons.Library;
+  import      Modelica.Units.SI;
+  extends Modelica.Icons.Package;
   import Modelica.Math;
 
  constant
@@ -27,7 +27,7 @@ partial package BaseIdealGasMixture
     "Default mass fractions of medium";
   constant AbsolutePressure p_default=101325
     "Default value for pressure of medium (for initialization)";
-  constant Temperature T_default = Modelica.SIunits.Conversions.from_degC(20)
+  constant Temperature T_default = Modelica.Units.Conversions.from_degC(20)
     "Default value for temperature of medium (for initialization)";
   constant SpecificEnthalpy h_default = ThermalSeparation.Media.IdealGasMixtures.BaseClasses.BaseIdealGasMixture.specificEnthalpy_pTX(
                                                              p_default, T_default, X_default)
@@ -104,7 +104,6 @@ constant Real R_const[nX];
      SpecificEntropy deltas=0.0
       "Difference between specific enthalpy model (s_m) and f.eq. (s_f) (s_m - s_f)";
    end FluidConstants;
-
  constant FluidConstants[nS] fluidConstants "constant data for the fluid";
 
   redeclare replaceable model extends BaseProperties
@@ -116,11 +115,11 @@ constant Real R_const[nX];
     parameter Boolean preferredMediumStates=false
       "= true if StateSelect.prefer shall be used for the independent property variables of the medium"
       annotation (Hide=true, Evaluate=true, Dialog(tab="Advanced"));
-    SI.Conversions.NonSIunits.Temperature_degC T_degC=
-        Modelica.SIunits.Conversions.to_degC(T)
+    Modelica.Units.NonSI.Temperature_degC T_degC=
+        Modelica.Units.Conversions.to_degC(T)
       "Temperature of medium in [degC]";
-    SI.Conversions.NonSIunits.Pressure_bar p_bar=
-     Modelica.SIunits.Conversions.to_bar(p)
+    Modelica.Units.NonSI.Pressure_bar p_bar=
+     Modelica.Units.Conversions.to_bar(p)
       "Absolute pressure of medium in [bar]";
      parameter Boolean standardOrderComponents = true
       "if true, last element in components is computed from 1-sum(Xi)";
@@ -468,10 +467,9 @@ end specificGibbsEnergy;
       data[i], T)*dX[i]) for i in 1:nX);
    annotation (InlineNoEvent=false, Inline = false);
  end h_TX_der;
-
  // redeclare function extends gasConstant "Return gasConstant"
  // algorithm
- //   R := data.R*state.X;
+ //   R := data.R_s*state.X;
  // end gasConstant;
 
  function specificHeatCapacityCp
@@ -486,7 +484,6 @@ end specificGibbsEnergy;
  end specificHeatCapacityCp;
 
  function heatCapacity_cp = specificHeatCapacityCp "alias for deprecated name";
-
  function specificHeatCapacityCv
     "Return specific heat capacity at constant volume from temperature and gas data"
      extends Modelica.Icons.Function;
@@ -495,11 +492,10 @@ end specificGibbsEnergy;
  algorithm
     cv := {
       ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.Functions.cp_T(
-      data[i], state.T) for i in 1:nX}*state.X - data.R*state.X;
+      data[i], state.T) for i in 1:nX}*state.X - data.R_s*state.X;
  end specificHeatCapacityCv;
 
  function heatCapacity_cv = specificHeatCapacityCv "alias for deprecated name";
-
  function MixEntropy "Return mixing entropy of ideal gases / R"
    extends Modelica.Icons.Function;
    input SI.MoleFraction x[:] "mole fraction of mixture";
@@ -655,7 +651,7 @@ and etai&gt;&gt;etaj.<br>
  function mixtureViscosityChung
     "Return the viscosity of gas mixtures without access to component viscosities (Chung, et. al. rules)"
  extends Modelica.Icons.Function;
-    import SI = Modelica.SIunits;
+    import      Modelica.Units.SI;
    input Temperature T "Temperature";
    input Temperature[:] Tc "Critical temperatures";
    input MolarVolume[:] Vcrit "Critical volumes (m3/mol)";
@@ -948,7 +944,6 @@ average of the pure component conductivities.
 
  function beta = isobaricExpansionCoefficient
     "alias for isobaricExpansionCoefficient for user convenience";
-
  function isothermalCompressibility "Return isothermal compressibility factor"
    extends Modelica.Icons.Function;
    input ThermodynamicState state "thermodynamic state record";
@@ -959,7 +954,6 @@ average of the pure component conductivities.
 
  function kappa = isothermalCompressibility
     "alias of isothermalCompressibility for user convenience";
-
  function density_derp_T
     "Return density derivative by temperature at constant pressure"
      extends Modelica.Icons.Function;
@@ -1003,12 +997,10 @@ average of the pure component conductivities.
    MassFraction[nX] Xfull = if size(X,1) == nX then X else cat(1,X,{1-sum(X)});
  package Internal
       "Solve h(data,T) for T with given h (use only indirectly via temperature_phX)"
-   extends
-        ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.OneNonLinearEquation;
+   extends ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.OneNonLinearEquation;
    redeclare record extends f_nonlinear_Data
         "Data to be passed to non-linear function"
-     extends
-          ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.DataRecord;
+     extends ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.DataRecord;
    end f_nonlinear_Data;
 
    redeclare function extends f_nonlinear
@@ -1034,12 +1026,10 @@ average of the pure component conductivities.
       MassFraction[nX] Xfull = if size(X,1) == nX then X else cat(1,X,{1-sum(X)});
     package Internal
       "Solve h(data,T) for T with given h (use only indirectly via temperature_phX)"
-      extends
-        ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.OneNonLinearEquation;
+      extends ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.OneNonLinearEquation;
       redeclare record extends f_nonlinear_Data
         "Data to be passed to non-linear function"
-        extends
-          ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.DataRecord;
+        extends ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.DataRecord;
       end f_nonlinear_Data;
 
       redeclare function extends f_nonlinear
@@ -1056,7 +1046,6 @@ average of the pure component conductivities.
   algorithm
       T := Internal.solve(s, 200, 6000, p, Xfull, data[1]);
   end T_psX;
-
   //   redeclare function extends specificEnthalpy_psX
   //   protected
   //     Temperature T "temperature";
@@ -1197,7 +1186,6 @@ average of the pure component conductivities.
       max=1.e8,
       nominal=1.e5,
       start=1.e5) "Type for absolute pressure with medium specific attributes";
-
   type Density = SI.Density (
       min=0,
       max=1.e5,
@@ -1300,7 +1288,6 @@ average of the pure component conductivities.
       unit="debye",
       quantity="ElectricDipoleMoment")
     "Type for dipole moment with medium specific attributes";
-
   type DerDensityByPressure = SI.DerDensityByPressure
     "Type for partial derivative of density with resect to pressure with medium specific attributes";
   type DerDensityByEnthalpy = SI.DerDensityByEnthalpy
@@ -1309,12 +1296,11 @@ average of the pure component conductivities.
     "Type for partial derivative of enthalpy with resect to pressure with medium specific attributes";
   type DerDensityByTemperature = SI.DerDensityByTemperature
     "Type for partial derivative of density with resect to temperature with medium specific attributes";
-
   package Choices "Types, constants to define menu choices"
     package Init
       "Type, constants and menu choices to define initialization, as temporary solution until enumerations are available"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
       constant Integer NoInit=1;
       constant Integer InitialStates=2;
       constant Integer SteadyState=3;
@@ -1340,7 +1326,7 @@ average of the pure component conductivities.
     package ReferenceEnthalpy
       "Type, constants and menu choices to define reference enthalpy, as temporary solution until enumerations are available"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
       constant Integer ZeroAt0K=1;
       constant Integer ZeroAt25C=2;
       constant Integer UserDefined=3;
@@ -1366,7 +1352,7 @@ average of the pure component conductivities.
     package ReferenceEntropy
       "Type, constants and menu choices to define reference entropy, as temporary solution until enumerations are available"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
       constant Integer ZeroAt0K=1;
       constant Integer ZeroAt0C=2;
       constant Integer UserDefined=3;
@@ -1390,7 +1376,7 @@ average of the pure component conductivities.
     package pd
       "Type, constants and menu choices to define whether p or d are known, as temporary solution until enumerations are available"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
       constant Integer default=1;
       constant Integer p_known=2;
       constant Integer d_known=3;
@@ -1413,7 +1399,7 @@ average of the pure component conductivities.
     package Th
       "Type, constants and menu choices to define whether T or h are known, as temporary solution until enumerations are available"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
       constant Integer default=1;
       constant Integer T_known=2;
       constant Integer h_known=3;

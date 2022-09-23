@@ -1,8 +1,7 @@
 within ThermalSeparation.Media.WaterBasedLiquid.BaseClasses;
 partial package PartialWaterBasedReaction
 
-  extends
-    ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.PartialMediumReaction;
+  extends ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.PartialMediumReaction;
   constant Boolean smoothModel
     "true if the (derived) model should not generate state events";
   constant Boolean onePhase

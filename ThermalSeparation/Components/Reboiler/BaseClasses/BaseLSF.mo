@@ -154,10 +154,8 @@ Boolean bool_eps;
        ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium
                                                             annotation(choicesAllMatching=true);
    ThermoEquilibrium thermoEquilibrium(nS=nS,
-      mapping =                                                                                mapping, redeclare replaceable package
-                          MediumVapour =
-         MediumVapour,                                                                                                    redeclare replaceable package
-                          MediumLiquid =
+      mapping =                                                                                mapping, redeclare replaceable package MediumVapour =
+         MediumVapour,                                                                                                    redeclare replaceable package MediumLiquid =
      MediumLiquid, p=p, T=T_star, x_v=x_v_star, x_l=x_l_star, p_sat=p_sat,  v_v=MM_v/rho_v);
 
         Real K[nS] "equilibrium constant";
@@ -369,8 +367,7 @@ initial equation
 
        for i in 3:nSV loop
         x_v[i] = x_v_start[i];
-       end for;
-               sum(x_l[:])=1;
+       end for;sum(x_l[:])=1;
                sum(x_v[:])=1;
 
      T_v = T_v_start;

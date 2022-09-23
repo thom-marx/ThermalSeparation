@@ -1,8 +1,7 @@
 within ThermalSeparation.PressureLoss.StructuredPackedColumn;
 model Stichlmair "Stichlmair, for random and structured packings"
 
-  extends
-    ThermalSeparation.PressureLoss.StructuredPackedColumn.BasicPressureLossPacked;
+  extends ThermalSeparation.PressureLoss.StructuredPackedColumn.BasicPressureLossPacked;
 
 /*** fluid particle diameters ***/
 

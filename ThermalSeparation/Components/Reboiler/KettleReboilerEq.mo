@@ -8,29 +8,29 @@ model KettleReboilerEq "equilibrium model"
   parameter ThermalSeparation.Components.Reboiler.InitOptionEq
     init_option =                     Enumerations.InitializationOption.init_x "initialization options"                        annotation(Dialog(tab="Initialization"),Evaluate=true);
    parameter Real eps_liq_init "initial value for eps_liq" annotation(Dialog(tab = "Initialization"));
-  parameter Modelica.SIunits.Temperature T_init "initial value fr Temperature"
+  parameter Modelica.Units.SI.Temperature T_init "initial value fr Temperature"
                                                                  annotation(Dialog(tab = "Initialization"));
-  parameter Modelica.SIunits.Pressure p_init "initial value for pressure"
+  parameter Modelica.Units.SI.Pressure p_init "initial value for pressure"
                                 annotation(Dialog(tab = "Initialization"));
   parameter Real fixed_mol_init "molarity of solvent" annotation(Dialog(tab="Initialization"));
-  parameter Modelica.SIunits.MoleFraction x_total_start[nS] "mole fraction of component in vapour and liquid" annotation(Dialog(tab = "Initialization"));
+  parameter Modelica.Units.SI.MoleFraction x_total_start[nS] "mole fraction of component in vapour and liquid" annotation(Dialog(tab = "Initialization"));
 
-  Modelica.SIunits.HeatFlowRate Q_in "heat flow to evaporate liquid";
+  Modelica.Units.SI.HeatFlowRate Q_in "heat flow to evaporate liquid";
 
-  Modelica.SIunits.Temperature T_l_in;
+  Modelica.Units.SI.Temperature T_l_in;
 
-  Modelica.SIunits.MoleFraction x_l_in[nSL];
+  Modelica.Units.SI.MoleFraction x_l_in[nSL];
 
-  Modelica.SIunits.Concentration c_l_in[nSL];
-  Modelica.SIunits.VolumeFlowRate vdot_l_in;
+  Modelica.Units.SI.Concentration c_l_in[nSL];
+  Modelica.Units.SI.VolumeFlowRate vdot_l_in;
 
   parameter Boolean init_standalone = true "changes number of initial values if used in standalone operation";
 
-  Modelica.SIunits.Pressure p_sys(start=2e5);
-  Modelica.SIunits.MolarFlowRate F_in_l;
-  parameter Modelica.SIunits.Temperature T_ref=systemTS.T_ref "reference temperature"
+  Modelica.Units.SI.Pressure p_sys(start=2e5);
+  Modelica.Units.SI.MolarFlowRate F_in_l;
+  parameter Modelica.Units.SI.Temperature T_ref=systemTS.T_ref "reference temperature"
                                                                         annotation (Dialog(tab="Advanced"));
-  parameter Modelica.SIunits.HeatFlowRate Q_loss=0 "heat loss to ambience";
+  parameter Modelica.Units.SI.HeatFlowRate Q_loss=0 "heat loss to ambience";
                                       //adiabatic system
 
   parameter Integer mapping[nS,2] = {{1,1},{2,2}} "parameter to map the different medium vectors one to another";
@@ -45,11 +45,11 @@ model KettleReboilerEq "equilibrium model"
 
   Real K[nS](start=fill(1,nS));
 
-  Modelica.SIunits.MolarFlowRate F_out_l(start=1e-4);
-  Modelica.SIunits.MolarFlowRate F_out_v(start=1e-4);
+  Modelica.Units.SI.MolarFlowRate F_out_l(start=1e-4);
+  Modelica.Units.SI.MolarFlowRate F_out_v(start=1e-4);
 
-  Modelica.SIunits.AmountOfSubstance HU_l(start=1000, stateSelect=StateSelect.prefer);
-  Modelica.SIunits.AmountOfSubstance HU_v(start=100);
+  Modelica.Units.SI.AmountOfSubstance HU_l(start=1000, stateSelect=StateSelect.prefer);
+  Modelica.Units.SI.AmountOfSubstance HU_v(start=100);
 
   replaceable package MediumVapour = ThermalSeparation.Media.C2H5OH_Water_Vap
     constrainedby ThermalSeparation.Media.BaseMediumVapour "medium to be used in vapour phase"
@@ -88,7 +88,7 @@ model KettleReboilerEq "equilibrium model"
       MediumLiquid, p=p_sys, T=T, x_v=x_v, x_l=x_l, p_sat=p_sat,  v_v=MM_v./rho_v,x_vap_liq=fill(1/nS,nS));
 
 /* Reaction */
-Modelica.SIunits.MolarFlowRate Ndot_l_transfer[nSL];
+Modelica.Units.SI.MolarFlowRate Ndot_l_transfer[nSL];
 
   replaceable model Reaction =
   ThermalSeparation.Reaction.NoReaction constrainedby ThermalSeparation.Reaction.BaseReaction  "model for chemical reaction"                               annotation(choicesAllMatching=true);
@@ -111,13 +111,13 @@ Modelica.SIunits.MolarFlowRate Ndot_l_transfer[nSL];
 
   InnerHT innerHT(n=1,T={T},A={A_HT},Qdot={Q_in},p={p_sys});
 
-  parameter Modelica.SIunits.Area A_HT "heat exchange area";
+  parameter Modelica.Units.SI.Area A_HT "heat exchange area";
 
 /* medium properties */
-  Modelica.SIunits.Temperature T;
+  Modelica.Units.SI.Temperature T;
 
-  Modelica.SIunits.MoleFraction x_l[nSL](start=fill(1/nSL,nSL));
-  Modelica.SIunits.MoleFraction x_v[nSV](start=fill(1/nSV,nSV));
+  Modelica.Units.SI.MoleFraction x_l[nSL](start=fill(1/nSL,nSL));
+  Modelica.Units.SI.MoleFraction x_v[nSV](start=fill(1/nSV,nSV));
 
   ThermalSeparation.Units.MolarEnthalpy h_l_in;// = mediumLiquidIn.h;
   ThermalSeparation.Units.MolarEnthalpy h_v = mediumVapour.h;
@@ -126,53 +126,53 @@ Modelica.SIunits.MolarFlowRate Ndot_l_transfer[nSL];
   ThermalSeparation.Units.MolarEnthalpy u_l(stateSelect=StateSelect.prefer) = mediumLiquid.u;
   ThermalSeparation.Units.MolarEnthalpy u_v = mediumVapour.u;
 
-  Modelica.SIunits.MolarMass MM_l=mediumLiquid.MM;
-  Modelica.SIunits.MolarMass MM_v(start=0.031)=mediumVapour.MM;
-  Modelica.SIunits.MolarMass MM_l_in=mediumLiquidIn.MM;
+  Modelica.Units.SI.MolarMass MM_l=mediumLiquid.MM;
+  Modelica.Units.SI.MolarMass MM_v(start=0.031)=mediumVapour.MM;
+  Modelica.Units.SI.MolarMass MM_l_in=mediumLiquidIn.MM;
 
-  Modelica.SIunits.Density rho_l=mediumLiquid.d;
-  Modelica.SIunits.Density rho_v=mediumVapour.d;
-  Modelica.SIunits.Density rho_l_in=mediumLiquidIn.d;
+  Modelica.Units.SI.Density rho_l=mediumLiquid.d;
+  Modelica.Units.SI.Density rho_v=mediumVapour.d;
+  Modelica.Units.SI.Density rho_l_in=mediumLiquidIn.d;
 
-  Modelica.SIunits.Pressure p_sat[nSL];
+  Modelica.Units.SI.Pressure p_sat[nSL];
 
-  Modelica.SIunits.Volume V_vap;
-  Modelica.SIunits.Volume V_liq;
-  Modelica.SIunits.Volume V_abs;
+  Modelica.Units.SI.Volume V_vap;
+  Modelica.Units.SI.Volume V_liq;
+  Modelica.Units.SI.Volume V_abs;
 
-  Modelica.SIunits.Concentration c_l[nSL];
+  Modelica.Units.SI.Concentration c_l[nSL];
   Real dummy_c_l(stateSelect=StateSelect.prefer)=c_l[2];
-  Modelica.SIunits.Concentration c_v[nSV];
+  Modelica.Units.SI.Concentration c_v[nSV];
 
-  Modelica.SIunits.VolumeFlowRate vdot_l;
-  Modelica.SIunits.VolumeFlowRate vdot_v(start=50);
+  Modelica.Units.SI.VolumeFlowRate vdot_l;
+  Modelica.Units.SI.VolumeFlowRate vdot_v(start=50);
 
 /* geometry */
 
-  parameter Modelica.SIunits.Area A=0.5 "area of reboiler";
-  parameter Modelica.SIunits.Height H=1.3 "height of reboiler";
-  Modelica.SIunits.SpecificHeatCapacity cp_col=500;
+  parameter Modelica.Units.SI.Area A=0.5 "area of reboiler";
+  parameter Modelica.Units.SI.Height H=1.3 "height of reboiler";
+  Modelica.Units.SI.SpecificHeatCapacity cp_col=500;
                                                 //stainless steel
-  Modelica.SIunits.Mass m_col=100;
+  Modelica.Units.SI.Mass m_col=100;
                      //mass of column segment
 
-  Modelica.SIunits.Height h_liq;
- parameter  Modelica.SIunits.Length h_w=0.13;
- parameter Modelica.SIunits.Length h_lw=0.35;
+  Modelica.Units.SI.Height h_liq;
+ parameter  Modelica.Units.SI.Length h_w=0.13;
+ parameter Modelica.Units.SI.Length h_lw=0.35;
 
   Real eps_liq "(liquid volume) / (absolute volume)";
   Real eps_vap(min = 0, max = 1) "(vapour volume) / (absolute volume)";
   //Real eps_inert "(inert volume) / (absolute volume)";
-  Modelica.SIunits.Pressure p_bub "bubble point pressure";
+  Modelica.Units.SI.Pressure p_bub "bubble point pressure";
 
   Real checkMoleBal;
 
   //for monitoring purpose
 
-  Modelica.SIunits.MassFlowRate mdot_l = vdot_l * rho_l;
-  Modelica.SIunits.MassFlowRate mdot_v = vdot_v * rho_v;
-  Modelica.SIunits.MassFlowRate mdot_l_in = vdot_l_in * rho_l_in;
-  Modelica.SIunits.MassFlowRate mdot_check = mdot_l_in - mdot_l - mdot_v;
+  Modelica.Units.SI.MassFlowRate mdot_l = vdot_l * rho_l;
+  Modelica.Units.SI.MassFlowRate mdot_v = vdot_v * rho_v;
+  Modelica.Units.SI.MassFlowRate mdot_l_in = vdot_l_in * rho_l_in;
+  Modelica.Units.SI.MassFlowRate mdot_check = mdot_l_in - mdot_l - mdot_v;
 
   ThermalSeparation.Interfaces.GasPortOut gasPortOut(redeclare package Medium =
         MediumVapour) annotation (Placement(transformation(extent={{-40,82},{-20,
@@ -188,7 +188,7 @@ Modelica.SIunits.MolarFlowRate Ndot_l_transfer[nSL];
       Placement(transformation(extent={{72,-10},{92,10}}),
         iconTransformation(extent={{72,-10},{92,10}})));
 parameter Boolean init_const_vdot=false "initialise from constant vapour volume flow rate" annotation(Dialog(tab="Initialization",group="Init. from constant value"));
-parameter Modelica.SIunits.VolumeFlowRate vdot_v_const=0.08 "volume flow rate" annotation(Dialog(tab="Initialization",group="Init. from constant value"));
+parameter Modelica.Units.SI.VolumeFlowRate vdot_v_const=0.08 "volume flow rate" annotation(Dialog(tab="Initialization",group="Init. from constant value"));
    parameter Real omega_k=0.05 "large value if change between constant and variable shall be steep"
                                                                          annotation(Dialog(tab="Initialization",group="Init. from constant value"));
    parameter Real omega_time = 50 "inflexion point of tanh function" annotation(Dialog(tab="Initialization",group="Init. from constant value"));

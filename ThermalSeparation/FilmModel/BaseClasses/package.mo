@@ -1,5 +1,5 @@
 within ThermalSeparation.FilmModel;
-package BaseClasses 
+package BaseClasses
   model TrueEquilibriumStartUpCCSAbsorption "true equilibrium model for StartUp"
     extends BaseFilmModel(final EQ=true);
 

@@ -1,8 +1,7 @@
 ﻿within ThermalSeparation.FilmModel.SprayColumn;
 model MS "Maxwell-Stefan mass transfer - no film reaction"
 extends SprayColumn.BaseNonEqType(nn=n);
-extends ThermalSeparation.FilmModel.BaseClasses.MaxwellStefan(redeclare record
-      BaseGeometry =                                                                        Geometry);
+extends ThermalSeparation.FilmModel.BaseClasses.MaxwellStefan(redeclare record BaseGeometry=Geometry);
 
  final parameter Integer aux[  :] = {1,3,6,10,15, 21, 28, 36, 45};
 
@@ -37,8 +36,7 @@ replaceable model MassTransferCoeffLiq =
      constrainedby ThermalSeparation.HeatAndMassTransfer.InterfacialHeatTransferCoefficient.Liquid.BaseLiquid
                                                                                                         annotation(choicesAllMatching=true,Dialog( tab="Heat and Mass Transfer", group="Heat transfer between liquid and vapour phase"));
 
-   HeatTransferLiquid heatTransferCoeffLiq( redeclare replaceable package
-      Medium =
+   HeatTransferLiquid heatTransferCoeffLiq( redeclare replaceable package Medium =
         MediumLiquid, n=n, nS=nSL,  k_av=k_av_liq, D_av=D_av_liq, rho=propsLiq.rho, c=c_l, props=propsLiq);
 
 ThermalSeparation.Units.CoefficentOfMassTransfer k_av_liq[n];

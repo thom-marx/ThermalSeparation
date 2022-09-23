@@ -24,7 +24,7 @@ extends ThermalSeparation.Media.BaseMediumVapour(MMX={ 0.0440095,  0.01801528}, 
 //     fluidConstants={
 //         ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.FluidData.CO2,ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.FluidData.H2O},
 //                                                                           data=
-//       {ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.CO2,ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.H2O}, R_const=data.R);
+//       {ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.CO2,ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.H2O}, R_const=data.R_s);
 
 
   redeclare replaceable model extends BaseProperties
@@ -99,7 +99,6 @@ protected
     annotation (structurallyIncomplete);
   end BaseProperties;
 
-
   redeclare replaceable model extends CalcSpecificEnthalpy
 
   Real hX[nSubstance];
@@ -151,7 +150,6 @@ protected
               fillPattern=FillPattern.Solid)}));
   end CalcSpecificEnthalpy;
 
-
   redeclare replaceable model extends EvaporationEnthalpy
 
 protected
@@ -166,7 +164,6 @@ protected
 
   end EvaporationEnthalpy;
 
-
   redeclare replaceable model extends FugacityCoefficient
 
   equation
@@ -179,7 +176,6 @@ protected
             fillColor={255,255,255},
             fillPattern=FillPattern.Solid)}));
   end FugacityCoefficient;
-
 
 annotation (Icon(graphics={              Rectangle(
           extent={{-80,100},{100,-80}},

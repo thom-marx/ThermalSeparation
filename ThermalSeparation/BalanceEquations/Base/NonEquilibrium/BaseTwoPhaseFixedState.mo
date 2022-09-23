@@ -1,17 +1,16 @@
 within ThermalSeparation.BalanceEquations.Base.NonEquilibrium;
 model BaseTwoPhaseFixedState
   "phases balanced seperately, states fixed, no index reduction performed"
-extends
-    ThermalSeparation.BalanceEquations.Base.NonEquilibrium.BaseBalanceEquationsNonEq;
+extends ThermalSeparation.BalanceEquations.Base.NonEquilibrium.BaseBalanceEquationsNonEq;
 
 /*** changes to reduce index: fixed state selection ***/
   input SI.MolarInternalEnergy u_v[n](stateSelect=StateSelect.prefer);
   input SI.MolarInternalEnergy u_l[n](stateSelect=StateSelect.prefer);
-  Modelica.SIunits.AmountOfSubstance n_mol_L[n](stateSelect=StateSelect.prefer);
-  Modelica.SIunits.AmountOfSubstance n_mol_V[n](stateSelect=StateSelect.prefer);
-  Modelica.SIunits.AmountOfSubstance n_mol_L_i[n,nSL](stateSelect=StateSelect.prefer);
-  Modelica.SIunits.AmountOfSubstance n_mol_V_i[n,nSV](stateSelect=StateSelect.prefer);
-  Modelica.SIunits.AmountOfSubstance n_mol[n,nS];
+  Modelica.Units.SI.AmountOfSubstance n_mol_L[n](stateSelect=StateSelect.prefer);
+  Modelica.Units.SI.AmountOfSubstance n_mol_V[n](stateSelect=StateSelect.prefer);
+  Modelica.Units.SI.AmountOfSubstance n_mol_L_i[n,nSL](stateSelect=StateSelect.prefer);
+  Modelica.Units.SI.AmountOfSubstance n_mol_V_i[n,nSV](stateSelect=StateSelect.prefer);
+  Modelica.Units.SI.AmountOfSubstance n_mol[n,nS];
 
 equation
 stat=false;

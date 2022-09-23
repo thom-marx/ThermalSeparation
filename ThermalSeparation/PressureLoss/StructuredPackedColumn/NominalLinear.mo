@@ -1,8 +1,7 @@
 ﻿within ThermalSeparation.PressureLoss.StructuredPackedColumn;
 model NominalLinear "linear pressure drop with nominal values"
 
-  extends
-    ThermalSeparation.PressureLoss.StructuredPackedColumn.BasicPressureLossPacked;
+  extends ThermalSeparation.PressureLoss.StructuredPackedColumn.BasicPressureLossPacked;
   parameter SI.Pressure deltaP_nom=0.05e5 "nominal pressure drop";
   parameter SI.VolumeFlowRate Vdot_nom=0.4 "nominal volume flow rate";
   final parameter Real K=(deltaP_nom/Vdot_nom)/n;

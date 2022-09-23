@@ -2,8 +2,8 @@ within ThermalSeparation.Media.WaterBasedLiquid.BaseClasses;
 partial package PartialMedium
   "Partial medium properties (base package of all media packages)"
   extends ThermalSeparation.Media.BaseMediumLiquid;
-  //import SI = Modelica.SIunits;
-  extends Modelica.Icons.Library;
+  //import SI = Modelica.Units.SI;
+  extends Modelica.Icons.Package;
 
   // Constants to be set in Medium
   constant String mediumName = "unusablePartialMedium" "Name of the medium";
@@ -25,7 +25,7 @@ partial package PartialMedium
     "Default mass fractions of medium";
   constant AbsolutePressure p_default=101325
     "Default value for pressure of medium (for initialization)";
-  constant Temperature T_default = Modelica.SIunits.Conversions.from_degC(20)
+  constant Temperature T_default = Modelica.Units.Conversions.from_degC(20)
     "Default value for temperature of medium (for initialization)";
   constant SpecificEnthalpy h_default = ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.PartialMedium.specificEnthalpy_pTX(p_default, T_default, X_default)
     "Default value for specific enthalpy of medium (for initialization)";
@@ -119,11 +119,11 @@ constant FluidConstants[nS] fluidConstants "constant data for the fluid";
     parameter Boolean preferredMediumStates=false
       "= true if StateSelect.prefer shall be used for the independent property variables of the medium"
       annotation (Hide=true, Evaluate=true, Dialog(tab="Advanced"));
-    Modelica.SIunits.Conversions.NonSIunits.Temperature_degC T_degC=
-        Modelica.SIunits.Conversions.to_degC(T)
+    Modelica.Units.NonSI.Temperature_degC T_degC=
+        Modelica.Units.Conversions.to_degC(T)
       "Temperature of medium in [degC]";
-    Modelica.SIunits.Conversions.NonSIunits.Pressure_bar p_bar=
-     Modelica.SIunits.Conversions.to_bar(p)
+    Modelica.Units.NonSI.Pressure_bar p_bar=
+     Modelica.Units.Conversions.to_bar(p)
       "Absolute pressure of medium in [bar]";
     parameter Boolean standardOrderComponents = true
       "if true, last element in components is computed from 1-sum(Xi)";
@@ -755,7 +755,7 @@ T_ambient.
     "Return overall the isothermal compressibility factor"
     extends Modelica.Icons.Function;
     input ThermodynamicState state "thermodynamic state record";
-    output Modelica.SIunits.IsothermalCompressibility kappa "Isothermal compressibility";
+    output Modelica.Units.SI.IsothermalCompressibility kappa "Isothermal compressibility";
   algorithm
     if dT_explicit then
       kappa :=
@@ -936,7 +936,7 @@ T_ambient.
    function bubbleEnthalpy "Return bubble point specific enthalpy"
       extends Modelica.Icons.Function;
       input SaturationProperties sat "saturation property record";
-      output Modelica.SIunits.SpecificEnthalpy hl "boiling curve specific enthalpy";
+      output Modelica.Units.SI.SpecificEnthalpy hl "boiling curve specific enthalpy";
    algorithm
      hl :=
        ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.IF97_Utilities.BaseIF97.Regions.hl_p(
@@ -947,7 +947,7 @@ T_ambient.
     function dewEnthalpy "Return dew point specific enthalpy"
       extends Modelica.Icons.Function;
       input SaturationProperties sat "saturation property record";
-      output Modelica.SIunits.SpecificEnthalpy hv "dew curve specific enthalpy";
+      output Modelica.Units.SI.SpecificEnthalpy hv "dew curve specific enthalpy";
 
     algorithm
       hv :=
@@ -959,7 +959,7 @@ T_ambient.
     function bubbleEntropy "Return bubble point specific entropy"
     extends Modelica.Icons.Function;
     input SaturationProperties sat "saturation property record";
-    output Modelica.SIunits.SpecificEntropy sl "boiling curve specific entropy";
+    output Modelica.Units.SI.SpecificEntropy sl "boiling curve specific entropy";
     algorithm
       sl :=
         ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.IF97_Utilities.BaseIF97.Regions.sl_p(
@@ -971,7 +971,7 @@ T_ambient.
     replaceable partial function dewEntropy "Return dew point specific entropy"
     extends Modelica.Icons.Function;
     input SaturationProperties sat "saturation property record";
-    output Modelica.SIunits.SpecificEntropy sv "dew curve specific entropy";
+    output Modelica.Units.SI.SpecificEntropy sv "dew curve specific entropy";
     algorithm
       sv :=
         ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.IF97_Utilities.BaseIF97.Regions.sv_p(
@@ -1236,10 +1236,10 @@ T_ambient.
 
   function rho_boiling
     input Integer i;
-    output Modelica.SIunits.Density rho_boiling "density at boiling temperatur in kg/m3";
+    output Modelica.Units.SI.Density rho_boiling "density at boiling temperatur in kg/m3";
    //constant values at 1 bar; O2, N2, SO2, H2O: Refprop, CO2: Refprop extrapolated, HF, HCl: Linde
   protected
-    Modelica.SIunits.Density rho_boiling_const[:] = {807, 1142, 1300, 959};
+    Modelica.Units.SI.Density rho_boiling_const[:] = {807, 1142, 1300, 959};
   algorithm
     rho_boiling:=rho_boiling_const[i];
   end rho_boiling;
@@ -1248,7 +1248,7 @@ T_ambient.
     package Init
       "Type, constants and menu choices to define initialization, as temporary solution until enumerations are available"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
       constant Integer NoInit=1;
       constant Integer InitialStates=2;
       constant Integer SteadyState=3;
@@ -1274,7 +1274,7 @@ T_ambient.
     package ReferenceEnthalpy
       "Type, constants and menu choices to define reference enthalpy, as temporary solution until enumerations are available"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
       constant Integer ZeroAt0K=1;
       constant Integer ZeroAt25C=2;
       constant Integer UserDefined=3;
@@ -1300,7 +1300,7 @@ T_ambient.
     package ReferenceEntropy
       "Type, constants and menu choices to define reference entropy, as temporary solution until enumerations are available"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
       constant Integer ZeroAt0K=1;
       constant Integer ZeroAt0C=2;
       constant Integer UserDefined=3;
@@ -1324,7 +1324,7 @@ T_ambient.
     package pd
       "Type, constants and menu choices to define whether p or d are known, as temporary solution until enumerations are available"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
       constant Integer default=1;
       constant Integer p_known=2;
       constant Integer d_known=3;
@@ -1347,7 +1347,7 @@ T_ambient.
     package Th
       "Type, constants and menu choices to define whether T or h are known, as temporary solution until enumerations are available"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
       constant Integer default=1;
       constant Integer T_known=2;
       constant Integer h_known=3;

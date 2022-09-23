@@ -2,8 +2,7 @@ within ThermalSeparation.PressureLoss.RandomPackedColumn;
 model Particlemodel
   "pressure loss using the particle model, for random packings"
 
-  extends
-    ThermalSeparation.PressureLoss.RandomPackedColumn.BasicPressureLossPacked;
+  extends ThermalSeparation.PressureLoss.RandomPackedColumn.BasicPressureLossPacked;
 
 /*** fluid particle diameters ***/
   SI.Diameter d_L[n-1] "average d_L for the discrete elements";

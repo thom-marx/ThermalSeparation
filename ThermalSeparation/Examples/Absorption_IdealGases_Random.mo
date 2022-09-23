@@ -14,15 +14,15 @@ ThermalSeparation.Components.SourcesSinks.SourceLiquid
             {10,10}}, rotation=270,
         origin={10,62})));
 ThermalSeparation.Components.SourcesSinks.SinkLiquid
-                                            sinkLiquid(         redeclare package
-              Medium = ThermalSeparation.Media.WaterBasedLiquid.N2_O2_H2O)
+                                            sinkLiquid(         redeclare package Medium =
+                       ThermalSeparation.Media.WaterBasedLiquid.N2_O2_H2O)
                       annotation (Placement(transformation(extent={{-10,-10},{10,
             10}},  rotation=270,
         origin={10,-54})));
 
 ThermalSeparation.Components.SourcesSinks.SinkGas
-                                         sinkGas(         redeclare package
-      Medium = ThermalSeparation.Media.IdealGasMixtures.N2_H2O_O2, p=149910)
+                                         sinkGas(         redeclare package Medium =
+               ThermalSeparation.Media.IdealGasMixtures.N2_H2O_O2, p=149910)
                 annotation (Placement(transformation(extent={{-10,-10},{10,10}},
           rotation=90,
         origin={-28,58})));
@@ -79,8 +79,7 @@ Components.Columns.RandomPackedColumn                       column1(
     redeclare model BalanceEquations =
         ThermalSeparation.BalanceEquations.RandomPackedColumn.NonEquilibrium.TwoPhaseVarState (
          redeclare model FilmModel =
-            ThermalSeparation.FilmModel.RandomPackedColumn.MS (redeclare model
-              StateSelection =
+            ThermalSeparation.FilmModel.RandomPackedColumn.MS (redeclare model StateSelection =
                 ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.StateSelection1)))
                          annotation (Placement(transformation(extent={{-32,-8},
             {16,38}}, rotation=0)));

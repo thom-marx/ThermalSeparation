@@ -11,8 +11,7 @@ package Methylacetatsynthese_Liq "Methylacetat, Essigsäe, Methanol, Wasser"
   MMX= {0.0741,0.0601,0.03204,0.018},
   eq_Tsonopoulos = {4,4,4, 6},
   henry=fill(false,nSubstance),
- nR=1, nu={{1,-1,-1,1}},  reacComp={1}, nS_reac=4, redeclare model
-      MolarReactionEnthalpy =
+ nR=1, nu={{1,-1,-1,1}},  reacComp={1}, nS_reac=4, redeclare model MolarReactionEnthalpy =
         ThermalSeparation.Media.Correlations.Reaction.MolarReactionEnthalpy.EnthalpyOfFormation (
           nR=nR));
 

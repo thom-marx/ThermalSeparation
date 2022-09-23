@@ -275,8 +275,8 @@ public
     //                                           n](each u_s = p_initial,u_m = if considerStartUp then p_v[1:n] else fill(p_initial,n),
     // yMax=100,
     // k=0.005,
-    // initType=Modelica.Blocks.Types.InitPID.InitialOutput)   annotation (Placement(transformation(extent={{-24,-12},{-4,8}})));
-    ThermalSeparation.Utilities.LimPID_Input PID[n](each u_s = p_initial, each controllerType = Modelica.Blocks.Types.SimpleController.P, each k = gain, each initType = Modelica.Blocks.Types.InitPID.NoInit, each yMax = y_PID) annotation (
+    // initType=Modelica.Blocks.Types.Init.InitialOutput)   annotation (Placement(transformation(extent={{-24,-12},{-4,8}})));
+    ThermalSeparation.Utilities.LimPID_Input PID[n](each u_s = p_initial, each controllerType = Modelica.Blocks.Types.SimpleController.P, each k = gain, each initType = Modelica.Blocks.Types.Init.NoInit, each yMax = y_PID) annotation (
       Placement(transformation(extent = {{-20, 20}, {0, 40}})));
     Modelica.Blocks.Interfaces.BooleanInput StartUp_signal annotation (
       Placement(transformation(extent = {{-102, -66}, {-92, -56}})));
@@ -751,7 +751,7 @@ public
     connect(endPhase2, T2.conditionPort) annotation (
       Line(points = {{-44, -38}, {-44, -38}, {-37, -38}}, color = {255, 0, 255}));
     annotation (
-      Icon(coordinateSystem(preserveAspectRatio = false), graphics = {Rectangle(extent = {{-94, 94}, {94, -94}}, lineColor = {85, 170, 255}, lineThickness = 1), Rectangle(extent = {{-12, 60}, {12, 40}}, lineColor = {135, 135, 135}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, radius = 60, lineThickness = 0.5), Rectangle(extent = {{-12, 0}, {12, -20}}, lineColor = {135, 135, 135}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, radius = 60, lineThickness = 0.5), Rectangle(extent = {{-12, -60}, {12, -80}}, lineColor = {135, 135, 135}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, radius = 60, lineThickness = 0.5), Rectangle(extent = {{-30, 19}, {32, 24}}, lineColor = {0, 0, 0}, fillColor = {0, 0, 0}, fillPattern = FillPattern.Solid, radius = 10), Rectangle(extent = {{-30, -41}, {32, -36}}, lineColor = {0, 0, 0}, fillColor = {0, 0, 0}, fillPattern = FillPattern.Solid, radius = 10), Line(points = {{0, 40}, {0, 24}}, color = {0, 0, 0}, thickness = 0.5), Line(points = {{0, 20}, {0, 0}}, color = {0, 0, 0}, thickness = 0.5), Line(points = {{0, -20}, {0, -36}, {0, -38}}, color = {0, 0, 0}, thickness = 0.5), Line(points = {{0, -40}, {0, -56}, {0, -60}}, color = {0, 0, 0}, thickness = 0.5), Ellipse(extent = {{-6, -58}, {6, -62}}, lineColor = {0, 0, 0}, lineThickness = 0.5, fillColor = {135, 135, 135}, fillPattern = FillPattern.Solid), Ellipse(extent = {{-6, 2}, {6, -2}}, lineColor = {0, 0, 0}, lineThickness = 0.5, fillColor = {135, 135, 135}, fillPattern = FillPattern.Solid), Ellipse(extent = {{-6, 62}, {6, 58}}, lineColor = {0, 0, 0}, lineThickness = 0.5, fillColor = {135, 135, 135}, fillPattern = FillPattern.Solid), Line(points = {{0, 78}, {0, 62}}, color = {0, 0, 0}, thickness = 0.5), Line(points = {{-94, 78}, {0, 78}}, color = {0, 0, 0}, thickness = 0.5), Line(points = {{0, -80}, {0, -94}}, color = {0, 0, 0}, thickness = 0.5), Line(points = {{-94, 50}, {-12, 50}}, color = {255, 0, 255}, thickness = 0.5), Line(points = {{-94, -10}, {-12, -10}}, color = {255, 0, 255}, thickness = 0.5), Line(points = {{-94, -70}, {-12, -70}}, color = {255, 0, 255}, thickness = 0.5), Line(points = {{-16, 54}, {-12, 50}, {-16, 46}}, color = {255, 0, 255}, thickness = 0.5), Line(points = {{-16, -6}, {-12, -10}, {-16, -14}}, color = {255, 0, 255}, thickness = 0.5), Line(points = {{-16, -66}, {-12, -70}, {-16, -74}}, color = {255, 0, 255}, thickness = 0.5), Text(extent = {{-84, 92}, {80, 82}}, lineColor = {0, 0, 0}, lineThickness = 0.5, fillColor = {0, 0, 0}, fillPattern = FillPattern.Solid, textString = "Step Sequence")}),
+      Icon(coordinateSystem(preserveAspectRatio = false), graphics={  Rectangle(extent = {{-94, 94}, {94, -94}}, lineColor = {85, 170, 255}, lineThickness = 1), Rectangle(extent = {{-12, 60}, {12, 40}}, lineColor = {135, 135, 135}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, radius = 60, lineThickness = 0.5), Rectangle(extent = {{-12, 0}, {12, -20}}, lineColor = {135, 135, 135}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, radius = 60, lineThickness = 0.5), Rectangle(extent = {{-12, -60}, {12, -80}}, lineColor = {135, 135, 135}, fillColor = {255, 255, 255}, fillPattern = FillPattern.Solid, radius = 60, lineThickness = 0.5), Rectangle(extent = {{-30, 19}, {32, 24}}, lineColor = {0, 0, 0}, fillColor = {0, 0, 0}, fillPattern = FillPattern.Solid, radius = 10), Rectangle(extent = {{-30, -41}, {32, -36}}, lineColor = {0, 0, 0}, fillColor = {0, 0, 0}, fillPattern = FillPattern.Solid, radius = 10), Line(points = {{0, 40}, {0, 24}}, color = {0, 0, 0}, thickness = 0.5), Line(points = {{0, 20}, {0, 0}}, color = {0, 0, 0}, thickness = 0.5), Line(points = {{0, -20}, {0, -36}, {0, -38}}, color = {0, 0, 0}, thickness = 0.5), Line(points = {{0, -40}, {0, -56}, {0, -60}}, color = {0, 0, 0}, thickness = 0.5), Ellipse(extent = {{-6, -58}, {6, -62}}, lineColor = {0, 0, 0}, lineThickness = 0.5, fillColor = {135, 135, 135}, fillPattern = FillPattern.Solid), Ellipse(extent = {{-6, 2}, {6, -2}}, lineColor = {0, 0, 0}, lineThickness = 0.5, fillColor = {135, 135, 135}, fillPattern = FillPattern.Solid), Ellipse(extent = {{-6, 62}, {6, 58}}, lineColor = {0, 0, 0}, lineThickness = 0.5, fillColor = {135, 135, 135}, fillPattern = FillPattern.Solid), Line(points = {{0, 78}, {0, 62}}, color = {0, 0, 0}, thickness = 0.5), Line(points = {{-94, 78}, {0, 78}}, color = {0, 0, 0}, thickness = 0.5), Line(points = {{0, -80}, {0, -94}}, color = {0, 0, 0}, thickness = 0.5), Line(points = {{-94, 50}, {-12, 50}}, color = {255, 0, 255}, thickness = 0.5), Line(points = {{-94, -10}, {-12, -10}}, color = {255, 0, 255}, thickness = 0.5), Line(points = {{-94, -70}, {-12, -70}}, color = {255, 0, 255}, thickness = 0.5), Line(points = {{-16, 54}, {-12, 50}, {-16, 46}}, color = {255, 0, 255}, thickness = 0.5), Line(points = {{-16, -6}, {-12, -10}, {-16, -14}}, color = {255, 0, 255}, thickness = 0.5), Line(points = {{-16, -66}, {-12, -70}, {-16, -74}}, color = {255, 0, 255}, thickness = 0.5), Text(extent = {{-84, 92}, {80, 82}}, lineColor = {0, 0, 0}, lineThickness = 0.5, fillColor = {0, 0, 0}, fillPattern = FillPattern.Solid, textString = "Step Sequence")}),
       Diagram(coordinateSystem(preserveAspectRatio = false)));
   end InternalStepSequence;
 
@@ -963,16 +963,6 @@ public
 <p>This class provides the equations necessary to describe vapour and / or liquid feeds to the column.</p>
 </html>"));
   end FeedColumn_newStartUpShutDown;
-
-
-
-
-
-
-
-
-
-
 
 
 end BaseClasses;

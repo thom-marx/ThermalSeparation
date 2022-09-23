@@ -3,8 +3,7 @@ package Diverses
                  //Unfertige Sachen, vollendete in Vaporphase
 
   model PengRobinson
-    extends
-      ThermalSeparation.Media.Correlations.SaturationFugacityCoefficient.BaseFugacityCoefficientxxx;
+    extends ThermalSeparation.Media.Correlations.SaturationFugacityCoefficient.BaseFugacityCoefficientxxx;
   parameter Real kij[nS,nS]= fill(0.01,nS,nS)
       "binary interaction coefficient for Redlich-Kwong equation";
 
@@ -70,8 +69,7 @@ package Diverses
 
   model SoaveRedlichKwong
                           // Buch: Thermodynamik (Gmehling, Kolbe), S. 97 equ. 3.75, S. 43
-    extends
-      ThermalSeparation.Media.Correlations.SaturationFugacityCoefficient.BaseFugacityCoefficientxxx;
+    extends ThermalSeparation.Media.Correlations.SaturationFugacityCoefficient.BaseFugacityCoefficientxxx;
 
   parameter Real kij[nS,nS]= fill(0.01,nS,nS)
       "binary interaction coefficient for Redlich-Kwong equation";
@@ -138,8 +136,7 @@ package Diverses
 
   model SoaveRedlichKwong2
                           // Buch: Thermodynamik (Gmehling, Kolbe), S. 97 equ. 3.75, S. 43
-    extends
-      ThermalSeparation.Media.Correlations.SaturationFugacityCoefficient.BaseFugacityCoefficientxxx;
+    extends ThermalSeparation.Media.Correlations.SaturationFugacityCoefficient.BaseFugacityCoefficientxxx;
 
   parameter Real kij[nS,nS]= fill(0.01,nS,nS)
       "binary interaction coefficient for Redlich-Kwong equation";

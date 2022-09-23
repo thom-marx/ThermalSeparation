@@ -26,7 +26,7 @@ constant Integer ic[nSubstance]=zeros(nSubstance);
    Real alpha; // loading in mol CO2 / mol MEA
    // Real m[nSubstance]; // molarity in mol i / kg H2O
    Real m_av; // average molarity
-   Modelica.SIunits.Temperature Theta = T - 273.15;
+   Modelica.Units.SI.Temperature Theta = T - 273.15;
                                       // Temperature in °C
    Real d_koeff[8];
    CalcSpecificEnthalpy calcSpecificEnthalpy(T0=T0, T=T, p=p, x=x);
@@ -75,14 +75,12 @@ constant Integer ic[nSubstance]=zeros(nSubstance);
 
   end BaseProperties;
 
-
   redeclare replaceable model extends ActivityCoefficient
 
   equation
   gamma = fill(1,nSubstance);
 
   end ActivityCoefficient;
-
 
   redeclare model extends FugacityCoefficient
 
@@ -91,14 +89,12 @@ constant Integer ic[nSubstance]=zeros(nSubstance);
 
   end FugacityCoefficient;
 
-
   redeclare model extends HenryCoefficient
 
   equation
   // He=fill(1,nSubstance); // not needed or neglected
 
   end HenryCoefficient;
-
 
   redeclare model extends DiffusionCoefficient(diluted=true)
   /*** model which shall be used to calculate the diffusion coefficients in a binary mixture ***/
@@ -113,20 +109,19 @@ constant Integer ic[nSubstance]=zeros(nSubstance);
 
   end DiffusionCoefficient;
 
-
   redeclare model extends CalcSpecificEnthalpy
 
   Real alpha(start=0.2); // loading in mol CO2 / mol MEA
-  Modelica.SIunits.SpecificHeatCapacity cp_mix;
+  Modelica.Units.SI.SpecificHeatCapacity cp_mix;
                                   // heat capacity of solution
-  Modelica.SIunits.SpecificHeatCapacity cp_tot;
+  Modelica.Units.SI.SpecificHeatCapacity cp_tot;
                                   // introduced for better initialization
   Real cp_koeff[11];
   // Real m[nSubstance]; // molarity in mol i / kg H2O
   Real m_av; // average molarity
-  Modelica.SIunits.Temperature Theta=T - 273.15;
+  Modelica.Units.SI.Temperature Theta=T - 273.15;
                                      // Temperature in °C
-  Modelica.SIunits.MolarMass MM;
+  Modelica.Units.SI.MolarMass MM;
 
   parameter Real omega_k=0.05
     "large value if change between constant and variable shall be steep";
@@ -167,12 +162,10 @@ constant Integer ic[nSubstance]=zeros(nSubstance);
               fillPattern=FillPattern.Solid)}));
   end CalcSpecificEnthalpy;
 
-
   redeclare replaceable model extends ThermodynamicFactor
   equation
   Gamma =  diagonal(ones(nSubstance));
   end ThermodynamicFactor;
-
 
   redeclare model extends MolarReactionEnthalpy
   input Real alpha;
@@ -181,6 +174,4 @@ constant Integer ic[nSubstance]=zeros(nSubstance);
 
     h_R[1] = (h_koeff[1] + h_koeff[2] * alpha + h_koeff[3] *alpha^2 + h_koeff[4] * alpha^3);
   end MolarReactionEnthalpy;
-
-
 end H2O_CO2_MEA_Liq;

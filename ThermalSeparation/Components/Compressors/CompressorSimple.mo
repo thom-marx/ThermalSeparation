@@ -8,7 +8,7 @@ Medium.BaseProperties mediumIn(p=gasPortIn.p,x=inStream(gasPortIn.x_outflow),x_s
 Medium.BaseProperties mediumOut(p=gasPortOut.p,x=gasPortOut.x_outflow,x_star=gasPortOut.x_outflow,c=c);
 
 parameter Real isExp=1.3 "isentropic exponent";
-parameter Modelica.SIunits.Power P_drive_const=10000 "power input of fan motor" annotation(Dialog(enable=not useP));
+parameter Modelica.Units.SI.Power P_drive_const=10000 "power input of fan motor" annotation(Dialog(enable=not useP));
 parameter Boolean useP=false "use P_drive from real input";
 
 // parameter Real charLine[:,:]=fill(
@@ -17,22 +17,22 @@ parameter Boolean useP=false "use P_drive from real input";
 //       2) "characteristic line for dp/Vdot in (bar/m^3/s)";
 // parameter Boolean startConstant=false "start with constant dp" annotation(Dialog(tab="Initialization"));
 // parameter Boolean useHomotopy=false "use homotopy method for init of pressure" annotation(Dialog(tab="Initialization"));
-// parameter Modelica.SIunits.Pressure dp_nom=0.05*1e5
+// parameter Modelica.Units.SI.Pressure dp_nom=0.05*1e5
 //     "nominal pressure difference"                                                 annotation(Dialog(enable=startConstant or useHomotopy,tab="Initialization"));
 // parameter Real omega_k=0.05
 //     "large value if change between constant and variable shall be steep" annotation(Dialog(enable=startConstant,tab="Initialization"));
 // parameter Real omega_time = 50 "Wendepunkt der tanh-Funktion" annotation(Dialog(enable=startConstant,tab="Initialization"));
 //    Real omega = 0.5*tanh(omega_k*(time-omega_time))+0.5;
 
-Modelica.SIunits.Power P_hyd;
-Modelica.SIunits.Power P_drive;
-Modelica.SIunits.Pressure deltap;
-Modelica.SIunits.Concentration c[Medium.nSubstance];
-Modelica.SIunits.Temperature T_in=mediumIn.T;
-Modelica.SIunits.Temperature T_out=mediumOut.T;
+Modelica.Units.SI.Power P_hyd;
+Modelica.Units.SI.Power P_drive;
+Modelica.Units.SI.Pressure deltap;
+Modelica.Units.SI.Concentration c[Medium.nSubstance];
+Modelica.Units.SI.Temperature T_in=mediumIn.T;
+Modelica.Units.SI.Temperature T_out=mediumOut.T;
 
-Modelica.SIunits.VolumeFlowRate Vdot_in=gasPortIn.Ndot*mediumIn.MM/mediumIn.d;
-Modelica.SIunits.VolumeFlowRate Vdot_out=-gasPortOut.Ndot*mediumOut.MM/mediumOut.d;
+Modelica.Units.SI.VolumeFlowRate Vdot_in=gasPortIn.Ndot*mediumIn.MM/mediumIn.d;
+Modelica.Units.SI.VolumeFlowRate Vdot_out=-gasPortOut.Ndot*mediumOut.MM/mediumOut.d;
 
   Interfaces.GasPortIn gasPortIn(redeclare package Medium=Medium)
     annotation (Placement(transformation(extent={{0,-94},{20,-74}}),

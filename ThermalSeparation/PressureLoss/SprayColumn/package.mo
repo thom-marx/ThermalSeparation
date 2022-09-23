@@ -1,4 +1,4 @@
 within ThermalSeparation.PressureLoss;
-package SprayColumn 
+package SprayColumn
 
 end SprayColumn;

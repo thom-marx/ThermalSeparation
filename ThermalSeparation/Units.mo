@@ -1,6 +1,6 @@
 within ThermalSeparation;
 package Units "Type Definitions"
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
 
   type CoefficentOfMassTransfer = Real (quantity="CoefficentOfMassTransfer", final unit="m/s");
   type F_Factor =Real (quantity="F_Factor", final unit="1");

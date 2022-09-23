@@ -15,38 +15,38 @@ parameter Boolean inert_Liquid[nSL] = fill(false,nSL)
 
   Real K[nS] = thermoEquilibrium.K "equilibrium constant";
 
-  parameter Modelica.SIunits.HeatFlowRate Q_kon_fixed=1e5;
+  parameter Modelica.Units.SI.HeatFlowRate Q_kon_fixed=1e5;
   parameter Real beta_l=7e2 "liquid mass transfer coefficient" annotation(Dialog(group="Shell side parameters"));
   parameter Real beta_v=7e2 "vapour mass transfer coefficient" annotation(Dialog(group="Shell side parameters"));
   parameter Real alpha_l=5e5 "liquid heat transfer coefficient" annotation(Dialog(group="Shell side parameters"));
   parameter Real alpha_v=5e5 "vapour heat transfer coefficient" annotation(Dialog(group="Shell side parameters"));
 
-  Modelica.SIunits.MolarFlowRate ndot_l_interface[nS];
-  Modelica.SIunits.MolarFlowRate ndot_v_interface[nS];
-  Modelica.SIunits.MolarFlowRate ndot_from_l[nSL];
-  Modelica.SIunits.MolarFlowRate ndot_from_v[nSV];
+  Modelica.Units.SI.MolarFlowRate ndot_l_interface[nS];
+  Modelica.Units.SI.MolarFlowRate ndot_v_interface[nS];
+  Modelica.Units.SI.MolarFlowRate ndot_from_l[nSL];
+  Modelica.Units.SI.MolarFlowRate ndot_from_v[nSV];
 
-  Modelica.SIunits.Temperature T_l_in;
-  Modelica.SIunits.Temperature T_v(stateSelect=StateSelect.default);
-  Modelica.SIunits.Temperature Tstar;
+  Modelica.Units.SI.Temperature T_l_in;
+  Modelica.Units.SI.Temperature T_v(stateSelect=StateSelect.default);
+  Modelica.Units.SI.Temperature Tstar;
 
-  Modelica.SIunits.MoleFraction x_l_in[nSL];
-  Modelica.SIunits.MoleFraction x_v[nSV];
-  Modelica.SIunits.MoleFraction x_l_star[nSL];
-  Modelica.SIunits.MoleFraction x_v_star[nSV];
-  Modelica.SIunits.MoleFraction x_from_l[nSL];
-  Modelica.SIunits.MoleFraction x_to_l[nSL];
-  Modelica.SIunits.MoleFraction x_from_v[nSV];
-  Modelica.SIunits.MoleFraction x_to_v[nSV];
+  Modelica.Units.SI.MoleFraction x_l_in[nSL];
+  Modelica.Units.SI.MoleFraction x_v[nSV];
+  Modelica.Units.SI.MoleFraction x_l_star[nSL];
+  Modelica.Units.SI.MoleFraction x_v_star[nSV];
+  Modelica.Units.SI.MoleFraction x_from_l[nSL];
+  Modelica.Units.SI.MoleFraction x_to_l[nSL];
+  Modelica.Units.SI.MoleFraction x_from_v[nSV];
+  Modelica.Units.SI.MoleFraction x_to_v[nSV];
 
-  Modelica.SIunits.MolarMass MM_l_in=mediumLiquidIn.MM;
-  Modelica.SIunits.MolarMass MM_v=mediumVapour.MM;
+  Modelica.Units.SI.MolarMass MM_l_in=mediumLiquidIn.MM;
+  Modelica.Units.SI.MolarMass MM_v=mediumVapour.MM;
 
-  Modelica.SIunits.Density rho_l_in=mediumLiquidIn.d;
-  Modelica.SIunits.Density rho_v=mediumVapour.d;
+  Modelica.Units.SI.Density rho_l_in=mediumLiquidIn.d;
+  Modelica.Units.SI.Density rho_v=mediumVapour.d;
 
-  Modelica.SIunits.Concentration c_l_in[nSL];
-  Modelica.SIunits.Concentration c_v[nSV];
+  Modelica.Units.SI.Concentration c_l_in[nSL];
+  Modelica.Units.SI.Concentration c_v[nSV];
 
   ThermalSeparation.Units.MolarEnthalpy h_l_in;//mediumLiquidIn.h;
   ThermalSeparation.Units.MolarEnthalpy h_v = mediumVapour.h;
@@ -56,15 +56,15 @@ parameter Boolean inert_Liquid[nSL] = fill(false,nSL)
   ThermalSeparation.Units.MolarEnthalpy h_to_v=mediumVapour.h;//enthalpy_VapToPB.h;
   ThermalSeparation.Units.MolarEnthalpy h_to_l=mediumLiquid.h;//enthalpy_LiqToPB.h;
 
-  Modelica.SIunits.HeatFlowRate qdot_v_interface;
-  Modelica.SIunits.HeatFlowRate qdot_l_interface;
-  Modelica.SIunits.HeatFlowRate qdot_v_conv;
-  Modelica.SIunits.HeatFlowRate qdot_l_conv;
-  Modelica.SIunits.HeatFlowRate qdot_v_cond;
-  Modelica.SIunits.HeatFlowRate qdot_l_cond;
+  Modelica.Units.SI.HeatFlowRate qdot_v_interface;
+  Modelica.Units.SI.HeatFlowRate qdot_l_interface;
+  Modelica.Units.SI.HeatFlowRate qdot_v_conv;
+  Modelica.Units.SI.HeatFlowRate qdot_l_conv;
+  Modelica.Units.SI.HeatFlowRate qdot_v_cond;
+  Modelica.Units.SI.HeatFlowRate qdot_l_cond;
 
-  Modelica.SIunits.VolumeFlowRate vdot_v_out;
-  Modelica.SIunits.VolumeFlowRate vdot_l_in;
+  Modelica.Units.SI.VolumeFlowRate vdot_v_out;
+  Modelica.Units.SI.VolumeFlowRate vdot_l_in;
 
   SI.MoleFraction x_vap_liq[nS] "total molar fractions";
   Real n_tot[nS] "total molar holdup";
@@ -79,12 +79,12 @@ parameter Boolean inert_Liquid[nSL] = fill(false,nSL)
 
 /* geometry */
 
-  parameter Modelica.SIunits.Area A=0.5 "crossectional area" annotation(Dialog(tab="Geometry"));
-  parameter Modelica.SIunits.Height H=1.3 "height" annotation(Dialog(tab="Geometry"));
+  parameter Modelica.Units.SI.Area A=0.5 "crossectional area" annotation(Dialog(tab="Geometry"));
+  parameter Modelica.Units.SI.Height H=1.3 "height" annotation(Dialog(tab="Geometry"));
 
-  Modelica.SIunits.Height h_liq "liquid level inside condenser";
-  parameter Modelica.SIunits.Length h_w=H/10 "weir height" annotation(Dialog(tab="Geometry"));
-  parameter Modelica.SIunits.Length h_lw=A*0.7 "weir length" annotation(Dialog(tab="Geometry"));
+  Modelica.Units.SI.Height h_liq "liquid level inside condenser";
+  parameter Modelica.Units.SI.Length h_w=H/10 "weir height" annotation(Dialog(tab="Geometry"));
+  parameter Modelica.Units.SI.Length h_lw=A*0.7 "weir length" annotation(Dialog(tab="Geometry"));
 
 MediumLiquid.FugacityCoefficient satFugacityLiq(T=Tstar, p=p, p_sat=p_sat);
 
@@ -94,8 +94,7 @@ MediumLiquid.FugacityCoefficient satFugacityLiq(T=Tstar, p=p, p_sat=p_sat);
       Dialog(group="Shell side parameters"));
 
       ThermoEquilibrium thermoEquilibrium(nS=nS,mapping = mapping,
-      redeclare replaceable package MediumVapour = MediumVapour, redeclare replaceable package
-                          MediumLiquid =
+      redeclare replaceable package MediumVapour = MediumVapour, redeclare replaceable package MediumLiquid =
       MediumLiquid, p=p, T=Tstar, x_v=x_v_star, x_l=x_l_star, p_sat=p_sat,  v_v=MM_v./rho_v, x_vap_liq=x_vap_liq);
 
 /* connectors */
@@ -116,8 +115,8 @@ MediumLiquid.FugacityCoefficient satFugacityLiq(T=Tstar, p=p, p_sat=p_sat);
     annotation (Placement(transformation(extent={{52,0},{72,20}}, rotation=0),
         iconTransformation(extent={{-10,70},{10,90}})));
 
-    ThermalSeparation.Interfaces.LiquidPortIn liquidPortIn(redeclare package
-      Medium = MediumLiquid)
+    ThermalSeparation.Interfaces.LiquidPortIn liquidPortIn(redeclare package Medium =
+               MediumLiquid)
       annotation (Placement(transformation(extent={{-100,-100},{-80,-80}}),
           iconTransformation(extent={{-80,-84},{-60,-64}})));
 equation

@@ -1,7 +1,6 @@
 within ThermalSeparation.Media.Correlations.DiffusionCoefficient.Vapour;
 model Const_Gas "constant diffusion coefficient for gas"
-  extends
-    ThermalSeparation.Media.Correlations.DiffusionCoefficient.Vapour.BaseDiffusionCoeffGas;
+  extends ThermalSeparation.Media.Correlations.DiffusionCoefficient.Vapour.BaseDiffusionCoeffGas;
   parameter SI.DiffusionCoefficient D_const_gas = 1e-5;
 equation
   D=fill(D_const_gas,a);

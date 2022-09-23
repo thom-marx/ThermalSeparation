@@ -1,10 +1,8 @@
 within ThermalSeparation.BalanceEquations.StructuredPackedColumn.NonEquilibrium;
 model TwoPhaseVarState "phases balanced seperately, states optional"
 
-extends
-    ThermalSeparation.BalanceEquations.Base.NonEquilibrium.BaseTwoPhaseVarState;
-extends
-    ThermalSeparation.BalanceEquations.StructuredPackedColumn.BaseStructured;
+extends ThermalSeparation.BalanceEquations.Base.NonEquilibrium.BaseTwoPhaseVarState;
+extends ThermalSeparation.BalanceEquations.StructuredPackedColumn.BaseStructured;
 
 parameter Boolean EQ=filmModel.EQ;
 
@@ -15,8 +13,7 @@ parameter Boolean EQ=filmModel.EQ;
 
   /*** film model ***/
     replaceable model FilmModel =
-        ThermalSeparation.FilmModel.StructuredPackedColumn.MS (redeclare replaceable model
-                          StateSelection =
+        ThermalSeparation.FilmModel.StructuredPackedColumn.MS (redeclare replaceable model StateSelection =
        ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.StateSelection2)      constrainedby ThermalSeparation.FilmModel.StructuredPackedColumn.BaseFilmPacked(
        redeclare replaceable package MediumLiquid =  MediumLiquid,
            redeclare replaceable model Reaction =  Reaction,
@@ -32,8 +29,7 @@ parameter Boolean EQ=filmModel.EQ;
   stateLiq=stateLiq, stateVap=stateVap, Ndot_l_transfer=Ndot_l_transfer,
   eps_liq=eps_liq, eta_comp=propsLiq.eta_comp, x_l=x_l, p_sat=p_sat,x_v_in=x_v_in,gamma=gamma,
   redeclare final model ThermoEquilibrium =     ThermoEquilibrium,
-  c_v_star=c_v_star,x_vap_liq=x_vap_liq,redeclare replaceable model
-      HomotopyMethod =
+  c_v_star=c_v_star,x_vap_liq=x_vap_liq,redeclare replaceable model HomotopyMethod =
         HomotopyMethod,
           k=k,
           smooth_startUp=smooth_startUp,

@@ -2,18 +2,17 @@
 package H2O_CO2_Vap "H2O,CO2: CO2 separation with MEA"
      constant Integer henry[:] = {2};
                                      //1.63e9
-     constant Modelica.SIunits.Pressure henry_H[:]={0,1.63e9}
+     constant Modelica.Units.SI.Pressure henry_H[:]={0,1.63e9}
   "Henry coefficient";
      constant Real henry_C[:]={0,2400}
   "constant to calculate temperature dependency";
-     constant Modelica.SIunits.Temperature henry_T_norm=298 "norm temperature";
+     constant Modelica.Units.SI.Temperature henry_T_norm=298 "norm temperature";
 
 import
   ThermalSeparation.Media.IdealGasMixtures.BaseClasses.PartialMedium.Choices.ReferenceEnthalpy;
 
 
-  extends
-  ThermalSeparation.Media.IdealGasMixtures.BaseClasses.BaseIdealGasMixture(
+  extends ThermalSeparation.Media.IdealGasMixtures.BaseClasses.BaseIdealGasMixture(
     reference_X={0.92,0.08},
     nSubstance=2,
     delta_hv_medium=true,
@@ -48,11 +47,11 @@ import
   Real p_start(start=1.0e5);
 
     //   /*** Enthalpy ***/
-    //   Modelica.SIunits.SpecificHeatCapacity cp;
+    //   Modelica.Units.SI.SpecificHeatCapacity cp;
     //   // parameter SI.Temperature T0 = 293.15 "reference temperature";
     //
     //   /*** thermal conductivity ***/
-    //     Modelica.SIunits.ThermalConductivity lambda=0.02;
+    //     Modelica.Units.SI.ThermalConductivity lambda=0.02;
 protected
    parameter ThermalSeparation.Units.ConversionDebyeCm conversionDebye=
       3.33564e-30 "to convert from debye to C*m";
@@ -74,7 +73,7 @@ required from medium model \""   + mediumName + "\".");
 
     h =calcSpecificEnthalpy.h;
 
-    R = data.R*X;
+    R = data.R_s*X;
 
     u = h-R*T*MM;
     d = p/(R*T);
@@ -82,24 +81,23 @@ required from medium model \""   + mediumName + "\".");
     annotation (structurallyIncomplete);
   end BaseProperties;
 
-
   redeclare replaceable model extends CalcSpecificEnthalpy
   constant Real f_psat = 1;
   constant Boolean psat_Antoine = false;
-   output Modelica.SIunits.Temperature T_sat_water;
+   output Modelica.Units.SI.Temperature T_sat_water;
 protected
-   Modelica.SIunits.SpecificEnthalpy hX[nSubstance];
+   Modelica.Units.SI.SpecificEnthalpy hX[nSubstance];
     /***Berechnung der Sättigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
     Real pi "dimensionless pressure";
     Real[20] o "vector of auxiliary variables";
 
     /*** evaporation enthalpy of water ***/
-    Modelica.SIunits.SpecificEnthalpy r_water;
+    Modelica.Units.SI.SpecificEnthalpy r_water;
     Real tau;
     Real chvap[5];
 
     /*** heat capacity ***/
-      parameter Modelica.SIunits.SpecificHeatCapacity cp_water=4200;
+      parameter Modelica.Units.SI.SpecificHeatCapacity cp_water=4200;
       Real cp_H2O_vap;
       Real cp_CO2_vap;
       Real cp_coeff_H2O[5];
@@ -170,11 +168,10 @@ protected
               fillPattern=FillPattern.Solid)}));
   end CalcSpecificEnthalpy;
 
-
   redeclare replaceable model extends EvaporationEnthalpy
 
 protected
-    Modelica.SIunits.SpecificEnthalpy r_water;
+    Modelica.Units.SI.SpecificEnthalpy r_water;
     Real tau;
     Real chvap[5];
   equation
@@ -200,5 +197,4 @@ protected
             fillColor={255,255,255},
             fillPattern=FillPattern.Solid)}));
   end EvaporationEnthalpy;
-
 end H2O_CO2_Vap;

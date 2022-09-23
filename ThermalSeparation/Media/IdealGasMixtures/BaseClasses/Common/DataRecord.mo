@@ -11,7 +11,7 @@ record DataRecord
   Real blow[2] "Low temperature constants b";
   Real ahigh[7] "High temperature coefficients a";
   Real bhigh[2] "High temperature constants b";
-  SI.SpecificHeatCapacity R=Modelica.Constants.R/MM "Gas constant";
+  SI.SpecificHeatCapacity R_s=Modelica.Constants.R/MM "Gas constant";
   annotation (Documentation(info="<HTML>
 <p>
 This data record contains the coefficients for the

@@ -149,13 +149,13 @@ package OldStartUpExample
   output Real PID_y = PID.y;
   output Real refluxRatio= refluxConverter.y;
   /*** monitoring ***/
-  output Modelica.SIunits.MoleFraction x_1m[4]=reactor.x_l[2, :];
-   Modelica.SIunits.MoleFraction x_2m[4]=reactor.x_l_in;
-   Modelica.SIunits.MoleFraction x_3m[4]=separator.x_l_in;
-   Modelica.SIunits.MoleFraction x_reboiler[4]=sump.x_l[1,:];
-   Modelica.SIunits.Temperature T_1m=reactor.T_l[2];
-   Modelica.SIunits.Temperature T_3m=separator.T_l_in;
-   Modelica.SIunits.Temperature T_reboiler=sump.T[1];
+  output Modelica.Units.SI.MoleFraction x_1m[4]=reactor.x_l[2, :];
+   Modelica.Units.SI.MoleFraction x_2m[4]=reactor.x_l_in;
+   Modelica.Units.SI.MoleFraction x_3m[4]=separator.x_l_in;
+   Modelica.Units.SI.MoleFraction x_reboiler[4]=sump.x_l[1,:];
+   Modelica.Units.SI.Temperature T_1m=reactor.T_l[2];
+   Modelica.Units.SI.Temperature T_3m=separator.T_l_in;
+   Modelica.Units.SI.Temperature T_reboiler=sump.T[1];
     ThermalSeparation.Components.Condenser.TotalCondenser kondensator(
       redeclare package MediumVapour =
           ThermalSeparation.Media.Methylacetatsynthese_Vap,
@@ -284,7 +284,7 @@ package OldStartUpExample
     Modelica.Blocks.Continuous.LimPID PID(
       controllerType=Modelica.Blocks.Types.SimpleController.PI,
       Ti=1,
-      initType=Modelica.Blocks.Types.InitPID.InitialOutput,
+      initType=Modelica.Blocks.Types.Init.InitialOutput,
       y_start=10,
       k=1e-1,
       yMin=0.2,

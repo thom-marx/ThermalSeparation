@@ -1,4 +1,4 @@
 within ThermalSeparation;
-package Icons 
+package Icons
 
 end Icons;

@@ -1,8 +1,7 @@
 within ThermalSeparation.Components.Columns;
 model StructuredPackedColumn_newStartUpShutDown
      extends ThermalSeparation.Icons.Color.PackedColumn;
-  extends
-    ThermalSeparation.Components.Columns.BaseClasses.FeedColumn_newStartUpShutDown(
+  extends ThermalSeparation.Components.Columns.BaseClasses.FeedColumn_newStartUpShutDown(
     A=geometry.A,
     H=geometry.H,
     eps=geometry.eps,
@@ -11,7 +10,7 @@ model StructuredPackedColumn_newStartUpShutDown
     final n=n_elements,
     final EQ=filmModel.EQ,
     PID(each controllerType=Modelica.Blocks.Types.SimpleController.P, each initType=
-          Modelica.Blocks.Types.InitPID.NoInit));
+          Modelica.Blocks.Types.Init.NoInit));
 
    replaceable model InitOption =
     ThermalSeparation.Components.Columns.BaseClasses.Initialization.Init_T_xv_p_Ndot0

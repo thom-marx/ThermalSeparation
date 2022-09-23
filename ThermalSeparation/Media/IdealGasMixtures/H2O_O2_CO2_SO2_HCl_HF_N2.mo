@@ -10,8 +10,7 @@ package H2O_O2_CO2_SO2_HCl_HF_N2 "7C, Rauchgas: H2O, O2, CO2, SO2, HCl, HF, N2"
 
   import
     ThermalSeparation.Media.IdealGasMixtures.BaseClasses.PartialMedium.Choices.ReferenceEnthalpy;
-  extends
-    ThermalSeparation.Media.IdealGasMixtures.BaseClasses.BaseIdealGasMixture(
+  extends ThermalSeparation.Media.IdealGasMixtures.BaseClasses.BaseIdealGasMixture(
                               nS=7,nSubstance=7, V = {13.1, 16.3, 26.7, 41.8, 23.3, 17.0, 18.5},  eq_Tsonopoulos = {6, 1, 1, 5, 1, 1, 1},  sigma = {2.641, 3.467, 3.941, 4.112, 3.339, 3.148, 3.798},
 epsilon_k = { 809.1,106.7, 195.2, 335.4, 344.7, 330, 71.4},
     SpecificEnthalpy(start=if referenceChoice == ReferenceEnthalpy.ZeroAt0K then
@@ -33,7 +32,7 @@ epsilon_k = { 809.1,106.7, 195.2, 335.4, 344.7, 330, 71.4},
         ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.SO2,
         ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.HCL,
         ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.HF,
-        ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.N2},                                                                        R_const=data.R);
+        ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.N2},                                                                        R_const=data.R_s);
 
  redeclare replaceable model extends BaseProperties(
     T(stateSelect=if preferredMediumStates then StateSelect.prefer else StateSelect.default),
@@ -100,7 +99,7 @@ required from medium model \""   + mediumName + "\".");
    MM = max(1e-6,sum(x.*MMX));//molarMass(state);
     h_Jkg = X[1]*(4120*(T_sat_water-0) + 2382e3 + 1875*(T-T_sat_water))+ (X[2]*925 + X[3]*864 + X[4]*622 + X[5]*799 + X[6]*800 + X[7] * 1041)*(T-0);//h_TX(T, X);
     h = calcSpecificEnthalpy.h;
-    R = data.R*X;
+    R = data.R_s*X;
     u_Jkg = h_Jkg - R*T;
     u = u_Jkg * MM;
     d = p/(R*T);

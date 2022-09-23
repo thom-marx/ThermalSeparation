@@ -5,8 +5,7 @@ model HeteroCatMasstransfer
 //Skript Keil, S. 126 - 148 und Bsp. S. 272
 //reaction kinetics taken into account
 extends BaseReaction(redeclare replaceable package MediumLiquid =
-        ThermalSeparation.Media.BaseMediumLiquidReaction, film=false, redeclare replaceable record
-                         Geometry =
+        ThermalSeparation.Media.BaseMediumLiquidReaction, film=false, redeclare replaceable record Geometry =
         ThermalSeparation.Geometry.BasicGeoPackedColumn);
   constant Integer nR=MediumLiquid.nR "number of reactions";
   constant Real nu[nR,nS]=MediumLiquid.nu
@@ -57,8 +56,7 @@ end for;
   if sum(abs(MediumLiquid.ic))==0 then
         //no charged particles are in the solution
         pot_diff =0;
-  else
-        sum(MediumLiquid.ic[:].*x_cat[:])=0; //electroneutrality condition
+  else  sum(MediumLiquid.ic[:].*x_cat[:])=0; //electroneutrality condition
     pot_diff= -sum(MediumLiquid.ic[:].*(-mediumLiquidCat.c + propsLiq.c))*(Modelica.Constants.R*T)/sum(MediumLiquid.ic[:].*MediumLiquid.ic[:].*propsLiq.c)/Modelica.Constants.F;
       end if;
 

@@ -13,7 +13,7 @@ partial model BaseCondenser
 parameter Integer mapping[nS,2] = {{i,i} for i in 1:nS}
     "parameter to map the different medium vectors one to another" annotation(Dialog(group="Shell side parameters"));
 parameter Boolean connectCoolant=false "set true to enable coolant connectors" annotation(Dialog(group="Shell side parameters"));
-parameter Modelica.SIunits.Pressure p_nom=0.05e5
+parameter Modelica.Units.SI.Pressure p_nom=0.05e5
     "linear pressure drop with nominal value" annotation(Dialog(group="Shell side parameters"));
 parameter SI.VolumeFlowRate vdot_nom=0.4 "nominal volume flow rate" annotation(Dialog(group="Shell side parameters"));
 replaceable package MediumVapour =

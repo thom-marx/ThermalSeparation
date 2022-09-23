@@ -7,8 +7,8 @@ package N2_O2_CO2_SO2_HCl_HF_H2O_H_HSO3
     constant Real phi[nSubstance]= {1,1,1,1,1,1,2.26, 1,1}
     "association factor of each substance, if this substance is to be the solvent - used for calculation of diffusion coeffcients";
 
-    extends
-    ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.PartialWaterBasedReaction(ic={0, 0, 0, 0, 0, 0, 0, 1, -1},has_etaSubstance={false, false, false, false, false, false, true, false, false},  Tcrit={    126.2,
+    extends ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.PartialWaterBasedReaction(
+                                                                                   ic={0, 0, 0, 0, 0, 0, 0, 1, -1},has_etaSubstance={false, false, false, false, false, false, true, false, false},  Tcrit={    126.2,
      154.58,
      304.12,
      430.8,

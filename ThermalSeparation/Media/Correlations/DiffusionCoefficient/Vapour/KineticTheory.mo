@@ -2,8 +2,7 @@
 model KineticTheory
   "theoretical equation for the mutual diffusion coefficient in a low-pressure binary gas mixture (ideal gas!)"
   //z.B. Taylor, p. 68
-  extends
-    ThermalSeparation.Media.Correlations.DiffusionCoefficient.Vapour.BaseDiffusionCoeffGas;
+  extends ThermalSeparation.Media.Correlations.DiffusionCoefficient.Vapour.BaseDiffusionCoeffGas;
     parameter Real sigma[nS];
     parameter Real epsilon_k[nS];
 protected

@@ -1,3 +1,3 @@
 within ThermalSeparation.BalanceEquations;
-package StructuredPackedColumn 
+package StructuredPackedColumn
 end StructuredPackedColumn;

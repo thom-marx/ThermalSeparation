@@ -5,7 +5,7 @@ model FlueGasCompressor
       outer ThermalSeparation.SystemTS systemTS;
     parameter SI.Temperature T_ref = systemTS.T_ref "reference temperature" annotation(Dialog(tab="Advanced"));
 
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
 
    replaceable package Medium =
        ThermalSeparation.Media.IdealGasMixtures.H2O_O2_CO2_N2
@@ -29,7 +29,7 @@ model FlueGasCompressor
 
 //  SI.MoleFraction x_in[Medium.nS] = Medium.reference_X;
 
-  parameter Modelica.SIunits.MassFlowRate m_start=15
+  parameter Modelica.Units.SI.MassFlowRate m_start=15
     "Guess value for mass flow rate"
     annotation(Dialog(tab="Initialization"));
   parameter Medium.MassFraction X_start_in[Medium.nX] = Medium.reference_X

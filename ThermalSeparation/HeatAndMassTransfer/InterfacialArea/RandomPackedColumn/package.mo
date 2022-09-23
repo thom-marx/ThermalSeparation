@@ -1,4 +1,4 @@
 within ThermalSeparation.HeatAndMassTransfer.InterfacialArea;
-package RandomPackedColumn 
+package RandomPackedColumn
 
 end RandomPackedColumn;

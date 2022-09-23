@@ -5,8 +5,8 @@ model H2O_CO2_MEA_startUp "H2O and CO2-MEA Eq. for startUp CO2 separation with M
 
 Real eq_koeff[9];
 Real alpha(start=0.5); // loading in mol CO2 / mol MEA
-Modelica.SIunits.Pressure p_sat_H2O(start=1.3e5);
-Modelica.SIunits.Temperature Theta = T-273.15;
+Modelica.Units.SI.Pressure p_sat_H2O(start=1.3e5);
+Modelica.Units.SI.Temperature Theta = T-273.15;
 
    parameter Real omega_k=0.05
     "large value if change between constant and variable shall be steep";

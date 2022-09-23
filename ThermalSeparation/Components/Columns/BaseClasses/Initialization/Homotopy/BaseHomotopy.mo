@@ -8,18 +8,18 @@ partial model BaseHomotopy
  parameter Integer n=1 "number of stages" annotation(Dialog(tab="Propagated by column model",enable=false));
  Boolean useHomotopy=false;
 
- Modelica.SIunits.MolarFlowRate Ndot_l_inter[n,nSL]=fill(0,n,nSL)
+ Modelica.Units.SI.MolarFlowRate Ndot_l_inter[n,nSL]=fill(0,n,nSL)
     "nominal molar flow across liquid phase boundary";
- Modelica.SIunits.MolarFlowRate Ndot_v_inter[n,nSV]=fill(0,n,nSV)
+ Modelica.Units.SI.MolarFlowRate Ndot_v_inter[n,nSV]=fill(0,n,nSV)
     "nominal molar flow across vapour phase boundary";
- Modelica.SIunits.HeatFlowRate Edot_l_inter[n]=fill(0,n)
+ Modelica.Units.SI.HeatFlowRate Edot_l_inter[n]=fill(0,n)
     "nominal heat flow rate across liquid phase boundary";
- Modelica.SIunits.HeatFlowRate Edot_v_inter[n]=fill(0,n)
+ Modelica.Units.SI.HeatFlowRate Edot_v_inter[n]=fill(0,n)
     "nominal heat flow rate across vapour phase boundary";
- Modelica.SIunits.Pressure dp=0.1e5 "nominal pressure loss";
+ Modelica.Units.SI.Pressure dp=0.1e5 "nominal pressure loss";
  Real K[nS]=fill(1,nS) "nominal equilibrium constant";
- Modelica.SIunits.Density rho_liq=1000 "nominal liquid density";
- Modelica.SIunits.Density rho_vap=1 "nominal vapour density";
+ Modelica.Units.SI.Density rho_liq=1000 "nominal liquid density";
+ Modelica.Units.SI.Density rho_vap=1 "nominal vapour density";
  ThermalSeparation.Units.MolarEnthalpy h_liq=2e3 "nominal liquid emthalpy";
  ThermalSeparation.Units.MolarEnthalpy h_vap=1.5e4 "nominal vapour enthalpy";
 

@@ -1,4 +1,4 @@
 within ThermalSeparation;
-package BalanceEquations 
+package BalanceEquations
 extends Icons.Library.Orange;
 end BalanceEquations;

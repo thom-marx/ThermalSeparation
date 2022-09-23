@@ -5,8 +5,8 @@ package CO2_water "CO2, H2O"
   "association factor of each substance, if this substance is to be the solvent - used for claculation of diffusion coeffcients";
 
 
-  extends
-  ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.PartialWaterBased(  has_etaSubstance={false, true}, Tcrit= {
+  extends ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.PartialWaterBased(
+                                                                           has_etaSubstance={false, true}, Tcrit= {
      304.12,
       647.14}, pcrit= {
      7.374e6,
@@ -233,7 +233,6 @@ protected
     annotation (structurallyIncomplete);
   end BaseProperties;
 
-
         redeclare model extends CalcSpecificEnthalpy
           /*** enthalpy ***/
 
@@ -257,7 +256,6 @@ protected
               fillPattern=FillPattern.Solid)}));
         end CalcSpecificEnthalpy;
 
-
 redeclare model extends HenryCoefficient
      parameter SI.Pressure henry_H[nSubstance] = {1.63e8,0} "Henry coefficient";
      parameter Real henry_C[nSubstance]={2400,0}
@@ -276,7 +274,6 @@ equation
   end for;
 end HenryCoefficient;
 
-
     redeclare model extends DiffusionCoefficient
     /*** model which shall be used to calculate the diffusion coefficients in a binary mixture ***/
       model D_Molecules =
@@ -292,7 +289,6 @@ end HenryCoefficient;
     equation
     D = diffCoeff.D;
     end DiffusionCoefficient;
-
 
   annotation (Icon(graphics={Text(
             extent={{-94,84},{94,40}},

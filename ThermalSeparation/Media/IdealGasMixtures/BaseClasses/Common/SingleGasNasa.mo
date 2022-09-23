@@ -2,8 +2,7 @@ within ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common;
 partial package SingleGasNasa
   "Medium model of an ideal gas based on NASA source"
 
-  extends
-    ThermalSeparation.Media.IdealGasMixtures.BaseClasses.PartialPureSubstance(
+  extends ThermalSeparation.Media.IdealGasMixtures.BaseClasses.PartialPureSubstance(
     mediumName=data.name,
     substanceNames={data.name},
     final reducedX=true,
@@ -35,7 +34,7 @@ partial package SingleGasNasa
     AbsolutePressure triplePointPressure "triple point pressure";
     Temperature meltingPoint "melting point at 101325 Pa";
     Temperature normalBoilingPoint "normal boiling point (at 101325 Pa)";
-    Modelica.SIunits.ElectricDipoleMomentOfMolecule dipoleMoment
+    Modelica.Units.SI.ElectricDipoleMomentOfMolecule dipoleMoment
       "dipole moment of molecule in Debye (1 debye = 3.33564e10-30 C.m)";
     Boolean hasIdealGasHeatCapacity=false
       "true if ideal gas heat capacity is available";
@@ -62,8 +61,7 @@ partial package SingleGasNasa
     SpecificEntropy deltas=0.0
       "Difference between specific enthalpy model (s_m) and f.eq. (s_f) (s_m - s_f)";
   end FluidConstants;
-
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
   import Modelica.Math;
   import
     ThermalSeparation.Media.IdealGasMixtures.BaseClasses.PartialMedium.Choices.ReferenceEnthalpy;
@@ -92,7 +90,7 @@ partial package SingleGasNasa
     // 200 K <= T <= 6000 K required from medium model \"" + mediumName + "\".
     // ");
     MM = data.MM;
-    R = data.R;
+    R = data.R_s;
     h = h_T(data, T, excludeEnthalpyOfFormation, referenceChoice, h_offset);
     u = h - R*T;
 
@@ -146,7 +144,7 @@ partial package SingleGasNasa
       input MassFraction X[:]=reference_X "Mass fractions";
       output ThermodynamicState state;
     algorithm
-      state := ThermodynamicState(p=d*data.R*T,T=T);
+      state := ThermodynamicState(p=d*data.R_s*T,T=T);
     end setState_dTX;
 
   redeclare function extends pressure "return pressure of ideal gas"
@@ -161,7 +159,7 @@ partial package SingleGasNasa
 
   redeclare function extends density "return density of ideal gas"
   algorithm
-    d := state.p/(data.R*state.T);
+    d := state.p/(data.R_s*state.T);
   end density;
 
   redeclare function extends specificEnthalpy "Return specific enthalpy"
@@ -174,13 +172,13 @@ partial package SingleGasNasa
     "Return specific internal energy"
     extends Modelica.Icons.Function;
   algorithm
-    u := h_T(data,state.T) - data.R*state.T;
+    u := h_T(data,state.T) - data.R_s*state.T;
   end specificInternalEnergy;
 
   redeclare function extends specificEntropy "Return specific entropy"
     extends Modelica.Icons.Function;
   algorithm
-    s := s0_T(data, state.T) - data.R*Modelica.Math.log(state.p/reference_p);
+    s := s0_T(data, state.T) - data.R_s*Modelica.Math.log(state.p/reference_p);
   end specificEntropy;
 
   redeclare function extends specificGibbsEnergy "Return specific Gibbs energy"
@@ -193,7 +191,7 @@ partial package SingleGasNasa
     "Return specific Helmholtz energy"
     extends Modelica.Icons.Function;
   algorithm
-    f := h_T(data,state.T) - data.R*state.T - state.T*specificEntropy(state);
+    f := h_T(data,state.T) - data.R_s*state.T - state.T*specificEntropy(state);
   end specificHelmholtzEnergy;
 
   redeclare function extends specificHeatCapacityCp
@@ -205,7 +203,7 @@ partial package SingleGasNasa
   redeclare function extends specificHeatCapacityCv
     "Compute specific heat capacity at constant volume from temperature and gas data"
   algorithm
-    cv := cp_T(data, state.T) - data.R;
+    cv := cp_T(data, state.T) - data.R_s;
   end specificHeatCapacityCv;
 
   redeclare function extends isentropicExponent "Return isentropic exponent"
@@ -216,7 +214,7 @@ partial package SingleGasNasa
   redeclare function extends velocityOfSound "Return velocity of sound"
     extends Modelica.Icons.Function;
   algorithm
-    a := sqrt(data.R*state.T*cp_T(data, state.T)/specificHeatCapacityCv(state));
+    a := sqrt(data.R_s*state.T*cp_T(data, state.T)/specificHeatCapacityCv(state));
   end velocityOfSound;
 
   function isentropicEnthalpyApproximation
@@ -264,13 +262,13 @@ partial package SingleGasNasa
   redeclare function extends density_derp_T
     "Returns the partial derivative of density with respect to pressure at constant temperature"
   algorithm
-    ddpT := 1/(state.T*data.R);
+    ddpT := 1/(state.T*data.R_s);
   end density_derp_T;
 
   redeclare function extends density_derT_p
     "Returns the partial derivative of density with respect to temperature at constant pressure"
   algorithm
-    ddTp := -state.p/(state.T*state.T*data.R);
+    ddTp := -state.p/(state.T*state.T*data.R_s);
   end density_derT_p;
 
   redeclare function extends density_derX
@@ -288,9 +286,9 @@ partial package SingleGasNasa
     input SI.Temperature T "Temperature";
     output SI.SpecificHeatCapacity cp "Specific heat capacity at temperature T";
   algorithm
-    cp := smooth(0,if T < data.Tlimit then data.R*(1/(T*T)*(data.alow[1] + T*(
+    cp := smooth(0,if T < data.Tlimit then data.R_s*(1/(T*T)*(data.alow[1] + T*(
       data.alow[2] + T*(1.*data.alow[3] + T*(data.alow[4] + T*(data.alow[5] + T
-      *(data.alow[6] + data.alow[7]*T))))))) else data.R*(1/(T*T)*(data.ahigh[1]
+      *(data.alow[6] + data.alow[7]*T))))))) else data.R_s*(1/(T*T)*(data.ahigh[1]
        + T*(data.ahigh[2] + T*(1.*data.ahigh[3] + T*(data.ahigh[4] + T*(data.
       ahigh[5] + T*(data.ahigh[6] + data.ahigh[7]*T))))))));
     annotation (InlineNoEvent=false);
@@ -305,7 +303,7 @@ partial package SingleGasNasa
     input SI.Temperature T "Temperature";
     output SI.SpecificHeatCapacity cp "Specific heat capacity at temperature T";
   algorithm
-    cp := data.R*(1/(T*T)*(data.alow[1] + T*(
+    cp := data.R_s*(1/(T*T)*(data.alow[1] + T*(
       data.alow[2] + T*(1.*data.alow[3] + T*(data.alow[4] + T*(data.alow[5] + T
       *(data.alow[6] + data.alow[7]*T)))))));
     annotation (Inline=false, derivative(zeroDerivative=data) = cp_Tlow_der);
@@ -321,7 +319,7 @@ partial package SingleGasNasa
     input Real dT "Temperature derivative";
     output Real cp_der "Derivative of specific heat capacity";
   algorithm
-    cp_der := dT*data.R/(T*T*T)*(-2*data.alow[1] + T*(
+    cp_der := dT*data.R_s/(T*T*T)*(-2*data.alow[1] + T*(
       -data.alow[2] + T*T*(data.alow[4] + T*(2.*data.alow[5] + T
       *(3.*data.alow[6] + 4.*data.alow[7]*T)))));
   end cp_Tlow_der;
@@ -348,10 +346,10 @@ partial package SingleGasNasa
       //                            zeroDerivative=refChoice,
       //                            zeroDerivative=h_off) = h_T_der);
   algorithm
-    h := smooth(0,(if T < data.Tlimit then data.R*((-data.alow[1] + T*(data.
+    h := smooth(0,(if T < data.Tlimit then data.R_s*((-data.alow[1] + T*(data.
       blow[1] + data.alow[2]*Math.log(T) + T*(1.*data.alow[3] + T*(0.5*data.
       alow[4] + T*(1/3*data.alow[5] + T*(0.25*data.alow[6] + 0.2*data.alow[7]*T))))))
-      /T) else data.R*((-data.ahigh[1] + T*(data.bhigh[1] + data.ahigh[2]*
+      /T) else data.R_s*((-data.ahigh[1] + T*(data.bhigh[1] + data.ahigh[2]*
       Math.log(T) + T*(1.*data.ahigh[3] + T*(0.5*data.ahigh[4] + T*(1/3*data.
       ahigh[5] + T*(0.25*data.ahigh[6] + 0.2*data.ahigh[7]*T))))))/T)) + (if
       exclEnthForm then -data.Hf else 0.0) + (if (refChoice
@@ -403,7 +401,7 @@ partial package SingleGasNasa
       //                                zeroDerivative=refChoice,
       //                                zeroDerivative=h_off) = h_Tlow_der);
   algorithm
-    h := data.R*((-data.alow[1] + T*(data.
+    h := data.R_s*((-data.alow[1] + T*(data.
       blow[1] + data.alow[2]*Math.log(T) + T*(1.*data.alow[3] + T*(0.5*data.
       alow[4] + T*(1/3*data.alow[5] + T*(0.25*data.alow[6] + 0.2*data.alow[7]*T))))))
       /T) + (if
@@ -445,10 +443,10 @@ partial package SingleGasNasa
     output SI.SpecificEntropy s "Specific entropy at temperature T";
     //    annotation (InlineNoEvent=false);
   algorithm
-    s := noEvent(if T < data.Tlimit then data.R*(data.blow[2] - 0.5*data.alow[
+    s := noEvent(if T < data.Tlimit then data.R_s*(data.blow[2] - 0.5*data.alow[
       1]/(T*T) - data.alow[2]/T + data.alow[3]*Math.log(T) + T*(
       data.alow[4] + T*(0.5*data.alow[5] + T*(1/3*data.alow[6] + 0.25*data.alow[
-      7]*T)))) else data.R*(data.bhigh[2] - 0.5*data.ahigh[1]/(T*T) - data.
+      7]*T)))) else data.R_s*(data.bhigh[2] - 0.5*data.ahigh[1]/(T*T) - data.
       ahigh[2]/T + data.ahigh[3]*Math.log(T) + T*(data.ahigh[4]
        + T*(0.5*data.ahigh[5] + T*(1/3*data.ahigh[6] + 0.25*data.ahigh[7]*T)))));
   end s0_T;
@@ -462,7 +460,7 @@ partial package SingleGasNasa
     output SI.SpecificEntropy s "Specific entropy at temperature T";
     //    annotation (InlineNoEvent=false);
   algorithm
-    s := data.R*(data.blow[2] - 0.5*data.alow[
+    s := data.R_s*(data.blow[2] - 0.5*data.alow[
       1]/(T*T) - data.alow[2]/T + data.alow[3]*Math.log(T) + T*(
       data.alow[4] + T*(0.5*data.alow[5] + T*(1/3*data.alow[6] + 0.25*data.alow[
       7]*T))));
@@ -471,8 +469,8 @@ partial package SingleGasNasa
   function dynamicViscosityLowPressure
     "Dynamic viscosity of low pressure gases"
     extends Modelica.Icons.Function;
-    input SI.Temp_K T "Gas temperature";
-    input SI.Temp_K Tc "Critical temperature of gas";
+    input SI.Temperature T "Gas temperature";
+    input SI.Temperature Tc "Critical temperature of gas";
     input SI.MolarMass M "Molar mass of gas";
     input SI.MolarVolume Vc "Critical molar volume of gas";
     input Real w "Acentric factor of gas";
@@ -546,8 +544,8 @@ transform the formula to SI units:
       "1: Eucken Method, 2: Modified Eucken Method";
     output ThermalConductivity lambda "Thermal conductivity [W/(m.k)]";
   algorithm
-    lambda := if method == 1 then eta*(Cp - data.R + (9/4)*data.R) else eta*(Cp
-       - data.R)*(1.32 + 1.77/((Cp/Modelica.Constants.R) - 1.0));
+    lambda := if method == 1 then eta*(Cp - data.R_s + (9/4)*data.R_s) else eta*(Cp
+       - data.R_s)*(1.32 + 1.77/((Cp/Modelica.Constants.R) - 1.0));
     annotation (Documentation(info="<html>
 <p>
 This function provides two similar methods for estimating the 
@@ -583,12 +581,10 @@ thermal conductivity (lambda) at low temperatures.
   protected
   package Internal
       "Solve h(data,T) for T with given h (use only indirectly via temperature_phX)"
-    extends
-        ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.OneNonLinearEquation;
+    extends ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.OneNonLinearEquation;
     redeclare record extends f_nonlinear_Data
         "Data to be passed to non-linear function"
-      extends
-          ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.DataRecord;
+      extends ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.DataRecord;
     end f_nonlinear_Data;
 
     redeclare function extends f_nonlinear
@@ -612,17 +608,15 @@ thermal conductivity (lambda) at low temperatures.
   protected
   package Internal
       "Solve h(data,T) for T with given h (use only indirectly via temperature_phX)"
-    extends
-        ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.OneNonLinearEquation;
+    extends ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.OneNonLinearEquation;
     redeclare record extends f_nonlinear_Data
         "Data to be passed to non-linear function"
-      extends
-          ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.DataRecord;
+      extends ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.DataRecord;
     end f_nonlinear_Data;
 
     redeclare function extends f_nonlinear
     algorithm
-        y := s0_T(f_nonlinear_data,x)- data.R*Modelica.Math.log(p/reference_p);
+        y := s0_T(f_nonlinear_data,x)- data.R_s*Modelica.Math.log(p/reference_p);
     end f_nonlinear;
 
     // Dummy definition has to be added for current Dymola
@@ -633,7 +627,6 @@ thermal conductivity (lambda) at low temperatures.
   algorithm
     T := Internal.solve(s, 200, 6000, p, {1}, data);
   end T_ps;
-
   annotation (
     Documentation(info="<HTML>
 <p>

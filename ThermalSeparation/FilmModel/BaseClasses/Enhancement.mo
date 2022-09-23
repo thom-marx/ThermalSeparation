@@ -23,8 +23,7 @@ SI.MolarMass MM_v[n] = propsVap.MM;
   replaceable model Enhancementfactor =
       ThermalSeparation.FilmModel.BaseClasses.EnhancementFactor.BaseEnhancement                         annotation(choicesAllMatching);
 
-   Enhancementfactor enhancementfactor[n](each nS= nSL,c=c_l,c_l_star=c_l_star,eta_comp=eta_comp,k_l=k_l,p=p_v[1:n],T=T_l,x=x_l,redeclare replaceable package
-                          MediumLiquid =
+   Enhancementfactor enhancementfactor[n](each nS= nSL,c=c_l,c_l_star=c_l_star,eta_comp=eta_comp,k_l=k_l,p=p_v[1:n],T=T_l,x=x_l,redeclare replaceable package MediumLiquid =
          MediumLiquid, gamma=gamma, propsLiq=propsLiq);
 
   /*** state variables ***/

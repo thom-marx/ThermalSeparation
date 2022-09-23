@@ -1,4 +1,4 @@
 within ThermalSeparation.Geometry;
-package RandomPackedColumn 
-import SI = Modelica.SIunits;
+package RandomPackedColumn
+import      Modelica.Units.SI;
 end RandomPackedColumn;

@@ -2,11 +2,11 @@
 package IF97_Utilities
   "Low level and utility computation for high accuracy water properties according to the IAPWS/IF97 standard"
 
-  extends Modelica.Icons.Library;
+  extends Modelica.Icons.Package;
 
   package BaseIF97
     "Modelica Physical Property Model: the new industrial formulation IAPWS-IF97"
-    extends Modelica.Icons.Library;
+    extends Modelica.Icons.Package;
     record IterationData "constants for iterations internal to some functions"
 
       extends Modelica.Icons.Record;
@@ -195,7 +195,7 @@ package IF97_Utilities
     package Regions
       "functions to find the current region for given pairs of input variables"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
 
       //===================================================================
       //                      "Public" functions
@@ -1621,7 +1621,7 @@ package IF97_Utilities
 
     package Basic "Base functions as described in IAWPS/IF97"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
 
       function g1 "Gibbs function for region 1: g(p,T)"
         extends Modelica.Icons.Function;
@@ -3302,7 +3302,7 @@ Formulation 1997 for the Thermodynamic Properties of Water and Steam<br>
           extends Modelica.Icons.Function;
           input SI.Pressure p "Pressure";
           input SI.SpecificEnthalpy h "specific enthalpy";
-          output SI.Temp_K T "Temperature";
+          output SI.Temperature T "Temperature";
       protected
           constant Real[:] n=
             {-0.133645667811215e-6,0.455912656802978e-5,-0.146294640700979e-4, 0.639341312970080e-2,0.372783927268847e3,
@@ -3317,7 +3317,7 @@ Formulation 1997 for the Thermodynamic Properties of Water and Steam<br>
           constant Real[:] J = { 0,1,2,6,14,16,20,22,1,5,12,0,2,4,10,2,0,1,3,4,0,2,0,1,1,0,1,0,3,4,5};
           constant SI.SpecificEnthalpy hstar = 2300e3 "normalization enthalpy";
           constant SI.Pressure pstar = 100e6 "normalization pressure";
-          constant SI.Temp_K Tstar = 760 "normalization temperature";
+          constant SI.Temperature Tstar = 760 "normalization temperature";
           Real pi = p/pstar "normalized specific pressure";
           Real eta = h/hstar "normalized specific enthalpy";
       algorithm
@@ -3344,7 +3344,7 @@ Formulation 1997 for the Thermodynamic Properties of Water and Steam<br>
           extends Modelica.Icons.Function;
           input SI.Pressure p "Pressure";
           input SI.SpecificEnthalpy h "specific enthalpy";
-          output SI.Temp_K T "Temperature";
+          output SI.Temperature T "Temperature";
       protected
           constant Real[:] n=
             {0.323254573644920e-4,-0.127575556587181e-3,-0.475851877356068e-3,0.156183014181602e-2,
@@ -3357,7 +3357,7 @@ Formulation 1997 for the Thermodynamic Properties of Water and Steam<br>
           constant Real[:] I = {-12,-12,-10,-10,-10,-10,-10,-8,-8,-8,-8,
                                 -8,-6,-6,-6,-4,-4,-3,-2,-2,-1,-1,-1,-1,-1,-1,0,0,1,3,5,6,8};
           constant Real[:] J = {0,1,0,1,5,10,12,0,1,2,4,10,0,1,2,0,1,5,0,4,2,4,6,10,14,16,0,2,1,1,1,1,1};
-          constant SI.Temp_K Tstar = 860 "normalization temperature";
+          constant SI.Temperature Tstar = 860 "normalization temperature";
           constant SI.Pressure pstar = 100e6 "normalization pressure";
           constant SI.SpecificEnthalpy hstar = 2800e3 "normalization enthalpy";
           Real pi = p/pstar "normalized specific pressure";
@@ -3470,7 +3470,7 @@ Formulation 1997 for the Thermodynamic Properties of Water and Steam<br>
           extends Modelica.Icons.Function;
           input SI.Pressure p "Pressure";
           input SI.SpecificEntropy s "specific entropy";
-          output SI.Temp_K T "Temperature";
+          output SI.Temperature T "Temperature";
       protected
           constant Real[:] n=
             {0.150042008263875e10,-0.159397258480424e12,0.502181140217975e-3,-0.672057767855466e2,
@@ -3483,7 +3483,7 @@ Formulation 1997 for the Thermodynamic Properties of Water and Steam<br>
           constant Real[:] I = {-12,-12,-10,-10,-10,-10,-8,-8,
                                 -8,-8,-6,-6,-6,-5,-5,-5,-4,-4,-4,-2,-2,-1,-1,0,0,0,1,2,2,3,8,8,10};
           constant Real[:] J = {28,32,4,10,12,14,5,7,8,28,2,6,32,0,14,32,6,10,36,1,4,1,6,0,1,4,0,0,3,2,0,1,2};
-          constant SI.Temp_K Tstar = 760 "normalization temperature";
+          constant SI.Temperature Tstar = 760 "normalization temperature";
           constant SI.Pressure pstar = 100e6 "normalization pressure";
           constant SI.SpecificEntropy sstar = 4.4e3 "normalization entropy";
           Real pi = p/pstar "normalized specific pressure";
@@ -3512,7 +3512,7 @@ Formulation 1997 for the Thermodynamic Properties of Water and Steam<br>
           extends Modelica.Icons.Function;
           input SI.Pressure p "Pressure";
           input SI.SpecificEntropy s "specific entropy";
-          output SI.Temp_K T "Temperature";
+          output SI.Temperature T "Temperature";
       protected
           constant Real[:] n=
             {0.527111701601660,-0.401317830052742e2,0.153020073134484e3,-0.224799398218827e4,
@@ -3523,7 +3523,7 @@ Formulation 1997 for the Thermodynamic Properties of Water and Steam<br>
              -0.699997000152457e-3,0.119845803210767e-1,0.193848122022095e-4,-0.215095749182309e-4};
           constant Real[:] I = {-12,-12,-12,-12,-8,-8,-8,-6,-6,-6,-5,-5,-5,-5,-5,-4,-3,-3,-2,0,2,3,4,5,6,8,12,14};
           constant Real[:] J = {1,3,4,7,0,1,3,0,2,4,0,1,2,4,6,12,1,6,2,0,1,1,0,24,0,3,1,2};
-          constant SI.Temp_K Tstar = 860 "normalization temperature";
+          constant SI.Temperature Tstar = 860 "normalization temperature";
           constant SI.Pressure pstar = 100e6 "normalization pressure";
           constant SI.SpecificEntropy sstar = 5.3e3 "normalization entropy";
           Real pi = p/pstar "normalized specific pressure";
@@ -3708,11 +3708,11 @@ Formulation 1997 for the Thermodynamic Properties of Water and Steam<br>
       function pmIceI_T
         "Melting pressure of ice I (temperature range from 273.16 to 251.165 K)"
         extends Modelica.Icons.Function;
-        input SI.Temp_K T "Temperature";
+        input SI.Temperature T "Temperature";
         output SI.Pressure pm
           "Melting pressure of iceI(for T from 273.16 to 251.165 K)";
       protected
-        constant SI.Temp_K Tn = 273.16 "normalization temperature";
+        constant SI.Temperature Tn = 273.16 "normalization temperature";
         constant SI.Pressure pn = 611.657 "normalization pressure";
         Real sigma = T/Tn "normalized temperature";
       algorithm
@@ -3734,11 +3734,11 @@ Formulation 1997 for the Thermodynamic Properties of Water and Steam<br>
       function pmIceIII_T
         "Melting pressure of ice III (temperature range from 251.165 to 256.164 K)"
         extends Modelica.Icons.Function;
-        input SI.Temp_K T "Temperature";
+        input SI.Temperature T "Temperature";
         output SI.Pressure pm
           "Melting pressure of iceIII(for T from 251.165 to 256.164 K)";
       protected
-        constant SI.Temp_K Tn = 251.165 "normalization temperature";
+        constant SI.Temperature Tn = 251.165 "normalization temperature";
         constant SI.Pressure pn = 209.9e6 "normalization pressure";
         Real sigma = T/Tn "normalized temperature";
       algorithm
@@ -3760,11 +3760,11 @@ Formulation 1997 for the Thermodynamic Properties of Water and Steam<br>
       function pmIceV_T
         "Melting pressure of ice V (temperature range from 256.164 to 273.31 K)"
         extends Modelica.Icons.Function;
-        input SI.Temp_K T "Temperature";
+        input SI.Temperature T "Temperature";
         output SI.Pressure pm
           "Melting pressure of iceV(for T from 256.164 to 273.31 K)";
       protected
-        constant SI.Temp_K Tn = 256.164 "normalization temperature";
+        constant SI.Temperature Tn = 256.164 "normalization temperature";
         constant SI.Pressure pn = 350.1e6 "normalization pressure";
         Real sigma = T/Tn "normalized temperature";
 
@@ -3787,11 +3787,11 @@ Formulation 1997 for the Thermodynamic Properties of Water and Steam<br>
       function sublimationPressure_T
         "Sublimation pressure, valid from 190 to 273.16 K"
         extends Modelica.Icons.Function;
-        input SI.Temp_K T "Temperature";
+        input SI.Temperature T "Temperature";
         output SI.Pressure psubl
           "sublimation pressure (for T from 190 to 273.16)";
       protected
-        constant SI.Temp_K Tn = 273.16 "normalization temperature";
+        constant SI.Temperature Tn = 273.16 "normalization temperature";
         constant SI.Pressure pn = 611.657 "normalization pressure";
         constant Real[2] a = {-13.9281690,34.7078238} "constant values";
         Real sigma = T/Tn "normalized temperature";
@@ -3826,7 +3826,7 @@ Ordinary Water Substance<br>
 
     package Transport "transport properties for water according to IAPWS/IF97"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
 
       function visc_dTp "dynamic viscosity eta(d,T,p), industrial formulation"
         extends Modelica.Icons.Function;
@@ -4122,7 +4122,7 @@ Ordinary Water Substance<br>
     package Isentropic
       "functions for calculating the isentropic enthalpy from pressure p and specific entropy s"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
 
       function hofpT1
         "intermediate function for isentropic specific enthalpy in region 1"
@@ -4556,7 +4556,7 @@ Ordinary Water Substance<br>
         input SI.SpecificEntropy s "specific entropy";
         output SI.SpecificEnthalpy h "specific enthalpy";
       protected
-        SI.Temp_K Tsat "saturation temperature";
+        SI.Temperature Tsat "saturation temperature";
         SI.MassFraction x "dryness fraction";
         SI.SpecificEntropy sl "saturated liquid specific entropy";
         SI.SpecificEntropy sv "saturated vapour specific entropy";
@@ -4727,7 +4727,7 @@ Ordinary Water Substance<br>
     //work needed: (Pr,lam,eta) = f(d,T,p, region?)
     package Inverses "efficient inverses for selected pairs of variables"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
 
       //===================================================================
       //            Iterative version for some pairs/regions
@@ -5356,7 +5356,7 @@ Ordinary Water Substance<br>
 
     package ByRegion "simple explicit functions for one region only"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
       function waterR1_pT "standard properties for region 1, (p,T) as inputs"
 
         extends Modelica.Icons.Function;
@@ -5462,7 +5462,7 @@ Ordinary Water Substance<br>
     package TwoPhase
       "steam properties in the two-phase rgion and on the phase boundaries"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
 
       function waterLiq_p "properties on the liquid phase boundary of region 4"
 
@@ -6222,9 +6222,7 @@ of Water and Steam. ASME Journal of Engineering for Gas Turbines and Power 122 (
         </p>
         </HTML>"));
   end BaseIF97;
-
   replaceable record iter = BaseIF97.IterationData;
-
   function waterBaseProp_ph "intermediate property record for water"
     extends Modelica.Icons.Function;
     input SI.Pressure p "pressure";
@@ -7828,8 +7826,8 @@ of Water and Steam. ASME Journal of Engineering for Gas Turbines and Power 122 (
       Inline=false,
       LateInline=true);
   end isentropicExponent_dT;
-
 protected
+
   package ThermoFluidSpecial
     function water_ph
       "calculate the property record for dynamic simulation properties using p,h as states"
@@ -7973,31 +7971,26 @@ protected
       end if;
     end water_pT;
   end ThermoFluidSpecial;
-
 public
+
   function hl_p = BaseIF97.Regions.hl_p
     "compute the saturated liquid specific h(p)";
   function hv_p = BaseIF97.Regions.hv_p
     "compute the saturated vapour specific h(p)";
-
   function sl_p = BaseIF97.Regions.sl_p
     "compute the saturated liquid specific s(p)";
   function sv_p = BaseIF97.Regions.sv_p
     "compute the saturated vapour specific s(p)";
-
   function rhol_T = BaseIF97.Regions.rhol_T "compute the saturated liquid d(T)";
   function rhov_T = BaseIF97.Regions.rhov_T "compute the saturated vapour d(T)";
-
   function rhol_p = BaseIF97.Regions.rhol_p "compute the saturated liquid d(p)";
   function rhov_p = BaseIF97.Regions.rhov_p "compute the saturated vapour d(p)";
-
   function dynamicViscosity = BaseIF97.Transport.visc_dTp
     "compute eta(d,T) in the one-phase region";
   function thermalConductivity = BaseIF97.Transport.cond_dTp
     "compute lambda(d,T,p) in the one-phase region";
   function surfaceTension = BaseIF97.Transport.surfaceTension
     "compute sigma(T) at saturation T";
-
 //   function isentropicEnthalpy
 //     "isentropic specific enthalpy from p,s (preferably use dynamicIsentropicEnthalpy in dynamic simulation!)"
 //     extends Modelica.Icons.Function;
@@ -8065,7 +8058,6 @@ public
   algorithm
    h := BaseIF97.Isentropic.water_hisentropic_dyn(p,s,dguess,Tguess,0);
   end dynamicIsentropicEnthalpy;
-
   annotation (Documentation(info="<HTML>
       <h4>Package description:</h4>
       <p>This package provides high accuracy physical properties for water according

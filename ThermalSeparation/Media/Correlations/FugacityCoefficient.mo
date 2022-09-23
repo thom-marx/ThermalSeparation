@@ -775,8 +775,7 @@ die Gleichungen sind in Tabelle 5-13 (S. 145) aufgelistet. ***/
           kij[i,k]= 0;
           aik[i,k] = ai[i];
           bik[i,k] = bi[i];
-      else
-                Vcik[i,k]=   ((Vci_m3_mol[i]^(1/3)+Vci_m3_mol[k]^(1/3))/2)^3;
+      else      Vcik[i,k]=   ((Vci_m3_mol[i]^(1/3)+Vci_m3_mol[k]^(1/3))/2)^3;
           Zcik[i,k]=   (Zci[i]+Zci[k])/2;
 
           Tcik[i,k]=   (Tci[i]*Tci[k])^(1/2)*(1-kij[i,k]);

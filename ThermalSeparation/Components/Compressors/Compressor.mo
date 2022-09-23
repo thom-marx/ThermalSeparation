@@ -23,7 +23,7 @@ parameter Medium.AbsolutePressure paNom = 4.69
     "Nominal inlet pressure for which table is valid";
   Integer tableID;
 
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
   constant Real PI =  Modelica.Constants.pi;
 
   Medium.ThermodynamicState medium_a(p(start=p_start_in), T(start=T_start_in))
@@ -39,7 +39,7 @@ parameter Medium.AbsolutePressure paNom = 4.69
   parameter Boolean preferredStates=true
     "Try to select preferred medium states"                                      annotation(Dialog(tab="Advanced"));
 // Initializatin parameters
-  parameter Modelica.SIunits.MassFlowRate m_start=15
+  parameter Modelica.Units.SI.MassFlowRate m_start=15
     "Guess value for mass flow rate"
     annotation(Dialog(tab="Initialization"));
   parameter Medium.AbsolutePressure p_start_in = Medium.reference_p

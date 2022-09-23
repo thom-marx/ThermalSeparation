@@ -143,16 +143,12 @@ Boolean bool_eps;
        ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium
                                                             annotation(choicesAllMatching=true);
    ThermoEquilibrium thermoEquilibrium(nS=nS,
-      mapping =                                                                                mapping, redeclare replaceable package
-                          MediumVapour =
-         MediumVapour,                                                                                                    redeclare replaceable package
-                          MediumLiquid =
+      mapping =                                                                                mapping, redeclare replaceable package MediumVapour =
+         MediumVapour,                                                                                                    redeclare replaceable package MediumLiquid =
      MediumLiquid, p=p, T=T_star, x_v=x_v_star, x_l=x_l_star, p_sat=p_sat,  v_v=MM_v/rho_v);
    ThermoEquilibrium bubblePressure(nS=nS,
-      mapping =                                                                                mapping, redeclare replaceable package
-                          MediumVapour =
-         MediumVapour,                                                                                                    redeclare replaceable package
-                          MediumLiquid =
+      mapping =                                                                                mapping, redeclare replaceable package MediumVapour =
+         MediumVapour,                                                                                                    redeclare replaceable package MediumLiquid =
      MediumLiquid, p=p_initial, T=T_l, x_v=x_v, x_l=x_l, p_sat=p_sat_bulk,  v_v=MM_v/rho_v);
 
    Real K[nS] "equilibrium constant";
@@ -212,7 +208,7 @@ SI.Pressure deltaP = p_in-p_out;
        u_s = p_initial,
       yMax=100,
       k=0.005,
-     initType=Modelica.Blocks.Types.InitPID.InitialOutput)   annotation (Placement(transformation(extent={{-24,-12},{-4,8}})));
+     initType=Modelica.Blocks.Types.Init.InitialOutput)   annotation (Placement(transformation(extent={{-24,-12},{-4,8}})));
 
 equation
       PID.u_m = if considerStartUp and startUp then p else if considerStartUp and not startUp then p_initial else p_initial;

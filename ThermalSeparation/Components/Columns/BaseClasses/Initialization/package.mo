@@ -1,5 +1,5 @@
 within ThermalSeparation.Components.Columns.BaseClasses;
-package Initialization 
+package Initialization
   model Dyncap1_GG
   extends ThermalSeparation.Components.Columns.BaseClasses.Initialization.BaseInit;
   initial equation

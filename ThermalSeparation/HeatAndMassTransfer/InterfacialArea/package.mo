@@ -1,5 +1,5 @@
 within ThermalSeparation.HeatAndMassTransfer;
-package InterfacialArea 
+package InterfacialArea
 
 
 annotation (Documentation(info="<html>

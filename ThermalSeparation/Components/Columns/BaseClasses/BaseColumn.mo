@@ -320,7 +320,7 @@ Real n_mol_V_i[n,nSV];
                                               n](each u_s = p_initial,
       each yMax=100,
       each k=0.5,
-     each initType=Modelica.Blocks.Types.InitPID.InitialOutput,
+     each initType=Modelica.Blocks.Types.Init.InitialOutput,
     each Ti=1,
     each Td=1)                                                         annotation (Placement(transformation(extent={{-24,-12},{-4,8}})));
 
@@ -457,8 +457,7 @@ if considerStartUp then
     end for;
     p_hyd[n+1] = p_v[n+1];
 
-else
-      startUp = fill(false,n);
+else  startUp = fill(false,n);
       omega = ones(n);
       p_hyd = p_v;
       Ndot_source_startUp=zeros(n);

@@ -1,3 +1,3 @@
 within ThermalSeparation.BalanceEquations.SprayColumn;
-package Equilibrium 
+package Equilibrium
 end Equilibrium;

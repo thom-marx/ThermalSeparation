@@ -1,7 +1,7 @@
 within ThermalSeparation;
 package Examples "Examples"
       extends Icons.Library.Green;
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
 
 
   annotation(preferedView="info");

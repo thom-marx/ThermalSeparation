@@ -1,4 +1,4 @@
 within ThermalSeparation.HeatAndMassTransfer.StructuredPackedColumn;
-package Vapour 
+package Vapour
 
 end Vapour;
