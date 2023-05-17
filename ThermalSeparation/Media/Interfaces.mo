@@ -195,7 +195,7 @@ Modelica source.
       "Default mass fractions of medium";
     constant AbsolutePressure p_default=101325
       "Default value for pressure of medium (for initialization)";
-    constant Temperature T_default=Modelica.SIunits.Conversions.from_degC(20)
+    constant Temperature T_default=Modelica.Units.Conversions.from_degC(20)
       "Default value for temperature of medium (for initialization)";
     constant SpecificEnthalpy h_default=specificEnthalpy_pTX(
             p_default,
@@ -246,11 +246,11 @@ Modelica source.
         annotation (Evaluate=true, Dialog(tab="Advanced"));
       parameter Boolean standardOrderComponents=true
         "If true, and reducedX = true, the last element of X will be computed from the other ones";
-      SI.Conversions.NonSIunits.Temperature_degC T_degC=
-          Modelica.SIunits.Conversions.to_degC(T)
+      Modelica.Units.NonSI.Temperature_degC T_degC=
+          Modelica.Units.Conversions.to_degC(T)
         "Temperature of medium in [degC]";
-      SI.Conversions.NonSIunits.Pressure_bar p_bar=
-          Modelica.SIunits.Conversions.to_bar(p)
+      Modelica.Units.NonSI.Pressure_bar p_bar=
+          Modelica.Units.Conversions.to_bar(p)
         "Absolute pressure of medium in [bar]";
 
       // Local connector definition, used for equation balancing check
@@ -1451,8 +1451,8 @@ to the above list of assumptions</li>
 
   partial package PartialRealCondensingGases
     "Base class for mixtures of real condensing and non-condensing gases"
-    extends ThermalSeparation.Media.Interfaces.PartialMixtureMedium(redeclare
-        replaceable record FluidConstants = Types.TwoPhase.FluidConstants);
+    extends ThermalSeparation.Media.Interfaces.PartialMixtureMedium(redeclare replaceable record FluidConstants =
+                                            Types.TwoPhase.FluidConstants);
 
     replaceable partial function saturationPressure
       "Return saturation pressure of condensing fluid"
@@ -2965,7 +2965,7 @@ Note: Reference enthalpy might have to be extended with enthalpy of formation.
         AbsolutePressure triplePointPressure=3e5 "Triple point pressure";
         Temperature meltingPoint "Melting point at 101325 Pa";
         Temperature normalBoilingPoint "Normal boiling point (at 101325 Pa)";
-        Modelica.SIunits.ElectricDipoleMomentOfMolecule dipoleMoment
+        Modelica.Units.SI.ElectricDipoleMomentOfMolecule dipoleMoment
           "Dipole moment of molecule in Debye (1 debye = 3.33564e10-30 C.m)";
         Boolean hasIdealGasHeatCapacity=false
           "True if ideal gas heat capacity is available";

@@ -10,8 +10,8 @@ package N2_H2O_O2_CO2_SO2_HCl_HF "7C, Rauchgas: N2, H2O, O2, CO2, SO2, HCl, HF"
 
   import
     ThermalSeparation.Media.IdealGasMixtures.BaseClasses.PartialMedium.Choices.ReferenceEnthalpy;
-  extends
-    ThermalSeparation.Media.IdealGasMixtures.BaseClasses.BaseIdealGasMixture(delta_hv_medium = true,
+  extends ThermalSeparation.Media.IdealGasMixtures.BaseClasses.BaseIdealGasMixture(
+                                                                             delta_hv_medium = true,
                               nS=7, nSubstance=7,V = {18.5, 13.1, 16.3, 26.7, 41.8, 23.3, 17.0},eq_Tsonopoulos= {1, 6, 1, 1, 5, 1, 1}, sigma = {3.798, 2.641, 3.467, 3.941, 4.112, 3.339, 3.148},
 epsilon_k = {71.4, 809.1,106.7, 195.2, 335.4, 344.7, 330},
     SpecificEnthalpy(start=if referenceChoice == ReferenceEnthalpy.ZeroAt0K then
@@ -33,7 +33,7 @@ epsilon_k = {71.4, 809.1,106.7, 195.2, 335.4, 344.7, 330},
         ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.CO2,
         ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.SO2,
         ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.HCL,
-        ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.HF},                                                                        R_const=data.R);
+        ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.HF},                                                                        R_const=data.R_s);
   redeclare replaceable model extends BaseProperties(
     T(stateSelect=if preferredMediumStates then StateSelect.prefer else StateSelect.default),
     p(stateSelect=if preferredMediumStates then StateSelect.prefer else StateSelect.default),
@@ -95,7 +95,7 @@ required from medium model \""   + mediumName + "\".");
 
     h_Jkg = X[2]*(4120*(T_sat_water-0) + 2382e3 + 1875*(T-T_sat_water))+ (X[3]*925 + X[4]*864 + X[5]*622 + X[6]*799 + X[7]*800 + X[1] * 1041)*(T-0);//h_TX(T, X);
      h = calcSpecificEnthalpy.h;
-    R = data.R*X;
+    R = data.R_s*X;
     u_Jkg = h_Jkg - R*T;
     u = u_Jkg * MM;
     d = p/(R*T);

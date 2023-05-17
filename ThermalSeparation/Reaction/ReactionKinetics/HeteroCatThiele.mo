@@ -30,8 +30,7 @@ parameter SI.Area S_x=0.02 "external catalyst surface";
   parameter SI.Mass m_cat "mass of catalysator in the whole column in Gramm";
 
   replaceable model CatalystEffectiveness =
-      ThermalSeparation.Reaction.ReactionKinetics.CatEffFactor.BaseEffectiveness
-                                                                                                        annotation(choicesAllMatching=true);
+      ThermalSeparation.Reaction.ReactionKinetics.CatEffFactor.BaseEffectiveness                        annotation(choicesAllMatching=true);
   CatalystEffectiveness catEff(redeclare package MediumLiquid=MediumLiquid, k_v=reactionRates.k_forward[1], propsLiq=propsLiq, tau=tau, epsilon=epsilon, S_x = S_x, V_cat = V_cat);
 
 equation

@@ -5,8 +5,7 @@ partial model BaseWall "Model of the heat loss at the column outer wall"
   input SI.Temperature T_amb;
 
   replaceable record Geometry =
-      ThermalSeparation.Geometry.BasicGeometry                          constrainedby
-    ThermalSeparation.Geometry.BasicGeometry                                                                                    annotation(choicesAllMatching);
+      ThermalSeparation.Geometry.BasicGeometry                          constrainedby ThermalSeparation.Geometry.BasicGeometry  annotation(choicesAllMatching);
   Geometry geometry(n=n) "Geometry Record of the corresponding section";
   SI.Temperature T_wall[n] "wall temperature";
   parameter SI.Temperature T_start "initial temperature of the wall" annotation(Dialog(enable=false));

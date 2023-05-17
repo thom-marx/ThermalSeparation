@@ -6,8 +6,8 @@ extends ThermalSeparation.Icons.Library.Red;
   extends ThermalSeparation.Icons.Color.HeatExchanger2;
     //import CCS.ThermalSeparation;
 
-  Modelica.SIunits.HeatFlowRate Q;
-  parameter Modelica.SIunits.Temperature T_set "temperature at outlet";
+  Modelica.Units.SI.HeatFlowRate Q;
+  parameter Modelica.Units.SI.Temperature T_set "temperature at outlet";
 
   outer ThermalSeparation.SystemTS systemTS;
 
@@ -31,7 +31,7 @@ extends ThermalSeparation.Icons.Library.Red;
     ThermalSeparation.Interfaces.HeatPort heatPort(Qdot=-Q) annotation (Placement(
           transformation(extent={{82,0},{102,20}}, rotation=0),
           iconTransformation(extent={{62,-20},{102,20}})));
-  Modelica.SIunits.MoleFraction x_in[MediumLiquid.nSubstance];
+  Modelica.Units.SI.MoleFraction x_in[MediumLiquid.nSubstance];
   Real h_in;
   Real h;//=medium.h;
   equation
@@ -55,7 +55,7 @@ extends ThermalSeparation.Icons.Library.Red;
 
   model CcounterFlowHeatExchanger "ideal - no pressure loss"
        extends ThermalSeparation.Icons.Color.HeatExchanger;
-    import SI = Modelica.SIunits;
+    import      Modelica.Units.SI;
 
   replaceable package MediumLiquidCold =
         ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O
@@ -167,17 +167,17 @@ extends ThermalSeparation.Icons.Library.Red;
           extent={{-16,-20},{16,20}},
           rotation=180,
           origin={38,0})));
-    ThermalSeparation.Interfaces.LiquidPortIn hotLiquidIn(redeclare package
-        Medium = MediumLiquidHot) annotation (Placement(transformation(extent={{
+    ThermalSeparation.Interfaces.LiquidPortIn hotLiquidIn(redeclare package Medium =
+                 MediumLiquidHot) annotation (Placement(transformation(extent={{
               60,60},{80,80}}), iconTransformation(extent={{80,16},{120,56}})));
-    ThermalSeparation.Interfaces.LiquidPortOut hotLiquidOut(redeclare package
-        Medium = MediumLiquidHot) annotation (Placement(transformation(extent={{-100,
+    ThermalSeparation.Interfaces.LiquidPortOut hotLiquidOut(redeclare package Medium =
+                 MediumLiquidHot) annotation (Placement(transformation(extent={{-100,
               -100},{-80,-80}}), iconTransformation(extent={{-120,-52},{-80,-12}})));
-    ThermalSeparation.Interfaces.LiquidPortIn coldLiquidIn(redeclare package
-        Medium = MediumLiquidCold) annotation (Placement(transformation(extent={{
+    ThermalSeparation.Interfaces.LiquidPortIn coldLiquidIn(redeclare package Medium =
+                 MediumLiquidCold) annotation (Placement(transformation(extent={{
               -100,60},{-80,80}}), iconTransformation(extent={{-120,14},{-80,54}})));
-    ThermalSeparation.Interfaces.LiquidPortOut coldLiquidOut(redeclare package
-        Medium = MediumLiquidCold) annotation (Placement(transformation(extent={{
+    ThermalSeparation.Interfaces.LiquidPortOut coldLiquidOut(redeclare package Medium =
+                 MediumLiquidCold) annotation (Placement(transformation(extent={{
               60,-100},{80,-80}}), iconTransformation(extent={{80,-52},{120,-12}})));
     Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow
       heatFlowColdLiquidTube
@@ -322,12 +322,12 @@ extends ThermalSeparation.Icons.Library.Red;
 
     //import CCS.ThermalSeparation;
       outer ThermalSeparation.SystemTS systemTS;
-  parameter Modelica.SIunits.Temperature T_ref=systemTS.T_ref "reference temperature"
+  parameter Modelica.Units.SI.Temperature T_ref=systemTS.T_ref "reference temperature"
                                                                           annotation(Dialog(tab="Advanced"));
 
   replaceable package MediumLiquid =
-  ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby
-      ThermalSeparation.Media.BaseMediumLiquid                                                annotation(choicesAllMatching);
+  ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby ThermalSeparation.Media.BaseMediumLiquid
+                                                                                              annotation(choicesAllMatching);
     MediumLiquid.BaseProperties mediumLiquid(T0=T_ref, p=liquidIn.p, T=T_l, x=x_l,h=h_l);
       MediumLiquid.BaseProperties mediumLiquidIn(T0=T_ref, p=liquidIn.p, T=T_l_in, x=x_l_in,h=h_l_in);
 
@@ -349,58 +349,58 @@ extends ThermalSeparation.Icons.Library.Red;
     final parameter Integer nSL = MediumLiquid.nSubstance;
 
   /*** Medium properties ***/
-  Modelica.SIunits.Density rho_l;
-  parameter Modelica.SIunits.Concentration c_l_start[nSL]={5,40000};
-  Modelica.SIunits.Concentration c_l[nSL](start=c_l_start, each nominal=1e4);
-  //Modelica.SIunits.Concentration c_l_in[nSL](start=c_l_start, each nominal=1e4);
-  Modelica.SIunits.MoleFraction x_l[nSL];
+  Modelica.Units.SI.Density rho_l;
+  parameter Modelica.Units.SI.Concentration c_l_start[nSL]={5,40000};
+  Modelica.Units.SI.Concentration c_l[nSL](start=c_l_start, each nominal=1e4);
+  //Modelica.Units.SI.Concentration c_l_in[nSL](start=c_l_start, each nominal=1e4);
+  Modelica.Units.SI.MoleFraction x_l[nSL];
     ThermalSeparation.Units.MolarEnthalpy h_l(stateSelect=StateSelect.prefer,start=1e6);
     ThermalSeparation.Units.MolarEnthalpy u_l;
-    Modelica.SIunits.MolarMass MM_l;
-  Modelica.SIunits.MoleFraction x_l_in[nSL];
+    Modelica.Units.SI.MolarMass MM_l;
+  Modelica.Units.SI.MoleFraction x_l_in[nSL];
     ThermalSeparation.Units.MolarEnthalpy h_l_in;
 
-      Modelica.SIunits.Temperature T_l_in;
-    Modelica.SIunits.Temperature T_l;
+      Modelica.Units.SI.Temperature T_l_in;
+    Modelica.Units.SI.Temperature T_l;
                        //(stateSelect=StateSelect.prefer);
 
-    Modelica.SIunits.VolumeFlowRate Vdot_l(start=1e-3, nominal=1e3)=-liquidOut.Ndot*MM_l/rho_l;
-    Modelica.SIunits.VolumeFlowRate Vdot_l_in=liquidIn.Ndot*mediumLiquidIn.MM/mediumLiquidIn.d;
+    Modelica.Units.SI.VolumeFlowRate Vdot_l(start=1e-3, nominal=1e3)=-liquidOut.Ndot*MM_l/rho_l;
+    Modelica.Units.SI.VolumeFlowRate Vdot_l_in=liquidIn.Ndot*mediumLiquidIn.MM/mediumLiquidIn.d;
 
-    Modelica.SIunits.HeatFlowRate Qdot_wall;
-    Modelica.SIunits.Pressure p_out;
-    Modelica.SIunits.Pressure p_in;
+    Modelica.Units.SI.HeatFlowRate Qdot_wall;
+    Modelica.Units.SI.Pressure p_out;
+    Modelica.Units.SI.Pressure p_in;
 
     parameter Boolean ss_c2=false "true if c_l[2] is to be a state";
-    Modelica.SIunits.Concentration dummy(stateSelect=StateSelect.prefer)=c_l[2] if
-         ss_c2;
+    Modelica.Units.SI.Concentration dummy(stateSelect=StateSelect.prefer)=c_l[2]
+      if ss_c2;
   //    SI.Concentration dummy2(stateSelect=StateSelect.prefer)=c_l[3] if ss_c2;
 
   public
     Real a = Qdot_wall/(2500*max(1e-6,Vdot_l_in)*1000);
 
     /*** geometry data ***/
-      final parameter Modelica.SIunits.Area A=Modelica.Constants.pi/4*d_volume^2;
-    final parameter Modelica.SIunits.Height H=length_out;
+      final parameter Modelica.Units.SI.Area A=Modelica.Constants.pi/4*d_volume^2;
+    final parameter Modelica.Units.SI.Height H=length_out;
   parameter Real N_w= 20 "number of resistances in flow direction";
   //  parameter SI.Length s = 0.03 "distance between the center of two tubes";
-    parameter Modelica.SIunits.Length d=0.01 "tube diameter";
+    parameter Modelica.Units.SI.Length d=0.01 "tube diameter";
    // final parameter Real a_pL = s/d;
 
-    parameter Modelica.SIunits.Length height_in=-0.15;
+    parameter Modelica.Units.SI.Length height_in=-0.15;
     parameter Real zeta = 0.048;
-    parameter Modelica.SIunits.Length length_out=0.15;
-    parameter Modelica.SIunits.Diameter d_volume=0.025;
+    parameter Modelica.Units.SI.Length length_out=0.15;
+    parameter Modelica.Units.SI.Diameter d_volume=0.025;
     // Real test;
 
   Real delta_h;
   Real delta_zeta;
-  parameter Modelica.SIunits.Temperature T_start=300;
+  parameter Modelica.Units.SI.Temperature T_start=300;
   parameter Boolean p_state=true "p is state";
   parameter Boolean useX_start = true;
 
   /*** Monitoring ***/
-  Modelica.SIunits.Volume V_liq=A*H;
+  Modelica.Units.SI.Volume V_liq=A*H;
   Real sum_x = sum(x_l);
 
   equation

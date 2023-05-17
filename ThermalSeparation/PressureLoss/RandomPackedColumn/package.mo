@@ -1,3 +1,3 @@
 within ThermalSeparation.PressureLoss;
-package RandomPackedColumn 
+package RandomPackedColumn
 end RandomPackedColumn;

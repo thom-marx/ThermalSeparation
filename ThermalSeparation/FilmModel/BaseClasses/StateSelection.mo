@@ -21,8 +21,7 @@ package StateSelection
     end BaseStateSelectionNoneq;
 
     model StateSelection1 "states: c_v, c_l, u_v, u_l, T_v"
-      extends
-        ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.BaseStateSelectionNoneq;
+      extends ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.BaseStateSelectionNoneq;
        SI.Concentration c_v_state[n,nSV](each stateSelect=StateSelect.prefer)= propsVap.c;
        SI.Concentration c_l_state[n,nSL](each stateSelect=StateSelect.prefer) = c_l;
        SI.Concentration u_v_state[n](each stateSelect=StateSelect.prefer) = propsVap.u;
@@ -32,8 +31,7 @@ package StateSelection
     end StateSelection1;
 
     model StateSelection2 "states: c_v, c_l, u_v, u_l, MM_v"
-      extends
-        ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.BaseStateSelectionNoneq;
+      extends ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.BaseStateSelectionNoneq;
       SI.Concentration c_v_state[n,nSV](each stateSelect=StateSelect.prefer) = propsVap.c;
       SI.Concentration c_l_state[n,nSL](each stateSelect=StateSelect.prefer) = c_l;
       SI.Concentration u_v_state[n](each stateSelect=StateSelect.prefer) = propsVap.u;
@@ -44,14 +42,12 @@ package StateSelection
     end StateSelection2;
 
     model None "none"
-      extends
-        ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.BaseStateSelectionNoneq;
+      extends ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.BaseStateSelectionNoneq;
 
     end None;
 
     model ReactionEquilibrium "states: c_v, c_l[1:nSL-1], u_v, u_l, MM_v"
-      extends
-        ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.BaseStateSelectionNoneq;
+      extends ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.BaseStateSelectionNoneq;
       SI.Concentration c_v_state[n,nSV](each stateSelect=StateSelect.prefer) = propsVap.c;
       SI.Concentration c_l_state[n,nSL-1](each stateSelect=StateSelect.prefer) = c_l[:,1:nSL-1];
       SI.Concentration u_v_state[n](each stateSelect=StateSelect.prefer) = propsVap.u;
@@ -62,8 +58,7 @@ package StateSelection
     end ReactionEquilibrium;
 
     model StateSelection3 "states: x_v, x_l, p_v, T_l, T_v"
-      extends
-        ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.BaseStateSelectionNoneq;
+      extends ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.BaseStateSelectionNoneq;
        SI.Concentration x_v_state[n,nSV](each stateSelect=StateSelect.prefer) = propsVap.x;
        SI.Concentration x_l_state[n,nSL](each stateSelect=StateSelect.prefer) = propsLiq.x;
        SI.Concentration p_v_state[n](each stateSelect=StateSelect.prefer) = p_v[1:n];
@@ -101,8 +96,7 @@ package StateSelection
     end BaseStateSelectionEq;
 
     model SaturatorAbsober "SprayAbsober"
-      extends
-        ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.BaseStateSelectionEq;
+      extends ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.BaseStateSelectionEq;
        SI.Concentration u_v_state[n](each stateSelect=StateSelect.prefer) = propsVap.u;
        SI.Concentration u_l_state[n](each stateSelect=StateSelect.prefer) = propsLiq.u;
       SI.Pressure p_v_state[n](each stateSelect=StateSelect.prefer)= p_v;
@@ -113,8 +107,7 @@ package StateSelection
     end SaturatorAbsober;
 
     model SprayAbsober "SprayAbsober"
-      extends
-        ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.BaseStateSelectionEq;
+      extends ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.BaseStateSelectionEq;
        SI.Concentration u_v_state[n](each stateSelect=StateSelect.prefer) = propsVap.u;
        SI.Concentration u_l_state[n](each stateSelect=StateSelect.prefer) = propsLiq.u;
       SI.Pressure p_v_state[n](each stateSelect=StateSelect.prefer)= p_v;
@@ -124,8 +117,7 @@ package StateSelection
     end SprayAbsober;
 
     model StateSelection3 "states: u_v, c_l, p_v "
-      extends
-        ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.BaseStateSelectionEq;
+      extends ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.BaseStateSelectionEq;
       // SI.Concentration c_l_state[n,nSL](stateSelect=StateSelect.prefer) = c_l;
        SI.Concentration u_v_state[n](each stateSelect=StateSelect.prefer) = propsVap.u;
        SI.Concentration u_l_state[n](each stateSelect=StateSelect.prefer) = propsLiq.u;
@@ -136,8 +128,7 @@ package StateSelection
     end StateSelection3;
 
     model StateSelection4 "states: c_l, T_v , u_l"
-      extends
-        ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.BaseStateSelectionEq;
+      extends ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.BaseStateSelectionEq;
        SI.Concentration c_l_state[n,nSL](each stateSelect=StateSelect.prefer) = c_l;
        SI.Concentration u_l_state[n](each stateSelect=StateSelect.prefer) = propsLiq.u;
 
@@ -146,14 +137,12 @@ package StateSelection
     end StateSelection4;
 
     model None "none"
-      extends
-        ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.BaseStateSelectionEq;
+      extends ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.BaseStateSelectionEq;
 
     end None;
 
     model MA "MA"
-      extends
-        ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.BaseStateSelectionEq;
+      extends ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.BaseStateSelectionEq;
        SI.Concentration u_v_state[n](each stateSelect=StateSelect.prefer) = propsVap.u;
        SI.Concentration u_l_state[n](each stateSelect=StateSelect.prefer) = propsLiq.u;
       SI.Pressure p_v_state[n](each stateSelect=StateSelect.prefer)= p_v;

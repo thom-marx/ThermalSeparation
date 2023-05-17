@@ -9,8 +9,7 @@ Real K[n,nS] "equilibrium constant" annotation(Dialog(__Dymola_initialDialog=tru
   SI.MolarMass MM_v[n] = propsVap.MM;
 
    replaceable model ThermoEquilibrium =
-      ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby
-    ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium
+      ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium
        annotation(Dialog(tab="Propagated from Column",group="These variables are propagated from the column model and do not have to be set by the user!",enable=false));
 
   ThermoEquilibrium thermoEquilibrium[n](x_vap_liq=x_vap_liq,
@@ -20,9 +19,7 @@ Real K[n,nS] "equilibrium constant" annotation(Dialog(__Dymola_initialDialog=tru
        p=p_v[1:n], T=T_star, x_v=x_v_star, x_l=x_l_star, p_sat=p_sat,  v_v=MM_v./rho_v);
 
   replaceable model StateSelection =
-      ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.None
-                                                                                                        constrainedby
-    ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.BaseStateSelectionEq
+      ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.None                      constrainedby ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.BaseStateSelectionEq
                                                                                 annotation(choicesAllMatching);
   StateSelection stateSelection(
      redeclare replaceable package MediumVapour =  MediumVapour,

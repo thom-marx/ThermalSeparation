@@ -1,3 +1,3 @@
 within ThermalSeparation.HeatAndMassTransfer;
-package SprayColumn 
+package SprayColumn
 end SprayColumn;

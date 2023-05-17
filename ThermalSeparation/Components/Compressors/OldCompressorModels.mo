@@ -26,13 +26,13 @@ package OldCompressorModels
 
     Integer tableID;
 
-    import SI = Modelica.SIunits;
+    import      Modelica.Units.SI;
   //  constant Real PI =  Modelica.Constants.pi;
 
     replaceable package Medium =
         ThermalSeparation.Media.IdealGasMixtures.H2O_O2_CO2_N2
-                                                             constrainedby
-      ThermalSeparation.Media.BaseMediumVapour                                                          annotation(choicesAllMatching);
+                                                             constrainedby ThermalSeparation.Media.BaseMediumVapour
+                                                                                                        annotation(choicesAllMatching);
 
     parameter SI.Pressure p_start_in = Medium.reference_p
       "Start value of inlet pressure"
@@ -49,7 +49,7 @@ package OldCompressorModels
 
   //  SI.MoleFraction x_in[Medium.nS] = Medium.reference_X;
 
-    parameter Modelica.SIunits.MassFlowRate m_start=15
+    parameter Modelica.Units.SI.MassFlowRate m_start=15
       "Guess value for mass flow rate"
       annotation(Dialog(tab="Initialization"));
     parameter Medium.MassFraction X_start_in[Medium.nX] = Medium.reference_X
@@ -196,13 +196,13 @@ package OldCompressorModels
 
     Integer tableID;
 
-    import SI = Modelica.SIunits;
+    import      Modelica.Units.SI;
   //  constant Real PI =  Modelica.Constants.pi;
 
     replaceable package Medium =
         ThermalSeparation.Media.IdealGasMixtures.H2O_O2_CO2_N2
-                                                             constrainedby
-      ThermalSeparation.Media.BaseMediumVapour                                                          annotation(choicesAllMatching);
+                                                             constrainedby ThermalSeparation.Media.BaseMediumVapour
+                                                                                                        annotation(choicesAllMatching);
 
     parameter SI.Pressure p_start_in = Medium.reference_p
       "Start value of inlet pressure"
@@ -219,7 +219,7 @@ package OldCompressorModels
 
   //  SI.MoleFraction x_in[Medium.nS] = Medium.reference_X;
 
-    parameter Modelica.SIunits.MassFlowRate m_start=15
+    parameter Modelica.Units.SI.MassFlowRate m_start=15
       "Guess value for mass flow rate"
       annotation(Dialog(tab="Initialization"));
     parameter Medium.MassFraction X_start_in[Medium.nX] = Medium.reference_X
@@ -351,12 +351,12 @@ package OldCompressorModels
         outer ThermalSeparation.SystemTS systemTS;
       parameter SI.Temperature T_ref = systemTS.T_ref "reference temperature" annotation(Dialog(tab="Advanced"));
 
-    import SI = Modelica.SIunits;
+    import      Modelica.Units.SI;
 
      replaceable package Medium =
          ThermalSeparation.Media.IdealGasMixtures.H2O_O2_CO2_N2
-                                                              constrainedby
-      ThermalSeparation.Media.BaseMediumVapour                                                           annotation(choicesAllMatching);
+                                                              constrainedby ThermalSeparation.Media.BaseMediumVapour
+                                                                                                         annotation(choicesAllMatching);
 
     Medium.BaseProperties mediumIn(c=gasPortIn.c, T0=T_ref, p=gasPortIn.p, T=gasPortIn.T, x=gasPortIn.x,  x_star=gasPortIn.x);
     Medium.BaseProperties mediumOut(c=gasPortOut.c, T0=T_ref,p=gasPortOut.p, T=gasPortOut.T, x=gasPortOut.x,  x_star=gasPortOut.x);
@@ -375,7 +375,7 @@ package OldCompressorModels
 
   //  SI.MoleFraction x_in[Medium.nS] = Medium.reference_X;
 
-    parameter Modelica.SIunits.MassFlowRate m_start=15
+    parameter Modelica.Units.SI.MassFlowRate m_start=15
       "Guess value for mass flow rate"
       annotation(Dialog(tab="Initialization"));
     parameter Medium.MassFraction X_start_in[Medium.nX] = Medium.reference_X

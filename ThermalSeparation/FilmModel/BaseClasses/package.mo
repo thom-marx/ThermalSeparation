@@ -1,5 +1,5 @@
 within ThermalSeparation.FilmModel;
-package BaseClasses 
+package BaseClasses
   model TrueEquilibriumStartUpCCSAbsorption "true equilibrium model for StartUp"
     extends BaseFilmModel(final EQ=true);
 
@@ -9,8 +9,7 @@ package BaseClasses
     SI.MolarMass MM_v[n] = propsVap.MM;
 
      replaceable model ThermoEquilibrium =
-        PhaseEquilibrium.RealGasActivityCoeffLiquid constrainedby
-    PhaseEquilibrium.BasePhaseEquilibrium
+        PhaseEquilibrium.RealGasActivityCoeffLiquid constrainedby PhaseEquilibrium.BasePhaseEquilibrium
          annotation(Dialog(tab="Propagated from Column",group="These variables are propagated from the column model and do not have to be set by the user!",enable=false));
 
     ThermoEquilibrium thermoEquilibrium[n](
@@ -21,8 +20,7 @@ package BaseClasses
 
     replaceable model StateSelection =
       ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.None
-      constrainedby
-    ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.BaseStateSelectionEq
+      constrainedby ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.BaseStateSelectionEq
                                                                                   annotation(choicesAllMatching);
 
     StateSelection stateSelection(
@@ -158,8 +156,7 @@ protected
     SI.MolarMass MM_v[n] = propsVap.MM;
 
      replaceable model ThermoEquilibrium =
-        ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid constrainedby
-    PhaseEquilibrium.BasePhaseEquilibrium
+        ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid constrainedby PhaseEquilibrium.BasePhaseEquilibrium
          annotation(Dialog(tab="Propagated from Column",group="These variables are propagated from the column model and do not have to be set by the user!",enable=false));
 
     ThermoEquilibrium thermoEquilibrium[n](
@@ -170,8 +167,7 @@ protected
 
     replaceable model StateSelection =
       ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.None
-      constrainedby
-    ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.BaseStateSelectionEq
+      constrainedby ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.BaseStateSelectionEq
                                                                                   annotation(choicesAllMatching);
 
     StateSelection stateSelection(

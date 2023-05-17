@@ -9,8 +9,8 @@ package N2_H2O "2 components: N2, H2O"
 
   import
     ThermalSeparation.Media.IdealGasMixtures.BaseClasses.PartialMedium.Choices.ReferenceEnthalpy;
-  extends
-    ThermalSeparation.Media.IdealGasMixtures.BaseClasses.BaseIdealGasMixture(delta_hv_medium = true,
+  extends ThermalSeparation.Media.IdealGasMixtures.BaseClasses.BaseIdealGasMixture(
+                                                                             delta_hv_medium = true,
                               nSubstance=nS, V = {18.5, 13.1},eq_Tsonopoulos = {1, 6}, sigma = {3.798, 2.641}, epsilon_k={71.4, 809.1},nS=2,
     SpecificEnthalpy(start=if referenceChoice == ReferenceEnthalpy.ZeroAt0K then
                 3e5 else if referenceChoice == ReferenceEnthalpy.UserDefined then
@@ -23,7 +23,7 @@ package N2_H2O "2 components: N2, H2O"
                                data=
       {ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.N2,
         ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.H2O},
-                                  R_const=data.R);
+                                  R_const=data.R_s);
 
   redeclare replaceable model extends BaseProperties(
     T(stateSelect=if preferredMediumStates then StateSelect.prefer else StateSelect.default),
@@ -87,7 +87,7 @@ package N2_H2O "2 components: N2, H2O"
     MM = max(1e-6,sum(x.*MMX));//molarMass(state);
      h_Jkg = X[2]*(4120*(T_sat_water-0) + 2382e3 + 1875*(T-T_sat_water))+ ( X[1] * 1041)*(T-0);//h_TX(T, X);
       h = calcSpecificEnthalpy.h;
-     R = data.R*X;
+     R = data.R_s*X;
      u_Jkg = h_Jkg - R*T;
      u = u_Jkg * MM;
      d = p/(R*T);

@@ -12,8 +12,7 @@ model RandomPackedColumn
 /*** balance equations ***/
   replaceable model BalanceEquations =
       ThermalSeparation.BalanceEquations.RandomPackedColumn.NonEquilibrium.TwoPhaseVarState
-                                                                                           constrainedby
-    ThermalSeparation.BalanceEquations.RandomPackedColumn.BaseRandom
+                                                                                           constrainedby ThermalSeparation.BalanceEquations.RandomPackedColumn.BaseRandom
     "selection balance equations, film model and states"  annotation(choicesAllMatching=true);
   BalanceEquations balanceEquations(
                                     redeclare replaceable model HomotopyMethod =
@@ -21,15 +20,11 @@ model RandomPackedColumn
                                     redeclare replaceable package MediumLiquid =
         MediumLiquid,
                       redeclare replaceable model Reaction = Reaction,
-                                                                        redeclare
-      replaceable record  Geometry =                                                                             Geometry,
-                                                                        redeclare
-      replaceable model ThermoEquilibrium =
+                                                                        redeclare replaceable record Geometry =  Geometry,
+                                                                        redeclare replaceable model ThermoEquilibrium =
         ThermoEquilibrium,
-                                                                         redeclare
-      replaceable model   InitOption =                                                                              InitOption,
-                                                                                               redeclare
-      replaceable package MediumVapour =
+                                                                         redeclare replaceable model InitOption =   InitOption,
+                                                                                               redeclare replaceable package MediumVapour =
         MediumVapour,
                                     final n=n,
                                               final nS=nS,
@@ -108,9 +103,7 @@ model RandomPackedColumn
                                                                                                         delay_startUp);
 
    replaceable model InitOption =
-      ThermalSeparation.Components.Columns.BaseClasses.Initialization.Init_T_xv_p_Ndot0
-                                                                                                   constrainedby
-    ThermalSeparation.Components.Columns.BaseClasses.Initialization.BaseInit
+      ThermalSeparation.Components.Columns.BaseClasses.Initialization.Init_T_xv_p_Ndot0            constrainedby ThermalSeparation.Components.Columns.BaseClasses.Initialization.BaseInit
         annotation(Dialog(tab="Initialization"),choicesAllMatching=true);
 
  InitOption initOption(
@@ -122,8 +115,8 @@ model RandomPackedColumn
 // rho_v in mol_ges(vap)/m3_gas oder kg_ges(vap)/m3_gas
 // eps_liq in m3 Flssigkeit / m3 freies Volumen
 // eps in m3 Solid / m3 gesamt
-  replaceable model Reaction = ThermalSeparation.Reaction.NoReaction constrainedby
-    ThermalSeparation.Reaction.BaseReaction "model for chemical reaction"                                                                            annotation(choicesAllMatching=true);
+  replaceable model Reaction = ThermalSeparation.Reaction.NoReaction constrainedby ThermalSeparation.Reaction.BaseReaction
+                                            "model for chemical reaction"                                                                            annotation(choicesAllMatching=true);
  Reaction reaction[n](redeclare record Geometry =  Geometry,propsLiq=mediumLiquid.properties,
        each final n= n,  c=c_l, V=A*H/n*(eps_liq), Ndot_l_transfer=Ndot_l_transfer,  gamma=activityCoeff[:].gamma,
     redeclare package MediumLiquid =   MediumLiquid);
@@ -141,13 +134,12 @@ model RandomPackedColumn
     "start value for liquid content if it is not exactly wetted but with more or less liquid"  annotation(Dialog(enable=not wettedInitial, tab="Initialization", group="Initial liquid content"));
 
   replaceable record Geometry =
-      ThermalSeparation.Geometry.RandomPackedColumn.Geometry                          constrainedby
-    ThermalSeparation.Geometry.RandomPackedColumn.Geometry "column geometry"                          annotation(choicesAllMatching);
+      ThermalSeparation.Geometry.RandomPackedColumn.Geometry                          constrainedby ThermalSeparation.Geometry.RandomPackedColumn.Geometry
+                                                           "column geometry"                          annotation(choicesAllMatching);
 
    replaceable model PressureLoss =
-      ThermalSeparation.PressureLoss.RandomPackedColumn.Particlemodel (           redeclare
-        record Geometry =                                                                             Geometry)                         constrainedby
-    ThermalSeparation.PressureLoss.RandomPackedColumn.BasicPressureLossPacked
+      ThermalSeparation.PressureLoss.RandomPackedColumn.Particlemodel (           redeclare record Geometry =
+                                                                                                      Geometry)                         constrainedby ThermalSeparation.PressureLoss.RandomPackedColumn.BasicPressureLossPacked
     "pressure loss correlation"                                                  annotation(choicesAllMatching);
 
   PressureLoss pressureLoss(redeclare model HomotopyMethod =
@@ -159,8 +151,7 @@ model RandomPackedColumn
     Vdot_in=Vdot_v_in, hu_dyn = holdup.hu_dyn, eps_liq=eps_liq);
 
   replaceable model HeatTransferWall =
-      ThermalSeparation.Wall.ConstAlpha                                            constrainedby
-    ThermalSeparation.Wall.BaseWall
+      ThermalSeparation.Wall.ConstAlpha                                            constrainedby ThermalSeparation.Wall.BaseWall
     "heat transfer mechanism between bulk and wall"                                                                                                annotation(choicesAllMatching=true);
     //instances of connector for heat loss
   ThermalSeparation.Interfaces.HeatPort heatPort(Qdot=-sum(heatTransferWall.Qdot_out))
@@ -169,8 +160,7 @@ model RandomPackedColumn
         iconTransformation(extent={{74,-10},{94,10}})));
 
   replaceable model Holdup =
-      ThermalSeparation.Holdup.RandomPackedColumn.StichlmairStat                        constrainedby
-    ThermalSeparation.Holdup.RandomPackedColumn.BaseHoldup
+      ThermalSeparation.Holdup.RandomPackedColumn.StichlmairStat                        constrainedby ThermalSeparation.Holdup.RandomPackedColumn.BaseHoldup
     "calculation of holdup inside the column"                                                                                                     annotation(choicesAllMatching);
   Holdup holdup(
       redeclare package MediumLiquid = MediumLiquid,

@@ -1,5 +1,5 @@
 within ThermalSeparation.Components;
-package ColumnSimp 
+package ColumnSimp
 extends Icons.Library.Red;
 
 end ColumnSimp;

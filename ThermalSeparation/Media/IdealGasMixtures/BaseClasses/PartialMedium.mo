@@ -8,7 +8,7 @@ partial package PartialMedium
     package Init
       "Type, constants and menu choices to define initialization, as temporary solution until enumerations are available"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
       constant Integer NoInit=1;
       constant Integer InitialStates=2;
       constant Integer SteadyState=3;
@@ -34,7 +34,7 @@ partial package PartialMedium
     package ReferenceEnthalpy
       "Type, constants and menu choices to define reference enthalpy, as temporary solution until enumerations are available"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
       constant Integer ZeroAt0K=1;
       constant Integer ZeroAt25C=2;
       constant Integer UserDefined=3;
@@ -60,7 +60,7 @@ partial package PartialMedium
     package ReferenceEntropy
       "Type, constants and menu choices to define reference entropy, as temporary solution until enumerations are available"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
       constant Integer ZeroAt0K=1;
       constant Integer ZeroAt0C=2;
       constant Integer UserDefined=3;
@@ -84,7 +84,7 @@ partial package PartialMedium
     package pd
       "Type, constants and menu choices to define whether p or d are known, as temporary solution until enumerations are available"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
       constant Integer default=1;
       constant Integer p_known=2;
       constant Integer d_known=3;
@@ -107,7 +107,7 @@ partial package PartialMedium
     package Th
       "Type, constants and menu choices to define whether T or h are known, as temporary solution until enumerations are available"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
       constant Integer default=1;
       constant Integer T_known=2;
       constant Integer h_known=3;

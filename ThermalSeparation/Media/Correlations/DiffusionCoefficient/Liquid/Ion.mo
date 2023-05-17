@@ -34,8 +34,7 @@ package Ion
   end IndefDilutedIons;
 
   model Const_Ion
-    extends
-      ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.Ion.BaseIons;
+    extends ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.Ion.BaseIons;
     parameter SI.DiffusionCoefficient D_const[nS]=fill(1e-9,nS);
   equation
     D=D_const;

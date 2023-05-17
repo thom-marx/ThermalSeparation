@@ -50,8 +50,7 @@ package OldStartUpExample
       redeclare model ThermoEquilibrium =
           ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid,
       redeclare model Reaction =
-          ThermalSeparation.Reaction.ReactionKinetics.PseudoHomegeneousCatalysis
-          (                                                                                              m_cat=1850),
+          ThermalSeparation.Reaction.ReactionKinetics.PseudoHomegeneousCatalysis (                       m_cat=1850),
       p_v_start_inlet=100000,
       p_v_start_outlet=100000,
       T_vap_start_bottom=373.15,
@@ -61,9 +60,7 @@ package OldStartUpExample
       T_vapour_start=298.15,
       T_liquid_start=298.15,
       redeclare model BalanceEquations =
-          ThermalSeparation.BalanceEquations.StructuredPackedColumn.NonEquilibrium.TwoPhaseVarState
-          (                                                                                                                         redeclare
-            model                                                                                                                                   FilmModel =
+          ThermalSeparation.BalanceEquations.StructuredPackedColumn.NonEquilibrium.TwoPhaseVarState (                               redeclare model FilmModel =
               ThermalSeparation.FilmModel.StructuredPackedColumn.MS))
                              annotation (Placement(transformation(extent={{-46,-18},{8,34}},
                             rotation=0)));
@@ -135,10 +132,9 @@ package OldStartUpExample
       T_vapour_start=298.15,
       T_liquid_start=298.15,
       redeclare model BalanceEquations =
-          ThermalSeparation.BalanceEquations.StructuredPackedColumn.NonEquilibrium.TwoPhaseVarState
-          (redeclare model FilmModel =
-              ThermalSeparation.FilmModel.StructuredPackedColumn.MS (redeclare
-                replaceable model                                                                StateSelection =
+          ThermalSeparation.BalanceEquations.StructuredPackedColumn.NonEquilibrium.TwoPhaseVarState (
+           redeclare model FilmModel =
+              ThermalSeparation.FilmModel.StructuredPackedColumn.MS (redeclare replaceable model StateSelection =
                   ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.StateSelection1)))
                              annotation (Placement(transformation(extent={{-42,96},
               {12,148}},    rotation=0)));
@@ -153,13 +149,13 @@ package OldStartUpExample
   output Real PID_y = PID.y;
   output Real refluxRatio= refluxConverter.y;
   /*** monitoring ***/
-  output Modelica.SIunits.MoleFraction x_1m[4]=reactor.x_l[2, :];
-   Modelica.SIunits.MoleFraction x_2m[4]=reactor.x_l_in;
-   Modelica.SIunits.MoleFraction x_3m[4]=separator.x_l_in;
-   Modelica.SIunits.MoleFraction x_reboiler[4]=sump.x_l[1,:];
-   Modelica.SIunits.Temperature T_1m=reactor.T_l[2];
-   Modelica.SIunits.Temperature T_3m=separator.T_l_in;
-   Modelica.SIunits.Temperature T_reboiler=sump.T[1];
+  output Modelica.Units.SI.MoleFraction x_1m[4]=reactor.x_l[2, :];
+   Modelica.Units.SI.MoleFraction x_2m[4]=reactor.x_l_in;
+   Modelica.Units.SI.MoleFraction x_3m[4]=separator.x_l_in;
+   Modelica.Units.SI.MoleFraction x_reboiler[4]=sump.x_l[1,:];
+   Modelica.Units.SI.Temperature T_1m=reactor.T_l[2];
+   Modelica.Units.SI.Temperature T_3m=separator.T_l_in;
+   Modelica.Units.SI.Temperature T_reboiler=sump.T[1];
     ThermalSeparation.Components.Condenser.TotalCondenser kondensator(
       redeclare package MediumVapour =
           ThermalSeparation.Media.Methylacetatsynthese_Vap,
@@ -257,10 +253,9 @@ package OldStartUpExample
       T_vapour_start=298.15,
       T_liquid_start=298.15,
       redeclare model BalanceEquations =
-          ThermalSeparation.BalanceEquations.StructuredPackedColumn.NonEquilibrium.TwoPhaseVarState
-          (redeclare model FilmModel =
-              ThermalSeparation.FilmModel.StructuredPackedColumn.MS (redeclare
-                replaceable model                                                                StateSelection =
+          ThermalSeparation.BalanceEquations.StructuredPackedColumn.NonEquilibrium.TwoPhaseVarState (
+           redeclare model FilmModel =
+              ThermalSeparation.FilmModel.StructuredPackedColumn.MS (redeclare replaceable model StateSelection =
                   ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.StateSelection3)))
                              annotation (Placement(transformation(extent={{-40,-88},
               {14,-36}},    rotation=0)));
@@ -289,7 +284,7 @@ package OldStartUpExample
     Modelica.Blocks.Continuous.LimPID PID(
       controllerType=Modelica.Blocks.Types.SimpleController.PI,
       Ti=1,
-      initType=Modelica.Blocks.Types.InitPID.InitialOutput,
+      initType=Modelica.Blocks.Types.Init.InitialOutput,
       y_start=10,
       k=1e-1,
       yMin=0.2,

@@ -1,3 +1,3 @@
 within ThermalSeparation.Media.Correlations.DiffusionCoefficient;
-package Liquid 
+package Liquid
 end Liquid;

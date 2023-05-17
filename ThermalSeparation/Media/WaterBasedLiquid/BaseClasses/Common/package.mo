@@ -1,4 +1,4 @@
 within ThermalSeparation.Media.WaterBasedLiquid.BaseClasses;
-package Common 
+package Common
 
 end Common;

@@ -2,29 +2,22 @@ within ThermalSeparation.BalanceEquations.StructuredPackedColumn.Equilibrium;
 model TwoPhaseSteadyState
   "Equilibrium: both phases balanced together, steady state"
 
-extends
-    ThermalSeparation.BalanceEquations.Base.Equilibrium.BaseTwoPhaseSteadyState;
-extends
-    ThermalSeparation.BalanceEquations.StructuredPackedColumn.BaseStructured;
+extends ThermalSeparation.BalanceEquations.Base.Equilibrium.BaseTwoPhaseSteadyState;
+extends ThermalSeparation.BalanceEquations.StructuredPackedColumn.BaseStructured;
 
 parameter Boolean EQ=true;
 Real K[n,nS];
 
 /*** geometry ***/
   replaceable record Geometry =
-      ThermalSeparation.Geometry.StructuredPackedColumn.Geometry                constrainedby
-    ThermalSeparation.Geometry.StructuredPackedColumn.Geometry
+      ThermalSeparation.Geometry.StructuredPackedColumn.Geometry                constrainedby ThermalSeparation.Geometry.StructuredPackedColumn.Geometry
     "column geometry"          annotation(Dialog(tab="Propagated from Column",group="These variables are propagated from the column model and do not have to be set by the user!",enable=false));
 
   /*** film model ***/
     replaceable model FilmModel =
-        ThermalSeparation.FilmModel.StructuredPackedColumn.MS (redeclare
-        replaceable model StateSelection =
-       ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.None
-                                                                                       constrainedby
-        ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.None,
-        enableDialog=false)                                                                             constrainedby
-    ThermalSeparation.FilmModel.StructuredPackedColumn.BaseFilmPacked(
+        ThermalSeparation.FilmModel.StructuredPackedColumn.MS (redeclare replaceable model StateSelection =
+       ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.None    constrainedby ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionEq.None,
+        enableDialog=false)                                                                             constrainedby ThermalSeparation.FilmModel.StructuredPackedColumn.BaseFilmPacked(
        redeclare replaceable package MediumLiquid =  MediumLiquid,
            redeclare replaceable model Reaction =  Reaction,
           redeclare replaceable package MediumVapour =  MediumVapour,

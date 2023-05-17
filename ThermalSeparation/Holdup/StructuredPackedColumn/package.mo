@@ -1,4 +1,4 @@
 within ThermalSeparation.Holdup;
-package StructuredPackedColumn 
+package StructuredPackedColumn
 
 end StructuredPackedColumn;

@@ -2,15 +2,14 @@ within ThermalSeparation.BalanceEquations.Base.Equilibrium;
 model BaseTwoPhaseVarState
   "Equilibrium: both phases balanced together, states optional"
 
-extends
-    ThermalSeparation.BalanceEquations.Base.Equilibrium.BaseBalanceEquationsEq;
+extends ThermalSeparation.BalanceEquations.Base.Equilibrium.BaseBalanceEquationsEq;
 
   input SI.MolarInternalEnergy u_v[n](each stateSelect=StateSelect.default);
   input SI.MolarInternalEnergy u_l[n](each stateSelect=StateSelect.default);
 
-  Modelica.SIunits.AmountOfSubstance n_mol_L[n](each stateSelect=StateSelect.default);
-  Modelica.SIunits.AmountOfSubstance n_mol_V[n](each stateSelect=StateSelect.default);
-  Modelica.SIunits.AmountOfSubstance n_mol[n,nS];
+  Modelica.Units.SI.AmountOfSubstance n_mol_L[n](each stateSelect=StateSelect.default);
+  Modelica.Units.SI.AmountOfSubstance n_mol_V[n](each stateSelect=StateSelect.default);
+  Modelica.Units.SI.AmountOfSubstance n_mol[n,nS];
 
 protected
   Real eps_liq_state[n](each stateSelect=StateSelect.prefer)=eps_liq;

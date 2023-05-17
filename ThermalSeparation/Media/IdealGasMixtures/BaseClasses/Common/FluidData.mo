@@ -1,6 +1,6 @@
 within ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common;
 package FluidData "Critical data, dipole moments and related data"
-  extends Modelica.Icons.Library;
+  extends Modelica.Icons.Package;
 
   import ThermalSeparation.Media.IdealGasMixtures.BaseClasses.PartialMedium;
   import

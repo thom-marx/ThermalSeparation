@@ -1,3 +1,3 @@
 within ThermalSeparation.BalanceEquations;
-package TrayColumn 
+package TrayColumn
 end TrayColumn;

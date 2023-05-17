@@ -1,3 +1,3 @@
 within ThermalSeparation.Reaction;
-package ReactionEquilibrium 
+package ReactionEquilibrium
 end ReactionEquilibrium;

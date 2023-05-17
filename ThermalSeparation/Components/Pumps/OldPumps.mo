@@ -7,8 +7,7 @@ package OldPumps
   parameter SI.Temperature T_ref = systemTS.T_ref "reference temperature" annotation(Dialog(tab="Advanced"));
 
   replaceable package MediumLiquid =
-  ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby
-      Media.BaseMediumLiquid                                                                            annotation(choicesAllMatching);
+  ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby Media.BaseMediumLiquid             annotation(choicesAllMatching);
     MediumLiquid.BaseProperties mediumLiquid(T0=T_ref);
       MediumLiquid.BaseProperties mediumLiquidIn(T0=T_ref);
 

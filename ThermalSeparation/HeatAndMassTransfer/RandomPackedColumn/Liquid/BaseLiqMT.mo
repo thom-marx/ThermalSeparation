@@ -4,9 +4,8 @@ partial model BaseLiqMT "base model for liquid mass transfer coefficient"
   parameter Integer n_k
     "number of calculated mass transfer coefficients - nSL or k";
 
-          replaceable record Geometry =
-      ThermalSeparation.Geometry.RandomPackedColumn.Geometry constrainedby
-    ThermalSeparation.Geometry.RandomPackedColumn.Geometry;
+          replaceable record Geometry = ThermalSeparation.Geometry.RandomPackedColumn.Geometry
+                                                             constrainedby ThermalSeparation.Geometry.RandomPackedColumn.Geometry;
     Geometry geometry(final n=n);
       input SI.SurfaceTension sigma[n];
       input SI.Velocity w_sup[n] "superficial vapour velocity";

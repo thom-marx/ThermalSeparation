@@ -1,5 +1,5 @@
 within ThermalSeparation.Components;
-package ColumnsNoIndex 
+package ColumnsNoIndex
   extends Icons.Library.Red;
 
 end ColumnsNoIndex;

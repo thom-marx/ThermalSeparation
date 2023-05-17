@@ -48,8 +48,8 @@ ThermalSeparation.Components.Columns.StructuredPackedColumn column(
     redeclare model PressureLoss =
         ThermalSeparation.PressureLoss.StructuredPackedColumn.Stichlmair,
     redeclare model BalanceEquations =
-        ThermalSeparation.BalanceEquations.StructuredPackedColumn.NonEquilibrium.TwoPhaseVarState
-        (redeclare model FilmModel =
+        ThermalSeparation.BalanceEquations.StructuredPackedColumn.NonEquilibrium.TwoPhaseVarState (
+         redeclare model FilmModel =
             ThermalSeparation.FilmModel.StructuredPackedColumn.MS),
     redeclare model HomotopyMethod =
         ThermalSeparation.Components.Columns.BaseClasses.Initialization.Homotopy.NoHomotopy,

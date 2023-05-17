@@ -1,4 +1,4 @@
 within ThermalSeparation.Components.SourcesSinks;
-package Enumerations 
+package Enumerations
 
 end Enumerations;

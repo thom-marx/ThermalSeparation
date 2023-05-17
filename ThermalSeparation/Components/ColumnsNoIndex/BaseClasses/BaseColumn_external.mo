@@ -199,8 +199,7 @@ SI.MoleFraction x_vap_liq[n,nS] "total molar fractions";
 
 /*** thermodynamic equilibrium ***/
  replaceable model ThermoEquilibrium =
-      ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby
-    ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium
+      ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium
     "model for phase equilibrium"                                                         annotation(choicesAllMatching=true);
     ThermoEquilibrium bubblePressure[n](x_vap_liq=x_vap_liq,each nS=nS,  each mapping =                            mapping,
     redeclare replaceable package MediumVapour =   MediumVapour,
@@ -283,18 +282,18 @@ Real check[nS-1];
 //                                               n](each u_s = p_initial,u_m = if considerStartUp then p_v[1:n] else fill(p_initial,n),
 //       yMax=100,
 //       k=0.005,
-//      initType=Modelica.Blocks.Types.InitPID.InitialOutput)   annotation (Placement(transformation(extent={{-24,-12},{-4,8}})));
+//      initType=Modelica.Blocks.Types.Init.InitialOutput)   annotation (Placement(transformation(extent={{-24,-12},{-4,8}})));
 
         ThermalSeparation.Utilities.LimPID_Input PID[
                                               n](each u_s = p_initial,
       each yMax=100,
       each k=0.5,
-     each initType=Modelica.Blocks.Types.InitPID.InitialOutput)   annotation (Placement(transformation(extent={{-24,-12},{-4,8}})));
+     each initType=Modelica.Blocks.Types.Init.InitialOutput)   annotation (Placement(transformation(extent={{-24,-12},{-4,8}})));
 
 /*** changes to reduce index ***/
-Modelica.SIunits.AmountOfSubstance n_mol[n,nS];
-Modelica.SIunits.AmountOfSubstance n_mol_L[n](stateSelect=StateSelect.prefer);
-Modelica.SIunits.AmountOfSubstance n_mol_V[n](stateSelect=StateSelect.prefer);
+Modelica.Units.SI.AmountOfSubstance n_mol[n,nS];
+Modelica.Units.SI.AmountOfSubstance n_mol_L[n](stateSelect=StateSelect.prefer);
+Modelica.Units.SI.AmountOfSubstance n_mol_V[n](stateSelect=StateSelect.prefer);
 Real n_mol_L_i[n,nSL](stateSelect=StateSelect.prefer);
 Real n_mol_V_i[n,nSV](stateSelect=StateSelect.prefer);
 
@@ -409,8 +408,7 @@ if considerStartUp then
     end for;
     p_hyd[n+1] = p_v[n+1];
 
-else
-      startUp = fill(false,n);
+else  startUp = fill(false,n);
       omega = ones(n);
       p_hyd = p_v;
       Ndot_source_startUp=zeros(n);

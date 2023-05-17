@@ -3,10 +3,10 @@ model Test
 
 parameter Integer nS=3;
 
-parameter Modelica.SIunits.Temperature T=383;
-parameter Modelica.SIunits.Temperature T0=293;
-parameter Modelica.SIunits.Pressure p=2e5;
-parameter Modelica.SIunits.MoleFraction x[nS]={0.888,0.037,0.075};
+parameter Modelica.Units.SI.Temperature T=383;
+parameter Modelica.Units.SI.Temperature T0=293;
+parameter Modelica.Units.SI.Pressure p=2e5;
+parameter Modelica.Units.SI.MoleFraction x[nS]={0.888,0.037,0.075};
 
 /* dummy inouts */
 

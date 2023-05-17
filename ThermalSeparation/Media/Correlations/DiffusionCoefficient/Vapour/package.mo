@@ -1,5 +1,5 @@
 within ThermalSeparation.Media.Correlations.DiffusionCoefficient;
-package Vapour 
+package Vapour
 
     constant Real collisionIntegral[:,:] = [0.3, 2.662;
                                             0.4, 2.318;

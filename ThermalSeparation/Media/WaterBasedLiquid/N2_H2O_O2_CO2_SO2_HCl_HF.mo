@@ -4,8 +4,8 @@ package N2_H2O_O2_CO2_SO2_HCl_HF "water: N2, H2O, O2, CO2, SO2, HCl, HF"
        constant Real phi[nSubstance]= {1,2.26,1,1,1,1,1}
     "association factor of each substance, if this substance is to be the solvent - used for claculation of diffusion coeffcients";
 
-  extends
-    ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.PartialWaterBased(has_etaSubstance={false, true, false, false, false, false,  false}, Tcrit= {    126.2,
+  extends ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.PartialWaterBased(
+                                                                           has_etaSubstance={false, true, false, false, false, false,  false}, Tcrit= {    126.2,
      647.14,
      154.58,
      304.12,
@@ -304,8 +304,7 @@ redeclare model extends HenryCoefficient
      parameter Boolean henry_temp = true;
 
       replaceable model HenryCoeff =
-      ThermalSeparation.Media.Correlations.HenryCoefficient.Exponential                                   constrainedby
-      ThermalSeparation.Media.Correlations.HenryCoefficient.BaseHenry;
+      ThermalSeparation.Media.Correlations.HenryCoefficient.Exponential                                   constrainedby ThermalSeparation.Media.Correlations.HenryCoefficient.BaseHenry;
     HenryCoeff henryCoeff(nS=nSubstance, henry_temp=henry_temp, henry_C=henry_C, henry_H=henry_H, x_l=x_l, T=T);
 equation
   for i in 1:nSubstance loop
@@ -318,8 +317,8 @@ end HenryCoefficient;
     redeclare model extends DiffusionCoefficient
     /*** model which shall be used to calculate the diffusion coefficients in a binary mixture ***/
       model D_Molecules =
-        ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.Molecule.Wilke_Chang_aq
-        (    phi=phi, MMX=MMX);
+        ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.Molecule.Wilke_Chang_aq (
+             phi=phi, MMX=MMX);
 
     /*** model where the diffusion coefficients in a binary mixture are used to calculate the diffusion coefficients in a multicomponent mixture ***/
     ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.DiffMolecules
@@ -330,7 +329,6 @@ end HenryCoefficient;
     equation
     D = diffCoeff.D;
     end DiffusionCoefficient;
-
   annotation (Icon(graphics={Text(
             extent={{-94,84},{94,40}},
             lineColor={127,191,255},

@@ -1,8 +1,7 @@
 ﻿within ThermalSeparation.FilmModel.SprayColumn;
 model MS "Maxwell-Stefan mass transfer - no film reaction"
 extends SprayColumn.BaseNonEqType(nn=n);
-extends ThermalSeparation.FilmModel.BaseClasses.MaxwellStefan(redeclare record
-      BaseGeometry =                                                                        Geometry);
+extends ThermalSeparation.FilmModel.BaseClasses.MaxwellStefan(redeclare record BaseGeometry=Geometry);
 
  final parameter Integer aux[  :] = {1,3,6,10,15, 21, 28, 36, 45};
 
@@ -12,23 +11,20 @@ extends ThermalSeparation.FilmModel.BaseClasses.MaxwellStefan(redeclare record
 
 replaceable model MassTransferCoeffVap =
       ThermalSeparation.HeatAndMassTransfer.SprayColumn.Vapour.Constant
-   constrainedby
-    ThermalSeparation.HeatAndMassTransfer.SprayColumn.Vapour.BaseVapMT
+   constrainedby ThermalSeparation.HeatAndMassTransfer.SprayColumn.Vapour.BaseVapMT
      annotation(choicesAllMatching=true,Dialog( tab="Heat and Mass Transfer", group="Liquid and vapour mass transfer"));
 
  MassTransferCoeffVap massTransferCoeffVap(n=n, n_k=aux[nSV-1]);
 
 replaceable model MassTransferCoeffLiq =
       ThermalSeparation.HeatAndMassTransfer.SprayColumn.Liquid.Constant
-   constrainedby
-    ThermalSeparation.HeatAndMassTransfer.SprayColumn.Liquid.BaseLiqMT
+   constrainedby ThermalSeparation.HeatAndMassTransfer.SprayColumn.Liquid.BaseLiqMT
      annotation(choicesAllMatching=true,Dialog( tab="Heat and Mass Transfer", group="Liquid and vapour mass transfer"));
  MassTransferCoeffLiq massTransferCoeffLiq(n=n, n_k=aux[nSL-1]);
 
      replaceable model HeatTransferVapour =
       ThermalSeparation.HeatAndMassTransfer.InterfacialHeatTransferCoefficient.Vapour.Constant
-     constrainedby
-    ThermalSeparation.HeatAndMassTransfer.InterfacialHeatTransferCoefficient.Vapour.BaseVapour
+     constrainedby ThermalSeparation.HeatAndMassTransfer.InterfacialHeatTransferCoefficient.Vapour.BaseVapour
                                                                                                         annotation(choicesAllMatching=true,Dialog( tab="Heat and Mass Transfer", group="Heat transfer between liquid and vapour phase"));
 
    HeatTransferVapour heatTransferCoeffVap(
@@ -37,12 +33,10 @@ replaceable model MassTransferCoeffLiq =
 
      replaceable model HeatTransferLiquid =
       ThermalSeparation.HeatAndMassTransfer.InterfacialHeatTransferCoefficient.Liquid.Constant
-     constrainedby
-    ThermalSeparation.HeatAndMassTransfer.InterfacialHeatTransferCoefficient.Liquid.BaseLiquid
+     constrainedby ThermalSeparation.HeatAndMassTransfer.InterfacialHeatTransferCoefficient.Liquid.BaseLiquid
                                                                                                         annotation(choicesAllMatching=true,Dialog( tab="Heat and Mass Transfer", group="Heat transfer between liquid and vapour phase"));
 
-   HeatTransferLiquid heatTransferCoeffLiq( redeclare replaceable package
-      Medium =
+   HeatTransferLiquid heatTransferCoeffLiq( redeclare replaceable package Medium =
         MediumLiquid, n=n, nS=nSL,  k_av=k_av_liq, D_av=D_av_liq, rho=propsLiq.rho, c=c_l, props=propsLiq);
 
 ThermalSeparation.Units.CoefficentOfMassTransfer k_av_liq[n];

@@ -51,8 +51,7 @@ Boolean useHomotopy=false annotation(Dialog(tab="Initialization", group="Homotop
 
 replaceable model HomotopyMethod =
       ThermalSeparation.Components.Columns.BaseClasses.Initialization.Homotopy.NoHomotopy
-                              constrainedby
-    ThermalSeparation.Components.Columns.BaseClasses.Initialization.Homotopy.BaseHomotopy
+                              constrainedby ThermalSeparation.Components.Columns.BaseClasses.Initialization.Homotopy.BaseHomotopy
     "activate homotopy and set nominal values"                          annotation(Dialog(tab="Initialization", group="Homotopy"),choicesAllMatching=true);
 
 HomotopyMethod homotopyMethod(nS=nS, useHomotopy=useHomotopy);
@@ -217,8 +216,7 @@ Real n_tot[n,nS];
 
 /*** thermodynamic equilibrium ***/
  replaceable model ThermoEquilibrium =
-      ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby
-    ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium
+      ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium
     "model for phase equilibrium"                                                         annotation(choicesAllMatching=true);
 //     ThermoEquilibrium bubblePressure[n](x_vap_liq=x_vap_liq,each nS=nS,  each mapping =                            mapping,
 //     redeclare replaceable package MediumVapour =   MediumVapour,
@@ -322,7 +320,7 @@ Real n_mol_V_i[n,nSV];
                                               n](each u_s = p_initial,
       each yMax=100,
       each k=0.5,
-     each initType=Modelica.Blocks.Types.InitPID.InitialOutput,
+     each initType=Modelica.Blocks.Types.Init.InitialOutput,
     each Ti=1,
     each Td=1)                                                         annotation (Placement(transformation(extent={{-24,-12},{-4,8}})));
 
@@ -459,8 +457,7 @@ if considerStartUp then
     end for;
     p_hyd[n+1] = p_v[n+1];
 
-else
-      startUp = fill(false,n);
+else  startUp = fill(false,n);
       omega = ones(n);
       p_hyd = p_v;
       Ndot_source_startUp=zeros(n);

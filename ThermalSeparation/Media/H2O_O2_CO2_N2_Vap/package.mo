@@ -4,17 +4,16 @@ package H2O_O2_CO2_N2_Vap "H2O,O2,CO2,N2: CO2 separation with MEA"
 constant Boolean psat_Antoine = false;
      constant Integer henry[:] = {3};
                                      //1.63e9
-     constant Modelica.SIunits.Pressure henry_H[:]={0,0,1.63e8,0}
+     constant Modelica.Units.SI.Pressure henry_H[:]={0,0,1.63e8,0}
   "Henry coefficient";
      constant Real henry_C[:]={0,1500,2400,1300}
   "constant to calculate temperature dependency";
-     constant Modelica.SIunits.Temperature henry_T_norm=298 "norm temperature";
+     constant Modelica.Units.SI.Temperature henry_T_norm=298 "norm temperature";
   import
   ThermalSeparation.Media.IdealGasMixtures.BaseClasses.PartialMedium.Choices.ReferenceEnthalpy;
 
 
-  extends
-  ThermalSeparation.Media.IdealGasMixtures.BaseClasses.BaseIdealGasMixture(
+  extends ThermalSeparation.Media.IdealGasMixtures.BaseClasses.BaseIdealGasMixture(
                               nS=4,nSubstance=4, V = {13.1, 16.3, 26.7, 18.5}, eq_Tsonopoulos = {6, 1, 1, 1},  sigma = {2.641, 3.467, 3.941, 3.798}, epsilon_k = {809.1,106.7, 195.2, 71.4},
     SpecificEnthalpy(start=if referenceChoice == ReferenceEnthalpy.ZeroAt0K then
                 3e5 else if referenceChoice == ReferenceEnthalpy.UserDefined then
@@ -44,10 +43,10 @@ constant Boolean psat_Antoine = false;
   Real p_start(start=1.6e5);
 
   //   /*** Enthalpy ***/
-  //   Modelica.SIunits.SpecificHeatCapacity cp;
+  //   Modelica.Units.SI.SpecificHeatCapacity cp;
   //
   //   /*** thermal conductivity ***/
-  //     Modelica.SIunits.ThermalConductivity lambda=0.02;
+  //     Modelica.Units.SI.ThermalConductivity lambda=0.02;
 protected
    parameter Real conversionDebye = 3.33564e-30 "to convert from debye to C*m";
  equation
@@ -68,7 +67,7 @@ required from medium model \""   + mediumName + "\".");
 
     h =calcSpecificEnthalpy.h;
 
-    R = data.R*X;
+    R = data.R_s*X;
 
     u = h-R*T*MM;
 
@@ -79,20 +78,20 @@ required from medium model \""   + mediumName + "\".");
 
   redeclare replaceable model extends CalcSpecificEnthalpy
 
-   output Modelica.SIunits.Temperature T_sat_water;
+   output Modelica.Units.SI.Temperature T_sat_water;
 
     /***Berechnung der Sättigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
 
 protected
-   Modelica.SIunits.SpecificEnthalpy hX[4];
+   Modelica.Units.SI.SpecificEnthalpy hX[4];
       Real pi "dimensionless pressure";
     Real[20] o "vector of auxiliary variables";
 
     /*** evaporation enthalpy of water ***/
-    Modelica.SIunits.SpecificEnthalpy r_water=-2462.5*T + 3177.8e3;
+    Modelica.Units.SI.SpecificEnthalpy r_water=-2462.5*T + 3177.8e3;
 
     /*** heat capacity ***/
-      parameter Modelica.SIunits.SpecificHeatCapacity cp_water=4200;
+      parameter Modelica.Units.SI.SpecificHeatCapacity cp_water=4200;
 
   equation
         /***Berechnung der Sättigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
@@ -145,7 +144,7 @@ protected
   redeclare replaceable model extends EvaporationEnthalpy
 
 protected
-    Modelica.SIunits.SpecificEnthalpy r_water=-2462.5*T + 3177.8e3;
+    Modelica.Units.SI.SpecificEnthalpy r_water=-2462.5*T + 3177.8e3;
   equation
       /*** enthalpy ***/
     h[1] = MMX[1]*r_water;

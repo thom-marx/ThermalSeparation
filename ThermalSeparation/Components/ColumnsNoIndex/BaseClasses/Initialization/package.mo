@@ -1,3 +1,3 @@
 within ThermalSeparation.Components.ColumnsNoIndex.BaseClasses;
-package Initialization 
+package Initialization
 end Initialization;

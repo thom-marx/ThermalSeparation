@@ -3,8 +3,7 @@ model TrueEquilibrium "equilibrium on each stage 2"
   import ThermalSeparation;
   extends BaseEquilibriumType(nn=n); //for replaceability
   extends ThermalSeparation.FilmModel.BaseClasses.TrueEquilibrium(
-                                                               redeclare record
-      BaseGeometry =
+                                                               redeclare record BaseGeometry =
         ThermalSeparation.Geometry);
 equation
     /***for equilibrium model of spray column: deviation from equilibrium calculated using HETP values***/

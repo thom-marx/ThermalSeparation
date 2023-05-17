@@ -1,3 +1,3 @@
 within ThermalSeparation.BalanceEquations.RandomPackedColumn;
-package Equilibrium 
+package Equilibrium
 end Equilibrium;

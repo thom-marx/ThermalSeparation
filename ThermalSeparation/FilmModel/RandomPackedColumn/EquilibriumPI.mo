@@ -4,8 +4,7 @@ model EquilibriumPI "equilibrium on each stage using a PI controller"
 
   extends BaseNonEqType; //for replaceability
   extends ThermalSeparation.FilmModel.BaseClasses.EquilibriumPI(
-                                                              redeclare record
-      BaseGeometry =
+                                                              redeclare record BaseGeometry =
         ThermalSeparation.Geometry);
 
         Geometry geometry;

@@ -2,8 +2,8 @@ within ThermalSeparation.Media.WaterBasedLiquid.BaseClasses;
 partial package PartialMediumReaction
   "Partial medium properties (base package of all media packages)"
   extends ThermalSeparation.Media.BaseMediumLiquidReaction;
-  import SI = Modelica.SIunits;
-  extends Modelica.Icons.Library;
+  import      Modelica.Units.SI;
+  extends Modelica.Icons.Package;
 
   // Constants to be set in Medium
   constant String mediumName = "unusablePartialMedium" "Name of the medium";
@@ -25,7 +25,7 @@ partial package PartialMediumReaction
     "Default mass fractions of medium";
   constant AbsolutePressure p_default=101325
     "Default value for pressure of medium (for initialization)";
-  constant Temperature T_default = Modelica.SIunits.Conversions.from_degC(20)
+  constant Temperature T_default = Modelica.Units.Conversions.from_degC(20)
     "Default value for temperature of medium (for initialization)";
   constant SpecificEnthalpy h_default = specificEnthalpy_pTX(p_default, T_default, X_default)
     "Default value for specific enthalpy of medium (for initialization)";
@@ -98,7 +98,6 @@ partial package PartialMediumReaction
 
     annotation(Documentation(info="<html></html>"));
   end FluidConstants;
-
 constant FluidConstants[nS] fluidConstants "constant data for the fluid";
 
   replaceable record SaturationProperties
@@ -120,11 +119,11 @@ constant FluidConstants[nS] fluidConstants "constant data for the fluid";
     parameter Boolean preferredMediumStates=false
       "= true if StateSelect.prefer shall be used for the independent property variables of the medium"
       annotation (Hide=true, Evaluate=true, Dialog(tab="Advanced"));
-    SI.Conversions.NonSIunits.Temperature_degC T_degC=
-        Modelica.SIunits.Conversions.to_degC(T)
+    Modelica.Units.NonSI.Temperature_degC T_degC=
+        Modelica.Units.Conversions.to_degC(T)
       "Temperature of medium in [degC]";
-    SI.Conversions.NonSIunits.Pressure_bar p_bar=
-     Modelica.SIunits.Conversions.to_bar(p)
+    Modelica.Units.NonSI.Pressure_bar p_bar=
+     Modelica.Units.Conversions.to_bar(p)
       "Absolute pressure of medium in [bar]";
     parameter Boolean standardOrderComponents = true
       "if true, last element in components is computed from 1-sum(Xi)";
@@ -638,7 +637,6 @@ T_ambient.
   end specificHeatCapacityCp;
 
   function heatCapacity_cp = specificHeatCapacityCp "alias for deprecated name";
-
   function specificHeatCapacityCv
     "Return specific heat capacity at constant volume"
     extends Modelica.Icons.Function;
@@ -665,7 +663,6 @@ T_ambient.
   end specificHeatCapacityCv;
 
   function heatCapacity_cv = specificHeatCapacityCv "alias for deprecated name";
-
   function isentropicExponent "Return isentropic exponent"
     extends Modelica.Icons.Function;
     input ThermodynamicState state "thermodynamic state record";
@@ -754,7 +751,6 @@ T_ambient.
 
   function beta = isobaricExpansionCoefficient
     "alias for isobaricExpansionCoefficient for user convenience";
-
   function isothermalCompressibility
     "Return overall the isothermal compressibility factor"
     extends Modelica.Icons.Function;
@@ -782,7 +778,6 @@ T_ambient.
 
   function kappa = isothermalCompressibility
     "alias of isothermalCompressibility for user convenience";
-
   // explicit derivative functions for finite element models
   function density_derp_h
     "Return density derivative wrt pressure at const specific enthalpy"
@@ -1254,7 +1249,6 @@ T_ambient.
       max=1.e8,
       nominal=1.e5,
       start=1.e5) "Type for absolute pressure with medium specific attributes";
-
   type Density = SI.Density (
       min=0,
       max=1.e5,
@@ -1357,7 +1351,6 @@ T_ambient.
       unit="debye",
       quantity="ElectricDipoleMoment")
     "Type for dipole moment with medium specific attributes";
-
   type DerDensityByPressure = SI.DerDensityByPressure
     "Type for partial derivative of density with resect to pressure with medium specific attributes";
   type DerDensityByEnthalpy = SI.DerDensityByEnthalpy
@@ -1366,12 +1359,11 @@ T_ambient.
     "Type for partial derivative of enthalpy with resect to pressure with medium specific attributes";
   type DerDensityByTemperature = SI.DerDensityByTemperature
     "Type for partial derivative of density with resect to temperature with medium specific attributes";
-
   package Choices "Types, constants to define menu choices"
     package Init
       "Type, constants and menu choices to define initialization, as temporary solution until enumerations are available"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
       constant Integer NoInit=1;
       constant Integer InitialStates=2;
       constant Integer SteadyState=3;
@@ -1397,7 +1389,7 @@ T_ambient.
     package ReferenceEnthalpy
       "Type, constants and menu choices to define reference enthalpy, as temporary solution until enumerations are available"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
       constant Integer ZeroAt0K=1;
       constant Integer ZeroAt25C=2;
       constant Integer UserDefined=3;
@@ -1423,7 +1415,7 @@ T_ambient.
     package ReferenceEntropy
       "Type, constants and menu choices to define reference entropy, as temporary solution until enumerations are available"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
       constant Integer ZeroAt0K=1;
       constant Integer ZeroAt0C=2;
       constant Integer UserDefined=3;
@@ -1447,7 +1439,7 @@ T_ambient.
     package pd
       "Type, constants and menu choices to define whether p or d are known, as temporary solution until enumerations are available"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
       constant Integer default=1;
       constant Integer p_known=2;
       constant Integer d_known=3;
@@ -1470,7 +1462,7 @@ T_ambient.
     package Th
       "Type, constants and menu choices to define whether T or h are known, as temporary solution until enumerations are available"
 
-      extends Modelica.Icons.Library;
+      extends Modelica.Icons.Package;
       constant Integer default=1;
       constant Integer T_known=2;
       constant Integer h_known=3;

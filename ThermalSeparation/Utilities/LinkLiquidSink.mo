@@ -4,7 +4,7 @@ model LinkLiquidSink
  replaceable package Medium=Media.BaseMediumLiquid;
   // parameter Integer n;
   Interfaces.LiquidPortIn liquidIn(redeclare package Medium=Medium);
- // input Modelica.SIunits.Height z;
+ // input Modelica.Units.SI.Height z;
  input SI.Pressure p;
 equation
   liquidIn.p=p;

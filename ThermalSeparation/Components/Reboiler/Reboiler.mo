@@ -20,15 +20,15 @@ parameter InitOption initOption=InitOption.initEQ
     annotation(Dialog(tab="Initialization"),Evaluate=true);
   replaceable package MediumVapour =
       ThermalSeparation.Media.IdealGasMixtures.H2O_O2_CO2_N2
-                                                           constrainedby
-    ThermalSeparation.Media.BaseMediumVapour                                                          annotation(choicesAllMatching);
+                                                           constrainedby ThermalSeparation.Media.BaseMediumVapour
+                                                                                                      annotation(choicesAllMatching);
   MediumVapour.BaseProperties mediumVapour(c=c_v,T0=T_ref,p=p, T=T_v, x=x_v,  x_star=x_v_star);
   MediumVapour.CalcSpecificEnthalpy vapToFilmB(T0=T_ref, p=p, T=T_v, x=x_transfer_fromV);
   MediumVapour.CalcSpecificEnthalpy filmToVapB(T0=T_ref, p=p, T=T_v, x=x_transfer_toV);
 
 replaceable package MediumLiquid =
-ThermalSeparation.Media.WaterBasedLiquid.N2_O2_CO2_H2O constrainedby
-    ThermalSeparation.Media.BaseMediumLiquid                                                          annotation(choicesAllMatching);
+ThermalSeparation.Media.WaterBasedLiquid.N2_O2_CO2_H2O constrainedby ThermalSeparation.Media.BaseMediumLiquid
+                                                                                                      annotation(choicesAllMatching);
   MediumLiquid.BaseProperties mediumLiquid(T0=T_ref, p=p, T=T_l, x=x_l,h=h_l);
     MediumLiquid.BaseProperties mediumLiquidIn(T0=T_ref, p=p, T=T_l_in, x=x_l_in,h=h_l_in);
     MediumLiquid.BaseProperties mediumLiquidStar(T0=T_ref,p=p, T=T_star, x=x_l_star,h=h_l_star);
@@ -139,27 +139,22 @@ Boolean bool_eps;
   parameter SI.Pressure p_start=1.025e5 annotation(Dialog(tab="Initialization"));
 
    replaceable model ThermoEquilibrium =
-       ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby
-    ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium annotation(choicesAllMatching=true);
+       ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium
+                                                            annotation(choicesAllMatching=true);
    ThermoEquilibrium thermoEquilibrium(nS=nS,
-      mapping =                                                                                mapping, redeclare
-      replaceable package MediumVapour =
-         MediumVapour,                                                                                                    redeclare
-      replaceable package MediumLiquid =
+      mapping =                                                                                mapping, redeclare replaceable package MediumVapour =
+         MediumVapour,                                                                                                    redeclare replaceable package MediumLiquid =
      MediumLiquid, p=p, T=T_star, x_v=x_v_star, x_l=x_l_star, p_sat=p_sat,  v_v=MM_v/rho_v,x_vap_liq=fill(1/nS,nS));
    ThermoEquilibrium bubblePressure(nS=nS,
-      mapping =                                                                                mapping, redeclare
-      replaceable package MediumVapour =
-         MediumVapour,                                                                                                    redeclare
-      replaceable package MediumLiquid =
+      mapping =                                                                                mapping, redeclare replaceable package MediumVapour =
+         MediumVapour,                                                                                                    redeclare replaceable package MediumLiquid =
      MediumLiquid, p=p_initial, T=T_l, x_v=x_v, x_l=x_l, p_sat=p_sat_bulk,  v_v=MM_v/rho_v,x_vap_liq=fill(1/nS,nS));
 
    Real K[nS] "equilibrium constant";
 
      //Model for reaction
   replaceable model Reaction =
-     ThermalSeparation.Reaction.NoReaction constrainedby
-    ThermalSeparation.Reaction.BaseReaction                                                                             annotation(choicesAllMatching=true);
+     ThermalSeparation.Reaction.NoReaction constrainedby ThermalSeparation.Reaction.BaseReaction                        annotation(choicesAllMatching=true);
   Reaction reaction(propsLiq=mediumLiquid.properties,
   final n=1, final nS= nSL, c=c_l, V=V*eps_liq, Ndot_l_transfer=Ndot_l_transfer,  gamma=activityCoeff.gamma,
   redeclare package MediumLiquid =  MediumLiquid);
@@ -191,8 +186,7 @@ Boolean bool_eps;
   SI.MolarFlowRate Ndot_l= Vdot_l * rho_l/MM_l "total molar flow rate vapour";
 
       replaceable record Geometry =
-      ThermalSeparation.Geometry.StructuredPackedColumn.Geometry                constrainedby
-    ThermalSeparation.Geometry.StructuredPackedColumn.Geometry annotation (
+      ThermalSeparation.Geometry.StructuredPackedColumn.Geometry                constrainedby ThermalSeparation.Geometry.StructuredPackedColumn.Geometry annotation (
       choicesAllMatching);
 Geometry geometry(n=1);
 
@@ -204,9 +198,9 @@ SI.Pressure deltaP = p_in-p_out;
        u_s = p_initial,
       yMax=100,
       k=0.005,
-     initType=Modelica.Blocks.Types.InitPID.InitialOutput,
+    initType=Modelica.Blocks.Types.Init.InitialOutput,
     Ti=1,
-    Td=1)                                                    annotation (Placement(transformation(extent={{-24,-12},{-4,8}})));
+    Td=1)                                                    annotation (Placement(transformation(extent={{-26,-12},{-6,8}})));
 
       ThermalSeparation.Interfaces.LiquidPortIn
                               liquidIn(redeclare package Medium=MediumLiquid)
@@ -428,7 +422,7 @@ if initOption == InitOption.initEQ and not considerStartUp then
   T_v = T_v_start;
   T_l = T_l_start;
 
-  p = p_start;
+  //p = p_start;
 
   Ndot_v_transfer=zeros(nSV);
 

@@ -1,5 +1,5 @@
 within ThermalSeparation.FilmModel;
-package StructuredPackedColumn 
+package StructuredPackedColumn
   model TrueEquilibriumStartUpCCSAbsorption "true equilibrium start up for absorption process"
 
     extends BaseFilmPacked; //for replaceability

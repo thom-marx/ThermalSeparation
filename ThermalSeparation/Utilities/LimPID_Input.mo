@@ -1,10 +1,9 @@
 within ThermalSeparation.Utilities;
 block LimPID_Input
   "P, PI, PD, and PID controller with limited output, anti-windup compensation and setpoint weighting using inputs instead of connectors for u_s and u_m"
-  import Modelica.Blocks.Types.InitPID;
   import Modelica.Blocks.Types.SimpleController;
   import Modelica.Blocks.Types.Init;
-  extends Modelica.Blocks.Interfaces.BlockIcon;
+  extends Modelica.Blocks.Icons.Block;
 
   Modelica.Blocks.Interfaces.RealOutput y "Connector of actuator output signal"
     annotation (Placement(transformation(extent={{100,-10},{120,10}},
@@ -17,11 +16,11 @@ block LimPID_Input
   parameter Modelica.Blocks.Types.SimpleController controllerType=
          Modelica.Blocks.Types.SimpleController.PID "Type of controller";
   parameter Real k(min=0) = 1 "Gain of controller";
-  parameter Modelica.SIunits.Time Ti(min=Modelica.Constants.small, start=0.5)=0.5
+  parameter Modelica.Units.SI.Time Ti(min=Modelica.Constants.small, start=0.5)=0.5
     "Time constant of Integrator block"
      annotation(Dialog(enable=controllerType==SimpleController.PI or
                               controllerType==SimpleController.PID));
-  parameter Modelica.SIunits.Time Td(min=0, start=0.1)=0.1
+  parameter Modelica.Units.SI.Time Td(min=0, start=0.1)=0.1
     "Time constant of Derivative block"
        annotation(Dialog(enable=controllerType==SimpleController.PD or
                                 controllerType==SimpleController.PID));
@@ -39,7 +38,7 @@ block LimPID_Input
     "The higher Nd, the more ideal the derivative block"
        annotation(Dialog(enable=controllerType==SimpleController.PD or
                                 controllerType==SimpleController.PID));
-  parameter Modelica.Blocks.Types.InitPID initType= Modelica.Blocks.Types.InitPID.DoNotUse_InitialIntegratorState
+  parameter Modelica.Blocks.Types.Init initType= Modelica.Blocks.Types.Init.InitialOutput
     "Type of initialization (1: no init, 2: steady state, 3: initial state, 4: initial output)"
                                      annotation(Evaluate=true,
       Dialog(group="Initialization"));
@@ -59,7 +58,7 @@ block LimPID_Input
                          enable=controllerType==SimpleController.PD or
                                 controllerType==SimpleController.PID));
   parameter Real y_start=0 "Initial value of output"
-    annotation(Dialog(enable=initType == InitPID.InitialOutput, group=
+    annotation(Dialog(enable=initType == Init.InitialOutput, group=
           "Initialization"));
   constant SI.Time unitTime=1  annotation(HideResult=true);
   Modelica.Blocks.Math.Add addP(k1=wp, k2=-1)
@@ -73,19 +72,16 @@ block LimPID_Input
             -20,60}}, rotation=0)));
   Modelica.Blocks.Continuous.Integrator I(
     k=unitTime/Ti, y_start=xi_start,
-    initType=if initType==InitPID.SteadyState then
-                Init.SteadyState else
-             if initType==InitPID.InitialState or
-                initType==InitPID.DoNotUse_InitialIntegratorState then
-                Init.InitialState else Init.NoInit) if with_I
+    initType=if initType == Init.SteadyState then Init.SteadyState else if
+        initType == Init.InitialState
+         then Init.InitialState else Init.NoInit) if with_I
     annotation (Placement(transformation(extent={{-40,-60},{-20,-40}},
           rotation=0)));
   Modelica.Blocks.Continuous.Derivative D(
     k=Td/unitTime, T=max([Td/Nd, 1.e-14]), x_start=xd_start,
-    initType=if initType==InitPID.SteadyState or
-                initType==InitPID.InitialOutput then Init.SteadyState else
-             if initType==InitPID.InitialState then Init.InitialState else
-                Init.NoInit) if with_D
+    initType=if initType == Init.SteadyState or initType == Init.InitialOutput
+         then Init.SteadyState else if initType == Init.InitialState then
+        Init.InitialState else Init.NoInit) if with_D
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}},
           rotation=0)));
   Modelica.Blocks.Math.Gain gainPID(k=k)
@@ -108,7 +104,7 @@ block LimPID_Input
   Modelica.Blocks.Nonlinear.Limiter limiter(
     uMax=yMax,
     uMin=yMin,
-    limitsAtInit=limitsAtInit)
+    homotopyType=Modelica.Blocks.Types.LimiterHomotopy.Linear)
     annotation (Placement(transformation(extent={{70,-10},{90,10}}, rotation=
             0)));
 protected
@@ -130,16 +126,16 @@ public
   Modelica.Blocks.Interfaces.RealInput input_u_m;
     Modelica.Blocks.Interfaces.RealInput input_u_s;
 initial equation
-  if initType==InitPID.InitialOutput then
-     gainPID.y = y_start;
-  end if;
+ if initType==Init.InitialOutput then
+    gainPID.y = y_start;
+ end if;
 equation
 
     output_u_s=u_s;
     output_u_m=u_m;
   assert(yMax >= yMin, "LimPID: Limits must be consistent. However, yMax (=" + String(yMax) +
                        ") < yMin (=" + String(yMin) + ")");
-  if initType == InitPID.InitialOutput and (y_start < yMin or y_start > yMax) then
+  if initType == Init.InitialOutput and (y_start < yMin or y_start > yMax) then
       Modelica.Utilities.Streams.error("LimPID: Start value y_start (=" + String(y_start) +
          ") is outside of the limits of yMin (=" + String(yMin) +") and yMax (=" + String(yMax) + ")");
   end if;
@@ -296,7 +292,7 @@ equation
 <td valign=\"top\"><p>NoInit</p></td>
 </tr>
 </table>
-<p><br/><br/>In many cases, the most useful initial condition is <b>SteadyState</b> because initial transients are then no longer present. If initType = InitPID.SteadyState, then in some cases difficulties might occur. The reason is the equation of the integrator: </p>
+<p><br/><br/>In many cases, the most useful initial condition is <b>SteadyState</b> because initial transients are then no longer present. If initType = Init.SteadyState, then in some cases difficulties might occur. The reason is the equation of the integrator: </p>
 <p><code><b>der</b></code><code>(y) = k*u;</code> </p>
 <p>The steady state equation &QUOT;der(x)=0&QUOT; leads to the condition that the input u to the integrator is zero. If the input u is already (directly or indirectly) defined by another initial condition, then the initialization problem is <b>singular</b> (has none or infinitely many solutions). This situation occurs often for mechanical systems, where, e.g., u = desiredSpeed - measuredSpeed and since speed is both a state and a derivative, it is natural to initialize it with zero. As sketched this is, however, not possible. The solution is to not initialize u_m or the variable that is used to compute u_m by an algebraic equation. </p>
 <p>If parameter <b>limitAtInit</b> = <b>false</b>, the limits at the output of this controller block are removed from the initialization problem which leads to a much simpler equation system. After initialization has been performed, it is checked via an assert whether the output is in the defined limits. For backward compatibility reasons <b>limitAtInit</b> = <b>true</b>. In most cases it is best to use <b>limitAtInit</b> = <b>false</b>. </p>

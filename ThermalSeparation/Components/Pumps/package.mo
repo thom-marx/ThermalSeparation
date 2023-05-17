@@ -1,5 +1,5 @@
 within ThermalSeparation.Components;
-package Pumps 
+package Pumps
   extends Icons.Library.Red;
 
 end Pumps;

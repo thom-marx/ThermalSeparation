@@ -55,7 +55,7 @@ protected
   Modelica.Blocks.Interfaces.RealInput T_In_internal;
 
 public
-  Modelica.Blocks.Interfaces.RealInput T_In if    useT_In
+  Modelica.Blocks.Interfaces.RealInput T_In    if useT_In
     annotation (Placement(transformation(extent={{-120,-20},{-80,20}}),
         iconTransformation(extent={{-120,-20},{-80,20}})));
 

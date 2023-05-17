@@ -43,7 +43,7 @@ protected
     //h_Jkg = X[2]*(4120*(T_sat-0) + 2382e3 + 1875*(T-T_sat))+ (X[1]*864)*(T-0);//h_TX(T, X);
      h = calcSpecificEnthalpy.h;
      R = Modelica.Constants.R/MM;
-     //R = data.R*X;
+     //R = data.R_s*X;
     //u_Jkg = h_Jkg - Modelica.Constants.R*T;
     u = h-R*T*MM;
     //u = u_Jkg * MM;
@@ -54,7 +54,6 @@ protected
 
     annotation (structurallyIncomplete);
   end BaseProperties;
-
 
   redeclare replaceable model extends CalcSpecificEnthalpy
 
@@ -80,7 +79,6 @@ protected
               fillPattern=FillPattern.Solid)}));
   end CalcSpecificEnthalpy;
 
-
   redeclare replaceable model extends EvaporationEnthalpy
 
    // SI.SpecificEnthalpy r_water=-2462.5*T + 3177.8e3;
@@ -90,7 +88,6 @@ protected
     h[2] = 358e3*MMX[2];
 
   end EvaporationEnthalpy;
-
 
   redeclare replaceable model extends FugacityCoefficient
 
@@ -104,7 +101,6 @@ protected
             fillColor={255,255,255},
             fillPattern=FillPattern.Solid)}));
   end FugacityCoefficient;
-
 
 annotation (Icon(graphics={              Rectangle(
           extent={{-80,100},{100,-80}},

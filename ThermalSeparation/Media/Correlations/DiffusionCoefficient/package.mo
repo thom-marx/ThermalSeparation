@@ -1,3 +1,3 @@
 within ThermalSeparation.Media.Correlations;
-package DiffusionCoefficient 
+package DiffusionCoefficient
 end DiffusionCoefficient;

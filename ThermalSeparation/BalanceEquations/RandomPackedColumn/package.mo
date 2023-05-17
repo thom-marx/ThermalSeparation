@@ -1,3 +1,3 @@
 within ThermalSeparation.BalanceEquations;
-package RandomPackedColumn 
+package RandomPackedColumn
 end RandomPackedColumn;

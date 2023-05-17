@@ -1,5 +1,5 @@
 within ThermalSeparation.Components;
-package Columns 
+package Columns
   extends Icons.Library.Red;
 
 end Columns;

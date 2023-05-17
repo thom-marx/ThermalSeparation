@@ -17,8 +17,7 @@ package OldSteadyStateExample
               {10,10}}, rotation=270,
           origin={8,88})));
   ThermalSeparation.Components.SourcesSinks.SinkLiquid
-                                              sinkLiquid(redeclare package
-        Medium =
+                                              sinkLiquid(redeclare package Medium =
           ThermalSeparation.Media.Propane_Pentane_Liq)
                         annotation (Placement(transformation(extent={{-10,-10},{
               10,10}},

@@ -97,8 +97,7 @@ for i in 1:nS loop
      for i in 1:nS loop
        if i==1 then
             ln_gamma_R[i]=sum(v[i,k]*(ln_Gamma_m[k]-ln_Gamma_r_1[k]) for k in 1:SG_1);
-       else
-            ln_gamma_R[i]=sum(v[i,k]*(ln_Gamma_m[k]-ln_Gamma_r_2[k]) for k in 1:SG_2);
+       else ln_gamma_R[i]=sum(v[i,k]*(ln_Gamma_m[k]-ln_Gamma_r_2[k]) for k in 1:SG_2);
        end if;
 
             ln_gamma_C[i]=1-V[i]+Modelica.Math.log(V[i])-5*q[i]*(1-V[i]/F[i]+Modelica.Math.log(V[i]/F[i]));

@@ -53,7 +53,7 @@ extends ThermalSeparation.BalanceEquations.Base.BaseBalanceEquations;
    SI.MolarMass MM_l_in=propsLiqIn.MM;
    ThermalSeparation.Units.MolarEnthalpy h_l[n]=propsLiq.h;
    ThermalSeparation.Units.MolarEnthalpy h_l_in=propsLiqIn.h;
-   parameter Modelica.SIunits.Temperature T_ref;
+   parameter Modelica.Units.SI.Temperature T_ref;
 
   /*** variables upStream ***/
   input SI.Concentration c_v[n,nSV](each stateSelect=StateSelect.default);
@@ -133,20 +133,17 @@ extends ThermalSeparation.BalanceEquations.Base.BaseBalanceEquations;
   parameter SI.SpecificHeatCapacity c_solid;
 
 /*** reaction ***/
-  replaceable model Reaction = ThermalSeparation.Reaction.NoReaction constrainedby
-    ThermalSeparation.Reaction.BaseReaction "model for chemical reaction"                                                                            annotation(Dialog(tab="Propagated from Column",group="These variables are propagated from the column model and do not have to be set by the user!",enable=false));
+  replaceable model Reaction = ThermalSeparation.Reaction.NoReaction constrainedby ThermalSeparation.Reaction.BaseReaction
+                                            "model for chemical reaction"                                                                            annotation(Dialog(tab="Propagated from Column",group="These variables are propagated from the column model and do not have to be set by the user!",enable=false));
 
 /*** initialization option ***/
    replaceable model InitOption =
-      ThermalSeparation.Components.Columns.BaseClasses.Initialization.Init_T_xv_p_Ndot0
-                                                                                                   constrainedby
-    ThermalSeparation.Components.Columns.BaseClasses.Initialization.BaseInit
+      ThermalSeparation.Components.Columns.BaseClasses.Initialization.Init_T_xv_p_Ndot0            constrainedby ThermalSeparation.Components.Columns.BaseClasses.Initialization.BaseInit
         annotation(Dialog(tab="Propagated from Column",group="These variables are propagated from the column model and do not have to be set by the user!",enable=false));
 
 /*** thermodynamic equilibrium ***/
  replaceable model ThermoEquilibrium =
-      ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby
-    ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium
+      ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium
     "model for phase equilibrium"                                                         annotation(Dialog(tab="Propagated from Column",group="These variables are propagated from the column model and do not have to be set by the user!",enable=false));
  input Real gamma[n,nSL];
 

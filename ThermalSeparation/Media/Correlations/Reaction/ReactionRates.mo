@@ -39,15 +39,13 @@ extends BaseReactionRates;
    /*** reaction rate coefficient ***/
   replaceable model RRC_forward =
       ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.Arrhenius
-                                                             constrainedby
-      ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.BaseReactionRateCoeff
+                                                             constrainedby ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.BaseReactionRateCoeff
                                                                                                         annotation(choicesAllMatching=true);
   RRC_forward rrc_forward(nR=nR, T=T);
 
  replaceable model RRC_reverse =
       ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.Arrhenius
-                                                             constrainedby
-      ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.BaseReactionRateCoeff
+                                                             constrainedby ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.BaseReactionRateCoeff
                                                                                                         annotation(choicesAllMatching=true);
   RRC_reverse rrc_reverse(nR=nR, T = T);
   Real k_reverse[nR]=rrc_reverse.k "reaction rate coefficient reverse reaction";
@@ -115,15 +113,13 @@ extends BaseReactionRates;
    /*** reaction rate coefficient ***/
   replaceable model RRC_forward =
       ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.Arrhenius
-                                                             constrainedby
-      ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.BaseReactionRateCoeff
+                                                             constrainedby ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.BaseReactionRateCoeff
                                                                                                         annotation(choicesAllMatching=true);
   RRC_forward rrc_forward(nR=nR, T=T);
 
  replaceable model RRC_reverse =
       ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.Arrhenius
-                                                             constrainedby
-      ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.BaseReactionRateCoeff
+                                                             constrainedby ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.BaseReactionRateCoeff
                                                                                                         annotation(choicesAllMatching=true);
   RRC_reverse rrc_reverse(nR=nR, T = T);
 
@@ -198,15 +194,13 @@ end Activity;
         /*** reaction rate coefficient ***/
     replaceable model RRC_forward =
         ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.Arrhenius
-                                                               constrainedby
-      ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.BaseReactionRateCoeff
+                                                               constrainedby ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.BaseReactionRateCoeff
                                                                                                           annotation(choicesAllMatching=true);
     RRC_forward rrc_forward(nR=nR, T=T);
 
    replaceable model RRC_reverse =
         ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.Arrhenius
-                                                               constrainedby
-      ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.BaseReactionRateCoeff
+                                                               constrainedby ThermalSeparation.Media.Correlations.Reaction.ReactionRates.ReactionRateCoeff.BaseReactionRateCoeff
                                                                                                           annotation(choicesAllMatching=true);
     RRC_reverse rrc_reverse(nR=nR, T = T);
 

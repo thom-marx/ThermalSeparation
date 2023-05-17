@@ -1,8 +1,7 @@
 ﻿within ThermalSeparation.Media.Correlations.SaturationFugacityCoefficient;
 model SaturationFugacitycoefficient "fuer phi_sat in Medienmodell"
       // Gmehling und Kolbe, Thermodynamik s.120
-  extends
-    ThermalSeparation.Media.Correlations.SaturationFugacityCoefficient.BaseFugacityCoefficient;
+  extends ThermalSeparation.Media.Correlations.SaturationFugacityCoefficient.BaseFugacityCoefficient;
 
 ThermalSeparation.Media.Correlations.SaturationFugacityCoefficient.SatFugacityCoeff_TsonopoulosConstants
     satFugacityCoeff_TsonopoulosConstants2(

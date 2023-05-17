@@ -14,16 +14,16 @@ ThermalSeparation.Components.SourcesSinks.SourceLiquid
             {10,10}}, rotation=270,
         origin={6,92})));
 ThermalSeparation.Components.SourcesSinks.SinkLiquid
-                                            sinkLiquid(         redeclare
-      package Medium = ThermalSeparation.Media.WaterBasedLiquid.N2_O2_H2O)
+                                            sinkLiquid(         redeclare package Medium =
+                       ThermalSeparation.Media.WaterBasedLiquid.N2_O2_H2O)
                       annotation (Placement(transformation(extent={{-10,-10},{
             10,10}},
                    rotation=270,
         origin={7,-30})));
 
 ThermalSeparation.Components.SourcesSinks.SinkGas
-                                         sinkGas(         redeclare package
-      Medium = ThermalSeparation.Media.IdealGasMixtures.N2_H2O_O2, p=149910)
+                                         sinkGas(         redeclare package Medium =
+               ThermalSeparation.Media.IdealGasMixtures.N2_H2O_O2, p=149910)
                 annotation (Placement(transformation(extent={{-10,-10},{10,10}},
           rotation=90,
         origin={-26,90})));

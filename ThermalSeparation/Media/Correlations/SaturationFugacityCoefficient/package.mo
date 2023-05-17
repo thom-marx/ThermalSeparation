@@ -1,5 +1,5 @@
 within ThermalSeparation.Media.Correlations;
-package SaturationFugacityCoefficient 
+package SaturationFugacityCoefficient
 
 
   annotation (Documentation(info="<html>

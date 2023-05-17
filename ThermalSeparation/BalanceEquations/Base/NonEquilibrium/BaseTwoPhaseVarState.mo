@@ -1,8 +1,7 @@
 within ThermalSeparation.BalanceEquations.Base.NonEquilibrium;
 model BaseTwoPhaseVarState "phases balanced seperately, states optional"
 
-extends
-    ThermalSeparation.BalanceEquations.Base.NonEquilibrium.BaseBalanceEquationsNonEq;
+extends ThermalSeparation.BalanceEquations.Base.NonEquilibrium.BaseBalanceEquationsNonEq;
 
   input SI.MolarInternalEnergy u_v[n](each stateSelect=StateSelect.default);
   input SI.MolarInternalEnergy u_l[n](each stateSelect=StateSelect.default);

@@ -1,3 +1,3 @@
 within ThermalSeparation.FilmModel;
-package RandomPackedColumn 
+package RandomPackedColumn
 end RandomPackedColumn;

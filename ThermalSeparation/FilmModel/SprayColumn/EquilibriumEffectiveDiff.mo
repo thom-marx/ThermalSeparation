@@ -3,8 +3,7 @@ model EquilibriumEffectiveDiff "equilibrium on each stage 3"
   import ThermalSeparation;
   extends BaseNonEqType(nn=n); //for replaceability
   extends ThermalSeparation.FilmModel.BaseClasses.EquilibriumEffectiveDiff(
-                                                               redeclare record
-      BaseGeometry =
+                                                               redeclare record BaseGeometry =
         Geometry);
         Geometry geometry;
 equation

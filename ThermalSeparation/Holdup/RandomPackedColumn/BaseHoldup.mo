@@ -3,8 +3,7 @@ partial model BaseHoldup
   parameter Integer n(min=1) annotation(Dialog(enable=false));
 
     replaceable record Geometry =
-      ThermalSeparation.Geometry.RandomPackedColumn.Geometry                          constrainedby
-    ThermalSeparation.Geometry.RandomPackedColumn.Geometry;
+      ThermalSeparation.Geometry.RandomPackedColumn.Geometry                          constrainedby ThermalSeparation.Geometry.RandomPackedColumn.Geometry;
 
   replaceable package MediumLiquid = Media.BaseMediumLiquid;
   replaceable package MediumVapour = Media.BaseMediumVapour;

@@ -1,4 +1,4 @@
 within ThermalSeparation.HeatAndMassTransfer;
-package RandomPackedColumn 
+package RandomPackedColumn
 
 end RandomPackedColumn;

@@ -64,7 +64,6 @@ ThermalSeparation.Components.Columns.StructuredPackedColumn column1(
         ThermalSeparation.PhaseEquilibrium.IdealGasIdealLiquid,
     redeclare model InitOption =
         ThermalSeparation.Components.Columns.BaseClasses.Initialization.Init_EquilibriumBalancing,
-
     n_elements=1,
     x_l_start_const={1e-3,1 - 1e-3},
     p_v_start_inlet=157500,
@@ -73,8 +72,8 @@ ThermalSeparation.Components.Columns.StructuredPackedColumn column1(
     T_liquid_start=323.15,
     p_v_in(start=158000),
     redeclare model BalanceEquations =
-        ThermalSeparation.BalanceEquations.StructuredPackedColumn.Equilibrium.TwoPhaseVarState
-        (redeclare model FilmModel =
+        ThermalSeparation.BalanceEquations.StructuredPackedColumn.Equilibrium.TwoPhaseVarState (
+         redeclare model FilmModel =
             ThermalSeparation.FilmModel.StructuredPackedColumn.EffectiveDiff (
               redeclare model StateSelection =
                 ThermalSeparation.FilmModel.BaseClasses.StateSelection.StateSelectionNoneq.StateSelection1)))

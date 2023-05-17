@@ -1,4 +1,4 @@
 within ThermalSeparation.HeatAndMassTransfer.RandomPackedColumn;
-package Vapour 
+package Vapour
 
 end Vapour;

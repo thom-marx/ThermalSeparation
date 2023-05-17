@@ -1,8 +1,7 @@
 within ThermalSeparation.PressureLoss.StructuredPackedColumn;
 model NominalQuadratic "quadratic pressure loss with nominal values"
 //delta_p = K*Vdot^2, where K is constant
-  extends
-    ThermalSeparation.PressureLoss.StructuredPackedColumn.BasicPressureLossPacked;
+  extends ThermalSeparation.PressureLoss.StructuredPackedColumn.BasicPressureLossPacked;
   parameter SI.Pressure deltaP_nom= 0.05e5 "nominal pressure drop";
   parameter SI.VolumeFlowRate Vdot_nom = 0.1 "nominal volume flow rate";
 protected

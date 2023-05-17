@@ -1,5 +1,5 @@
 within ThermalSeparation.Components;
-package Condenser 
+package Condenser
   extends Icons.Library.Red;
 
   model FlashCondenser_CO2_H2O "for CO2/H2O: cools down and completely separates streams without considering energy removal"
@@ -13,15 +13,15 @@ package Condenser
   parameter Integer onlyVap = 2 "component only in vapour stream";
   parameter Integer onlyLiq = 1 "component only in liquid stream";
 
-  parameter Modelica.SIunits.Temperature T_out=273.15 + 40 "temperature at outlet";
+  parameter Modelica.Units.SI.Temperature T_out=273.15 + 40 "temperature at outlet";
 
-  Modelica.SIunits.Density rho_v_in=mediumVapourIn.d;
-  Modelica.SIunits.Density rho_v=mediumVapour.d;
-  Modelica.SIunits.Density rho_l=mediumLiquid.d;
+  Modelica.Units.SI.Density rho_v_in=mediumVapourIn.d;
+  Modelica.Units.SI.Density rho_v=mediumVapour.d;
+  Modelica.Units.SI.Density rho_l=mediumLiquid.d;
 
-  Modelica.SIunits.MolarMass MM_v_in(start=0.028)=mediumVapourIn.MM;
-  Modelica.SIunits.MolarMass MM_v(start=0.044)=mediumVapour.MM;
-  Modelica.SIunits.MolarMass MM_l=mediumLiquid.MM;
+  Modelica.Units.SI.MolarMass MM_v_in(start=0.028)=mediumVapourIn.MM;
+  Modelica.Units.SI.MolarMass MM_v(start=0.044)=mediumVapour.MM;
+  Modelica.Units.SI.MolarMass MM_l=mediumLiquid.MM;
 
      package MediumVapour =
         ThermalSeparation.Media.H2O_CO2_Vap;
@@ -50,7 +50,7 @@ package Condenser
       x=liquidPortOut.x_outflow,
       h=gasPortIn.h_outflow);
 
-      Modelica.SIunits.HeatFlowRate Q;
+      Modelica.Units.SI.HeatFlowRate Q;
 
      //  Real checkbal;
   Real h_v_in = inStream(gasPortIn.h_outflow);

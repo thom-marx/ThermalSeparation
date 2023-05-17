@@ -1,3 +1,3 @@
 within ThermalSeparation.Media.Correlations.Reaction;
-package EquilibriumConstant 
+package EquilibriumConstant
 end EquilibriumConstant;

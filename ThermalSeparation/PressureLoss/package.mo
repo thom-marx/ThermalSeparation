@@ -1,7 +1,7 @@
 within ThermalSeparation;
 package PressureLoss "Pressure Loss Models for the Vapor Flow"
       extends Icons.Library.Orange;
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
 
 
 annotation(preferedView="info");

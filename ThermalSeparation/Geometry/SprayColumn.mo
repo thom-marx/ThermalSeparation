@@ -1,6 +1,6 @@
 within ThermalSeparation.Geometry;
 package SprayColumn
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
   record Example1
     extends Geometry(eps = 0.5, rho_solid = 1000*ones(n), c_solid = 4, a=3);
 

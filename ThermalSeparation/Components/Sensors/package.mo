@@ -1,4 +1,4 @@
 within ThermalSeparation.Components;
-package Sensors 
+package Sensors
   extends Icons.Library.Red;
 end Sensors;

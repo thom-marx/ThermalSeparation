@@ -1,7 +1,7 @@
 within ThermalSeparation;
 package Components "Components to build up a column"
       extends Icons.Library.Red;
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
 
 
   annotation (preferedView="info",

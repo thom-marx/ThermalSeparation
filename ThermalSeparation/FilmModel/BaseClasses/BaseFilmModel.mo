@@ -1,8 +1,8 @@
 within ThermalSeparation.FilmModel.BaseClasses;
 partial model BaseFilmModel
   "base class for film model where no source term for the reaction exists"
-  replaceable model Reaction = ThermalSeparation.Reaction.NoReaction                               constrainedby
-    ThermalSeparation.Reaction.BaseReaction "model for chemical reaction" annotation(choicesAllMatching=true,Dialog(
+  replaceable model Reaction = ThermalSeparation.Reaction.NoReaction                               constrainedby ThermalSeparation.Reaction.BaseReaction
+                                            "model for chemical reaction" annotation(choicesAllMatching=true,Dialog(
       tab="Propagated from Column",
       group=
           "These variables are propagated from the column model and do not have to be set by the user!",
@@ -92,8 +92,7 @@ Real max_rel_dev_vap = max(rel_dev_vap)
   // Boolean useHomotopy;
   replaceable model HomotopyMethod =
       ThermalSeparation.Components.Columns.BaseClasses.Initialization.Homotopy.NoHomotopy
-                       constrainedby
-    ThermalSeparation.Components.Columns.BaseClasses.Initialization.Homotopy.BaseHomotopy;
+                       constrainedby ThermalSeparation.Components.Columns.BaseClasses.Initialization.Homotopy.BaseHomotopy;
 
 HomotopyMethod homotopyMethod(nS=nS,n=n,nSV=nSV,nSL=nSL);
 

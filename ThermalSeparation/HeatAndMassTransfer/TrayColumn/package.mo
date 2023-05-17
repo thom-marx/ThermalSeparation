@@ -1,4 +1,4 @@
 within ThermalSeparation.HeatAndMassTransfer;
-package TrayColumn 
+package TrayColumn
 
 end TrayColumn;

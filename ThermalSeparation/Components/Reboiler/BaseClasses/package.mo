@@ -1,3 +1,3 @@
 within ThermalSeparation.Components.Reboiler;
-package BaseClasses 
+package BaseClasses
 end BaseClasses;

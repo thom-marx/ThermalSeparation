@@ -19,16 +19,16 @@ constant Boolean delta_hv_medium = MediumVapour.delta_hv_medium;
 
   replaceable package MediumVapour =
       ThermalSeparation.Media.IdealGasMixtures.H2O_O2_CO2_N2
-                                                           constrainedby
-    ThermalSeparation.Media.BaseMediumVapour                                                          annotation(choicesAllMatching);
+                                                           constrainedby ThermalSeparation.Media.BaseMediumVapour
+                                                                                                      annotation(choicesAllMatching);
   MediumVapour.BaseProperties mediumVapour(c=c_v, T0=T_ref, p=p, T=T_v, x=x_v, x_star=x_v);
   MediumVapour.CalcSpecificEnthalpy vapToFilmB(T0=T_ref, p=p, T=T_v, x=x_transfer_fromV);
   MediumVapour.CalcSpecificEnthalpy filmToVapB(T0=T_ref, p=p, T=T_v, x=x_transfer_toV);
 
 replaceable package MediumLiquid =
 ApplicationsThermalSeparation.Media.WaterBasedLiquid.BCBO_H2O_AAS
-                                                      constrainedby
-    ThermalSeparation.Media.BaseMediumLiquid                                                          annotation(choicesAllMatching);
+                                                      constrainedby ThermalSeparation.Media.BaseMediumLiquid
+                                                                                                      annotation(choicesAllMatching);
   MediumLiquid.BaseProperties mediumLiquid(T0=T_ref, p=p, T=T_l, x=x_l);
     MediumLiquid.BaseProperties mediumLiquidIn(T0=T_ref,p=p, T=T_l_in, x=x_l_in);
     MediumLiquid.BaseProperties mediumLiquidStar(T0=T_ref, p=p, T=T_star, x=x_l_star);
@@ -151,13 +151,11 @@ SI.SpecificEnthalpy r_water = -2462.5 * T_star +3177.8e3 "evaporation enthalpy";
 Boolean bool_eps;
 
  replaceable model ThermoEquilibrium =
-       ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby
-    ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium annotation(choicesAllMatching=true);
+       ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid                                  constrainedby ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium
+                                                            annotation(choicesAllMatching=true);
    ThermoEquilibrium thermoEquilibrium(nS=nS,
-      mapping =                                                                                mapping, redeclare
-      replaceable package MediumVapour =
-         MediumVapour,                                                                                                    redeclare
-      replaceable package MediumLiquid =
+      mapping =                                                                                mapping, redeclare replaceable package MediumVapour =
+         MediumVapour,                                                                                                    redeclare replaceable package MediumLiquid =
      MediumLiquid, p=p, T=T_star, x_v=x_v_star, x_l=x_l_star, p_sat=p_sat,  v_v=MM_v/rho_v);
 
         Real K[nS] "equilibrium constant";
@@ -175,8 +173,8 @@ Boolean bool_eps;
 
      //Model for reaction
   replaceable model Reaction =
-      ApplicationsThermalSeparation.Reaction.CO2_Siemens            constrainedby
-    ThermalSeparation.Reaction.BaseReaction                                                                             annotation(choicesAllMatching=true);
+      ApplicationsThermalSeparation.Reaction.CO2_Siemens            constrainedby ThermalSeparation.Reaction.BaseReaction
+                                                                                                                        annotation(choicesAllMatching=true);
   Reaction reaction(propsLiq=mediumLiquid.properties,
    final n=1,final nS= nSL, c=c_l, V=V*eps_liq, Ndot_l_transfer=Ndot_l_transfer,  gamma=activityCoeff.gamma,
   redeclare package MediumLiquid =  MediumLiquid);
@@ -197,8 +195,7 @@ Boolean bool_eps;
     "total molar flow rate vapour";
 
       replaceable record Geometry =
-      ThermalSeparation.Geometry.StructuredPackedColumn.Geometry                constrainedby
-    ThermalSeparation.Geometry.StructuredPackedColumn.Geometry annotation (
+      ThermalSeparation.Geometry.StructuredPackedColumn.Geometry                constrainedby ThermalSeparation.Geometry.StructuredPackedColumn.Geometry annotation (
       choicesAllMatching);
 Geometry geometry(n=1);
 
@@ -370,8 +367,7 @@ initial equation
 
        for i in 3:nSV loop
         x_v[i] = x_v_start[i];
-       end for;
-               sum(x_l[:])=1;
+       end for;sum(x_l[:])=1;
                sum(x_v[:])=1;
 
      T_v = T_v_start;

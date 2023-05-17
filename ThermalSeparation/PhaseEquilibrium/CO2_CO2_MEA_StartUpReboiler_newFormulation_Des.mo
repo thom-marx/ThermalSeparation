@@ -5,8 +5,8 @@ model CO2_CO2_MEA_StartUpReboiler_newFormulation_Des "StartUp CO2-CO2-MEA eq. in
 Real eq_koeff[9];
 Real alpha(start=0.5); // loading in mol CO2 / mol MEA
 //input Boolean startUp;
-Modelica.SIunits.Temperature Theta = T-273.15;
-Modelica.SIunits.Pressure p_sat_H2O(start=1.3e5);
+Modelica.Units.SI.Temperature Theta = T-273.15;
+Modelica.Units.SI.Pressure p_sat_H2O(start=1.3e5);
 
    parameter Real omega_k=0.05 "large value if change between constant and variable shall be steep";
    parameter Real omega_time = 500 "Wendepunkt der tanh-Funktion";

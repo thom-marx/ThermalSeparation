@@ -74,7 +74,6 @@ protected
     annotation (structurallyIncomplete);
   end BaseProperties;
 
-
         redeclare model extends CalcSpecificEnthalpy
           /*** enthalpy ***/
 
@@ -97,7 +96,6 @@ protected
               fillPattern=FillPattern.Solid)}));
         end CalcSpecificEnthalpy;
 
-
 redeclare model extends HenryCoefficient
      parameter SI.Pressure henry_H[nSubstance] = {1.63e8,0} "Henry coefficient";
      parameter Real henry_C[nSubstance]={2400,0}
@@ -106,8 +104,7 @@ redeclare model extends HenryCoefficient
      parameter Boolean henry_temp = true;
 
       replaceable model HenryCoeff =
-      ThermalSeparation.Media.Correlations.HenryCoefficient.Exponential                                   constrainedby
-    ThermalSeparation.Media.Correlations.HenryCoefficient.BaseHenry;
+      ThermalSeparation.Media.Correlations.HenryCoefficient.Exponential                                   constrainedby ThermalSeparation.Media.Correlations.HenryCoefficient.BaseHenry;
     HenryCoeff henryCoeff(nS=nSubstance, henry_temp=henry_temp, henry_C=henry_C, henry_H=henry_H, x_l=x_l, T=T);
 equation
   for i in 1:nSubstance loop
@@ -117,12 +114,11 @@ equation
   end for;
 end HenryCoefficient;
 
-
     redeclare model extends DiffusionCoefficient
     /*** model which shall be used to calculate the diffusion coefficients in a binary mixture ***/
       model D_Molecules =
-      ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.Molecule.Wilke_Chang_aq
-      (      phi=phi, MMX=MMX);
+      ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.Molecule.Wilke_Chang_aq (
+             phi=phi, MMX=MMX);
 
     /*** model where the diffusion coefficients in a binary mixture are used to calculate the diffusion coefficients in a multicomponent mixture ***/
     ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.DiffMolecules
@@ -134,13 +130,11 @@ end HenryCoefficient;
     D = diffCoeff.D;
     end DiffusionCoefficient;
 
-
   redeclare replaceable model extends ActivityCoefficient
   "calculates the activity coefficient for each component in the liquid phase"
 
     replaceable model ActivityCoeff =
-        ThermalSeparation.Media.Correlations.ActivityCoefficient.Ideal                                      constrainedby
-    ThermalSeparation.Media.Correlations.ActivityCoefficient.BaseActivityCoefficient
+        ThermalSeparation.Media.Correlations.ActivityCoefficient.Ideal                                      constrainedby ThermalSeparation.Media.Correlations.ActivityCoefficient.BaseActivityCoefficient
       annotation (choicesAllMatching=true, Dialog(tab="General", group=
             "Thermodynamic Equilibrium"));
 
@@ -152,14 +146,12 @@ end HenryCoefficient;
     annotation (structurallyIncomplete);
   end ActivityCoefficient;
 
-
   redeclare replaceable model extends FugacityCoefficient
   "calculates the fugacity coefficient at the saturation point for each component in the liquid phase"
 
       replaceable model FugacityCoeff =
       ThermalSeparation.Media.Correlations.SaturationFugacityCoefficient.SaturationFugacitycoefficient
-                                                                                                    constrainedby
-    ThermalSeparation.Media.Correlations.SaturationFugacityCoefficient.BaseFugacityCoefficient
+                                                                                                    constrainedby ThermalSeparation.Media.Correlations.SaturationFugacityCoefficient.BaseFugacityCoefficient
       annotation (choicesAllMatching=true, Dialog(tab="General", group=
             "Thermodynamic Equilibrium"));
 
@@ -170,13 +162,11 @@ end HenryCoefficient;
     annotation (structurallyIncomplete);
   end FugacityCoefficient;
 
-
   redeclare replaceable model extends ThermodynamicFactor
   equation
   Gamma=diagonal(ones(nSubstance));
     annotation (structurallyIncomplete);
   end ThermodynamicFactor;
-
 
   annotation (Icon(graphics={            Rectangle(
           extent={{-80,100},{100,-80}},

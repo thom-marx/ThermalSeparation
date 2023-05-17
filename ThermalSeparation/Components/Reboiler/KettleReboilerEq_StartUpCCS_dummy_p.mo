@@ -1,7 +1,7 @@
 within ThermalSeparation.Components.Reboiler;
 model KettleReboilerEq_StartUpCCS_dummy_p
   "Start-Up CCS Reboiler with dummy pressure boundary for better initialization"
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
   //import ThermalSeparation;
   extends ThermalSeparation.Icons.Color.Reboiler;
   outer ThermalSeparation.SystemTS systemTS;
@@ -12,15 +12,14 @@ replaceable package MediumLiquid =
                                                annotation(choicesAllMatching);
  replaceable model InnerHT =
     ThermalSeparation.HeatAndMassTransfer.HTResistance.NoHTResistance
-    constrainedby
-    ThermalSeparation.HeatAndMassTransfer.HTResistance.BaseHTResistance               "heat transfer mechanism between bulk and wall"                     annotation(choicesAllMatching=true);
+    constrainedby ThermalSeparation.HeatAndMassTransfer.HTResistance.BaseHTResistance "heat transfer mechanism between bulk and wall"                     annotation(choicesAllMatching=true);
 
   InnerHT innerHT(n=1,T={T},A={A_HT},Qdot={Q_in},p={p_sys});
 
   parameter ThermalSeparation.Components.Reboiler.InitOptionEq
     init_option=ThermalSeparation.Components.Reboiler.InitOptionEq.init_x                                         annotation(Dialog(tab="Initialization"),Evaluate=true); // Enumerations.InitializationOption.init_x "initialization options"
 
-  parameter Modelica.SIunits.Area A_HT=5 "heat exchange area";
+  parameter Modelica.Units.SI.Area A_HT=5 "heat exchange area";
 
   replaceable package MediumVapour =
       ThermalSeparation.Media.H2O_CO2_Vap

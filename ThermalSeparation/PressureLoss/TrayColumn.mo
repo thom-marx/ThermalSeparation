@@ -4,8 +4,8 @@ package TrayColumn
     "basic pressure loss model for a plate column"
     extends BasicPressureLoss;
       replaceable record Geometry =
-        ThermalSeparation.Geometry.PlateColumn.Geometry                            constrainedby
-      ThermalSeparation.Geometry.PlateColumn.Geometry annotation(Dialog(enable=false));
+        ThermalSeparation.Geometry.PlateColumn.Geometry                            constrainedby ThermalSeparation.Geometry.PlateColumn.Geometry
+                                                      annotation(Dialog(enable=false));
       Geometry geometry(n=n);
 
     input SI.Height h[n](start=0.9*ones(n))

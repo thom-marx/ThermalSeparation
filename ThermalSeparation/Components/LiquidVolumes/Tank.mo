@@ -7,8 +7,8 @@ model Tank "tank model with varying liquid level"
         iconTransformation(extent={{-20,76},{20,116}})));
 
 replaceable package MediumLiquid =
-ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby
-    ThermalSeparation.Media.BaseMediumLiquid "medium to be used"                                                         annotation(choicesAllMatching);
+ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby ThermalSeparation.Media.BaseMediumLiquid
+                                             "medium to be used"                                                         annotation(choicesAllMatching);
    outer ThermalSeparation.SystemTS systemTS;
       parameter SI.Pressure p_gas= 1e5
     "pressure exerted by the (inert) gas above the liquid";
@@ -29,6 +29,7 @@ ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby
   parameter Boolean avoid_sum_mole=true "parameter to avoid the sum equation of molar fractions";
 
 /*** Medium properties ***/
+
   SI.Density rho_l = mediumLiquid.d;
   SI.Density rho_l_in = mediumLiquidIn.d;
   //SI.Concentration dummy(stateSelect=StateSelect.default)=c_l[1];
@@ -45,6 +46,7 @@ ThermalSeparation.Media.WaterBasedLiquid.CO2_H2O     constrainedby
 
   /*** geometry data ***/
     final parameter SI.Area A= Modelica.Constants.pi/4* d_volume^2;
+
   SI.Height level(stateSelect=StateSelect.default,start=level_start);
 
   parameter SI.Diameter d_volume = 0.025 "diameter of the tank";

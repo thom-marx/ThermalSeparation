@@ -10,8 +10,7 @@ constant Boolean psat_Antoine = false;
 
   import
     ThermalSeparation.Media.IdealGasMixtures.BaseClasses.PartialMedium.Choices.ReferenceEnthalpy;
-  extends
-    ThermalSeparation.Media.IdealGasMixtures.BaseClasses.BaseIdealGasMixture(
+  extends ThermalSeparation.Media.IdealGasMixtures.BaseClasses.BaseIdealGasMixture(
                               nS=4,nSubstance=4, V = {13.1, 16.3, 26.7, 18.5}, eq_Tsonopoulos = {6, 1, 1, 1},  sigma = {2.641, 3.467, 3.941, 3.798}, epsilon_k = {809.1,106.7, 195.2, 71.4},
     SpecificEnthalpy(start=if referenceChoice == ReferenceEnthalpy.ZeroAt0K then
                 3e5 else if referenceChoice == ReferenceEnthalpy.UserDefined then
@@ -26,7 +25,7 @@ constant Boolean psat_Antoine = false;
       {ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.H2O,
         ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.O2,
         ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.CO2,
-        ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.N2},                            R_const=data.R);
+        ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.N2},                            R_const=data.R_s);
 
  redeclare replaceable model extends BaseProperties(
     T(stateSelect=if preferredMediumStates then StateSelect.prefer else StateSelect.default),
@@ -60,7 +59,7 @@ required from medium model \""   + mediumName + "\".");
 
     h =calcSpecificEnthalpy.h;
 
-    R = data.R*X;
+    R = data.R_s*X;
 
     u = h-R*T*MM;
 
@@ -152,5 +151,4 @@ required from medium model \""   + mediumName + "\".");
             fillColor={255,255,255},
             fillPattern=FillPattern.Solid)}));
   end EvaporationEnthalpy;
-
 end H2O_O2_CO2_N2;

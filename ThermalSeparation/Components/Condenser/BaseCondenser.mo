@@ -13,25 +13,23 @@ partial model BaseCondenser
 parameter Integer mapping[nS,2] = {{i,i} for i in 1:nS}
     "parameter to map the different medium vectors one to another" annotation(Dialog(group="Shell side parameters"));
 parameter Boolean connectCoolant=false "set true to enable coolant connectors" annotation(Dialog(group="Shell side parameters"));
-parameter Modelica.SIunits.Pressure p_nom=0.05e5
+parameter Modelica.Units.SI.Pressure p_nom=0.05e5
     "linear pressure drop with nominal value" annotation(Dialog(group="Shell side parameters"));
 parameter SI.VolumeFlowRate vdot_nom=0.4 "nominal volume flow rate" annotation(Dialog(group="Shell side parameters"));
 replaceable package MediumVapour =
-      ThermalSeparation.Media.C2H5OH_Water_Vap  constrainedby
-    ThermalSeparation.Media.BaseMediumVapour
+      ThermalSeparation.Media.C2H5OH_Water_Vap  constrainedby ThermalSeparation.Media.BaseMediumVapour
     "medium to be used in vapour phase"                                          annotation(choicesAllMatching=true,Dialog(group="Shell side parameters"));
     MediumVapour.BaseProperties mediumVapourIn(T=T_v_in, x=x_v_in, p=p,x_star=x_v_in, c=c_v_in);
     //MediumVapour.SpecificEnthalpy enthalpyVapIn(T=T_v_in, x=x_v_in, p_sys=p,Tstar=273+78);
 
   replaceable package MediumLiquid =
-    ThermalSeparation.Media.C2H5OH_Water_Liq  constrainedby
-    ThermalSeparation.Media.BaseMediumLiquid
+    ThermalSeparation.Media.C2H5OH_Water_Liq  constrainedby ThermalSeparation.Media.BaseMediumLiquid
     "medium to be used in liquid phase"                                          annotation(choicesAllMatching=true,Dialog(group="Shell side parameters"));
     MediumLiquid.BaseProperties mediumLiquid(T=T_l, x=x_l, p=p,h=h_l);
     //MediumLiquid.SpecificEnthalpy enthalpyLiq(T=T_l, x=x_l, p_sys=p,n_mol={0,0},Tstar=Tstar);
 
-replaceable package Coolant=Modelica.Media.Water.WaterIF97_ph constrainedby
-    Modelica.Media.Water.WaterIF97_base "medium to be used as coolant" annotation(choicesAllMatching=true,Dialog(enable= not connectCoolant, group="Tube side parameters"));
+replaceable package Coolant=Modelica.Media.Water.WaterIF97_ph constrainedby Modelica.Media.Water.WaterIF97_base
+                                        "medium to be used as coolant" annotation(choicesAllMatching=true,Dialog(enable= not connectCoolant, group="Tube side parameters"));
 
 SI.HeatFlowRate Q_kon;
 //SI.Temperature Tstar;

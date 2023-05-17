@@ -1,4 +1,4 @@
 within ThermalSeparation.Reaction;
-package ReactionKinetics 
+package ReactionKinetics
 
 end ReactionKinetics;

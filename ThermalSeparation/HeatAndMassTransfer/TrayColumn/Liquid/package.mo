@@ -1,4 +1,4 @@
 within ThermalSeparation.HeatAndMassTransfer.TrayColumn;
-package Liquid 
+package Liquid
 
 end Liquid;

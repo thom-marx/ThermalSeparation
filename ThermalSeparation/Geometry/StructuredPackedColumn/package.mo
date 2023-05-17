@@ -1,4 +1,4 @@
 within ThermalSeparation.Geometry;
-package StructuredPackedColumn 
-import SI = Modelica.SIunits;
+package StructuredPackedColumn
+import      Modelica.Units.SI;
 end StructuredPackedColumn;

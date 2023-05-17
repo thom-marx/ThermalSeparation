@@ -2,7 +2,7 @@ within ThermalSeparation.Media.WaterBasedLiquid;
 package BaseClasses "Medium models for water"
 
 
-extends Modelica.Icons.Library;
+extends Modelica.Icons.Package;
   constant
   ThermalSeparation.Media.WaterBasedLiquid.BaseClasses.PartialWaterBased.FluidConstants[
                                                            1] waterConstants(

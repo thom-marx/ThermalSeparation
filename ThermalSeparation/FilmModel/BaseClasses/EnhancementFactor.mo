@@ -4,8 +4,7 @@ package EnhancementFactor
 model IrrFirstOrder "enhancement factor: irreversible first order reaction"
   /*** A -> C ***/
 
-  extends
-      ThermalSeparation.FilmModel.BaseClasses.EnhancementFactor.BaseEnhancement;
+  extends ThermalSeparation.FilmModel.BaseClasses.EnhancementFactor.BaseEnhancement;
 
   parameter Real a_R = 38.814 "h_R [J/mol] = a_R * T [K] + b_R";
   parameter Real b_R = -89155 "h_R [J/mol] = a_R * T [K] + b_R";
@@ -47,8 +46,7 @@ end IrrFirstOrder;
 
 model IrrPseudoFirstOrder "enhancement factor: irreversible pseudo first order"
   /*** A + B -> C + D mit c_A << c_B ***/
-  extends
-      ThermalSeparation.FilmModel.BaseClasses.EnhancementFactor.BaseEnhancement;
+  extends ThermalSeparation.FilmModel.BaseClasses.EnhancementFactor.BaseEnhancement;
 
   parameter Real a_R = 38.814 "h_R [J/mol] = a_R * T [K] + b_R";
   parameter Real b_R = -89155 "h_R [J/mol] = a_R * T [K] + b_R";
@@ -95,8 +93,7 @@ end IrrPseudoFirstOrder;
 model RevAtoC "enhancement factor: reversible reaction,  A <-> C"
   /*** A <-> C ***/
   //film model, instanteneous reaction, only diluted systems (Olander 1960)
-  extends
-      ThermalSeparation.FilmModel.BaseClasses.EnhancementFactor.BaseEnhancement;
+  extends ThermalSeparation.FilmModel.BaseClasses.EnhancementFactor.BaseEnhancement;
 
   parameter Real a_R = 38.814 "h_R [J/mol] = a_R * T [K] + b_R";
   parameter Real b_R = -89155 "h_R [J/mol] = a_R * T [K] + b_R";
@@ -139,8 +136,7 @@ end RevAtoC;
 model RevAto2C "enhancement factor: reversible reaction,  A <-> 2 C"
   /*** A <-> 2C ***/
   //film model, instanteneous reaction, only diluted systems (Olander 1960)
-  extends
-      ThermalSeparation.FilmModel.BaseClasses.EnhancementFactor.BaseEnhancement;
+  extends ThermalSeparation.FilmModel.BaseClasses.EnhancementFactor.BaseEnhancement;
 
     parameter Real a_R = 38.814 "h_R [J/mol] = a_R * T [K] + b_R";
   parameter Real b_R = -89155 "h_R [J/mol] = a_R * T [K] + b_R";
@@ -184,8 +180,7 @@ end RevAto2C;
 model RevAplusBtoC "enhancement factor: reversible reaction,  A + B <-> C"
 /*** A + B <-> C ***/
   //film model, instanteneous reaction, only diluted systems (Olander 1960)
-  extends
-      ThermalSeparation.FilmModel.BaseClasses.EnhancementFactor.BaseEnhancement;
+  extends ThermalSeparation.FilmModel.BaseClasses.EnhancementFactor.BaseEnhancement;
     parameter Real a_R = 38.814 "h_R [J/mol] = a_R * T [K] + b_R";
   parameter Real b_R = -89155 "h_R [J/mol] = a_R * T [K] + b_R";
 

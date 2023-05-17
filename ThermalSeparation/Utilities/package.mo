@@ -1,3 +1,3 @@
 within ThermalSeparation;
-package Utilities 
+package Utilities
 end Utilities;

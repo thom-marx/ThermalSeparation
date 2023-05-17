@@ -1,3 +1,3 @@
 within ThermalSeparation.PressureLoss;
-package StructuredPackedColumn 
+package StructuredPackedColumn
 end StructuredPackedColumn;

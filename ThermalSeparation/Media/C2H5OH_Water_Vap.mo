@@ -11,8 +11,8 @@ package C2H5OH_Water_Vap "2 components: C2H5OH, H2O"
   import
     ThermalSeparation.Media.IdealGasMixtures.BaseClasses.PartialMedium.Choices.ReferenceEnthalpy;
 
-        extends
-    ThermalSeparation.Media.IdealGasMixtures.BaseClasses.BaseIdealGasMixture(delta_hv_medium = true,
+        extends ThermalSeparation.Media.IdealGasMixtures.BaseClasses.BaseIdealGasMixture(
+                                                                             delta_hv_medium = true,
                               nSubstance=2, V = {51.8, 13.1}, eq_Tsonopoulos = {4, 6},  sigma = {4.53, 2.641},epsilon_k = {362.6, 809.1},nS=2,MMX={0.046,0.018},
      SpecificEnthalpy(start=if referenceChoice == ReferenceEnthalpy.ZeroAt0K then
                  3e5 else if referenceChoice == ReferenceEnthalpy.UserDefined then
@@ -25,7 +25,7 @@ package C2H5OH_Water_Vap "2 components: C2H5OH, H2O"
                                 data=
        {ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.C2H5OH,
          ThermalSeparation.Media.IdealGasMixtures.BaseClasses.Common.SingleGasesData.H2O},
-                                   R_const=data.R);
+                                   R_const=data.R_s);
    redeclare replaceable model extends BaseProperties
 
     CalcSpecificEnthalpy calcSpecificEnthalpy(T0=T0,T=T, x=x, p=p);
@@ -46,7 +46,7 @@ package C2H5OH_Water_Vap "2 components: C2H5OH, H2O"
    h = calcSpecificEnthalpy.h + sum(x.*evapEnthalpy.h);
      u = h - Modelica.Constants.R*T;
 
-       R = data.R*X;
+       R = data.R_s*X;
 
      annotation (Icon(graphics={
                            Rectangle(
@@ -124,7 +124,6 @@ package C2H5OH_Water_Vap "2 components: C2H5OH, H2O"
               fillColor={255,255,255},
               fillPattern=FillPattern.Solid)}));
   end CalcSpecificEnthalpy;
-
   annotation (Documentation(info="<html>
   
 </html>"));

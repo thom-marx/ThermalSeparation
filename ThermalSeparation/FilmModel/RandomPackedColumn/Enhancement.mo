@@ -2,8 +2,7 @@ within ThermalSeparation.FilmModel.RandomPackedColumn;
 model Enhancement "Enhancementfactor"
   import ThermalSeparation;
 extends BaseNonEqType;
-extends ThermalSeparation.FilmModel.BaseClasses.Enhancement(redeclare record
-      BaseGeometry =                                                                      Geometry);
+extends ThermalSeparation.FilmModel.BaseClasses.Enhancement(redeclare record BaseGeometry=Geometry);
 
  final parameter Integer aux[  :] = {1,3,6,10,15, 21, 28, 36, 45};
 Geometry geometry(n=n);
@@ -16,17 +15,14 @@ replaceable model MassTransferCoeffLiq =
 
  replaceable model MassTransferCoeffVap =
       ThermalSeparation.HeatAndMassTransfer.RandomPackedColumn.Vapour.Constant
-   constrainedby
-    ThermalSeparation.HeatAndMassTransfer.RandomPackedColumn.Vapour.BaseVapMT
+   constrainedby ThermalSeparation.HeatAndMassTransfer.RandomPackedColumn.Vapour.BaseVapMT
      annotation(choicesAllMatching=true,Dialog( tab="Heat and Mass Transfer", group="Liquid and vapour mass transfer"));
  MassTransferCoeffVap massTransferCoeffVap(
  n=n, n_k=nSV,D=D_vap, eta=propsVap.eta, sigma=propsLiq.sigma, rho=propsVap.rho, w_sup_l=w_sup_liq, w_sup_v=w_sup_vap, eps_liq=eps_liq,
  redeclare record Geometry =  Geometry);
 
       replaceable model InterfacialArea =
-      ThermalSeparation.HeatAndMassTransfer.InterfacialArea.RandomPackedColumn.Constant
-                                                                                                        constrainedby
-    ThermalSeparation.HeatAndMassTransfer.InterfacialArea.RandomPackedColumn.BasePacked
+      ThermalSeparation.HeatAndMassTransfer.InterfacialArea.RandomPackedColumn.Constant                 constrainedby ThermalSeparation.HeatAndMassTransfer.InterfacialArea.RandomPackedColumn.BasePacked
                                                                                                       annotation(choicesAllMatching=true,Dialog( tab="Heat and Mass Transfer", group="Contact area between liquid and vapour phase"));
     InterfacialArea interfacialArea(
       redeclare record Geometry=Geometry,
@@ -34,8 +30,7 @@ replaceable model MassTransferCoeffLiq =
 
    replaceable model HeatTransferVapour =
       ThermalSeparation.HeatAndMassTransfer.InterfacialHeatTransferCoefficient.Vapour.Constant
-     constrainedby
-    ThermalSeparation.HeatAndMassTransfer.InterfacialHeatTransferCoefficient.Vapour.BaseVapour
+     constrainedby ThermalSeparation.HeatAndMassTransfer.InterfacialHeatTransferCoefficient.Vapour.BaseVapour
                                                                                                         annotation(choicesAllMatching=true,Dialog( tab="Heat and Mass Transfer", group="Heat transfer between liquid and vapour phase"));
 
    HeatTransferVapour heatTransferCoeffVap(
@@ -45,8 +40,7 @@ replaceable model MassTransferCoeffLiq =
 
      replaceable model HeatTransferLiquid =
       ThermalSeparation.HeatAndMassTransfer.InterfacialHeatTransferCoefficient.Liquid.Constant
-     constrainedby
-    ThermalSeparation.HeatAndMassTransfer.InterfacialHeatTransferCoefficient.Liquid.BaseLiquid
+     constrainedby ThermalSeparation.HeatAndMassTransfer.InterfacialHeatTransferCoefficient.Liquid.BaseLiquid
                                                                                                         annotation(choicesAllMatching=true,Dialog( tab="Heat and Mass Transfer", group="Heat transfer between liquid and vapour phase"));
 
    HeatTransferLiquid heatTransferCoeffLiq(

@@ -5,12 +5,12 @@ package HTResistance
 
   parameter Integer n(min=1) annotation(dialog(enable=false));
 
-  input Modelica.SIunits.Temperature T[n];
-  input Modelica.SIunits.Area A[n];
-  input Modelica.SIunits.HeatFlowRate Qdot[n](start=fill(1e8,n));
-  input Modelica.SIunits.Pressure p[n];
+  input Modelica.Units.SI.Temperature T[n];
+  input Modelica.Units.SI.Area A[n];
+  input Modelica.Units.SI.HeatFlowRate Qdot[n](start=fill(1e8,n));
+  input Modelica.Units.SI.Pressure p[n];
 
-  Modelica.SIunits.Temperature Twall[n];
+  Modelica.Units.SI.Temperature Twall[n];
   Real alpha[n] "heat transfer coefficient";
 
   end BaseHTResistance;

@@ -3,17 +3,17 @@ model TotalCondenser_PT1_2
 extends ThermalSeparation.Icons.Color.Condenser;
 parameter Real timeConstant = 100;
     outer ThermalSeparation.SystemTS systemTS;
-      parameter Modelica.SIunits.Temperature T_ref=systemTS.T_ref
+      parameter Modelica.Units.SI.Temperature T_ref=systemTS.T_ref
     "reference temperature"                                                 annotation (Dialog(tab="Advanced"));
 replaceable package MediumVapour =
-      ThermalSeparation.Media.Methylacetatsynthese_Vap                                                 constrainedby
-    ThermalSeparation.Media.BaseMediumVapour                                                            annotation(choicesAllMatching);
+      ThermalSeparation.Media.Methylacetatsynthese_Vap                                                 constrainedby ThermalSeparation.Media.BaseMediumVapour
+                                                                                                        annotation(choicesAllMatching);
 
     MediumVapour.BaseProperties mediumVapourIn(T0 = T_ref, c=x_v*rho_v/MM_v,p=vapourIn.p, T=T_v, x=x_v,  x_star=x_v);
 
   replaceable package MediumLiquid =
-  ThermalSeparation.Media.C2H5OH_Water_Liq            constrainedby
-    ThermalSeparation.Media.BaseMediumLiquid                                                            annotation(choicesAllMatching);
+  ThermalSeparation.Media.C2H5OH_Water_Liq            constrainedby ThermalSeparation.Media.BaseMediumLiquid
+                                                                                                        annotation(choicesAllMatching);
 
     MediumLiquid.BaseProperties mediumLiquid(T0 = T_ref, p=p_cond, T=T_l, x=x_l);
     MediumLiquid.BaseProperties mediumLiquid2(T0 = T_ref, p=p_cond, T=T_cond, x=x_l);
@@ -32,35 +32,35 @@ parameter Boolean inertLiquid[nSL] = fill(false,nSL)
 //inflow
 
     // SI.Pressure p_v;//=2e5;
-     Modelica.SIunits.MoleFraction x_v[nSV];
+     Modelica.Units.SI.MoleFraction x_v[nSV];
 
-     Modelica.SIunits.Temperature T_v;
+     Modelica.Units.SI.Temperature T_v;
 
      ThermalSeparation.Units.MolarEnthalpy h_v;
      ThermalSeparation.Units.MolarEnthalpy u_v;
-     Modelica.SIunits.Density rho_v;
-     Modelica.SIunits.MolarMass MM_v;
+     Modelica.Units.SI.Density rho_v;
+     Modelica.Units.SI.MolarMass MM_v;
 
-parameter Modelica.SIunits.Pressure p_cond=1e5 "Kondensationsdruck";
-     Modelica.SIunits.MoleFraction x_l[nSL];
+parameter Modelica.Units.SI.Pressure p_cond=1e5 "Kondensationsdruck";
+     Modelica.Units.SI.MoleFraction x_l[nSL];
     // SI.MoleFraction x_v_out[nSV];
-     Modelica.SIunits.Temperature T_l;
+     Modelica.Units.SI.Temperature T_l;
 
      ThermalSeparation.Units.MolarEnthalpy h_l;
      ThermalSeparation.Units.MolarEnthalpy u_l;
-     Modelica.SIunits.Density rho_l;
-     Modelica.SIunits.MolarMass MM_l;
+     Modelica.Units.SI.Density rho_l;
+     Modelica.Units.SI.MolarMass MM_l;
      //SI.Pressure p_sat[nS];
 
 //Druck in der obersten Stufe
-Modelica.SIunits.Pressure p_1;
+Modelica.Units.SI.Pressure p_1;
 
 //SI.Temperature T_set; // feste Temperatur fr das Kondensat
-parameter Modelica.SIunits.Temperature T_set=303.15;
-Modelica.SIunits.HeatFlowRate Q_kond;
+parameter Modelica.Units.SI.Temperature T_set=303.15;
+Modelica.Units.SI.HeatFlowRate Q_kond;
 
-      ThermalSeparation.Interfaces.LiquidPortOut liquidOut(redeclare package
-      Medium = MediumLiquid)
+      ThermalSeparation.Interfaces.LiquidPortOut liquidOut(redeclare package Medium =
+               MediumLiquid)
         annotation (Placement(transformation(extent={{116,-52},{136,-32}}),
         iconTransformation(extent={{-26,-108},{14,-68}})));
    ThermalSeparation.Interfaces.GasPortIn vapourIn(redeclare package Medium =
@@ -80,9 +80,9 @@ parameter Integer mapping[nS,2]= {{1,1},{2,2}}
 parameter Real factor_K[nSL] = fill(1,nSL);
  MediumLiquid.ActivityCoefficient activityCoeff(T=T_cond,x_l=x_l);
  MediumLiquid.FugacityCoefficient fugacityCoeffSat(T=T_cond, p=p_cond, p_sat=mediumLiquid2.p_sat);
- Modelica.SIunits.MoleFraction x_v_star[nSV];
- Modelica.SIunits.Temperature T_cond(start=63 + 273);
- parameter Modelica.SIunits.Temperature delta_T_sub=5 "subcooling";
+ Modelica.Units.SI.MoleFraction x_v_star[nSV];
+ Modelica.Units.SI.Temperature T_cond(start=63 + 273);
+ parameter Modelica.Units.SI.Temperature delta_T_sub=5 "subcooling";
 
   Modelica.Blocks.Continuous.FirstOrder firstOrder(
     initType=Modelica.Blocks.Types.Init.InitialState,
