@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Media;
+within ThermalSeparation.Media;
 package H2O_CO2_MEA_Liq "H2O,CO2,MEA: CO2 separation with MEA"
 extends ThermalSeparation.Media.BaseMediumLiquidReaction(has_etaSubstance={true,false,false},
     nSubstance=3,
@@ -96,9 +96,10 @@ constant Integer ic[nSubstance]=zeros(nSubstance);
 
   end HenryCoefficient;
 
-  redeclare model extends DiffusionCoefficient(diluted=true)
+  redeclare model extends DiffusionCoefficient(diluted=true
   /*** model which shall be used to calculate the diffusion coefficients in a binary mixture ***/
 
+                                                           )
   equation
      D[1] = 2.35e-6 * Modelica.Math.exp(-2119/T); //diff. coeff H2O - CO2
      D[2] = 2.35e-6 * Modelica.Math.exp(-2119/T); //diff. coeff H2O - MEA (at the moment still same coeff as H2O - CO2)

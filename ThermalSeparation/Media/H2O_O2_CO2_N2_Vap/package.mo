@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Media;
+within ThermalSeparation.Media;
 package H2O_O2_CO2_N2_Vap "H2O,O2,CO2,N2: CO2 separation with MEA"
   constant Real f_psat = 0.907;
 constant Boolean psat_Antoine = false;
@@ -47,7 +47,7 @@ constant Boolean psat_Antoine = false;
   //
   //   /*** thermal conductivity ***/
   //     Modelica.Units.SI.ThermalConductivity lambda=0.02;
-protected
+  protected
    parameter Real conversionDebye = 3.33564e-30 "to convert from debye to C*m";
  equation
   for i in 1:nX loop
@@ -82,7 +82,7 @@ required from medium model \""   + mediumName + "\".");
 
     /***Berechnung der Sättigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
 
-protected
+  protected
    Modelica.Units.SI.SpecificEnthalpy hX[4];
       Real pi "dimensionless pressure";
     Real[20] o "vector of auxiliary variables";
@@ -143,7 +143,7 @@ protected
 
   redeclare replaceable model extends EvaporationEnthalpy
 
-protected
+  protected
     Modelica.Units.SI.SpecificEnthalpy r_water=-2462.5*T + 3177.8e3;
   equation
       /*** enthalpy ***/

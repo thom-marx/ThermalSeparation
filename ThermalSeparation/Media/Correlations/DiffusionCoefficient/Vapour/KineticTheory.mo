@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Media.Correlations.DiffusionCoefficient.Vapour;
+within ThermalSeparation.Media.Correlations.DiffusionCoefficient.Vapour;
 model KineticTheory
   "theoretical equation for the mutual diffusion coefficient in a low-pressure binary gas mixture (ideal gas!)"
   //z.B. Taylor, p. 68

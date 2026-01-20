@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Media.IdealGasMixtures.BaseClasses;
+within ThermalSeparation.Media.IdealGasMixtures.BaseClasses;
 partial package BaseIdealGasMixture
     extends ThermalSeparation.Media.BaseMediumVapour(MMX=data[:].MM, delta_hv_medium=false);
   import      Modelica.Units.SI;

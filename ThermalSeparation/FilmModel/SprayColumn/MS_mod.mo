@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.FilmModel.SprayColumn;
+within ThermalSeparation.FilmModel.SprayColumn;
 model MS_mod "modified Maxwell-Stefan mass transfer - no film reaction"
 extends SprayColumn.BaseNonEqType(nn=n);
 extends ThermalSeparation.FilmModel.BaseClasses.MaxwellStefan_mod(redeclare record BaseGeometry=Geometry);

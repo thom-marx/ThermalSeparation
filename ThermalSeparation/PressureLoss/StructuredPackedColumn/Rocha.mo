@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.PressureLoss.StructuredPackedColumn;
+within ThermalSeparation.PressureLoss.StructuredPackedColumn;
 model Rocha "correlation from Rocha et al."
 
   extends ThermalSeparation.PressureLoss.StructuredPackedColumn.BasicPressureLossPacked;

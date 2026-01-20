@@ -31,9 +31,9 @@ extends Modelica.Icons.Package;
   each iupacName="oxidane",
   each molarMass=0.018015268);
 
-//   package StandardWater = WaterIF97_ph 
+//   package StandardWater = WaterIF97_ph
 //     "Water using the IF97 standard, explicit in p and h. Recommended for most applications";
-//   package StandardWaterOnePhase = WaterIF97_pT 
+//   package StandardWaterOnePhase = WaterIF97_pT
 //     "Water using the IF97 standard, explicit in p and T. Recommended for one-phase applications";
 
 

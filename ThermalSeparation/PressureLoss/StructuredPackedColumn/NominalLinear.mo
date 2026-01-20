@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.PressureLoss.StructuredPackedColumn;
+within ThermalSeparation.PressureLoss.StructuredPackedColumn;
 model NominalLinear "linear pressure drop with nominal values"
 
   extends ThermalSeparation.PressureLoss.StructuredPackedColumn.BasicPressureLossPacked;

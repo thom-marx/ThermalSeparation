@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.FilmModel.StructuredPackedColumn;
+within ThermalSeparation.FilmModel.StructuredPackedColumn;
 model EnhancementMS
   "enhancement of reaction on liquid side, Maxwell-Stefan on gas side"
 

@@ -179,7 +179,7 @@ package BaseClasses "base classes for columns"
     replaceable model ThermoEquilibrium = ThermalSeparation.PhaseEquilibrium.RealGasActivityCoeffLiquid constrainedby ThermalSeparation.PhaseEquilibrium.BasePhaseEquilibrium "model for phase equilibrium" annotation (
        choicesAllMatching = true);
     ThermoEquilibrium bubblePressure[n](each nS = nS, each mapping = mapping, redeclare replaceable package MediumVapour = MediumVapour, redeclare replaceable package MediumLiquid = MediumLiquid, p = ones(n) * p_initial, T = T_l, x_v = x_v, x_l = x_l, p_sat = p_sat_bulk, v_v = MM_v ./ rho_v, each x_vap_liq = fill(1, nS));
-protected
+  protected
     parameter SI.Area A "cross sectional area of the column";
     parameter SI.Length H "height of this section of the column";
     parameter Real eps "void fraction in the column";
@@ -189,7 +189,7 @@ protected
     /***variables for reorganisation of mediums in the medium vector ***/
     //parameter Integer mL( fixed=false);
     // parameter Integer mV(fixed=false);
-public
+  public
     Boolean bool_eps[n];
     /*** entrainment ***/
     SI.VolumeFlowRate Vdot_le[n] "liquid volume flow entrained by vapour";
@@ -767,11 +767,11 @@ public
     end InternalFeedPort;
 
     InternalFeedPort internalFeedPort[n](feedLiquidInternal(redeclare each package Medium = MediumLiquid), feedVapourInternal(redeclare each package Medium = MediumVapour));
-protected
+  protected
     parameter Integer[n - numberLiquidFeedsInternal] aux1(each fixed = false);
     parameter Integer[n] aux2(each fixed = false);
     parameter Integer counterL(fixed = false) "counting the stages; equals n at end of algorithm";
-public
+  public
     parameter Boolean hasLiquidFeed = false "true, if there exist a liquid feed" annotation (
       Dialog(tab = "Feed", group = "Liquid Feed"));
     parameter Integer numberLiquidFeeds(min = 0, max = n) = 1 annotation (
@@ -787,11 +787,11 @@ public
     //   ThermalSeparation.Interfaces.GasPortOut[n] feedVapourInternal(redeclare each
     //       package Medium =
     //         MediumVapour,                                                                                       x(start=x_v_start), c(start=c_v));
-protected
+  protected
     parameter Integer[n - numberVapourFeedsInternal] testV(each fixed = false);
     parameter Integer[n] test2V(each fixed = false);
     parameter Integer counterLV(fixed = false) "counting the stages; equals n at end of algorithm";
-public
+  public
     parameter Boolean hasVapourFeed = false "true, if there exist a liquid feed" annotation (
       Dialog(tab = "Feed", group = "Vapour Feed"));
     parameter Integer numberVapourFeeds(min = 0, max = n) = 1 annotation (

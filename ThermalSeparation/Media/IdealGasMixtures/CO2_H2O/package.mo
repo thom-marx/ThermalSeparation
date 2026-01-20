@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Media.IdealGasMixtures;
+within ThermalSeparation.Media.IdealGasMixtures;
 package CO2_H2O "CO2, H2O"
 
      constant Integer henry[:] = {4,3};
@@ -12,11 +12,11 @@ package CO2_H2O "CO2, H2O"
 
 
 extends ThermalSeparation.Media.BaseMediumVapour(MMX={ 0.0440095,  0.01801528}, delta_hv_medium=true,nSubstance=2,V = {26.7,13.1},  eq_Tsonopoulos = {1,6}, sigma = {3.941,2.641}, epsilon_k = {195.2,809.1});
-//   extends 
+//   extends
 //     ThermalSeparation.Media.IdealGasMixtures.BaseClasses.BaseIdealGasMixture(delta_hv_medium = true,
 //                               nS=2,nSubstance=2,V = {26.7,13.1},  eq_Tsonopoulos = {1,6}, sigma = {3.941,2.641}, epsilon_k = {195.2,809.1},
-//     SpecificEnthalpy(start=if referenceChoice == ReferenceEnthalpy.ZeroAt0K then 
-//                 3e5 else if referenceChoice == ReferenceEnthalpy.UserDefined then 
+//     SpecificEnthalpy(start=if referenceChoice == ReferenceEnthalpy.ZeroAt0K then
+//                 3e5 else if referenceChoice == ReferenceEnthalpy.UserDefined then
 //                 h_offset else 0, nominal=1.0e5),
 //     Density(start=2, nominal=10),
 //     AbsolutePressure(start= 10e5, nominal=10e5),
@@ -37,12 +37,12 @@ extends ThermalSeparation.Media.BaseMediumVapour(MMX={ 0.0440095,  0.01801528}, 
     /*** Berechnung von eta ***/
 
   /***Berechnung der Sättigungstemperatur von Wasser beim Partialdruck des Wasserdampfes***/
-protected
+  protected
     Real pi "dimensionless pressure";
     Real[20] o "vector of auxiliary variables";
     SI.Temperature T_sat_water;
 
-protected
+  protected
    parameter Real conversionDebye = 3.33564e-30 "to convert from debye to C*m";
    SI.SpecificEnthalpy h_Jkg;
    SI.SpecificEnthalpy u_Jkg;
@@ -103,7 +103,7 @@ protected
 
   Real hX[nSubstance];
 
-protected
+  protected
     Real pi "dimensionless pressure";
     Real[20] o "vector of auxiliary variables";
     SI.Temperature T_sat_water;
@@ -152,7 +152,7 @@ protected
 
   redeclare replaceable model extends EvaporationEnthalpy
 
-protected
+  protected
     SI.SpecificEnthalpy r_water=-2462.5*T + 3177.8e3;
   equation
       /*** enthalpy ***/

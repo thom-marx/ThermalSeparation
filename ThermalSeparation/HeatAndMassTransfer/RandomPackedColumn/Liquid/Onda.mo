@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.HeatAndMassTransfer.RandomPackedColumn.Liquid;
+within ThermalSeparation.HeatAndMassTransfer.RandomPackedColumn.Liquid;
 model Onda "correlation from Onda, for random packings"
 //extends ThermalSeparation.FilmModel.BaseClasses.PackedColumn.BaseMSLiquid;
   extends BaseLiqMT;

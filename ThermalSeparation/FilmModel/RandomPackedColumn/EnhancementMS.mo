@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.FilmModel.RandomPackedColumn;
+within ThermalSeparation.FilmModel.RandomPackedColumn;
 model EnhancementMS
   "enhancement of reaction on liquid side, Maxwell-Stefan on gas side"
 

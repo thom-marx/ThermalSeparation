@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Geometry.StructuredPackedColumn;
+within ThermalSeparation.Geometry.StructuredPackedColumn;
 record Geometry
   extends ThermalSeparation.Geometry.BasicGeoPackedColumn;
 

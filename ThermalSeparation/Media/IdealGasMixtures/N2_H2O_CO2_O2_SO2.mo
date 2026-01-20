@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Media.IdealGasMixtures;
+within ThermalSeparation.Media.IdealGasMixtures;
 package N2_H2O_CO2_O2_SO2 "5 components: N2, H2O, CO2, O2, SO2"
 
     // constant Integer henry[:] = {1,4};

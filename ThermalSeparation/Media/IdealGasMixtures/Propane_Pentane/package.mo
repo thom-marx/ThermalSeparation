@@ -25,10 +25,10 @@ extends ThermalSeparation.Media.BaseMediumVapour(MMX={ 0.0441,  0.07215}, delta_
 
   Real p_start(start=1.6e5);
 
-protected
+  protected
     SI.Temperature T_sat[nSubstance]={231.1,309.2};
 
-protected
+  protected
    parameter Real conversionDebye = 3.33564e-30 "to convert from debye to C*m";
     Real R;
   equation
@@ -59,7 +59,7 @@ protected
 
   Real hX[nSubstance];
 
-protected
+  protected
    SI.Temperature T_sat[nSubstance]={231.1,309.2};
 
   equation

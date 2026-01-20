@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Media.IdealGasMixtures;
+within ThermalSeparation.Media.IdealGasMixtures;
 package N2_H2O_CO2_O2_SO2_HCl "6 components: N2, H2O, CO2, O2, SO2, HCl"
         constant Integer henry[:] = {1,3,4,5,6};
              constant SI.Pressure henry_H[:] = {8.51e9,0,1.63e8,4.25e9,3.95e6,3.48e5}

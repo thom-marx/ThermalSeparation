@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Media.Correlations.ActivityCoefficient;
+within ThermalSeparation.Media.Correlations.ActivityCoefficient;
 model UNIFAC
             //** Alle Werte sowie Beispiel in Gmehling & Kolbe S. 246 ff.*** // Nur für binäre Gemische
   extends BaseActivityCoefficient;

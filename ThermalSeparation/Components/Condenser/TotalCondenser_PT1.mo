@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Components.Condenser;
+within ThermalSeparation.Components.Condenser;
 model TotalCondenser_PT1
 extends ThermalSeparation.Icons.Color.Condenser;
 parameter Real timeConstant = 100;

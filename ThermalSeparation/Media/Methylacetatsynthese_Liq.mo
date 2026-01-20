@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Media;
+within ThermalSeparation.Media;
 package Methylacetatsynthese_Liq "Methylacetat, Essigsäe, Methanol, Wasser"
   extends BaseMediumLiquidReaction(
   has_etaSubstance=fill(true,nSubstance),
@@ -19,8 +19,8 @@ package Methylacetatsynthese_Liq "Methylacetat, Essigsäe, Methanol, Wasser"
 
     constant SI.MolarMass MM_substances[n] = MMX;
 
-  redeclare replaceable model extends BaseProperties(T0 = 298.15)
-
+  redeclare replaceable model extends BaseProperties(T0 = 298.15
+                                                                )
    SI.MassFraction w[n](start=fill(0.03,n));
 
   constant SI.DynamicViscosity sigma_EtOH=0.02255;// bei 20 C N/m

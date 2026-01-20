@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Icons;
+within ThermalSeparation.Icons;
 package Color
   model HeatExchanger
 

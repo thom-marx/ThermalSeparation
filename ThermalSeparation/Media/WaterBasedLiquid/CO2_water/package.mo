@@ -101,7 +101,7 @@ package CO2_water "CO2, H2O"
       CalcSpecificEnthalpy calcSpecificEnthalpy(T0=T0, p=p, T=T, x=x);
 
   /***density and enthalpy ***/
-protected
+  protected
     Real pi1 "dimensionless pressure";
     Real tau1 "dimensionless temperature";
     Real[45] o "vector of auxiliary variables";
@@ -138,7 +138,7 @@ protected
     //as long as the corresponding entry in the constant eta_pure is false
 
   /*** surface tension ***/
-protected
+  protected
     Real Theta = min(1,T/647.14) "dimensionless temperature";
 
   equation

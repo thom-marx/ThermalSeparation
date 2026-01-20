@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.FilmModel.SprayColumn;
+within ThermalSeparation.FilmModel.SprayColumn;
 model MS_film "Maxwell-Stefan mass transfer - film reaction"
   import ThermalSeparation;
 extends SprayColumn.BaseNonEqType(nn=n);

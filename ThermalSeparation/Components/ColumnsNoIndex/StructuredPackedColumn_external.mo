@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Components.ColumnsNoIndex;
+within ThermalSeparation.Components.ColumnsNoIndex;
 model StructuredPackedColumn_external
      extends ThermalSeparation.Icons.Color.PackedColumn;
   extends ThermalSeparation.Components.ColumnsNoIndex.BaseClasses.FeedColumn(

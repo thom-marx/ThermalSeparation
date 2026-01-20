@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.HeatAndMassTransfer.RandomPackedColumn.Vapour;
+within ThermalSeparation.HeatAndMassTransfer.RandomPackedColumn.Vapour;
 model Constant "constant value for k"
  // extends ThermalSeparation.FilmModel.BaseClasses.PackedColumn.BaseMSVapour;
 extends BaseVapMT;

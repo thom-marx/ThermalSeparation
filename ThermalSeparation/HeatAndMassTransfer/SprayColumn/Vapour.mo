@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.HeatAndMassTransfer.SprayColumn;
+within ThermalSeparation.HeatAndMassTransfer.SprayColumn;
 package Vapour
   model Constant "constant value for k"
    // extends ThermalSeparation.FilmModel.BaseClasses.SprayColumn.BaseMSVapour;

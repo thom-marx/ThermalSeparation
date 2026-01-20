@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.PressureLoss;
+within ThermalSeparation.PressureLoss;
 package TrayColumn
   partial model BasicPressureLossPlate
     "basic pressure loss model for a plate column"

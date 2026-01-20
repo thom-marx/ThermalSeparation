@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Components.Columns.BaseClasses;
+within ThermalSeparation.Components.Columns.BaseClasses;
 partial model BaseColumn_external "Gesamtmolbilanz, x, h, Ndot im Konnektor"
   import ThermalSeparation;
 

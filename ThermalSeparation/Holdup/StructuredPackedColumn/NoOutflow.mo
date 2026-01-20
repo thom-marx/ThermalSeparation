@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Holdup.StructuredPackedColumn;
+within ThermalSeparation.Holdup.StructuredPackedColumn;
 model NoOutflow "sump: no liquid flowing out"
   extends ThermalSeparation.Holdup.StructuredPackedColumn.BaseHoldup;
   //Rocha, Bravo, Fair: Distillation Columns Containing Structured Packings: A Comprehensive Model for Their Performance 1. Hydraulic Models, Ind. Eng. Chem. Res., 1993, 32, 641-651

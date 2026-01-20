@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.HeatAndMassTransfer.TrayColumn.Vapour;
+within ThermalSeparation.HeatAndMassTransfer.TrayColumn.Vapour;
 model Const_K
  // extends ThermalSeparation.FilmModel.BaseClasses.TrayColumn.BaseMSVapour;
 extends BaseVapMT;

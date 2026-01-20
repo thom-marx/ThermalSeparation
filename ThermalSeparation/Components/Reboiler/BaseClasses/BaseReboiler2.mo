@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Components.Reboiler.BaseClasses;
+within ThermalSeparation.Components.Reboiler.BaseClasses;
 partial model BaseReboiler2
  /*** Initialization ***/
       outer ThermalSeparation.SystemTS systemTS;

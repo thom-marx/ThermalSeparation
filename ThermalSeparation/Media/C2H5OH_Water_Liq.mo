@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Media;
+within ThermalSeparation.Media;
 package C2H5OH_Water_Liq "2 components: C2H5OH, H2O"
   extends BaseMediumLiquid(has_etaSubstance={true,true}, nSubstance=2, Tcrit= {513.9, 647.3}, pcrit= {61.48e5, 2.2064e7}, Vcrit = {167.00e-6, 55.95e-6},omega = { 0.037,
  0.022}, mu = {1.7, 1.8}, MMX= {0.046,0.018}, eq_Tsonopoulos = {4, 6}, henry=fill(false,nSubstance));
@@ -302,8 +302,9 @@ end HenryCoefficient;
     o[45] = 1/o[13];
   end DensityWater;
 
-  redeclare model extends DiffusionCoefficient(diluted=true)
+  redeclare model extends DiffusionCoefficient(diluted=true
     /*** model which shall be used to calculate the diffusion coefficients in a binary mixture ***/
+                                                           )
     model D_Molecules =
         ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid.Molecule.Const_Molecule;
 

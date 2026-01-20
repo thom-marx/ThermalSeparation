@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Media.Correlations.DiffusionCoefficient.Vapour;
+within ThermalSeparation.Media.Correlations.DiffusionCoefficient.Vapour;
 model Fuller "correlation of Fuller"
   extends ThermalSeparation.Media.Correlations.DiffusionCoefficient.Vapour.BaseDiffusionCoeffGas;
 

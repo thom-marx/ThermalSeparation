@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Media;
+within ThermalSeparation.Media;
 package C2H5OH_Water_Vap "2 components: C2H5OH, H2O"
  constant SI.Temperature Tcrit_user[nS]= {513.9, 647.3};
 

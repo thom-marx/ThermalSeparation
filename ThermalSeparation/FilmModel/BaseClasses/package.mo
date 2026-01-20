@@ -42,7 +42,7 @@ package BaseClasses
     Real omega_smooth[n];
     parameter Real faktor_Ndot_v=300;
 
-protected
+  protected
      Real vector_vap2[ n,nSV];
      SI.MoleFraction x_v_star_eq[n,nSV];
   // Integer mapping2[nSV-nS];
@@ -188,7 +188,7 @@ protected
     Real startUptime[n](start=fill(1e6,n));
     parameter Real faktor_Ndot_v=100;
 
-protected
+  protected
      Real vector_vap2[ n,nSV];
      SI.MoleFraction x_v_star_eq[n,nSV];
   // Integer mapping2[nSV-nS];

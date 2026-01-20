@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.PressureLoss.SprayColumn;
+within ThermalSeparation.PressureLoss.SprayColumn;
 model PipeFlow "calculation of Vdot using the particle model and zeta values"
 
   extends BasicPressureLossSpray;

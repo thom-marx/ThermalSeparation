@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Components.Compressors;
+within ThermalSeparation.Components.Compressors;
 package OldCompressorModels
 
   model Compressor_GasPortInOut

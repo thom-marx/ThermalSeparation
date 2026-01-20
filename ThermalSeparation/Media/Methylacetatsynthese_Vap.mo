@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Media;
+within ThermalSeparation.Media;
 package Methylacetatsynthese_Vap "Methylacetat, Essigsäure, Methanol, Wasser"
   extends BaseMediumVapour(nSubstance=n, V = {73.78, 53.26, 31.25, 13.1},  eq_Tsonopoulos = {0, 0,0, 6},  sigma = {4.936, 4.5, 3.626, 2.641},
  epsilon_k = {469.8, 470, 481.8, 809.1}, MMX={0.0741,0.0601,0.03204,0.018});
@@ -14,8 +14,8 @@ package Methylacetatsynthese_Vap "Methylacetat, Essigsäure, Methanol, Wasser"
      constant SI.Temperature henry_T_norm=298 "norm temperature";
       constant SI.MolarMass MM_substances[n] = MMX;
 
-   redeclare replaceable model extends BaseProperties( T0 = 298.15)
-
+   redeclare replaceable model extends BaseProperties( T0 = 298.15
+                                                                  )
     CalcSpecificEnthalpy calcSpecificEnthalpy(T0=T0,T=T, x=x, p=p);
 
        Real MM_min = min(MMX);

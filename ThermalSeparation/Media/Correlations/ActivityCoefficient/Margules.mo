@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Media.Correlations.ActivityCoefficient;
+within ThermalSeparation.Media.Correlations.ActivityCoefficient;
 model Margules
   extends BaseActivityCoefficient;
     parameter Integer aux[:] = {1,3,6,10,15, 21, 28, 36, 45};

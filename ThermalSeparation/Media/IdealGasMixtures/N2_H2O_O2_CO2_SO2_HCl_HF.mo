@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Media.IdealGasMixtures;
+within ThermalSeparation.Media.IdealGasMixtures;
 package N2_H2O_O2_CO2_SO2_HCl_HF "7C, Rauchgas: N2, H2O, O2, CO2, SO2, HCl, HF"
 
         constant Integer henry[:] = {1,3,4,5,6,7};

@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Wall;
+within ThermalSeparation.Wall;
 model NaturalConvection
   "Heat Transfer with natural convection of the outside air"
   extends ThermalSeparation.Wall.BaseWall;

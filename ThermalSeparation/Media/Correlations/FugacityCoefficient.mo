@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Media.Correlations;
+within ThermalSeparation.Media.Correlations;
 package FugacityCoefficient
  /*** Reid, Prausnitz: The Properties of Gases & Liquids, 4th edition, McGraw-Hill: Tabelle 3.3 ***/
 

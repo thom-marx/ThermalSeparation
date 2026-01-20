@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Holdup;
+within ThermalSeparation.Holdup;
 package SprayColumn
   partial model BaseHoldup
     parameter Integer n(min=1) annotation(Dialog(enable=false));

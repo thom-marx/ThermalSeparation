@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid;
+within ThermalSeparation.Media.Correlations.DiffusionCoefficient.Liquid;
 model DiffMoleculesIons
   "liquid binary MS diffusion coefficients for a solution which may contain ions"
   //calculates the binary MS diffusion coefficient based on the binary infinite dilution diffusion coefficient

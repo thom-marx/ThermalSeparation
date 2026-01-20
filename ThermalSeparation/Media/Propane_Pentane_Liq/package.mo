@@ -26,7 +26,7 @@ package Propane_Pentane_Liq "Propane, Pentane"
   redeclare replaceable model extends BaseProperties
       CalcSpecificEnthalpy calcSpecificEnthalpy(T0=T0, p=p, T=T, x=x);
   Real R;
-protected
+  protected
     SI.Temperature T_sat[nSubstance]={231.1,309.2};
 
     final parameter Integer counter[6]={0, 7, 14, 21, 28, 35};
@@ -35,7 +35,7 @@ protected
     //if a pure component does not exist as liquid at system pressure and temperature any value can be given
     //as long as the corresponding entry in the constant eta_pure is false
 
-protected
+  protected
     Real Theta = min(1,T/647.14) "dimensionless temperature";
 
   /* saturation pressure */

@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Components.Reboiler.BaseClasses;
+within ThermalSeparation.Components.Reboiler.BaseClasses;
 partial model BaseLSF
   extends Icons.Icons.Flash;
  /*** Initialization ***/

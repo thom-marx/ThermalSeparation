@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.Media.WaterBasedLiquid.BaseClasses;
+within ThermalSeparation.Media.WaterBasedLiquid.BaseClasses;
 package IF97_Utilities
   "Low level and utility computation for high accuracy water properties according to the IAPWS/IF97 standard"
 

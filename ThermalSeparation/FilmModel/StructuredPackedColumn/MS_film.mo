@@ -1,4 +1,4 @@
-﻿within ThermalSeparation.FilmModel.StructuredPackedColumn;
+within ThermalSeparation.FilmModel.StructuredPackedColumn;
 model MS_film "Maxwell-Stefan mass transfer - film reaction"
   import ThermalSeparation;
 extends BaseNonEqType;
